@@ -8,6 +8,7 @@ import controler.mainframe.OpenCRUDTestPanel;
 import controler.mainframe.OpenSchemaEditor;
 
 public class MainAppMenuBar extends JMenuBar{
+	private static final long serialVersionUID = 1L;
 
 	public MainAppMenuBar() {
 		//JMenu file = new JMenu("File");

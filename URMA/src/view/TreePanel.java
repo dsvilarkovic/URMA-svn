@@ -1,12 +1,12 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.LayoutManager;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class TreePanel extends JPanel {
+	private static final long serialVersionUID = 1L;
 
 	public TreePanel() {
 		/*ovde ubaciti u JScrollPane(treeView)*/

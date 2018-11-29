@@ -8,7 +8,6 @@ import model.resourceFactory.DBFactory;
 import model.resourceFactory.IResourceFactory;
 import model.resourceFactory.JSONFactory;
 import model.resourceFactory.XMLFactory;
-import view.CrudTestWindow;
 import view.EditorWindow;
 import view.mainframe.MainAppFrame;
 

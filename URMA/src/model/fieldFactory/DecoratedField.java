@@ -1,6 +1,5 @@
 package model.fieldFactory;
 
-import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JCheckBox;

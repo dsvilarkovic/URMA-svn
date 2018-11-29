@@ -8,6 +8,7 @@ import javax.swing.JToolBar;
  *
  */
 public class MainAppToolbar extends JToolBar {
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Set alata sa glavnog prozora

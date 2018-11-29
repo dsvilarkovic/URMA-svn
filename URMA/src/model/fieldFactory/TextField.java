@@ -2,9 +2,6 @@ package model.fieldFactory;
 
 import javax.swing.JTextField;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 public class TextField extends JPanel implements IField{

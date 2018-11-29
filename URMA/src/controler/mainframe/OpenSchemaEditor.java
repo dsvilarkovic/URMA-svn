@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
@@ -14,6 +13,7 @@ import app.App;
 
 
 public class OpenSchemaEditor extends AbstractAction {
+	private static final long serialVersionUID = 1L;
 
 	public OpenSchemaEditor() {
 

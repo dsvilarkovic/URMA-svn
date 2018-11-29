@@ -1,15 +1,11 @@
 package controler.mainframe;
 
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
-import app.App;
 import view.CrudTestWindow;
 
 public class OpenCRUDTestPanel extends AbstractAction{
