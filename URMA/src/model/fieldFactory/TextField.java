@@ -2,13 +2,22 @@ package model.fieldFactory;
 
 import javax.swing.JTextField;
 
-public class TextField implements IField{
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
+
+public class TextField extends JPanel implements IField{
 
 	private static final long serialVersionUID = 1L;
 	private JTextField field;
 
 	public TextField() {
 		this.field = new JTextField();
+		
+		add(field);
+		
+		validate();
 	}
 
 	public JTextField getJTextField() {
@@ -20,7 +29,7 @@ public class TextField implements IField{
 	}
 
 	@Override
-	public Boolean validate() {
+	public Boolean validateField() {
 		return false;
 	}
 

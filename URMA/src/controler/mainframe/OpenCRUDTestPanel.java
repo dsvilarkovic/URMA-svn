@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
 import app.App;
+import view.CrudTestWindow;
 
 public class OpenCRUDTestPanel extends AbstractAction{
 
@@ -34,7 +35,8 @@ public class OpenCRUDTestPanel extends AbstractAction{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		App.INSTANCE.getCrudTestWindow().setVisible(true);
+		CrudTestWindow crudTestWindow = new CrudTestWindow();
+		crudTestWindow.setVisible(true);
 	}
 
 	

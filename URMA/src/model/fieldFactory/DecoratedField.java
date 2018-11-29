@@ -1,9 +1,14 @@
 package model.fieldFactory;
 
+import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JCheckBox;
+import javax.swing.JPanel;
 
-public class DecoratedField implements IField{
-
+public class DecoratedField extends JPanel implements IField{
+	private static final long serialVersionUID = 1L;
+	
 	IField field = null;
 	JCheckBox checkbox = null;
 	
@@ -11,6 +16,11 @@ public class DecoratedField implements IField{
 		super();
 		this.field = field;
 		this.checkbox = new JCheckBox("");
+		
+		add((Component) field.getField());
+		add(checkbox);
+		
+		validate();
 	}
 	
 	public JCheckBox getCheckbox() {
@@ -23,7 +33,7 @@ public class DecoratedField implements IField{
 
 
 	@Override
-	public Boolean validate() {
+	public Boolean validateField() {
 		return null;
 	}
 

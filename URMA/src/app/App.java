@@ -2,11 +2,7 @@ package app;
 
 
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
-import model.fieldFactory.DecoratedField;
 import model.fieldFactory.IFieldFactory;
-import model.fieldFactory.TextField;
 import model.fieldFactory.TextFieldFactory;
 import model.resourceFactory.DBFactory;
 import model.resourceFactory.IResourceFactory;
@@ -32,29 +28,14 @@ public enum App {
 	
 	private MainAppFrame appWindow = new MainAppFrame();
 	
-	private CrudTestWindow crudTestWindow = new CrudTestWindow();
-	
 	public void start() {
 		//pokretanje aplikacije
 		appWindow.setVisible(true);
-		
-//		App.INSTANCE.createFieldFactory("text");
-//		TextField textField = (TextField) App.INSTANCE.getFieldFactory().createField();
-//		textField.getJTextField().setText("jelena");
-//		System.out.println(textField.getJTextField().getText());
-//		
-//		DecoratedField df = new DecoratedField(textField);
-//		System.out.println(((JTextField)df.getField()).getText());
-//		System.out.println(df.getCheckbox().isSelected());
 	}
 	
 	//pokretanje prozora
 	public EditorWindow getEditorWindow() {
 		return editorWindow;	
-	}
-	
-	public CrudTestWindow getCrudTestWindow() {
-		return crudTestWindow;	
 	}
 	
 	public IResourceFactory getFactory() {
