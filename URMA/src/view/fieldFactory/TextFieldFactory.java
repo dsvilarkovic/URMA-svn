@@ -1,4 +1,4 @@
-package model.fieldFactory;
+package view.fieldFactory;
 
 public class TextFieldFactory implements IFieldFactory{
 

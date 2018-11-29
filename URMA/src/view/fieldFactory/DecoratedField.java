@@ -1,4 +1,4 @@
-package model.fieldFactory;
+package view.fieldFactory;
 
 import java.awt.Component;
 

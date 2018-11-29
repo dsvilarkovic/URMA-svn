@@ -9,14 +9,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import app.App;
-import model.fieldFactory.DecoratedField;
-import model.fieldFactory.TextField;
+import view.fieldFactory.DecoratedField;
+import view.fieldFactory.TextField;
 
-public class CrudTestWindow extends JFrame{
+public class CrudWindow extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 
-	public CrudTestWindow() {
+	public CrudWindow() {
 
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();

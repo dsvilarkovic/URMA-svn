@@ -4,7 +4,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import controler.mainframe.OpenCRUDTestPanel;
+import controler.mainframe.OpenCRUDWindow;
 import controler.mainframe.OpenSchemaEditor;
 
 public class MainAppMenuBar extends JMenuBar{
@@ -24,7 +24,7 @@ public class MainAppMenuBar extends JMenuBar{
 		
 		JMenuItem OpenSchemaEditorItem = new JMenuItem(new OpenSchemaEditor());
 		tools.add(OpenSchemaEditorItem);
-		JMenuItem CRUDWindow = new JMenuItem(new OpenCRUDTestPanel());
+		JMenuItem CRUDWindow = new JMenuItem(new OpenCRUDWindow());
 		tools.add(CRUDWindow);
 		
 		//add(file);

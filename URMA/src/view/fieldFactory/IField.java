@@ -1,4 +1,4 @@
-package model.fieldFactory;
+package view.fieldFactory;
 
 public interface IField {
 	public Boolean validateField() ;

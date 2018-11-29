@@ -2,13 +2,14 @@ package app;
 
 
 import javax.swing.JOptionPane;
-import model.fieldFactory.IFieldFactory;
-import model.fieldFactory.TextFieldFactory;
+
 import model.resourceFactory.DBFactory;
 import model.resourceFactory.IResourceFactory;
 import model.resourceFactory.JSONFactory;
 import model.resourceFactory.XMLFactory;
 import view.EditorWindow;
+import view.fieldFactory.IFieldFactory;
+import view.fieldFactory.TextFieldFactory;
 import view.mainframe.MainAppFrame;
 
 /**

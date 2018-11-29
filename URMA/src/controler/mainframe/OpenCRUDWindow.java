@@ -6,20 +6,20 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
-import view.CrudTestWindow;
+import view.CrudWindow;
 
-public class OpenCRUDTestPanel extends AbstractAction{
+public class OpenCRUDWindow extends AbstractAction{
 
 	private static final long serialVersionUID = 1L;
 
-	public OpenCRUDTestPanel() {
+	public OpenCRUDWindow() {
 
 		this(23);
 		//TODO lokalizacija
 		//putValue(NAME, MyApp.getInstance().getResourceBundle().getString("page.new"));
 	}
 	
-	public OpenCRUDTestPanel(int prefferedSize) {
+	public OpenCRUDWindow(int prefferedSize) {
 		putValue(NAME, "Open CRUD window");
 		
 		putValue(MNEMONIC_KEY, KeyEvent.VK_C);
@@ -31,8 +31,8 @@ public class OpenCRUDTestPanel extends AbstractAction{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		CrudTestWindow crudTestWindow = new CrudTestWindow();
-		crudTestWindow.setVisible(true);
+		CrudWindow crudWindow = new CrudWindow();
+		crudWindow.setVisible(true);
 	}
 
 	
