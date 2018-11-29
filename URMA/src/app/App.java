@@ -2,11 +2,16 @@ package app;
 
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
-import model.factory.DBFactory;
-import model.factory.IResourceFactory;
-import model.factory.JSONFactory;
-import model.factory.XMLFactory;
+import model.fieldFactory.DecoratedField;
+import model.fieldFactory.IFieldFactory;
+import model.fieldFactory.TextField;
+import model.fieldFactory.TextFieldFactory;
+import model.resourceFactory.DBFactory;
+import model.resourceFactory.IResourceFactory;
+import model.resourceFactory.JSONFactory;
+import model.resourceFactory.XMLFactory;
 import view.CrudTestWindow;
 import view.EditorWindow;
 import view.mainframe.MainAppFrame;
@@ -21,6 +26,8 @@ public enum App {
 
 	private IResourceFactory factory = null;
 	
+	private IFieldFactory fieldFactory = null;
+	
 	private EditorWindow editorWindow = new EditorWindow();
 	
 	private MainAppFrame appWindow = new MainAppFrame();
@@ -30,6 +37,15 @@ public enum App {
 	public void start() {
 		//pokretanje aplikacije
 		appWindow.setVisible(true);
+		
+//		App.INSTANCE.createFieldFactory("text");
+//		TextField textField = (TextField) App.INSTANCE.getFieldFactory().createField();
+//		textField.getJTextField().setText("jelena");
+//		System.out.println(textField.getJTextField().getText());
+//		
+//		DecoratedField df = new DecoratedField(textField);
+//		System.out.println(((JTextField)df.getField()).getText());
+//		System.out.println(df.getCheckbox().isSelected());
 	}
 	
 	//pokretanje prozora
@@ -55,4 +71,16 @@ public enum App {
 				JOptionPane.ERROR_MESSAGE);	break;
 		}
 	}
+	
+	public IFieldFactory getFieldFactory() {
+		return fieldFactory;
+	}
+	
+	public void createFieldFactory(String type) {
+		switch (type) {
+		case "text": fieldFactory = new TextFieldFactory(); break;
+		default: JOptionPane.showMessageDialog(null, "We dont know that type", "Invalid type",
+				JOptionPane.ERROR_MESSAGE);	break;
+		}
+}
 }

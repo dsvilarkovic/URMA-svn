@@ -1,4 +1,4 @@
-package model.factory;
+package model.resourceFactory;
 
 import controler.handlers.IHandler;
 import controler.parsers.IParser;
