@@ -7,6 +7,7 @@ import model.factory.DBFactory;
 import model.factory.IResourceFactory;
 import model.factory.JSONFactory;
 import model.factory.XMLFactory;
+import view.CrudTestWindow;
 import view.EditorWindow;
 import view.mainframe.MainAppFrame;
 
@@ -24,6 +25,8 @@ public enum App {
 	
 	private MainAppFrame appWindow = new MainAppFrame();
 	
+	private CrudTestWindow crudTestWindow = new CrudTestWindow();
+	
 	public void start() {
 		//pokretanje aplikacije
 		appWindow.setVisible(true);
@@ -32,6 +35,10 @@ public enum App {
 	//pokretanje prozora
 	public EditorWindow getEditorWindow() {
 		return editorWindow;	
+	}
+	
+	public CrudTestWindow getCrudTestWindow() {
+		return crudTestWindow;	
 	}
 	
 	public IResourceFactory getFactory() {
