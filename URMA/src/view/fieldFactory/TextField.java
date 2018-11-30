@@ -10,7 +10,7 @@ public class TextField extends JPanel implements IField{
 	private JTextField field;
 
 	public TextField() {
-		this.field = new JTextField();
+		field = new JTextField();
 		
 		add(field);
 		
@@ -27,7 +27,7 @@ public class TextField extends JPanel implements IField{
 
 	@Override
 	public Boolean validateField() {
-		return false;
+		return true;
 	}
 
 	@Override
