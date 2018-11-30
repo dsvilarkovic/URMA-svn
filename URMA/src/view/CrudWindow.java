@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.text.NumberFormatter;
 
 import app.App;
+import view.fieldFactory.BooleanField;
 import view.fieldFactory.DateField;
 import view.fieldFactory.DecoratedField;
 import view.fieldFactory.NumberField;
@@ -69,6 +70,12 @@ public class CrudWindow extends JFrame{
 		numberField1.getJTextField().setText("1234.5");
 		DecoratedField df1 = new DecoratedField(numberField1);
 		add(df1);
+		
+		add(new JLabel("bool:"));
+		BooleanField booleanField = new BooleanField();
+		booleanField.getJCheckBox().setSelected(true);
+		DecoratedField df2 = new DecoratedField(booleanField);
+		add(df2);
 
 		validate();
 	}
