@@ -45,7 +45,6 @@ public class CrudWindow extends JFrame{
 		TextField textField = (TextField) App.INSTANCE.getFieldFactory().createField();
 		textField.getJTextField().setText("12.12.1234");
 		add(textField);
-		System.out.println(textField.validateField());
 		
 		add(new JLabel("surname:"));
 		TextField textField1 = (TextField) App.INSTANCE.getFieldFactory().createField();
@@ -54,25 +53,26 @@ public class CrudWindow extends JFrame{
 		add(df);
 		
 		add(new JLabel("date:"));
-		DateField dateField = new DateField();
+		App.INSTANCE.createFieldFactory("date");
+		DateField dateField = (DateField) App.INSTANCE.getFieldFactory().createField();
 		dateField.getJTextField().setText("12.12.2013");
 		add(dateField);
-		System.out.println(dateField.validateField());
 		
 		add(new JLabel("number:"));
-		NumberField numberField = new NumberField();
+		App.INSTANCE.createFieldFactory("number");
+		NumberField numberField = (NumberField) App.INSTANCE.getFieldFactory().createField();
 		numberField.getJTextField().setText("12345");
 		add(numberField);
-		System.out.println(numberField.validateField());
 		
 		add(new JLabel("number:"));
-		NumberField numberField1 = new NumberField();
+		NumberField numberField1 = (NumberField) App.INSTANCE.getFieldFactory().createField();
 		numberField1.getJTextField().setText("1234.5");
 		DecoratedField df1 = new DecoratedField(numberField1);
 		add(df1);
 		
 		add(new JLabel("bool:"));
-		BooleanField booleanField = new BooleanField();
+		App.INSTANCE.createFieldFactory("boolean");
+		BooleanField booleanField = (BooleanField) App.INSTANCE.getFieldFactory().createField();
 		booleanField.getJCheckBox().setSelected(true);
 		DecoratedField df2 = new DecoratedField(booleanField);
 		add(df2);

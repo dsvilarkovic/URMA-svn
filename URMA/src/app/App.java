@@ -8,7 +8,10 @@ import model.resourceFactory.IResourceFactory;
 import model.resourceFactory.JSONFactory;
 import model.resourceFactory.XMLFactory;
 import view.EditorWindow;
+import view.fieldFactory.BooleanFieldFactory;
+import view.fieldFactory.DateFieldFactory;
 import view.fieldFactory.IFieldFactory;
+import view.fieldFactory.NumberFieldFactory;
 import view.fieldFactory.TextFieldFactory;
 import view.mainframe.MainAppFrame;
 
@@ -60,6 +63,9 @@ public enum App {
 	public void createFieldFactory(String type) {
 		switch (type) {
 		case "text": fieldFactory = new TextFieldFactory(); break;
+		case "date": fieldFactory = new DateFieldFactory(); break;
+		case "number": fieldFactory = new NumberFieldFactory(); break;
+		case "boolean": fieldFactory = new BooleanFieldFactory(); break;
 		default: JOptionPane.showMessageDialog(null, "We dont know that type", "Invalid type",
 				JOptionPane.ERROR_MESSAGE);	break;
 		}
