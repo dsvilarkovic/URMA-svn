@@ -7,19 +7,32 @@ import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Properties;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
 public class DateField extends JPanel implements IField{
 	private static final long serialVersionUID = 1L;
 	
-	private JFormattedTextField field;
+	private JDatePickerImpl field;
+//	private JFormattedTextField field;
 
 	public DateField() {
-		DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-		this.field = new JFormattedTextField(df);
+		UtilDateModel model = new UtilDateModel();
+		Properties p = new Properties();
+		p.put("text.today", "Today");
+		p.put("text.month", "Month");
+		p.put("text.year", "Year");
+		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+		field = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+//		DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+//		this.field = new JFormattedTextField(df);
 //		this.field.addFocusListener(new FocusAdapter() {
 //		    public void focusLost(FocusEvent e) {
 //		      if (!validateJFormatedTextField((JFormattedTextField)e.getComponent())){
@@ -33,11 +46,11 @@ public class DateField extends JPanel implements IField{
 		validate();
 	}
 
-	public JFormattedTextField getJTextField() {
+	public JDatePickerImpl getJDatePickerImpl() {
 		return  field;
 	}
 
-	public void setJTextField(JFormattedTextField field) {
+	public void setJDatePickerImpl(JDatePickerImpl field) {
 		this.field = field;
 	}
 	
@@ -54,7 +67,6 @@ public class DateField extends JPanel implements IField{
 
 	@Override
 	public Boolean validateField() {
-		//return validateJFormatedTextField(this.field);
 		return true;
 	}
 
@@ -65,7 +77,7 @@ public class DateField extends JPanel implements IField{
 
 	@Override
 	public void setField(Object o) {
-		field = (JFormattedTextField)o;
+		field = (JDatePickerImpl)o;
 	}
 
 }

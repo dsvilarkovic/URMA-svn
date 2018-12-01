@@ -9,17 +9,25 @@ import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Properties;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.text.NumberFormatter;
 
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
 import app.App;
 import view.fieldFactory.BooleanField;
 import view.fieldFactory.DateField;
+import view.fieldFactory.DateLabelFormatter;
 import view.fieldFactory.DecoratedField;
 import view.fieldFactory.NumberField;
 import view.fieldFactory.TextField;
@@ -55,7 +63,8 @@ public class CrudWindow extends JFrame{
 		add(new JLabel("date:"));
 		App.INSTANCE.createFieldFactory("date");
 		DateField dateField = (DateField) App.INSTANCE.getFieldFactory().createField();
-		dateField.getJTextField().setText("12.12.2013");
+		dateField.getJDatePickerImpl().getModel().setDate(1990, 8, 24);
+		dateField.getJDatePickerImpl().getModel().setSelected(true);
 		add(dateField);
 		
 		add(new JLabel("number:"));
