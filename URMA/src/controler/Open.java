@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.nio.file.Files;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -23,25 +24,31 @@ public class Open {
 
 	public Object openThis(String path) {
 
-		File f = new File(path);
-		ObjectInputStream oos;
-		Object saved = null;
-		try {
-			oos = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
-			saved = (Object) oos.readObject();
-			oos.close();
-		} catch (IOException e1) {
+		if (path != null) {
+			File f = new File(path);
+			ObjectInputStream oos;
+			Object saved = null;
 			try {
-				saved = new String(Files.readAllBytes(f.toPath()));
-				System.out.println("File was not java Object class, reading it as string");
-			} catch (IOException e2) {
-				e2.printStackTrace();
+				oos = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
+				saved = (Object) oos.readObject();
+				oos.close();
+			} catch (IOException e1) {
+				try {
+					saved = new String(Files.readAllBytes(f.toPath()));
+					System.out.println("File was not java Object class, reading it as string");
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+	
+			return saved;
 		}
-
-		return saved;
+		else {
+			JOptionPane.showMessageDialog(null, "Please select a valid file.");
+			return null;
+		}
 	}
 
 	public String getPath(String extension) {

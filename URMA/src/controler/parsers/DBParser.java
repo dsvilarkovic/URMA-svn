@@ -13,7 +13,7 @@ public class DBParser implements IParser {
 	 * @see controler.parsers.IParser#parse()
 	 */
 	@Override
-	public void parse() {
+	public void parse(String path) {
 		// TODO Auto-generated method stub
 
 	}

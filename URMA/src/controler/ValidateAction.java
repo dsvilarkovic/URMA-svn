@@ -37,12 +37,15 @@ public class ValidateAction extends AbstractAction {
 //					JOptionPane.ERROR_MESSAGE);
 //			return;
 
-			//pitaj Peru za ovo
+			//TODO Filip: pitaj Peru za ovo
 			//App.INSTANCE.getApp().getToolbar().getChoseMetaSchemeButton().doClick();
 			
 			path = new Open().getPath("sch/json");
 			JTextField path_field = App.INSTANCE.getEditorWindow().getToolbar().getPath();
 			path_field.setText(path);
+			
+			
+			return;
 		}
 		App.INSTANCE.setFactory(FilenameUtils.getExtension(App.INSTANCE.getEditorWindow().getToolbar().getPath().getText()));
 

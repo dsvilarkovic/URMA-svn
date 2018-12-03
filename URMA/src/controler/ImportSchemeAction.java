@@ -30,7 +30,13 @@ public class ImportSchemeAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String str = (String) new Open().open("sch/json/txt/text/doc/docx/odt");
+		String str = null;
+		try {
+		 str = (String) new Open().open("sch/json/txt/text/doc/docx/odt");
+		}
+		catch(NullPointerException npe) {
+			return; //vraca se funkcija ne treba je izvrsavati
+		}
 		App.INSTANCE.getEditorWindow().getMainPanel().getTextArea().setText(str);
 		System.out.println(this.getClass() + ": Scheme imported action execution finnished");
 	}

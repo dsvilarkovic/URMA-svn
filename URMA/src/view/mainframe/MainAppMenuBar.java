@@ -4,11 +4,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import controler.mainframe.OpenCRUDWindow;
+import controler.ParseSchemaAction;
 import controler.mainframe.OpenSchemaEditor;
 
 public class MainAppMenuBar extends JMenuBar{
-	private static final long serialVersionUID = 1L;
 
 	public MainAppMenuBar() {
 		//JMenu file = new JMenu("File");
@@ -24,8 +23,9 @@ public class MainAppMenuBar extends JMenuBar{
 		
 		JMenuItem OpenSchemaEditorItem = new JMenuItem(new OpenSchemaEditor());
 		tools.add(OpenSchemaEditorItem);
-		JMenuItem CRUDWindow = new JMenuItem(new OpenCRUDWindow());
-		tools.add(CRUDWindow);
+		
+		JMenuItem ParscheSchemaItem = new JMenuItem(new ParseSchemaAction());
+		tools.add(ParscheSchemaItem);
 		
 		//add(file);
 		add(tools);

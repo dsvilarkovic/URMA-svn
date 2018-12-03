@@ -5,5 +5,5 @@ package controler.parsers;
  *
  */
 public interface IParser {
-	public void parse();
+	public void parse(String path);
 }

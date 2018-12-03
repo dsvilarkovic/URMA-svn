@@ -6,26 +6,22 @@
 
 package model;
 
-/**
- * 
- * @author Boris
- *
- */
+import java.util.*;
 
 /** @pdOid f68bbcd5-5fff-40bf-b2e4-b849591951d2 */
 public class Attribute {
 	/** @pdOid 7040b2e2-2d9a-4727-ba48-9a7d1a7168b8 */
-	private java.lang.String title;
+	private String title;
 	/** @pdOid 765fbd9a-c400-49d7-b983-93be80b6a6bd */
-	private java.lang.String code;
+	private String code;
 	/** @pdOid 4d0d48f4-eb55-425b-8c21-51688eaaabfe */
-	private java.lang.Boolean isPrimaryKey;
+	private boolean isPrimaryKey;
 	/** @pdOid ae8d1eff-fc29-4260-a85d-c18001644ae6 */
-	private java.lang.Boolean isRequired;
+	private boolean isRequired;
 	/** @pdOid 858d66d7-4eb0-4328-b955-df8aa006c0cc */
-	private java.lang.String type;
+	private String type;
 	/** @pdOid aae8a747-923e-4db4-b7a2-14d9946a9f8c */
-	private java.lang.Integer maxLength;
+	private int maxLength;
 
 	/** @pdRoleInfo migr=no name=Table assc=kolekcijaAtributa mult=1..1 side=A */
 	private Table table;
@@ -44,61 +40,112 @@ public class Attribute {
 			if (this.table != null) {
 				Table oldTable = this.table;
 				this.table = null;
-				oldTable.removeAttribute(this);
+				oldTable.removeAttributes(this);
 			}
 			if (newTable != null) {
 				this.table = newTable;
-				this.table.addAttribute(this);
+				this.table.addAttributes(this);
 			}
 		}
 	}
 
-	public java.lang.String getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(java.lang.String title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public java.lang.String getCode() {
+	public String getCode() {
 		return code;
 	}
 
-	public void setCode(java.lang.String code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 
-	public java.lang.Boolean getIsPrimaryKey() {
+	public boolean getIsPrimaryKey() {
 		return isPrimaryKey;
 	}
 
-	public void setIsPrimaryKey(java.lang.Boolean isPrimaryKey) {
+	public void setIsPrimaryKey(boolean isPrimaryKey) {
 		this.isPrimaryKey = isPrimaryKey;
 	}
 
-	public java.lang.Boolean getIsRequired() {
+	public boolean getIsRequired() {
 		return isRequired;
 	}
 
-	public void setIsRequired(java.lang.Boolean isRequired) {
+	public void setIsRequired(boolean isRequired) {
 		this.isRequired = isRequired;
 	}
 
-	public java.lang.String getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(java.lang.String type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
-	public java.lang.Integer getMaxLength() {
+	public int getMaxLength() {
 		return maxLength;
 	}
 
-	public void setMaxLength(java.lang.Integer maxLength) {
+	public void setMaxLength(int maxLength) {
 		this.maxLength = maxLength;
 	}
+	
+	public Attribute() {}
+
+	/**
+	 * Konstruktor za testiranje. 
+	 * @author Dusan 
+	 * 
+	 * 
+	 * @param title
+	 * @param code
+	 * @param isPrimaryKey
+	 * @param isRequired
+	 * @param type
+	 * @param maxLength
+	 * @param table
+	 */
+	public Attribute(String title, String code, Boolean isPrimaryKey, Boolean isRequired, String type,
+			Integer maxLength, Table table) {
+		super();
+		this.title = title;
+		this.code = code;
+		this.isPrimaryKey = isPrimaryKey;
+		this.isRequired = isRequired;
+		this.type = type;
+		this.maxLength = maxLength;
+		this.table = table;
+	}
+
+	/* (non-Javadoc)
+	 * Koristi se za poredjenje izmedju atribute po code-u, ili ako je prosledjen string.
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Attribute) {
+			Attribute compareAttribute = (Attribute) obj;
+			if(compareAttribute.getCode().equals(this.getCode())) {
+				return true;
+			}
+		}
+		else if(obj instanceof String) {
+			String attributeCode = (String) obj;
+			if(attributeCode.equals(this.getCode())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	
 
 }

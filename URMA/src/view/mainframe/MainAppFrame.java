@@ -4,11 +4,13 @@ package view.mainframe;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
-import view.TreePanel;
+import view.MainPanel;
 
 /**
  * 
@@ -16,12 +18,13 @@ import view.TreePanel;
  *
  */
 public class MainAppFrame extends JFrame {
-	private static final long serialVersionUID = 1L;
 	
+
 	private MainAppToolbar mainAppToolbar = new MainAppToolbar();	
-	private TreePanel treePanel = new TreePanel();
+	private MainAppTreePanel treePanel = new MainAppTreePanel();
 	private MainAppMenuBar mainAppMenubar = new MainAppMenuBar();
 	private MainAppPanel mainAppPanel = new MainAppPanel();
+	
 
 	/**
 	 * Glavni prozor aplikacije
@@ -61,19 +64,13 @@ public class MainAppFrame extends JFrame {
 		getContentPane().add(splitPane,BorderLayout.WEST);
 	}
 
-	/**
-	 * @return the mainAppPanel
-	 */
 	public MainAppPanel getMainAppPanel() {
 		return mainAppPanel;
 	}
 
-	/**
-	 * @param mainAppPanel the mainAppPanel to set
-	 */
 	public void setMainAppPanel(MainAppPanel mainAppPanel) {
 		this.mainAppPanel = mainAppPanel;
 	}
-
+	public MainAppTreePanel getTreePanel() {return treePanel;}
 
 }
