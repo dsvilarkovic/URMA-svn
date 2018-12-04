@@ -2,20 +2,19 @@ package app;
 
 
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.text.JTextComponent;
 
 import controller.tableactions.TableMediator;
 import model.InformationResource;
-import model.fieldFactory.DecoratedField;
-import model.fieldFactory.IFieldFactory;
-import model.fieldFactory.TextField;
-import model.fieldFactory.TextFieldFactory;
+import view.fieldFactory.IFieldFactory;
+import view.fieldFactory.TextFieldFactory;
 import model.resourceFactory.DBFactory;
 import model.resourceFactory.IResourceFactory;
 import model.resourceFactory.JSONFactory;
 import model.resourceFactory.XMLFactory;
 import view.EditorWindow;
+import view.fieldFactory.BooleanFieldFactory;
+import view.fieldFactory.DateFieldFactory;
+import view.fieldFactory.NumberFieldFactory;
 import view.mainframe.MainAppFrame;
 
 /**
@@ -43,15 +42,6 @@ public enum App {
 		repository = new InformationResource();
 		
 		mainAppFrame.setVisible(true);
-		
-//		App.INSTANCE.createFieldFactory("text");
-//		TextField textField = (TextField) App.INSTANCE.getFieldFactory().createField();
-//		textField.getJTextField().setText("jelena");
-//		System.out.println(textField.getJTextField().getText());
-//		
-//		DecoratedField df = new DecoratedField(textField);
-//		System.out.println(((JTextField)df.getField()).getText());
-//		System.out.println(df.getCheckbox().isSelected());
 		
 	}
 
@@ -84,10 +74,12 @@ public enum App {
 	
 	public void createFieldFactory(String type) {
 		switch (type) {
-		case "text": fieldFactory = new TextFieldFactory(); break;
-//		case "textdecorator": fieldFactory = new DecoratedTextFieldFactory(); break;
-		default: JOptionPane.showMessageDialog(null, "We dont know that type", "Invalid type",
-				JOptionPane.ERROR_MESSAGE);	break;
+			case "text": fieldFactory = new TextFieldFactory(); break;
+			case "date": fieldFactory = new DateFieldFactory(); break;
+			case "number": fieldFactory = new NumberFieldFactory(); break;
+			case "boolean": fieldFactory = new BooleanFieldFactory(); break;
+			default: JOptionPane.showMessageDialog(null, "We dont know that type", "Invalid type",
+					JOptionPane.ERROR_MESSAGE);	break;
 		}
 	}
 
@@ -118,6 +110,4 @@ public enum App {
 	public void setModel(InformationResource model) {
 		this.model = model;
 	}
-	
-	
 }

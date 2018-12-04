@@ -1,25 +1,13 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import org.apache.commons.io.FilenameUtils;
-
-import app.App;
 import controler.EditorWindowClosingAction;
-import controler.validators.IValidator;
-import model.fieldFactory.DecoratedField;
-import model.fieldFactory.IField;
-import model.fieldFactory.TextField;
 
 /**
  * 
@@ -52,17 +40,6 @@ public class EditorWindow extends JDialog {
 		add(console, BorderLayout.SOUTH);
 
 		validate();
-		
-//		System.out.println(App.INSTANCE);
-//
-//		App.INSTANCE.createFieldFactory("text");
-//		TextField textField = (TextField) App.INSTANCE.getFieldFactory().createField();
-//		textField.getJTextField().setText("jelena");
-//		System.out.println(textField.getJTextField().getText());
-//		
-//		DecoratedField df = new DecoratedField(textField);
-//		System.out.println(((JTextField)df.getField()).getText());
-//		System.out.println(df.getCheckbox().isSelected());
 	}
 
 	public Toolbar getToolbar() {
