@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import app.App;
 import view.fieldFactory.BooleanField;
@@ -19,8 +20,96 @@ public class CrudWindow extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 
-	public CrudWindow() {
+	public CrudWindow(String[] title, Object[] values, String[] types, Boolean search) {
 
+		CreateWindow();
+		
+		for(int i = 0; i < title.length; i++) {
+			add(new JLabel(title[i]));
+			if(types[i].equals("number")) {
+				App.INSTANCE.createFieldFactory("number");
+				NumberField numberField = (NumberField) App.INSTANCE.getFieldFactory().createField();
+				numberField.getJTextField().setText(values[i].toString());
+				if(search) {
+					DecoratedField df = new DecoratedField(numberField);
+					add(df);
+				}else {
+					add(numberField);
+				}
+			}else if(types[i].equals("text")) {
+				App.INSTANCE.createFieldFactory("text");
+				TextField textField = (TextField) App.INSTANCE.getFieldFactory().createField();
+				textField.getJTextField().setText(values[i].toString());
+				if(search) {
+					DecoratedField df = new DecoratedField(textField);
+					add(df);
+				}else {
+					add(textField);
+				}
+			}else if(types[i].equals("boolean")) {
+				App.INSTANCE.createFieldFactory("boolean");
+				BooleanField booleanField = (BooleanField) App.INSTANCE.getFieldFactory().createField();
+				booleanField.getJCheckBox().setSelected((boolean) values[i]);
+				if(search) {
+					DecoratedField df = new DecoratedField(booleanField);
+					add(df);
+				}else {
+					add(booleanField);
+				}
+			}else if(types[i].equals("date")) {
+				Integer[] date = (Integer[]) values[i];
+				App.INSTANCE.createFieldFactory("date");
+				DateField dateField = (DateField) App.INSTANCE.getFieldFactory().createField();
+				dateField.getJDatePickerImpl().getModel().setDate(date[2], date[1], date[0]);
+				dateField.getJDatePickerImpl().getModel().setSelected(true);
+				if(search) {
+					DecoratedField df = new DecoratedField(dateField);
+					add(df);
+				}else {
+					add(dateField);
+				}
+			}else {
+				JOptionPane.showMessageDialog(null, "We dont know that type", "Invalid resource type", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+
+		validate();
+	}
+	
+	public CrudWindow(String[] title, String[] types) {
+
+		CreateWindow();
+		
+		for(int i = 0; i < title.length; i++) {
+			add(new JLabel(title[i]));
+			if(types[i].equals("number")) {
+				App.INSTANCE.createFieldFactory("number");
+				NumberField numberField = (NumberField) App.INSTANCE.getFieldFactory().createField();
+				numberField.getJTextField().setText("");
+				add(numberField);
+			}else if(types[i].equals("text")) {
+				App.INSTANCE.createFieldFactory("text");
+				TextField textField = (TextField) App.INSTANCE.getFieldFactory().createField();
+				textField.getJTextField().setText("");
+				add(textField);
+			}else if(types[i].equals("boolean")) {
+				App.INSTANCE.createFieldFactory("boolean");
+				BooleanField booleanField = (BooleanField) App.INSTANCE.getFieldFactory().createField();
+				booleanField.getJCheckBox().setSelected(false);
+				add(booleanField);
+			}else if(types[i].equals("date")) {
+				App.INSTANCE.createFieldFactory("date");
+				DateField dateField = (DateField) App.INSTANCE.getFieldFactory().createField();
+				add(dateField);
+			}else {
+				JOptionPane.showMessageDialog(null, "We dont know that type", "Invalid resource type", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+
+		validate();
+	}
+	
+	private void CreateWindow() {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setSize((int) (screenSize.getWidth() * 0.71), (int) (screenSize.getHeight() * 0.71));
@@ -30,45 +119,6 @@ public class CrudWindow extends JFrame{
 		setTitle("CRUD");
 		setLayout(new GridLayout(0,2));
 		setIconImage((new ImageIcon("resources/palm-tree.png")).getImage());
-		
-		add(new JLabel("text:"));
-		App.INSTANCE.createFieldFactory("text");
-		TextField textField = (TextField) App.INSTANCE.getFieldFactory().createField();
-		textField.getJTextField().setText("12.12.1234");
-		add(textField);
-		
-		add(new JLabel("surname:"));
-		TextField textField1 = (TextField) App.INSTANCE.getFieldFactory().createField();
-		textField1.getJTextField().setText("dokic");
-		DecoratedField df = new DecoratedField(textField1);
-		add(df);
-		
-		add(new JLabel("date:"));
-		App.INSTANCE.createFieldFactory("date");
-		DateField dateField = (DateField) App.INSTANCE.getFieldFactory().createField();
-		dateField.getJDatePickerImpl().getModel().setDate(1990, 8, 24);
-		dateField.getJDatePickerImpl().getModel().setSelected(true);
-		add(dateField);
-		
-		add(new JLabel("number:"));
-		App.INSTANCE.createFieldFactory("number");
-		NumberField numberField = (NumberField) App.INSTANCE.getFieldFactory().createField();
-		numberField.getJTextField().setText("12345");
-		add(numberField);
-		
-		add(new JLabel("number:"));
-		NumberField numberField1 = (NumberField) App.INSTANCE.getFieldFactory().createField();
-		numberField1.getJTextField().setText("1234.5");
-		DecoratedField df1 = new DecoratedField(numberField1);
-		add(df1);
-		
-		add(new JLabel("bool:"));
-		App.INSTANCE.createFieldFactory("boolean");
-		BooleanField booleanField = (BooleanField) App.INSTANCE.getFieldFactory().createField();
-		booleanField.getJCheckBox().setSelected(true);
-		DecoratedField df2 = new DecoratedField(booleanField);
-		add(df2);
-
-		validate();
 	}
 }
+
