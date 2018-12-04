@@ -6,5 +6,4 @@ public class TextFieldFactory implements IFieldFactory{
 	public IField createField() {
 		return new TextField();
 	}
-
 }
