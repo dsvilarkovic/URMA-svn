@@ -13,7 +13,7 @@ public class TableMainProba {
 
 	public static void main(String[] args) {
 		JFrame jframe = new JFrame();
-		TablePanelProba tpp = new ParentTablePanel("proba");
+		TablePanel tpp = new ParentTablePanel("proba");
 		
 		jframe.setSize(new Dimension(400, 400));
 		

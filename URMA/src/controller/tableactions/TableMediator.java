@@ -1,6 +1,8 @@
 package controller.tableactions;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -25,6 +27,20 @@ public class TableMediator {
 	public TableMediator() {
 	}
 	
+	public void showTable(Table table) {
+		setPanels();
+		//TODO @Dusan za dalje faze ovo sacuvaj
+		//0. pitaj da li zeli da sacuva prethodne izmene 
+		
+		//1. uzmi tabelu i smesti je u parentTablePanel
+		parentTablePanel.setParentModel(new TableModel(table));
+		
+		//2. podesi u childTablePanel decu ako ima
+		Map<String, Table> childTableMap = table.getChildTables();
+		childTablePanel.setTableMap(childTableMap);
+		
+		
+	}
 	public void promoteChild() {
 		
 		setPanels();
@@ -49,7 +65,6 @@ public class TableMediator {
 		try {
 			newChildTableList = App.INSTANCE.getRepository().getChildTables(oldChildTable);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return;
 		}
@@ -102,8 +117,14 @@ public class TableMediator {
 	/**
 	 * Podesavanje panela <code>childTablePanel </code>  i <code> parentTablePanel</code>, kratki snippet
 	 */
-	public void setPanels() {
-		childTablePanel = App.INSTANCE.getMainAppFrame().getMainAppPanel().getChildTablePanel();
-		parentTablePanel = App.INSTANCE.getMainAppFrame().getMainAppPanel().getParentTablePanel();
+	private void setPanels() {
+		if(childTablePanel == null || parentTablePanel == null) {
+			childTablePanel = App.INSTANCE.getMainAppFrame().getMainAppPanel().getChildTablePanel();
+			parentTablePanel = App.INSTANCE.getMainAppFrame().getMainAppPanel().getParentTablePanel();
+		}
 	}
+	
+	
+	
+	
 }

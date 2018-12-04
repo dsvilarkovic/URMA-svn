@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.LayoutManager;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.border.Border;
 
 import view.table.ChildTablePanel;
 import view.table.ParentTablePanel;
@@ -14,11 +17,13 @@ public class MainAppPanel extends JPanel {
 	private ParentTablePanel parentTablePanel = new ParentTablePanel("Parent");
 	
 	public MainAppPanel() {
-		this.setLayout(new BorderLayout());
 		
 		
-		add(childTablePanel,BorderLayout.SOUTH);
-		add(parentTablePanel, BorderLayout.NORTH);
+		
+		setLayout(new BorderLayout());
+		add(parentTablePanel, BorderLayout.CENTER);
+		add(childTablePanel, BorderLayout.SOUTH);
+		
 		
 	}
 

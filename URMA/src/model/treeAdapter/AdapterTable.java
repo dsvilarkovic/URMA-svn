@@ -6,6 +6,7 @@ package model.treeAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.App;
 import model.InformationResource;
 import model.Table;
 
@@ -28,7 +29,9 @@ public class AdapterTable implements TreeParts {
 	public String getName() {return tabela.getTitle();}
 
 	@Override
-	public void action() {System.out.println("Akcija u stablu na tabeli: " + tabela.getTitle() + "   " + tabela);}
+	public void action() {
+		App.INSTANCE.getTableMediator().showTable(tabela);
+	}
 
 	@Override
 	public List<TreeParts> getContent(InformationResource infRes) {
@@ -50,4 +53,7 @@ public class AdapterTable implements TreeParts {
 		return list;		
 	}
 
+
+	
+	
 }

@@ -1,19 +1,24 @@
  package view.table;
 
 import java.awt.Color;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.swing.BorderFactory;
-
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 
 
 import controller.tableactions.DemoteParentAction;
 import controller.tableactions.PromoteChildAction;
+import model.Table;
 
 
 /**
@@ -21,7 +26,7 @@ import controller.tableactions.PromoteChildAction;
  * @author Dusan
  *
  */
-public class TablePanelProba extends JPanel {
+public class TablePanel extends JPanel {
 
 	
 	private static final long serialVersionUID = 1988065650430728153L;
@@ -34,7 +39,8 @@ public class TablePanelProba extends JPanel {
 	private ButtonGroup buttonGroup = new ButtonGroup();
 		
 
-	public TablePanelProba(String title) {
+	public TablePanel(String title) {
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		Border blackline = BorderFactory.createMatteBorder(1,1, 1, 1, Color.black);
 		Border titledBorder = BorderFactory.createTitledBorder(blackline, title);
 		this.setBorder(titledBorder);
@@ -46,15 +52,44 @@ public class TablePanelProba extends JPanel {
 		buttonGroup.add(changeableButton);
 		
 		
-		add(addRow);
-	    add(removeRow);
-		add(updateRow);
-		add(search);
-		add(changeableButton);		
+		
+		JPanel buttonPanel = new JPanel();
 
+		buttonPanel.add(addRow);
+		buttonPanel.add(removeRow);
+		buttonPanel.add(updateRow);
+		buttonPanel.add(search);
+		buttonPanel.add(changeableButton);		
+		add(buttonPanel);
 	}	
 	
 	
+//	/**
+//	 * Podesavanje tabela u tabbedPane za oba pogleda
+//	 * @param tableModelMap
+//	 */
+//	private Map<String, Table> tableModelMap = new TreeMap<String, Table>();
+//	public void setTableModelMap(Map<String, Table> tableModelMap) {
+//		this.tableModelMap.clear();
+//		
+//		//brisanje postojecih tabova
+//		childTabs.removeAll();		
+//		//dodavanje dece kao tabelaModela i ubacivanje novih tabova kao jtbableova
+//		for (Table table : tableList) {
+//			TableModel tableModel = new TableModel(table);
+//			this.childModelList.add(tableModel);	
+//					
+//			JScrollPane jScrollPane = new JScrollPane(new JTable(tableModel));
+//			jScrollPane.setName(table.getTitle());
+//			this.childTabs.add(jScrollPane);
+//		}
+//		
+//		//podesi childTabs prvi indeks
+//		childTabs.setSelectedIndex(0);
+//		//ponovno iscrtavanje pogleda
+//		revalidate();
+//		repaint();
+//	}
 
 	public void setChangeableButtonAction(String className) {
 		switch (className) {

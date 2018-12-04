@@ -72,10 +72,14 @@ public class MainAppTreePanel extends JPanel {
 		tree = new JTree(treeModel);
 
 		tree.setCellRenderer(new MainAppTreeRenderer());
+		
+		
+		
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 
 			@Override
 			public void valueChanged(TreeSelectionEvent e) {
+				
 
 				System.out.println("Akcija u drvetu " + e.getSource());
 

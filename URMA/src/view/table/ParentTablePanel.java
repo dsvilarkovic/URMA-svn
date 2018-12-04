@@ -6,7 +6,7 @@ import javax.swing.JTable;
 
 import model.Table;
 
-public class ParentTablePanel extends TablePanelProba {
+public class ParentTablePanel extends TablePanel {
 
 	private static final long serialVersionUID = 6101952337575963863L;
 	private TableModel tableModel;
@@ -23,9 +23,8 @@ public class ParentTablePanel extends TablePanelProba {
 	}
 	
 	private void initParentTable() {
-		this.tableModel = new TableModel(null);
 
-		tblStudenti = new JTable(this.tableModel);
+		tblStudenti = new JTable();
 
 		// Poželjna veličina pogleda tabele u okviru scrollpane-a. Layout
 		// manager uzima ovu osobinu u obzir.
@@ -39,6 +38,7 @@ public class ParentTablePanel extends TablePanelProba {
 	
 	public void setParentModel(TableModel tableModel) {
 		this.tableModel = tableModel;
+		tblStudenti.setModel(tableModel);
 		revalidate();
 		repaint();
 	}
@@ -51,7 +51,4 @@ public class ParentTablePanel extends TablePanelProba {
 		return tableModel.getTable();
 	}
 	
-	
-
-
 }

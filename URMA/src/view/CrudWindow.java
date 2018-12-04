@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,7 +17,7 @@ import view.fieldFactory.DecoratedField;
 import view.fieldFactory.NumberField;
 import view.fieldFactory.TextField;
 
-public class CrudWindow extends JFrame{
+public class CrudWindow extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 
@@ -113,7 +114,14 @@ public class CrudWindow extends JFrame{
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setSize((int) (screenSize.getWidth() * 0.71), (int) (screenSize.getHeight() * 0.71));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		/**
+		 * @author Dusan 
+		 * Obrisao sam ti @Jelena da je ovaj prozor JFrame, posto zatvara i prozor ispod njega
+		 * tj glavni. Samo jedan JFrame sme postojati, ovo je JDialog
+		 * Ti samo setuj sa setModal(true/false) da li zelis da bude modalni ili ne.
+		 */
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(true);
 		setTitle("CRUD");

@@ -3,6 +3,7 @@ package view.table;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -24,20 +25,21 @@ public class TableModel extends DefaultTableModel {
 	 */
 	private List<String> columnsCode = new ArrayList<>();
 
-
 	//TODO namestiti da se komunicira preko dogadjaja
 	public TableModel(Table table) {
-		this.table = new Table();
-		this.table.setTitle("Naslov tabele");
+		this.table = table;
+		
+		this.table.setTitle(table.getTitle());
+		//this.table.setTitle("Naslov tabele");
 		
 
 		
 		
-		this.table.addAttributes(new Attribute("title1", "code1", true, true, "string", 0, this.table));
-		this.table.addAttributes(new Attribute("title2", "code2", false, true, "string", 0, this.table));
-		this.table.addAttributes(new Attribute("title3", "code3", false, true, "string", 0, this.table));
-		this.table.addAttributes(new Attribute("title4", "code4", true, true, "string", 0, this.table));
-		
+//		this.table.addAttributes(new Attribute("title1", "code1", true, true, "string", 0, this.table));
+//		this.table.addAttributes(new Attribute("title2", "code2", false, true, "string", 0, this.table));
+//		this.table.addAttributes(new Attribute("title3", "code3", false, true, "string", 0, this.table));
+//		this.table.addAttributes(new Attribute("title4", "code4", true, true, "string", 0, this.table));
+//		
 		setUpColumns(this.table);
 		setUpData();
 	}
@@ -52,7 +54,7 @@ public class TableModel extends DefaultTableModel {
 	}
 	
 	public void setUpData() {
-		this.addRow(new Object[] { "ra1/2011", "Petar", "Petrović", true });
+		//this.addRow(new Object[] { "ra1/2011", "Petar", "Petrović", true });
 	}
 
 	

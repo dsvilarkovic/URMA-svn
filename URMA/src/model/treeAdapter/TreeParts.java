@@ -10,5 +10,4 @@ public interface TreeParts {
 	public String getName();
 	public void action();
 	public List<TreeParts> getContent(InformationResource infRes);
-	
 }
