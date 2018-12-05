@@ -1,11 +1,16 @@
  package view.table;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -30,7 +35,7 @@ public class TablePanel extends JPanel {
 
 	
 	private static final long serialVersionUID = 1988065650430728153L;
-	protected JTable tblStudenti;
+	protected JTable tableView;
 	private JButton addRow = new JButton("Add");
 	private JButton removeRow = new JButton("Remove");
 	private JButton updateRow = new JButton("Update");
@@ -45,23 +50,56 @@ public class TablePanel extends JPanel {
 		Border titledBorder = BorderFactory.createTitledBorder(blackline, title);
 		this.setBorder(titledBorder);
 		
+		
+		initTables();
+		
+		setButtons();
+	}	
+	
+	private void initTables() {
+		tableView = new JTable();
+
+		// Poželjna veličina pogleda tabele u okviru scrollpane-a. Layout
+		// manager uzima ovu osobinu u obzir.
+		
+		tableView.setPreferredScrollableViewportSize(new Dimension(500, 200));
+		
+		
+		// Širenje tabele kompletno po visini pogleda scrollpane-a.
+		tableView.setFillsViewportHeight(true);
+	}
+	private void setButtons() {
 		buttonGroup.add(addRow);
 		buttonGroup.add(removeRow);
 		buttonGroup.add(updateRow);
 		buttonGroup.add(search);
-		buttonGroup.add(changeableButton);
-		
+		//buttonGroup.add(changeableButton);
 		
 		
 		JPanel buttonPanel = new JPanel();
-
-		buttonPanel.add(addRow);
-		buttonPanel.add(removeRow);
-		buttonPanel.add(updateRow);
-		buttonPanel.add(search);
-		buttonPanel.add(changeableButton);		
-		add(buttonPanel);
-	}	
+		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		
+		Box box = Box.createHorizontalBox();
+		box.add(Box.createHorizontalStrut(5));
+		box.add(addRow);
+		box.add(Box.createHorizontalStrut(5));
+		box.add(removeRow);
+		box.add(Box.createHorizontalStrut(5));
+		box.add(updateRow);
+		box.add(Box.createHorizontalStrut(5));
+		box.add(search);
+		box.add(Box.createHorizontalGlue());
+		box.add(changeableButton);
+		box.add(Box.createHorizontalStrut(15));
+		add(box);
+		
+//		buttonPanel.add(addRow);
+//		buttonPanel.add(removeRow);
+//		buttonPanel.add(updateRow);
+//		buttonPanel.add(search);
+		//buttonPanel.add(changeableButton);		
+		
+	}
 	
 	
 //	/**

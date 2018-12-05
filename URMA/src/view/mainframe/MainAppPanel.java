@@ -1,6 +1,7 @@
 package view.mainframe;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 
 import javax.swing.JPanel;
@@ -21,9 +22,8 @@ public class MainAppPanel extends JPanel {
 		
 		
 		setLayout(new BorderLayout());
-		add(parentTablePanel, BorderLayout.CENTER);
-		add(childTablePanel, BorderLayout.SOUTH);
-		
+		add(parentTablePanel, BorderLayout.NORTH);
+		add(childTablePanel, BorderLayout.CENTER);
 		
 	}
 

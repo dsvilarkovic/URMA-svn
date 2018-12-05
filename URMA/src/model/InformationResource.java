@@ -108,45 +108,4 @@ public class InformationResource {
 	   }
 
    
-   /**
-    * Vraca tabelu svih identifikaciono zavisnih tabela od <code> table </code> tabele
-    * @param table
-    * @return
-    */
-   public List<Table> getChildTables(Table table) {
-	   ArrayList<Table> tableList = new ArrayList<>();
-	   
-	   for (Relation relation : relations.values()) {
-		   Table potentialChildTable = relation.getDestinationTable();
-//		   System.out.println(relations);
-//		   System.out.println(table);
-//		   System.out.println(potentialChildTable);
-		   if(potentialChildTable.isIdDependentFrom(table)) {
-			   tableList.add(potentialChildTable);
-		   }
-	   }
-	   
-	   
-	   return tableList;
-   }
-   
-   /**
-    * Vraca tabelu svih tabela od kojih je tabela <code>  table </code> identifikaciono zavisna
-    * @param table
-    * @return
-    */
-   public List<Table> getParentTables(Table table) {
-	   ArrayList<Table> parentList = new ArrayList<>();
-	   
-	   
-	   for (Relation relation : relations.values()) {
-		   Table potentialParentTable = relation.getSourceTable();
-		   if(table.isIdDependentFrom(potentialParentTable)) {
-			   parentList.add(potentialParentTable);
-		   }
-	   }
-	   
-	   
-	   return parentList;
-   }
 }
