@@ -58,10 +58,14 @@ public class OpenCRUDWindow extends AbstractAction{
 		types[3] = "boolean";
 		CrudWindow crudWindow = new CrudWindow(titles, values, types, false); //titles su nazivi kolona, values su vrednosti torke, types su tipovi vrednosti
 		//tipove mi saljes u obliku stringa: "text", "number", "boolean", "date"
-		//vazno je da se na mestu [0] nalazi title[0], value[0] i type[0], tj hocu da kazem da je bitan redosled
-		// poslednji parametar govori da li treba dekorisati field, i true je ako je akcija search, inace je false
-		//date vidi kako dobijas iz baze pa cu prilagoditi da primam tu vrednost(za sada mi saljes niz od 3 int-a(day, month, year))
-//		CrudWindow crudWindow = new CrudWindow(titles, types); //za new akciju(posto mi tada ne trebaju vrednosti i nikad nije dekorisano)
+		//vazno je da se na mestu [0] nalazi title[0], value[0] i type[0], tj hocu 
+		//da kazem da je bitan redosled
+		// poslednji parametar govori da li treba dekorisati field, i true je ako
+		//je akcija search, inace je false
+		//date vidi kako dobijas iz baze pa cu prilagoditi da primam tu vrednost
+		//(za sada mi saljes niz od 3 int-a(day, month, year))
+		//CrudWindow crudWindow = new CrudWindow(titles, types); //za new akciju
+		//(posto mi tada ne trebaju vrednosti i nikad nije dekorisano)
 		crudWindow.setVisible(true);
 	}
 

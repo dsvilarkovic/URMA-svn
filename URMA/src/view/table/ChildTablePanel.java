@@ -93,6 +93,8 @@ public class ChildTablePanel extends TablePanel {
 		for (String tableKey : this.tableModelMap.keySet()) {
 			TableModel tableModelInsert = this.tableModelMap.get(tableKey);
 			
+			//podesi podatke
+			tableModelInsert.setUpData();
 			JScrollPane jScrollPane = new JScrollPane(new JTable(tableModelInsert));
 			jScrollPane.setName(tableModelInsert.getTable().getTitle());
 			this.childTabs.add(jScrollPane);

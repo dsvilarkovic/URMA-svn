@@ -34,6 +34,9 @@ public class ParentTablePanel extends TablePanel {
 		this.tableModel = tableModel;
 		tableView.setModel(tableModel);
 		tab.setTitleAt(0, tableModel.getTable().getTitle());
+		
+		//podesi podatke
+		tableModel.setUpData();
 		revalidate();
 		repaint();
 	}
