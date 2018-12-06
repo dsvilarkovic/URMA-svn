@@ -17,5 +17,4 @@ public class DBParser implements IParser {
 		// TODO Auto-generated method stub
 
 	}
-
 }

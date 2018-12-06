@@ -44,5 +44,4 @@ public class DBHandler implements IHandler {
 		// TODO Auto-generated method stub
 
 	}
-
 }

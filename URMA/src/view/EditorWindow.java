@@ -26,7 +26,6 @@ public class EditorWindow extends JDialog {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setSize((int) (screenSize.getWidth() * 0.71), (int) (screenSize.getHeight() * 0.71));
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		addWindowListener(new EditorWindowClosingAction());
 		setLocationRelativeTo(null);
 		setResizable(true);

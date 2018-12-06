@@ -44,5 +44,4 @@ public class XMLHandler implements IHandler {
 		// TODO Auto-generated method stub
 
 	}
-
 }

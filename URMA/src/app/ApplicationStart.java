@@ -23,7 +23,5 @@ public class ApplicationStart {
 		}
 
 		App.INSTANCE.start();
-
 	}
-
 }

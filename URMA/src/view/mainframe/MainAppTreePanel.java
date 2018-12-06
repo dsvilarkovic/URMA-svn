@@ -13,9 +13,6 @@ import javax.swing.tree.DefaultTreeModel;
 
 import app.App;
 import model.InformationResource;
-import model.Relation;
-import model.Table;
-import model.treeAdapter.AdapterTable;
 import model.treeAdapter.TreeParts;
 
 /**
@@ -33,36 +30,6 @@ public class MainAppTreePanel extends JPanel {
 	public MainAppTreePanel() {
 		setLayout(new BorderLayout());
 		setBackground(Color.orange);
-		
-		
-//		Table tb1 = new Table();
-//		tb1.setTitle("elderNode");
-//		tb1.setCode("1");
-//		
-//		Table tb2 = new Table();
-//		tb2.setTitle("paretnNode");
-//		tb2.setCode("2");
-//		
-//		Table tb3 = new Table();
-//		tb3.setTitle("childNode");
-//		tb3.setCode("3");
-//				
-//		infRes.addAllTables(tb1);
-//		infRes.addAllTables(tb2);
-//		infRes.addAllTables(tb3);
-//		
-//		Relation rl1 = new Relation();
-//		rl1.setSourceTable(tb1);
-//		rl1.setDestinationTable(tb2);
-//		
-//		Relation rl2 = new Relation();
-//		rl2.setSourceTable(tb2);
-//		rl2.setDestinationTable(tb3);
-//		
-//		infRes.addRelations(rl1);
-//		infRes.addRelations(rl2);
-		
-		
 	}
 
 	public void init(TreeParts elderNodek) {
@@ -70,29 +37,21 @@ public class MainAppTreePanel extends JPanel {
 		infRes = App.INSTANCE.getModel();
 		treeModel = new DefaultTreeModel(updateTreeModel(elderNodek));
 		tree = new JTree(treeModel);
-
 		tree.setCellRenderer(new MainAppTreeRenderer());
-		
-		
-		
-		tree.addTreeSelectionListener(new TreeSelectionListener() {
 
+		tree.addTreeSelectionListener(new TreeSelectionListener() {
 			@Override
 			public void valueChanged(TreeSelectionEvent e) {
-				
-
 				System.out.println("Akcija u drvetu " + e.getSource());
 
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (!(node == null))
 					((TreeParts) node.getUserObject()).action();
-
 			}
 		});
 
 		JScrollPane spTree = new JScrollPane(tree);
 		add(spTree);
-
 		repaint();
 		revalidate();
 
@@ -100,8 +59,6 @@ public class MainAppTreePanel extends JPanel {
 
 	public DefaultMutableTreeNode updateTreeModel(TreeParts node) {
 		DefaultMutableTreeNode parentNode = new DefaultMutableTreeNode(node);
-		//System.out.println(node.getName() + " " + node.getContent(infRes));
-		//System.out.println("# " + node.getContent(infRes) + "   -   " + node.getContent(infRes).size());
 
 		if (node.getContent(infRes) != null)
 			for (TreeParts k : node.getContent(infRes)) {
@@ -114,5 +71,4 @@ public class MainAppTreePanel extends JPanel {
 	public JTree getTree() {
 		return tree;
 	}
-
 }

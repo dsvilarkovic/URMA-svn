@@ -5,8 +5,6 @@ import javax.swing.JOptionPane;
 
 import controller.tableactions.TableMediator;
 import model.InformationResource;
-import view.fieldFactory.IFieldFactory;
-import view.fieldFactory.TextFieldFactory;
 import model.resourceFactory.DBFactory;
 import model.resourceFactory.IResourceFactory;
 import model.resourceFactory.JSONFactory;
@@ -14,7 +12,9 @@ import model.resourceFactory.XMLFactory;
 import view.EditorWindow;
 import view.fieldFactory.BooleanFieldFactory;
 import view.fieldFactory.DateFieldFactory;
+import view.fieldFactory.IFieldFactory;
 import view.fieldFactory.NumberFieldFactory;
+import view.fieldFactory.TextFieldFactory;
 import view.mainframe.MainAppFrame;
 
 /**
@@ -28,18 +28,15 @@ public enum App {
 	private EditorWindow editorWindow;
 	private MainAppFrame mainAppFrame;
 	
-	
 	private IResourceFactory factory = null;
 	private IFieldFactory fieldFactory = null;
 	private TableMediator tableMediator;
-	private InformationResource repository;
 	private InformationResource model;
 	
 	public void start() {
 		editorWindow = new EditorWindow();
 		mainAppFrame = new MainAppFrame();
 		tableMediator = new TableMediator();
-		repository = new InformationResource();
 		
 		mainAppFrame.setVisible(true);
 		
@@ -88,19 +85,6 @@ public enum App {
 	 */
 	public TableMediator getTableMediator() {
 		return tableMediator;
-	}
-
-	public InformationResource getRepository() throws Exception {
-		System.err.println("Jos uvek nije implementirano");
-		throw new Exception();
-		//return repository;
-	}
-
-	public void setRepository(InformationResource repository) throws Exception{
-		//this.repository = repository;
-		
-		System.err.println("Jos uvek nije implementirano");
-		throw new Exception();
 	}
 
 	public InformationResource getModel() {

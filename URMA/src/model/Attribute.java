@@ -6,8 +6,6 @@
 
 package model;
 
-import java.util.*;
-
 /** @pdOid f68bbcd5-5fff-40bf-b2e4-b849591951d2 */
 public class Attribute {
 	/** @pdOid 7040b2e2-2d9a-4727-ba48-9a7d1a7168b8 */
@@ -144,8 +142,4 @@ public class Attribute {
 		}
 		return false;
 	}
-	
-	
-	
-
 }

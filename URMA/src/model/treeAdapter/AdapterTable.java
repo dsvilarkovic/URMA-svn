@@ -37,23 +37,11 @@ public class AdapterTable implements TreeParts {
 	public List<TreeParts> getContent(InformationResource infRes) {
 		
 		List<TreeParts> list = new ArrayList<TreeParts>();
-		//List<Table> tabele = infRes.getChildTables(tabela);
-		//System.out.println("- " + tabele + "   " + tabele.size());
-		//for (int i = 0; i < tabela.getChildTables().size(); i++) {
-			//list.add(new AdapterTable(tabela.getChildTables().get(i)));			
-		//}
 		
 		for (Table value : tabela.getChildTables().values()) {
 			list.add(new AdapterTable(value));
 		}
 		
-		if(list.size() == 0)
-			return null;
-			
-		return list;		
+		return list.size()==0?null:list;		
 	}
-
-
-	
-	
 }

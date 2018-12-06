@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controler.validators;
 
 import javax.swing.JOptionPane;
@@ -52,5 +49,4 @@ public class JSONValidator implements IValidator {
 		System.out.println(this.getClass() + ": Validate scheme action execution finnished");
 
 	}
-
 }

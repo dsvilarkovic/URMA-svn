@@ -11,5 +11,4 @@ public class XMLValidator implements IValidator {
 		// TODO Auto-generated method stub
 
 	}
-
 }

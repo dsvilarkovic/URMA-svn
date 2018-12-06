@@ -39,14 +39,10 @@ public class AdapterPackage implements TreeParts{
 		}
 		
 		for (Table value : paket.getTables().values()) {
-			list.add(new AdapterTable(value));
+			if(value.getParentTables().size()==0)
+				list.add(new AdapterTable(value));
 		}
 		
-		if (list.size() == 0)
-			return null;
-
-		return list;
+		return list.size()==0?null:list;
 	}
-	
-	
 }

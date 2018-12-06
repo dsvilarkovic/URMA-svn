@@ -11,5 +11,4 @@ public class DBValidator implements IValidator {
 		// TODO Auto-generated method stub
 
 	}
-
 }

@@ -19,6 +19,7 @@ import model.Table;
 
 public class ChooseParentTableDialog extends JDialog{
 
+	private static final long serialVersionUID = -2861236282515127819L;
 	private DefaultListModel<String> listModel;
 	private JList<String> list;
 	private Map<String, Table> parentTableMap;

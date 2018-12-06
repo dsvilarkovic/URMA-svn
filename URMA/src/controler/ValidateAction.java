@@ -33,17 +33,12 @@ public class ValidateAction extends AbstractAction {
 
 		String path = App.INSTANCE.getEditorWindow().getToolbar().getPath().getText();
 		if (path.equals("")) {
-//			JOptionPane.showMessageDialog(null, "Meta scheme not selected", "Validator message",
-//					JOptionPane.ERROR_MESSAGE);
-//			return;
-
 			//TODO Filip: pitaj Peru za ovo
 			//App.INSTANCE.getApp().getToolbar().getChoseMetaSchemeButton().doClick();
 			
 			path = new Open().getPath("sch/json");
 			JTextField path_field = App.INSTANCE.getEditorWindow().getToolbar().getPath();
 			path_field.setText(path);
-			
 			
 			return;
 		}

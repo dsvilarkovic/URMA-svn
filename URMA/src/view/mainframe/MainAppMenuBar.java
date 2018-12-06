@@ -10,18 +10,14 @@ import controler.mainframe.OpenSchemaEditor;
 
 public class MainAppMenuBar extends JMenuBar{
 
+	private static final long serialVersionUID = -1119472832127166620L;
+
 	public MainAppMenuBar() {
 		//JMenu file = new JMenu("File");
 		JMenu tools = new JMenu("Tools");
 		JMenu edit = new JMenu("Edit");
 		JMenu help = new JMenu("Help");
 				
-		//file.add(newWorkspace);
-		//file.addSeparator();
-		//file.add(newProject);
-		//file.addSeparator();
-		//file.add(newDocument);
-		
 		JMenuItem OpenSchemaEditorItem = new JMenuItem(new OpenSchemaEditor());
 		tools.add(OpenSchemaEditorItem);
 		

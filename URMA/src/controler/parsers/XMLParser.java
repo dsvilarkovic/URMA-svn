@@ -17,5 +17,4 @@ public class XMLParser implements IParser {
 		// TODO Auto-generated method stub
 
 	}
-
 }

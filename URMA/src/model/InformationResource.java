@@ -6,9 +6,7 @@
 
 package model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /** @pdOid 66940cd2-31c6-40c8-ab87-73f875f9b8d3 */
@@ -106,6 +104,4 @@ public class InformationResource {
 	      if (allTables != null)
 	         allTables.clear();
 	   }
-
-   
 }
