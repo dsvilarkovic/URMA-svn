@@ -1,10 +1,5 @@
 package view.table;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +7,11 @@ import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
+import app.App;
+import controler.handlers.IHandler;
 import model.Attribute;
 import model.Table;
+import model.resourceFactory.IResourceFactory;
 
 /**
  * Tabela modela koji cuva podatke za tabelu. Koristi <code>DefaultTableModel</code>
@@ -68,54 +66,64 @@ public class TableModel extends DefaultTableModel {
 		//this.addRow(new Object[] { "ra1/2011", "Petar", "Petrović", true });
 		
 		//otvaranje konekcije
-		try {
-			Connection conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
-			String tableCode = table.getCode();
-			
-			String sql = "select * from " + tableCode;
-			
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			
-			//izvrsavanje upita
-			ResultSet rset = pstmt.executeQuery();
-			
-			//provera da li ima podataka u resultset-u
-			if(!rset.isBeforeFirst()) {
-				System.out.println("Nema podataka");
-			}
-			
-			//TODO brisi redove
-			//obrisi sve redove prethodno
-			int rowCount = this.getRowCount();
-			for (int i = 0; i < rowCount ; i++) {
-				this.removeRow(i);
-			}
-			this.fireTableRowsDeleted(0, rowCount);
-			
-			//haj ho radi u rudniku trpaj
-			while(rset.next()) {
-//				//citanje vrednosti po indeksu kolone
-//				System.out.println(rset.getString(1));
-//				//citanje vrednosti po nazivu kolone
-//				System.out.println(rset.getString("DRZ_NAZIV"));
-				
-				
-				//prodji kroz sve atribute i trpaj u model redove
-				Vector<Object> valueList = new Vector<Object>();
-				for (int i = 1; i <= table.getAttributes().size(); i++) {
-					Object object = rset.getObject(i);
-					valueList.add(object);
-				}
-				
-				//ubaci red
-				this.addRow(valueList);
-			}
-			
-			rset.close();
-			pstmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//		try {
+//			Connection conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+//			String tableCode = table.getCode();
+//			
+//			String sql = "select * from " + tableCode;
+//			
+//			PreparedStatement pstmt = conn.prepareStatement(sql);
+//			
+//			//izvrsavanje upita
+//			ResultSet rset = pstmt.executeQuery();
+//			
+//			//provera da li ima podataka u resultset-u
+//			if(!rset.isBeforeFirst()) {
+//				System.out.println("Nema podataka");
+//			}
+//			
+//			//TODO brisi redove
+//			//obrisi sve redove prethodno
+//			int rowCount = this.getRowCount();
+//			for (int i = 0; i < rowCount ; i++) {
+//				this.removeRow(i);
+//			}
+//			this.fireTableRowsDeleted(0, rowCount);
+//			
+//			//haj ho radi u rudniku trpaj
+//			while(rset.next()) {
+////				//citanje vrednosti po indeksu kolone
+////				System.out.println(rset.getString(1));
+////				//citanje vrednosti po nazivu kolone
+////				System.out.println(rset.getString("DRZ_NAZIV"));
+//				
+//				
+//				//prodji kroz sve atribute i trpaj u model redove
+//				Vector<Object> valueList = new Vector<Object>();
+//				for (int i = 1; i <= table.getAttributes().size(); i++) {
+//					Object object = rset.getObject(i);
+//					valueList.add(object);
+//				}
+//				
+//				//ubaci red
+//				this.addRow(valueList);
+//			}
+//			
+//			rset.close();
+//			pstmt.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		App.INSTANCE.setFactory("db");
+		IResourceFactory factory = App.INSTANCE.getFactory();
+		IHandler handler = factory.createHandler();
+		
+		Vector<Vector<Object>> valueList = handler.read(table.getCode(), table.getAttributes().size());
+		
+		for (int i = 0; i < valueList.size(); i++) {
+			this.addRow(valueList.get(i));
 		}
 		
 	}

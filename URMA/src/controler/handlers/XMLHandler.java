@@ -3,6 +3,8 @@
  */
 package controler.handlers;
 
+import java.util.Vector;
+
 /**
  * @author filip
  *
@@ -22,8 +24,9 @@ public class XMLHandler implements IHandler {
 	 * @see controler.handlers.IHandler#read()
 	 */
 	@Override
-	public void read() {
+	public Vector<Vector<Object>> read(String tableCode, int attributeNumber) {
 		// TODO Auto-generated method stub
+		return null;
 
 	}
 
