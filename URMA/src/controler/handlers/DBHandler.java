@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import javax.swing.JOptionPane;
-
 /**
  * @author filip
  *
@@ -20,6 +18,9 @@ public class DBHandler implements IHandler {
 	
 	Connection conn;
 	public DBHandler() {
+		
+		//pitaj Peru da li da se svaki put otvara konkcija ili da ovako nekako otvoris konekciju i da ostane
+		
 //		try {
 //			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
 //		} catch (SQLException e) {
@@ -44,7 +45,7 @@ public class DBHandler implements IHandler {
 			
 			Vector<Vector<Object>> valueMap = new Vector<Vector<Object>>();
 			while(rset.next()) {
-				
+			
 				Vector<Object> valueList = new Vector<Object>();
 				for (int i = 1; i <= attributeNumber; i++) {
 					Object object = rset.getObject(i);

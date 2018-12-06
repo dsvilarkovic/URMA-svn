@@ -138,8 +138,8 @@ public class TableModel extends DefaultTableModel {
 	 **/
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		String columnName = this.columnsCode.get(columnIndex);  
-		Attribute attribute = this.table.getAttributes().get(columnName);
+		//String columnName = this.columnsCode.get(columnIndex);  
+		//Attribute attribute = this.table.getAttributes().get(columnName);
 		
 		
 		/*

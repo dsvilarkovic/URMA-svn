@@ -25,7 +25,6 @@ public class JSONParser implements IParser {
 	private InformationResource informationResource;
 	
 	// Rekurzivna metoda za pakete
-	@SuppressWarnings("unchecked")
 	private Package parsePackage(JSONObject packageJSON) {
 		// Novi paket
 		Package newPackage = new Package();

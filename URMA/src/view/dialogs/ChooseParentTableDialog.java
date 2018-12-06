@@ -48,7 +48,7 @@ public class ChooseParentTableDialog extends JDialog{
 
 		
 		this.parentTableMap = parentTableMap;
-		for (String tableKey : parentTableMap.keySet()) {
+		for (String tableKey : this.parentTableMap.keySet()) {
 			
 			listModel.addElement(tableKey);
 		}
