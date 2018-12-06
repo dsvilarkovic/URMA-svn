@@ -16,8 +16,6 @@ public class NumberField extends JPanel implements IField{
 	private JFormattedTextField field;
 
 	public NumberField() {
-//		NumberFormat nf = new DecimalFormat("####.00");
-//		this.field = new JFormattedTextField(nf);
 		this.field = new JFormattedTextField();
 		this.field.addFocusListener(new FocusAdapter() {
 		    public void focusLost(FocusEvent e) {
@@ -63,6 +61,15 @@ public class NumberField extends JPanel implements IField{
 	@Override
 	public void setField(Object o) {
 		field = (JFormattedTextField)o;
+	}
+
+	@Override
+	public void setValue(Object o) {
+		if(o != null) {
+			field.setText(o.toString());
+		}else {
+			field.setText("");
+		}
 	}
 
 }

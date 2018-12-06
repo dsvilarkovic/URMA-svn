@@ -49,14 +49,14 @@ public class OpenCRUDWindow extends AbstractAction{
 		date[2] = 1212; //godina
 		
 		values[2] = date;
-		values[3] = false;
+		values[3] = true;
 		
 		String[] types = new String[4];
 		types[0] = "text";
 		types[1] = "number";
 		types[2] = "date";
 		types[3] = "boolean";
-		CrudWindow crudWindow = new CrudWindow(titles, values, types, false); //titles su nazivi kolona, values su vrednosti torke, types su tipovi vrednosti
+		CrudWindow crudWindow = new CrudWindow(titles, types); //titles su nazivi kolona, values su vrednosti torke, types su tipovi vrednosti
 		//tipove mi saljes u obliku stringa: "text", "number", "boolean", "date"
 		//vazno je da se na mestu [0] nalazi title[0], value[0] i type[0], tj hocu 
 		//da kazem da je bitan redosled

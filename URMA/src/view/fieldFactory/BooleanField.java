@@ -37,4 +37,13 @@ public class BooleanField  extends JPanel implements IField{
 	public void setField(Object o) {
 		field = (JCheckBox)o;
 	}
+
+	@Override
+	public void setValue(Object o) {
+		if(o != null) {
+			field.setSelected((boolean) o);
+		}else {
+			field.setSelected(false);
+		}
+	}
 }

@@ -40,4 +40,13 @@ public class TextField extends JPanel implements IField{
 		field = (JTextField)o;
 	}
 
+	@Override
+	public void setValue(Object o) {
+		if(o != null) {
+			field.setText(o.toString());
+		}else {
+			field.setText("");
+		}
+	}
+
 }

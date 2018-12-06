@@ -46,4 +46,9 @@ public class DecoratedField extends JPanel implements IField{
 		field = (IField) o;
 	}
 
+	@Override
+	public void setValue(Object o) {
+		// TODO Auto-generated method stub
+	}
+
 }

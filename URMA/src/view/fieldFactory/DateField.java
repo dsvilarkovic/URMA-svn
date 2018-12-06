@@ -12,7 +12,6 @@ public class DateField extends JPanel implements IField{
 	private static final long serialVersionUID = 1L;
 	
 	private JDatePickerImpl field;
-//	private JFormattedTextField field;
 
 	public DateField() {
 		UtilDateModel model = new UtilDateModel();
@@ -22,15 +21,6 @@ public class DateField extends JPanel implements IField{
 		p.put("text.year", "Year");
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
 		field = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-//		DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-//		this.field = new JFormattedTextField(df);
-//		this.field.addFocusListener(new FocusAdapter() {
-//		    public void focusLost(FocusEvent e) {
-//		      if (!validateJFormatedTextField((JFormattedTextField)e.getComponent())){
-//		        JOptionPane.showMessageDialog(null, "Please Enter Valid Date");
-//		      }
-//		    }
-//		});
 		
 		add(field);
 		
@@ -44,17 +34,6 @@ public class DateField extends JPanel implements IField{
 	public void setJDatePickerImpl(JDatePickerImpl field) {
 		this.field = field;
 	}
-	
-//	private boolean validateJFormatedTextField(JFormattedTextField field) {
-//		try {
-//            DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-//            df.setLenient(false);
-//            df.parse(field.getText());
-//            return true;
-//        } catch (ParseException e) {
-//            return false;
-//        }
-//	}
 
 	@Override
 	public Boolean validateField() {
@@ -69,6 +48,15 @@ public class DateField extends JPanel implements IField{
 	@Override
 	public void setField(Object o) {
 		field = (JDatePickerImpl)o;
+	}
+
+	@Override
+	public void setValue(Object o) {
+		if(o != null) {
+			Integer[] date = (Integer[]) o;
+			field.getModel().setDate(date[2], date[1], date[0]);
+			field.getModel().setSelected(true);
+		}
 	}
 
 }
