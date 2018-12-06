@@ -10,6 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import model.Attribute;
+import model.Table;
+
 /**
  * @author filip
  *
@@ -34,8 +37,15 @@ public class DBHandler implements IHandler {
 	}
 
 	@Override
-	public Vector<Vector<Object>> read(String tableCode, int attributeNumber) {
-		String sql = "select * from " + tableCode;
+	public Vector<Vector<Object>> read(Table table) {
+		
+		String str = "";
+		for (Attribute attrib : table.getAttributes().values()) {
+			str += attrib.getCode() + ",";
+		}
+		str = str.substring(0, str.length() - 1);
+		String sql = "select " + str + " from " + table.getCode();
+		System.out.println(sql);
 		
 		PreparedStatement pstmt;
 		try {
@@ -47,7 +57,7 @@ public class DBHandler implements IHandler {
 			while(rset.next()) {
 			
 				Vector<Object> valueList = new Vector<Object>();
-				for (int i = 1; i <= attributeNumber; i++) {
+				for (int i = 1; i <= table.getAttributes().size(); i++) {
 					Object object = rset.getObject(i);
 					valueList.add(object);
 				}

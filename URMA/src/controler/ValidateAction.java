@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -32,16 +31,9 @@ public class ValidateAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 
 		String path = App.INSTANCE.getEditorWindow().getToolbar().getPath().getText();
-		if (path.equals("")) {
-			//TODO Filip: pitaj Peru za ovo
-			//App.INSTANCE.getApp().getToolbar().getChoseMetaSchemeButton().doClick();
-			
-			path = new Open().getPath("sch/json");
-			JTextField path_field = App.INSTANCE.getEditorWindow().getToolbar().getPath();
-			path_field.setText(path);
-			
-			return;
-		}
+		if (path.equals(""))
+			App.INSTANCE.getEditorWindow().getToolbar().getChoseMetaSchemeButton().doClick();
+
 		App.INSTANCE.setFactory(FilenameUtils.getExtension(App.INSTANCE.getEditorWindow().getToolbar().getPath().getText()));
 
 		IValidator validator = App.INSTANCE.getFactory().createValidator();

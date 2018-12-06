@@ -5,6 +5,8 @@ package controler.handlers;
 
 import java.util.Vector;
 
+import model.Table;
+
 /**
  * @author filip
  *
@@ -24,7 +26,7 @@ public class JSONHandler implements IHandler {
 	 * @see controler.handlers.IHandler#read()
 	 */
 	@Override
-	public Vector<Vector<Object>> read(String tableCode, int attributeNumber) {
+	public Vector<Vector<Object>> read(Table table) {
 		// TODO Auto-generated method stub
 		return null;
 

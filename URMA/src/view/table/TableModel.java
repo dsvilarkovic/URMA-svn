@@ -120,7 +120,7 @@ public class TableModel extends DefaultTableModel {
 		IResourceFactory factory = App.INSTANCE.getFactory();
 		IHandler handler = factory.createHandler();
 		
-		Vector<Vector<Object>> valueList = handler.read(table.getCode(), table.getAttributes().size());
+		Vector<Vector<Object>> valueList = handler.read(table	);
 		
 		for (int i = 0; i < valueList.size(); i++) {
 			this.addRow(valueList.get(i));
