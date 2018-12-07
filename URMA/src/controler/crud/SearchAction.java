@@ -28,10 +28,6 @@ public class SearchAction extends AbstractAction{
 			}else {
 				System.out.println(mapKey + " " + ((IField)((DecoratedField[])fields.get(mapKey))[0].getField()).getValue().toString() + "(" + ((DecoratedField[])fields.get(mapKey))[0].getValue().toString() + ")");
 			}
-//				System.out.println(mapKey + " " + ((IField[])fields.get(mapKey))[0].getValue().toString() + " - " + ((IField[])fields.get(mapKey))[1].getValue().toString());
-//			}else {
-//				System.out.println(mapKey + " " + ((IField[])fields.get(mapKey))[0].getValue().toString());
-//			}
 		}
 	}
 }
