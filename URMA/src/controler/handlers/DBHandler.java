@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import model.Attribute;
 import model.Table;
 
@@ -69,7 +71,7 @@ public class DBHandler implements IHandler {
 			
 			return valueMap;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Wrong file", "Invalid scheme", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 	}

@@ -72,4 +72,9 @@ public class NumberField extends JPanel implements IField{
 		}
 	}
 
+	@Override
+	public Object getValue() {
+		return field.getText();
+	}
+
 }

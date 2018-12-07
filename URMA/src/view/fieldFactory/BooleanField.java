@@ -46,4 +46,9 @@ public class BooleanField  extends JPanel implements IField{
 			field.setSelected(false);
 		}
 	}
+
+	@Override
+	public Object getValue() {
+		return field.isSelected();
+	}
 }

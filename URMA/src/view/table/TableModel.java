@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import app.App;
@@ -120,10 +121,15 @@ public class TableModel extends DefaultTableModel {
 		IResourceFactory factory = App.INSTANCE.getFactory();
 		IHandler handler = factory.createHandler();
 		
-		Vector<Vector<Object>> valueList = handler.read(table	);
-		
-		for (int i = 0; i < valueList.size(); i++) {
-			this.addRow(valueList.get(i));
+		try {
+			Vector<Vector<Object>> valueList = handler.read(table);
+			
+			for (int i = 0; i < valueList.size(); i++) {
+				this.addRow(valueList.get(i));
+			}
+		}catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Wrong file", "Invalid scheme", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 		
 	}

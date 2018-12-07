@@ -48,7 +48,16 @@ public class DecoratedField extends JPanel implements IField{
 
 	@Override
 	public void setValue(Object o) {
-		// TODO Auto-generated method stub
+		if(o != null) {
+			checkbox.setSelected((boolean) o);
+		}else {
+			checkbox.setSelected(false);
+		}
+	}
+
+	@Override
+	public Object getValue() {
+		return checkbox.isSelected();
 	}
 
 }

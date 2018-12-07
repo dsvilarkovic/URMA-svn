@@ -71,7 +71,7 @@ public enum App {
 	
 	public void createFieldFactory(String type) {
 		switch (type) {
-			case "text": fieldFactory = new TextFieldFactory(); break;
+			case "string": fieldFactory = new TextFieldFactory(); break;
 			case "date": fieldFactory = new DateFieldFactory(); break;
 			case "number": fieldFactory = new NumberFieldFactory(); break;
 			case "boolean": fieldFactory = new BooleanFieldFactory(); break;

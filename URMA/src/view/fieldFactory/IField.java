@@ -5,4 +5,5 @@ public interface IField {
 	public Object getField();
 	public void setField(Object o);
 	public void setValue(Object o);
+	public Object getValue();
 }

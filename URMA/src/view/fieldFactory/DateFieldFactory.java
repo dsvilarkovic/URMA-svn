@@ -7,4 +7,12 @@ public class DateFieldFactory implements IFieldFactory{
 		return new DateField();
 	}
 
+	@Override
+	public IField[] createDoubleField() {
+		IField[] searchField = new IField[2];
+		searchField[0] = new DateField();
+		searchField[1] = new DateField();
+		return searchField;
+	}
+
 }

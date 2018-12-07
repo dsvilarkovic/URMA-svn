@@ -59,4 +59,9 @@ public class DateField extends JPanel implements IField{
 		}
 	}
 
+	@Override
+	public Object getValue() {
+		return field.getModel().getValue();
+	}
+
 }
