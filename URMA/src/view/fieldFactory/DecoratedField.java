@@ -38,7 +38,7 @@ public class DecoratedField extends JPanel implements IField{
 
 	@Override
 	public Object getField() {
-		return field.getField();
+		return field;
 	}
 
 	@Override

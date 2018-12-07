@@ -83,7 +83,6 @@ public class CrudWindow extends JDialog{
 			App.INSTANCE.createFieldFactory(attribute.getType());
 			add(new JLabel(attribute.getTitle()));
 			if(search) {
-				System.out.println("usao");
 				IField[] field = App.INSTANCE.getFieldFactory().createDoubleField();
 				field[0].setValue(null);
 				DecoratedField df = new DecoratedField(field[0]);
@@ -92,10 +91,10 @@ public class CrudWindow extends JDialog{
 					field[1].setValue(null);
 					DecoratedField df1 = new DecoratedField(field[1]);
 					add((Component) df1);
-					fields.put(attribute.getTitle(), new Object[]{df, df1});
+					fields.put(attribute.getTitle(), new DecoratedField[]{df, df1});
 				}else {
 					add(new JPanel());
-					fields.put(attribute.getTitle(), new Object[]{df, null});
+					fields.put(attribute.getTitle(), new DecoratedField[]{df, null});
 				}
 			}else {
 				IField field = App.INSTANCE.getFieldFactory().createField();
