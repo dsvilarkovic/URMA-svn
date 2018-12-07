@@ -91,7 +91,7 @@ public class CrudWindow extends JDialog{
 				if(field[1] != null) {
 					field[1].setValue(null);
 					DecoratedField df1 = new DecoratedField(field[1]);
-					add((Component) df);
+					add((Component) df1);
 					fields.put(attribute.getTitle(), new Object[]{df, df1});
 				}else {
 					add(new JPanel());
