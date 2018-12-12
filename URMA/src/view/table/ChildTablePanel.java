@@ -1,5 +1,6 @@
 package view.table;
 
+import java.awt.BorderLayout;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -31,36 +32,8 @@ public class ChildTablePanel extends TablePanel {
 		JScrollPane jScrollPane = new JScrollPane(tableView);
 		jScrollPane.setName("Tabela naslov");
 		childTabs.add(jScrollPane);
-		add(childTabs);
+		addTableTabs(childTabs);
 	}
-	
-	
-//	/**
-//	 * Podesavanje nove dece pri promociji jednog od dece
-//	 * @param childModelList
-//	 */
-//	public void setChildModelList(List<Table> tableList) {
-//		this.childModelList.clear();
-//		
-//		//brisanje postojecih tabova
-//		childTabs.removeAll();		
-//		//dodavanje dece kao tabelaModela i ubacivanje novih tabova kao jtbableova
-//		for (Table table : tableList) {
-//			TableModel tableModel = new TableModel(table);
-//			this.childModelList.add(tableModel);	
-//					
-//			JScrollPane jScrollPane = new JScrollPane(new JTable(tableModel));
-//			jScrollPane.setName(table.getTitle());
-//			this.childTabs.add(jScrollPane);
-//		}
-//		
-//		//podesi childTabs prvi indeks
-//		childTabs.setSelectedIndex(0);
-//		//ponovno iscrtavanje pogleda
-//		revalidate();
-//		repaint();
-//	}
-//	
 	
 	/**
 	 * Podesavanje mape dece

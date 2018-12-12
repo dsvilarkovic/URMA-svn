@@ -1,5 +1,7 @@
 package controller.tableactions;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
@@ -8,6 +10,7 @@ import javax.swing.JTable;
 import app.App;
 import model.Table;
 import view.dialogs.ChooseParentTableDialog;
+import view.mainframe.MainAppPanel;
 import view.table.ChildTablePanel;
 import view.table.ParentTablePanel;
 import view.table.TableModel;
@@ -124,8 +127,20 @@ public class TableMediator {
 	
 	
 	private void setChildVisibility(Map<String, Table> childTableMap) {
+		MainAppPanel mainAppPanel = App.INSTANCE.getMainAppFrame().getMainAppPanel();
 		boolean isNotVisible = childTableMap == null || childTableMap.isEmpty();
-		childTablePanel.setVisible(!isNotVisible);
+		
+		if(isNotVisible) {
+			mainAppPanel.setLayout(new GridLayout(1, 1));
+			mainAppPanel.removeAll();
+			mainAppPanel.add(parentTablePanel);			
+		}
+		else {
+			mainAppPanel.setLayout(new GridLayout(2, 1));
+			mainAppPanel.removeAll();
+			mainAppPanel.add(parentTablePanel);	
+			mainAppPanel.add(childTablePanel);
+		}	
 	}
 
 	/**

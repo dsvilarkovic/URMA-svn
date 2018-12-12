@@ -1,6 +1,7 @@
 package view.mainframe;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
@@ -13,11 +14,10 @@ public class MainAppPanel extends JPanel {
 	private ChildTablePanel childTablePanel = new ChildTablePanel("Child");
 	private ParentTablePanel parentTablePanel = new ParentTablePanel("Parent");
 
-	public MainAppPanel() {
-
-		setLayout(new BorderLayout());
-		add(parentTablePanel, BorderLayout.NORTH);
-		add(childTablePanel, BorderLayout.CENTER);
+	public MainAppPanel() {		
+		setLayout(new GridLayout(2, 1));
+		add(parentTablePanel);
+		add(childTablePanel);
 	}
 
 	public ChildTablePanel getChildTablePanel() {

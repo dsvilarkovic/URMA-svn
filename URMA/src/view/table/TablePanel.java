@@ -1,8 +1,10 @@
  package view.table;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -10,13 +12,16 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 
+import app.App;
 import controller.tableactions.CreateCrudWindowAction;
 import controller.tableactions.DemoteParentAction;
 import controller.tableactions.PromoteChildAction;
 import model.Table;
+import view.mainframe.MainAppFrame;
 
 
 /**
@@ -38,10 +43,12 @@ public class TablePanel extends JPanel {
 		
 
 	public TablePanel(String title) {
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		//setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setLayout(new BorderLayout());
 		Border blackline = BorderFactory.createMatteBorder(1,1, 1, 1, Color.black);
 		Border titledBorder = BorderFactory.createTitledBorder(blackline, title);
 		this.setBorder(titledBorder);
+		
 		
 		
 		initTables();
@@ -66,9 +73,9 @@ public class TablePanel extends JPanel {
 
 		// Poželjna veličina pogleda tabele u okviru scrollpane-a. Layout
 		// manager uzima ovu osobinu u obzir.
-		
-		tableView.setPreferredScrollableViewportSize(new Dimension(500, 200));
-		
+		Toolkit kit = Toolkit.getDefaultToolkit();
+	    Dimension screenSize = kit.getScreenSize();
+		tableView.setPreferredScrollableViewportSize(new Dimension(500, screenSize.height/4));
 		
 		// Širenje tabele kompletno po visini pogleda scrollpane-a.
 		tableView.setFillsViewportHeight(true);
@@ -84,8 +91,6 @@ public class TablePanel extends JPanel {
 		//buttonGroup.add(changeableButton);
 		
 		
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
 		Box box = Box.createHorizontalBox();
 		box.add(Box.createHorizontalStrut(5));
@@ -99,9 +104,14 @@ public class TablePanel extends JPanel {
 		box.add(Box.createHorizontalGlue());
 		box.add(changeableButton);
 		box.add(Box.createHorizontalStrut(15));
-		add(box);		
+		
+		//add(box);		
+		add(box, BorderLayout.NORTH);
 	}
 	
+	public void addTableTabs(JTabbedPane jTabbedPane) {
+		add(jTabbedPane, BorderLayout.CENTER);
+	}
 	
 	/**
 	 * Podesavanje dugmadi za promociju i demociju clanova tabele.

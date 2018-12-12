@@ -1,6 +1,8 @@
 package view.table;
 
 
+import java.awt.BorderLayout;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -32,7 +34,8 @@ public class ParentTablePanel extends TablePanel {
 		JScrollPane jScrollPane = new JScrollPane(tableView);
 		jScrollPane.setName("Tabela naslov");
 		tab.add(jScrollPane);
-		add(tab);
+		addTableTabs(tab);
+		
 	}
 	
 	
