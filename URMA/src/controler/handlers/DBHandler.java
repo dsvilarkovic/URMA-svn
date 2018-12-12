@@ -3,6 +3,7 @@
  */
 package controler.handlers;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import model.Attribute;
@@ -71,7 +73,8 @@ public class DBHandler implements IHandler {
 			
 			return valueMap;
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "NO SUCH TABLE OR NO DATABESE", "INVALID SQL", JOptionPane.ERROR_MESSAGE);
+			String text = "<html>No such table <strong style=\"color: red;\">"+ table.getTitle() +"</strong> in database or no connection</html>";
+			JOptionPane.showMessageDialog(null, text, "INVALID SQL", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 	}
