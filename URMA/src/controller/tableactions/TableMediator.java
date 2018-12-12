@@ -3,6 +3,7 @@ package controller.tableactions;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 import app.App;
 import model.Table;
@@ -10,6 +11,7 @@ import view.dialogs.ChooseParentTableDialog;
 import view.table.ChildTablePanel;
 import view.table.ParentTablePanel;
 import view.table.TableModel;
+import view.table.TablePanel;
 
 /**
  * Medijator za promenu modela u panelima predstavljenim
@@ -28,7 +30,6 @@ public class TableMediator {
 	
 	public void showTable(Table table) {
 		setPanels();
-		//TODO @Dusan za dalje faze ovo sacuvaj
 		//0. pitaj da li zeli da sacuva prethodne izmene 
 		
 		//1. uzmi tabelu i smesti je u parentTablePanel
@@ -45,7 +46,6 @@ public class TableMediator {
 	public void promoteChild() {
 		
 		setPanels();
-		//TODO @Dusan ispuni kod ovde
 		
 		
 		//1.izvuci dete iz panela childTablePanel
@@ -79,7 +79,6 @@ public class TableMediator {
 	 */
 	public void demoteParent() {
 		setPanels();
-		//TODO @Dusan ispuni kod ovde
  		//1.izvuci iz panela parentTablePanel tabelu 
 		Table oldParentTable = parentTablePanel.getParentTable();
 		
@@ -127,6 +126,28 @@ public class TableMediator {
 	private void setChildVisibility(Map<String, Table> childTableMap) {
 		boolean isNotVisible = childTableMap == null || childTableMap.isEmpty();
 		childTablePanel.setVisible(!isNotVisible);
+	}
+
+	/**
+	 * Tabela koja ce vratiti pozvani pogled na tabelu putem crud operacija
+	 * @param panelCalling
+	 * @return pogled na tabelu u obliku <code>JTable</code>
+	 * @throws Exception - baca izuzetak ako mu je prosledio pogresnu tabelu
+	 */
+	public JTable getCalledTable(TablePanel panelCalling) throws Exception {
+		JTable calledTable = null;
+		if(panelCalling instanceof ParentTablePanel) {
+			calledTable = ((ParentTablePanel) panelCalling).getParentTableView();
+		}
+		else
+		if(panelCalling instanceof ChildTablePanel) { 
+			calledTable = ((ChildTablePanel) panelCalling).getSelectedChildTableView(); 
+		}
+		else {
+			throw new Exception("Invalid table found");
+		}
+		
+		return calledTable;
 	}
 	
 	

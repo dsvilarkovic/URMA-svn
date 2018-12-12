@@ -13,8 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 
+import controller.tableactions.CreateCrudWindowAction;
 import controller.tableactions.DemoteParentAction;
 import controller.tableactions.PromoteChildAction;
+import model.Table;
 
 
 /**
@@ -45,10 +47,22 @@ public class TablePanel extends JPanel {
 		initTables();
 		
 		setButtons();
+		setButtonActions();
 	}	
 	
+	private void setButtonActions() {
+		//podesavanje akcija
+		
+		addRow.setAction(new CreateCrudWindowAction(this, addRow.getText()));
+		removeRow.setAction(new CreateCrudWindowAction(this, removeRow.getText()));
+		updateRow.setAction(new CreateCrudWindowAction(this, updateRow.getText()));
+		search.setAction(new CreateCrudWindowAction(this, search.getText()));
+	}
+
 	private void initTables() {
 		tableView = new JTable();
+		
+		tableView.setModel(new TableModel(new Table()));
 
 		// Poželjna veličina pogleda tabele u okviru scrollpane-a. Layout
 		// manager uzima ovu osobinu u obzir.
@@ -59,7 +73,10 @@ public class TablePanel extends JPanel {
 		// Širenje tabele kompletno po visini pogleda scrollpane-a.
 		tableView.setFillsViewportHeight(true);
 	}
-	private void setButtons() {
+	/**
+	 * Funkcija za podesavanje dugmadi
+	 */
+	private void setButtons() {		
 		buttonGroup.add(addRow);
 		buttonGroup.add(removeRow);
 		buttonGroup.add(updateRow);
@@ -82,44 +99,14 @@ public class TablePanel extends JPanel {
 		box.add(Box.createHorizontalGlue());
 		box.add(changeableButton);
 		box.add(Box.createHorizontalStrut(15));
-		add(box);
-		
-//		buttonPanel.add(addRow);
-//		buttonPanel.add(removeRow);
-//		buttonPanel.add(updateRow);
-//		buttonPanel.add(search);
-		//buttonPanel.add(changeableButton);		
-		
+		add(box);		
 	}
 	
 	
-//	/**
-//	 * Podesavanje tabela u tabbedPane za oba pogleda
-//	 * @param tableModelMap
-//	 */
-//	private Map<String, Table> tableModelMap = new TreeMap<String, Table>();
-//	public void setTableModelMap(Map<String, Table> tableModelMap) {
-//		this.tableModelMap.clear();
-//		
-//		//brisanje postojecih tabova
-//		childTabs.removeAll();		
-//		//dodavanje dece kao tabelaModela i ubacivanje novih tabova kao jtbableova
-//		for (Table table : tableList) {
-//			TableModel tableModel = new TableModel(table);
-//			this.childModelList.add(tableModel);	
-//					
-//			JScrollPane jScrollPane = new JScrollPane(new JTable(tableModel));
-//			jScrollPane.setName(table.getTitle());
-//			this.childTabs.add(jScrollPane);
-//		}
-//		
-//		//podesi childTabs prvi indeks
-//		childTabs.setSelectedIndex(0);
-//		//ponovno iscrtavanje pogleda
-//		revalidate();
-//		repaint();
-//	}
-
+	/**
+	 * Podesavanje dugmadi za promociju i demociju clanova tabele.
+	 * @param className - parametar imena dugmeta za koje se podesava akcija
+	 */
 	public void setChangeableButtonAction(String className) {
 		switch (className) {
 		case "Child":

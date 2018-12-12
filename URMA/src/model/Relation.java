@@ -76,16 +76,6 @@ public class Relation {
 			destinationKeys.clear();
 	}
 
-	
-	/**
-	 * @return Referncijalni integritet vazi kada se u spisku destination kljuceva koji ucestvuju
-	 * u vezi nalazi svi PK is source tabele (po kodu)
-	 */
-	public Boolean isRefeferentialIntegrity() {
-		// TODO: Ovo verovatno ne treba		
-		return null;
-	}
-
 	public String getTitle() {
 		return title;
 	}

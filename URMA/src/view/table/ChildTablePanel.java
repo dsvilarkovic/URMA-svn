@@ -124,5 +124,20 @@ public class ChildTablePanel extends TablePanel {
 		return selectedTableModel.getTable();
 	}
 	
+	/**
+	 * Na osnovu indeks JTabbedPane nalazi odabrani pogled na tabelu i vraca odgovarajucu tabelu
+	 * @return pogled na tabelu selektovanu, ili null ako nije nista nasao
+	 */
+	public JTable getSelectedChildTableView() {
+		//uzmi panel
+		JScrollPane selectedTablePane = (JScrollPane) childTabs.getComponent(childTabs.getSelectedIndex());
+		//uzmi jtable
+		JTable selectedTable = (JTable) selectedTablePane.getViewport().getComponent(0);
+			
+		
+		return selectedTable;
+	}
+	
+	
 
 }

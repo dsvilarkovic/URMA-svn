@@ -5,7 +5,6 @@ import java.awt.event.KeyEvent;
 import java.util.Vector;
 
 import javax.swing.AbstractAction;
-import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
 import app.App;

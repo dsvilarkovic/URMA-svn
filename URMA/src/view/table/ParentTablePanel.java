@@ -3,6 +3,7 @@ package view.table;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 
 import model.Table;
 
@@ -17,6 +18,11 @@ public class ParentTablePanel extends TablePanel {
 	private TableModel tableModel;
 	private JTabbedPane tab = new JTabbedPane();
 	
+	/**
+	 * Konstruktor tabela za roditeljski panel
+	 * @author Dusan
+	 *
+	 */
 	public ParentTablePanel(String title) {
 		super(title);
 		super.setChangeableButtonAction("Parent");
@@ -50,6 +56,14 @@ public class ParentTablePanel extends TablePanel {
 	 */
 	public Table getParentTable() {
 		return tableModel.getTable();
+	}
+	
+	/**
+	 * Vraca odgovarajuci pogled na tabelu, posto nam trebaju funkcije iz nje
+	 * @return
+	 */
+	public JTable getParentTableView() {
+		return tableView;
 	}
 	
 }
