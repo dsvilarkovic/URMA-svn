@@ -71,7 +71,7 @@ public class DBHandler implements IHandler {
 			
 			return valueMap;
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Wrong file", "Invalid scheme", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "NO SUCH TABLE OR NO DATABESE", "INVALID SQL", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 	}
