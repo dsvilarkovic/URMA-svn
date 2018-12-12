@@ -128,7 +128,7 @@ public class TableModel extends DefaultTableModel {
 				this.addRow(valueList.get(i));
 			}
 		}catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Wrong file", "Invalid scheme", JOptionPane.ERROR_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "Wrong file", "Invalid scheme", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
