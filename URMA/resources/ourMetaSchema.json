@@ -102,6 +102,18 @@
 												"required": [
 													"type"
 												]
+											},
+											{
+												"properties": {
+													"type": {
+														"enum": [
+															"date"
+														]
+													}
+												},
+												"required": [
+													"type"
+												]
 											}
 										]
 									}

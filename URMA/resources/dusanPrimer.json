@@ -1,0 +1,274 @@
+{
+    "packages": [
+        {
+            "title": "main",
+            "code": "main",
+            "tables": [
+                {
+                    "title": "Parent 1",
+                    "code": "P1",
+                    "attributes": [
+                        {
+                            "title": "OznakaP1",
+                            "code": "P1_ID",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "NazivP1",
+                            "code": "P1_NAZIV",
+                            "type": "string",
+                            "maxLength": 128,
+                            "isRequired": true,
+                            "isPK": false
+                        },
+                        {
+                            "title": "Random number P1",
+                            "code": "P1_RI",
+                            "type": "number",
+                            "maxLength": 5,
+                            "isRequired": false,
+                            "isPK": false
+                        },
+                        {
+                            "title": "Random date P1",
+                            "code": "P1_RD",
+                            "type": "date",
+                            "isRequired": false,
+                            "isPK": false
+                        }
+                    ]
+                },
+                {
+                    "title": "Parent 2",
+                    "code": "P2",
+                    "attributes": [
+                        {
+                            "title": "Oznaka P2",
+                            "code": "P2_ID",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "Naziv P2",
+                            "code": "P2_NAZIV",
+                            "type": "string",
+                            "maxLength": 128,
+                            "isRequired": true,
+                            "isPK": false
+                        },
+                        {
+                            "title": "Random date P2",
+                            "code": "P2_RD",
+                            "type": "date",
+                            "isRequired": true,
+                            "isPK": false
+                        }
+                    ]
+                },
+                {
+                    "title": "Main table",
+                    "code": "MT",
+                    "attributes": [
+                        {
+                            "title": "Oznaka MT",
+                            "code": "MT_ID",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "Naziv MT",
+                            "code": "MT_NAZIV",
+                            "type": "string",
+                            "maxLength": 128,
+                            "isRequired": true,
+                            "isPK": false
+                        },
+                        {
+                            "title": "Random number MT",
+                            "code": "MT_RI",
+                            "type": "number",
+                            "maxLength": 5,
+                            "isRequired": false,
+                            "isPK": false
+                        },
+                        {
+                            "title": "P1 Strani kljuc",
+                            "code": "P1_FK",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "P2 Strani kljuc",
+                            "code": "P2_FK",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        }                        
+                    ]
+                },
+                {
+                    "title": "Child 1",
+                    "code": "C1",
+                    "attributes": [
+                        {
+                            "title": "Oznaka C1",
+                            "code": "C1_ID",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "Naziv C1",
+                            "code": "C1_NAZIV",
+                            "type": "string",
+                            "maxLength": 128,
+                            "isRequired": true,
+                            "isPK": false
+                        },
+                        {
+                            "title": "MT Strani kljuc",
+                            "code": "MT_FK",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "P1 Strani kljuc",
+                            "code": "P1_FK",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "P2 Strani kljuc",
+                            "code": "P2_FK",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        } 
+
+                    ]
+                },
+                {
+                    "title": "Child 2",
+                    "code": "C2",
+                    "attributes": [
+                        {
+                            "title": "Oznaka C2",
+                            "code": "C2_ID",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "Naziv C2",
+                            "code": "C2_NAZIV",
+                            "type": "string",
+                            "maxLength": 128,
+                            "isRequired": true,
+                            "isPK": false
+                        },
+                        {
+                            "title": "MT Strani kljuc",
+                            "code": "MT_FK",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "P1 Strani kljuc",
+                            "code": "P1_FK",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "P2 Strani kljuc",
+                            "code": "P2_FK",
+                            "type": "string",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        } 
+                    ]
+                }
+            ],
+            "packages": []
+        }
+    ],
+    "relations": [
+        {
+            "title": "Parent 1 - Main Table",
+            "code": "P1-MT",
+            "source": "P1",
+            "destination": "MT",
+            "keysSource": [
+                "P1_ID"
+            ],
+            "keysDestination": [
+                "P1_FK"
+            ]
+        },
+        {
+            "title": "Parent 2 - Main Table",
+            "code": "P2-MT",
+            "source": "P2",
+            "destination": "MT",
+            "keysSource": [
+                "P2_ID"
+            ],
+            "keysDestination": [
+                "P2_FK"
+            ]
+        },
+        {
+            "title": "Main Table - Child 1",
+            "code": "MT-C1",
+            "source": "MT",
+            "destination": "C1",
+            "keysSource": [
+                "MT_ID",
+                "P1_FK",
+                "P2_FK"
+            ],
+            "keysDestination": [
+                "MT_FK",
+                "P1_FK",
+                "P2_FK"
+            ]
+        },
+        {
+            "title": "Main Table - Child 2",
+            "code": "MT-C2",
+            "source": "MT",
+            "destination": "C2",
+            "keysSource": [
+                "MT_ID",
+                "P1_FK",
+                "P2_FK"
+            ],
+            "keysDestination": [
+                "MT_FK",
+                "P1_FK",
+                "P2_FK"
+            ]
+        }
+    ]
+}
