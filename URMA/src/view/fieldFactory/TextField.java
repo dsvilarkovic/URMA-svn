@@ -4,6 +4,12 @@ import javax.swing.JTextField;
 
 import javax.swing.JPanel;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class TextField extends JPanel implements IField{
 
 	private static final long serialVersionUID = 1L;

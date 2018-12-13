@@ -7,6 +7,12 @@ import controler.parsers.IParser;
 import controler.validators.DBValidator;
 import controler.validators.IValidator;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class DBFactory implements IResourceFactory{
 
 	@Override

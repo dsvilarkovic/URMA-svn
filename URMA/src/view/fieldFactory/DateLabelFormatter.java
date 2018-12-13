@@ -6,6 +6,12 @@ import java.util.Calendar;
 
 import javax.swing.JFormattedTextField.AbstractFormatter;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class DateLabelFormatter extends AbstractFormatter {
 	private static final long serialVersionUID = 1L;
 	

@@ -1,5 +1,11 @@
 package view.fieldFactory;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class NumberFieldFactory  implements IFieldFactory{
 
 	@Override

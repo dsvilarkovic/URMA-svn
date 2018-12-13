@@ -12,19 +12,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import app.App;
 import controler.crud.CreateAction;
 import controler.crud.SearchAction;
 import controler.crud.UpdateAction;
-import controler.handlers.IHandler;
 import model.Attribute;
 import model.Table;
-import model.resourceFactory.IResourceFactory;
 import view.fieldFactory.DecoratedField;
 import view.fieldFactory.IField;
+
+/**
+ * 
+ * @author jelena
+ *
+ */
 
 public class CrudWindow extends JDialog{
 
@@ -86,7 +89,6 @@ public class CrudWindow extends JDialog{
 		add(jp);
 		add(new JPanel());
 		Map<String, Attribute> attributes = table.getAttributes();
-		int i = 0;
 		for (String attributeKey : attributes.keySet()) {
 			Attribute attribute = attributes.get(attributeKey);
 			App.INSTANCE.createFieldFactory(attribute.getType());
@@ -114,8 +116,6 @@ public class CrudWindow extends JDialog{
 				fields.put(attribute.getTitle(), field);
 				add(new JPanel());				
 			}
-			
-			i++;
 		}
 		
 		if(search) {

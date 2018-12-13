@@ -3,6 +3,12 @@ package view.fieldFactory;
 import javax.swing.JPanel;
 import javax.swing.JCheckBox;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class BooleanField  extends JPanel implements IField{
 	private static final long serialVersionUID = 1L;
 	private JCheckBox field;

@@ -10,6 +10,12 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class NumberField extends JPanel implements IField{
 	private static final long serialVersionUID = 1L;
 	

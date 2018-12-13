@@ -1,5 +1,11 @@
 package view.fieldFactory;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public interface IField {
 	public Boolean validateField() ;
 	public Object getField();

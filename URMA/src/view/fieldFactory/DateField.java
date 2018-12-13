@@ -8,6 +8,12 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class DateField extends JPanel implements IField{
 	private static final long serialVersionUID = 1L;
 	

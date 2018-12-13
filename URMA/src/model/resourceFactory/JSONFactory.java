@@ -7,6 +7,12 @@ import controler.parsers.JSONParser;
 import controler.validators.IValidator;
 import controler.validators.JSONValidator;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class JSONFactory implements IResourceFactory {
 
 	@Override

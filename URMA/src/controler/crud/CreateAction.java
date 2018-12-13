@@ -8,6 +8,12 @@ import javax.swing.AbstractAction;
 import view.CrudWindow;
 import view.fieldFactory.IField;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class CreateAction extends AbstractAction{
 	private static final long serialVersionUID = 1L;
 	public CrudWindow parentCaller;

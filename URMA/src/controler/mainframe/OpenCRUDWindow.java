@@ -13,6 +13,12 @@ import model.Table;
 import model.resourceFactory.IResourceFactory;
 import view.CrudWindow;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class OpenCRUDWindow extends AbstractAction{
 
 	private static final long serialVersionUID = 1L;

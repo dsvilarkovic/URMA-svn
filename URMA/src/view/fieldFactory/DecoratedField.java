@@ -5,6 +5,12 @@ import java.awt.Component;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class DecoratedField extends JPanel implements IField{
 	private static final long serialVersionUID = 1L;
 	

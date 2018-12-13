@@ -7,6 +7,12 @@ import controler.parsers.XMLParser;
 import controler.validators.IValidator;
 import controler.validators.XMLValidator;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class XMLFactory implements IResourceFactory {
 
 	@Override

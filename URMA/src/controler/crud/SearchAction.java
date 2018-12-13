@@ -9,6 +9,12 @@ import view.CrudWindow;
 import view.fieldFactory.DecoratedField;
 import view.fieldFactory.IField;
 
+/**
+ * 
+ * @author jelena
+ *
+ */
+
 public class SearchAction extends AbstractAction{
 	private static final long serialVersionUID = 1L;
 	public CrudWindow parentCaller;
