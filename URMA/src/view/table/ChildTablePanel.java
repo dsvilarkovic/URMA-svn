@@ -1,13 +1,18 @@
 package view.table;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
+import app.App;
 import model.Table;
 
 /**
@@ -21,6 +26,8 @@ public class ChildTablePanel extends TablePanel {
 	
 	
 	private JTabbedPane childTabs = new JTabbedPane();
+	private List<TableRowSorter<TableModel>> tableSorters = new ArrayList<>();
+	private List<RowPrimaryKeyFilter<TableModel>> primaryKeyFilters = new ArrayList<>();
 	
 	public ChildTablePanel(String title) {
 		
@@ -61,6 +68,9 @@ public class ChildTablePanel extends TablePanel {
 	private void updateChildTabs() {
 		//brisanje postojecih tabova
 		childTabs.removeAll();	
+		//i row filtera
+		tableSorters.clear();
+		primaryKeyFilters.clear();
 		
 		
 		for (String tableKey : this.tableModelMap.keySet()) {
@@ -71,6 +81,15 @@ public class ChildTablePanel extends TablePanel {
 			JScrollPane jScrollPane = new JScrollPane(new JTable(tableModelInsert));
 			jScrollPane.setName(tableModelInsert.getTable().getTitle());
 			this.childTabs.add(jScrollPane);
+			
+			//podesi sorter (jedan za svako dete)
+			TableRowSorter<TableModel> tableSorter = new TableRowSorter<TableModel>(tableModelInsert);
+
+			TableModel parentTableModel = App.INSTANCE.getMainAppFrame().getMainAppPanel().getParentTablePanel().getParentTableModel();
+			tableSorter.setRowFilter(constructFilter(tableModelInsert, parentTableModel));			
+			tableView.setRowSorter(tableSorter);
+			
+			tableSorters.add(tableSorter);
 		}
 		
 		//ponovno iscrtavanje pogleda
@@ -80,6 +99,22 @@ public class ChildTablePanel extends TablePanel {
 	
 	
 	
+	/**
+	 * @return the tableSorters
+	 */
+	public List<TableRowSorter<TableModel>> getTableSorters() {
+		return tableSorters;
+	}
+
+
+	/**
+	 * @return the primaryKeyFilters
+	 */
+	public List<RowPrimaryKeyFilter<TableModel>> getPrimaryKeyFilters() {
+		return primaryKeyFilters;
+	}
+
+
 	/**
 	 * Na osnovu indeks JTabbedPane nalazi odabranu tabelu u kolekciji childModelList i vraca odgovarajucu tabelu
 	 * @return tabelu selektovanu, ili null ako nije nista nasao
@@ -113,4 +148,10 @@ public class ChildTablePanel extends TablePanel {
 	
 	
 
+	private RowFilter<TableModel, Integer> constructFilter(TableModel childTableModel, TableModel parentTableModel) {
+		RowPrimaryKeyFilter<TableModel> primaryKeyFilter = new RowPrimaryKeyFilter<>(childTableModel,parentTableModel);
+		primaryKeyFilters.add(primaryKeyFilter);
+		
+		return primaryKeyFilter;
+	}
 }

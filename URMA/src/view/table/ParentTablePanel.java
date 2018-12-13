@@ -1,12 +1,17 @@
 package view.table;
 
 
-import java.awt.BorderLayout;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import app.App;
 import model.Table;
 
 /**
@@ -36,9 +41,59 @@ public class ParentTablePanel extends TablePanel {
 		tab.add(jScrollPane);
 		addTableTabs(tab);
 		
+		addSelectionEvent();
 	}
 	
 	
+	private void addSelectionEvent() {
+		tableView.getSelectionModel().addListSelectionListener(
+				new ListSelectionListener() {
+
+					@Override
+					public void valueChanged(ListSelectionEvent e) {
+						if (!e.getValueIsAdjusting()
+								&& tableView.getSelectedRow() != -1) {
+														
+//							System.out.println("Selektovana torka: ");
+//							for (int i = 0; i < tableView.getColumnCount(); i++) {
+//								TableModel tableModel = (TableModel)tableView.getModel();
+//								//ispis obelezja i vrednosti
+//								String columnName = tableView.getColumnName(i);
+//								String columnValue = (String) tableView.getValueAt(tableView.getSelectedRow(), i);
+//								System.out.println("{"+ columnName + "["+ tableModel.getColumnsCode().get(i) + "]: " + columnValue +"}");
+//							}
+//							System.out.println("_________________________");
+							
+							Map<String, String> parentRowValues = new TreeMap<>();
+							for (int i = 0; i < tableView.getColumnCount(); i++) {
+								TableModel tableModel = (TableModel)tableView.getModel();
+								//ispis obelezja i vrednosti
+								//String columnName = tableView.getColumnName(i);
+								String columnCode = tableModel.getColumnsCode().get(i);
+								String columnValue = (String) tableView.getValueAt(tableView.getSelectedRow(), i);
+								
+								
+								parentRowValues.put(columnCode, columnValue);
+								
+								filter(parentRowValues);
+								//System.out.println("{"+ columnName + "["+ tableModel.getColumnsCode().get(i) + "]: " + columnValue +"}");
+							
+							}
+						}
+					}					
+		});
+		tableView.getSelectionModel().setSelectionMode(
+				ListSelectionModel.SINGLE_SELECTION);
+		
+	}
+	
+	private void filter(Map<String, String> parentRowValues) {
+		App.INSTANCE.getTableMediator().setParentRowValues(parentRowValues);
+		App.INSTANCE.getTableMediator().callTableSorters();
+	}
+	
+
+
 	public void setParentModel(TableModel tableModel) {
 		this.tableModel = tableModel;
 		tableView.setModel(tableModel);
@@ -67,6 +122,12 @@ public class ParentTablePanel extends TablePanel {
 	 */
 	public JTable getParentTableView() {
 		return tableView;
+	}
+
+
+	public TableModel getParentTableModel() {
+		// TODO Auto-generated method stub
+		return tableModel;
 	}
 	
 }

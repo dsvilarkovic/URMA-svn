@@ -29,6 +29,13 @@ public class TableModel extends DefaultTableModel {
 	 */
 	private List<String> columnsCode = new ArrayList<>();
 
+	/**
+	 * @return the columnsCode
+	 */
+	public List<String> getColumnsCode() {
+		return columnsCode;
+	}
+
 	//TODO namestiti da se komunicira preko dogadjaja
 	public TableModel(Table table) {
 		this.table = table;
