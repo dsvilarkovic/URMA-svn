@@ -123,6 +123,7 @@ public class CreateCrudWindowAction extends AbstractAction {
 	 */
 	private void addRow(Table table) {
 		//TODO: ubaciti kod
+		(new CrudWindow(table, false)).setVisible(true);;
 	}
 
 	/**
