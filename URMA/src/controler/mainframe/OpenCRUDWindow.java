@@ -42,8 +42,9 @@ public class OpenCRUDWindow extends AbstractAction{
 		IResourceFactory factory = App.INSTANCE.getFactory();
 		IHandler handler = factory.createHandler();
 		Vector<Vector<Object>> valueList = handler.read(table);
-//		CrudWindow crudWindow = new CrudWindow(table, valueList.get(0));
-		CrudWindow crudWindow = new CrudWindow(table, true);
+//		CrudWindow crudWindow = new CrudWindow(table, valueList.get(0)); // update
+//		CrudWindow crudWindow = new CrudWindow(table, false); //add
+		CrudWindow crudWindow = new CrudWindow(table, true); //search
 		crudWindow.setVisible(true);
 	}
 

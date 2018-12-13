@@ -43,15 +43,19 @@ public class CrudWindow extends JDialog{
 		button.addActionListener(new UpdateAction(this));
 		
 		CreateWindow();
-		add(new JLabel(table.getTitle()));
 		add(new JPanel());
+		JPanel jp = new JPanel();
+		jp.add(new JLabel(table.getTitle()));
+		add(jp);
 		add(new JPanel());
 		Map<String, Attribute> attributes = table.getAttributes();
 		int i = 0;
 		for (String attributeKey : attributes.keySet()) {
 			Attribute attribute = attributes.get(attributeKey);
 			App.INSTANCE.createFieldFactory(attribute.getType());
-			add(new JLabel(attribute.getTitle()));
+			jp = new JPanel();
+			jp.add(new JLabel(attribute.getTitle()));
+			add(jp);
 			IField field = App.INSTANCE.getFieldFactory().createField();
 			field.setValue(values.get(i));
 			add((Component) field);
@@ -60,7 +64,10 @@ public class CrudWindow extends JDialog{
 			i++;
 		}
 		
-		add(button);
+		add(new JPanel());
+		jp = new JPanel();
+		jp.add(button);
+		add(jp);
 
 		validate();
 	}
@@ -73,15 +80,19 @@ public class CrudWindow extends JDialog{
 		JButton button = new JButton();
 		
 		CreateWindow();
-		add(new JLabel(table.getTitle()));
 		add(new JPanel());
+		JPanel jp = new JPanel();
+		jp.add(new JLabel(table.getTitle()));
+		add(jp);
 		add(new JPanel());
 		Map<String, Attribute> attributes = table.getAttributes();
 		int i = 0;
 		for (String attributeKey : attributes.keySet()) {
 			Attribute attribute = attributes.get(attributeKey);
 			App.INSTANCE.createFieldFactory(attribute.getType());
-			add(new JLabel(attribute.getTitle()));
+			jp = new JPanel();
+			jp.add(new JLabel(attribute.getTitle()));
+			add(jp);
 			if(search) {
 				IField[] field = App.INSTANCE.getFieldFactory().createDoubleField();
 				field[0].setValue(null);
@@ -115,7 +126,10 @@ public class CrudWindow extends JDialog{
 			button.addActionListener(new CreateAction(this));
 		}
 
-		add(button);
+		add(new JPanel());
+		jp = new JPanel();
+		jp.add(button);
+		add(jp);
 		
 		validate();
 	}
