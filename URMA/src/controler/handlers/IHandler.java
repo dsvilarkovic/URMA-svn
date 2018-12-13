@@ -1,5 +1,6 @@
 package controler.handlers;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 import model.Table;
@@ -9,7 +10,7 @@ import model.Table;
  *
  */
 public interface IHandler {
-	public void create();
+	public void create(Table table, HashMap<String, Object> data);
 	public Vector<Vector<Object>> read(Table table);
 	public void update();
 	public void delete();

@@ -3,6 +3,7 @@
  */
 package controler.handlers;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 import model.Table;
@@ -17,7 +18,7 @@ public class XMLHandler implements IHandler {
 	 * @see controler.handlers.IHandler#create()
 	 */
 	@Override
-	public void create() {
+	public void create(Table table, HashMap<String, Object> data) {
 		// TODO Auto-generated method stub
 
 	}
