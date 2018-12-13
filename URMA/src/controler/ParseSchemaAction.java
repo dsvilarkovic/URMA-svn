@@ -40,6 +40,7 @@ public class ParseSchemaAction extends AbstractAction {
 		for (Package value : App.INSTANCE.getModel().getPackages().values())
 			elderPackage.addChildPackages(value);
 
+		App.INSTANCE.getMainAppFrame().getTreePanel().removeAll();
 		App.INSTANCE.getMainAppFrame().getTreePanel().init(new AdapterPackage(elderPackage));
 	}
 
