@@ -21,7 +21,7 @@ public class SearchAction extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Map<String, Object> fields = parentCaller.getFields();
-		System.out.println("CREATE");
+		System.out.println("SEARCH");
 		for (String mapKey : fields.keySet()) {
 			if(((DecoratedField[])fields.get(mapKey))[1] != null){
 				System.out.println(mapKey + " " + ((IField)((DecoratedField[])fields.get(mapKey))[0].getField()).getValue().toString() + "(" + ((DecoratedField[])fields.get(mapKey))[0].getValue().toString() + ") - " + ((IField)((DecoratedField[])fields.get(mapKey))[1].getField()).getValue().toString() + "(" + ((DecoratedField[])fields.get(mapKey))[1].getValue().toString() + ")");

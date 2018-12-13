@@ -17,6 +17,7 @@ public class NumberField extends JPanel implements IField{
 
 	public NumberField() {
 		this.field = new JFormattedTextField();
+		field.setColumns(10);
 		this.field.addFocusListener(new FocusAdapter() {
 		    public void focusLost(FocusEvent e) {
 		      if (!validateJFormatedTextField((JFormattedTextField)e.getComponent())){

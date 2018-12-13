@@ -22,7 +22,7 @@ public class MainAppMenuBar extends JMenuBar{
 		tools.add(OpenSchemaEditorItem);
 		
 		JMenuItem CRUDWindow = new JMenuItem(new OpenCRUDWindow());
-		tools.add(CRUDWindow);
+//		tools.add(CRUDWindow);
 		
 		JMenuItem ParscheSchemaItem = new JMenuItem(new ParseSchemaAction());
 		tools.add(ParscheSchemaItem);

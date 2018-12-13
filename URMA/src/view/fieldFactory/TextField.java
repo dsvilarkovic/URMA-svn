@@ -11,6 +11,7 @@ public class TextField extends JPanel implements IField{
 
 	public TextField() {
 		field = new JTextField();
+		field.setColumns(10);
 		
 		add(field);
 		
