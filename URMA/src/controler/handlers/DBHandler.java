@@ -81,7 +81,7 @@ public class DBHandler implements IHandler {
 		
 		PreparedStatement pstmt;
 		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rset = pstmt.executeQuery();
 			

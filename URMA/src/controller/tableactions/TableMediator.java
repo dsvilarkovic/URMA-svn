@@ -2,10 +2,12 @@ package controller.tableactions;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.TableRowSorter;
 
 import app.App;
 import model.Table;
@@ -13,6 +15,7 @@ import view.dialogs.ChooseParentTableDialog;
 import view.mainframe.MainAppPanel;
 import view.table.ChildTablePanel;
 import view.table.ParentTablePanel;
+import view.table.RowPrimaryKeyFilter;
 import view.table.TableModel;
 import view.table.TablePanel;
 
@@ -163,6 +166,48 @@ public class TableMediator {
 		}
 		
 		return calledTable;
+	}
+
+	/**
+	 * Sluzi da se child tabelama uvede novi uslov za filtriranje u njihove filtere.
+	 * Svaki od childova ima svoj filter
+	 * @param parentRowValues
+	 */
+	public void setParentRowValues(Map<String, String> parentRowValues) {
+		
+		System.out.println("############################");
+		System.out.println("_______" + parentRowValues);
+		
+		
+		List<RowPrimaryKeyFilter<TableModel>> primaryKeyFilters =  childTablePanel.getPrimaryKeyFilters();
+		//podesiti svima novu vrednost
+		for (RowPrimaryKeyFilter<TableModel> rowPrimaryKeyFilter : primaryKeyFilters) {
+			rowPrimaryKeyFilter.setRowValues(parentRowValues);
+			System.out.println(rowPrimaryKeyFilter);
+			System.out.println(childTablePanel);
+			System.out.println(childTablePanel.getTableSorters());
+		}
+		
+		
+		
+		
+	}
+
+	/**
+	 * Poziv za realtime sortiranje trazenih pretraga
+	 */
+	public void callTableSorters() {
+		List<TableRowSorter<TableModel>> tableSorters =  childTablePanel.getTableSorters();
+		
+		System.out.println("NOCNO NEBO");
+		
+		for (TableRowSorter<TableModel> tableRowSorter : tableSorters) {
+			
+			System.out.println(tableRowSorter);
+			
+			tableRowSorter.sort();
+		}
+		
 	}
 	
 	
