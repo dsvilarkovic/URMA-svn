@@ -10,12 +10,12 @@ import javax.swing.JPanel;
  *
  */
 
-public class TextField extends JPanel implements IField{
+public class CharField extends JPanel implements IField{
 
 	private static final long serialVersionUID = 1L;
 	private JTextField field;
 
-	public TextField() {
+	public CharField() {
 		field = new JTextField();
 		field.setColumns(10);
 		

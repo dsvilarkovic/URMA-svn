@@ -6,17 +6,17 @@ package view.fieldFactory;
  *
  */
 
-public class TextFieldFactory implements IFieldFactory{
+public class CharFieldFactory implements IFieldFactory{
 
 	@Override
 	public IField createField() {
-		return new TextField();
+		return new CharField();
 	}
 
 	@Override
 	public IField[] createDoubleField() {
 		IField[] searchField = new IField[2];
-		searchField[0] = new TextField();
+		searchField[0] = new CharField();
 		searchField[1] = null;
 		return searchField;
 	}

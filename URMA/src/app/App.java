@@ -16,7 +16,8 @@ import view.fieldFactory.DateFieldFactory;
 import view.fieldFactory.DoubleFieldFactory;
 import view.fieldFactory.IFieldFactory;
 import view.fieldFactory.IntegerFieldFactory;
-import view.fieldFactory.TextFieldFactory;
+import view.fieldFactory.VarcharFieldFactory;
+import view.fieldFactory.CharFieldFactory;
 import view.mainframe.MainAppFrame;
 import view.table.ChildTablePanel;
 import view.table.ParentTablePanel;
@@ -76,7 +77,7 @@ public enum App {
 	
 	public void createFieldFactory(String type) {
 		switch (type) {
-			case "string": fieldFactory = new TextFieldFactory(); break;
+			case "string": fieldFactory = new VarcharFieldFactory(); break;
 			case "date": fieldFactory = new DateFieldFactory(); break;
 			case "number": fieldFactory = new DoubleFieldFactory(); break;
 			case "boolean": fieldFactory = new BooleanFieldFactory(); break;
