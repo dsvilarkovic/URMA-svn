@@ -2,9 +2,6 @@ package view.fieldFactory;
 
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -16,12 +13,12 @@ import javax.swing.JPanel;
  *
  */
 
-public class NumberField extends JPanel implements IField{
+public class IntegerField extends JPanel implements IField{
 	private static final long serialVersionUID = 1L;
 	
 	private JFormattedTextField field;
 
-	public NumberField() {
+	public IntegerField() {
 		this.field = new JFormattedTextField();
 		field.setColumns(10);
 		this.field.addFocusListener(new FocusAdapter() {
@@ -45,19 +42,27 @@ public class NumberField extends JPanel implements IField{
 	}
 	
 	private boolean validateJFormatedTextField(JFormattedTextField field) {
+//		try {
+//			ParsePosition pp = new ParsePosition(0);
+//            NumberFormat nf = new DecimalFormat("####.00");
+//            nf.setMaximumIntegerDigits(10);
+//            nf.parse(field.getText(), pp);
+//            return pp.getIndex() == field.getText().length() ? true : false;
+//        } catch (Exception e) {
+//            return false;
+//        }
 		try {
-            NumberFormat nf = new DecimalFormat("####.00");
-            nf.setMaximumIntegerDigits(10);
-            nf.parse(field.getText());
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
+			Integer.parseInt(field.getText());
+			return true;
+		}catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
 	public Boolean validateField() {
-		return validateJFormatedTextField(this.field);
+//		return validateJFormatedTextField(this.field);
+		return null; // ovde ide validacija na osnovu kolone
 	}
 
 	@Override

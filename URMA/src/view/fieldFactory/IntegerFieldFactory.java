@@ -6,18 +6,18 @@ package view.fieldFactory;
  *
  */
 
-public class NumberFieldFactory  implements IFieldFactory{
+public class IntegerFieldFactory  implements IFieldFactory{
 
 	@Override
 	public IField createField() {
-		return new NumberField();
+		return new IntegerField();
 	}
 
 	@Override
 	public IField[] createDoubleField() {
 		IField[] searchField = new IField[2];
-		searchField[0] = new NumberField();
-		searchField[1] = new NumberField();
+		searchField[0] = new IntegerField();
+		searchField[1] = new IntegerField();
 		return searchField;
 	}
 

@@ -13,8 +13,9 @@ import model.resourceFactory.XMLFactory;
 import view.EditorWindow;
 import view.fieldFactory.BooleanFieldFactory;
 import view.fieldFactory.DateFieldFactory;
+import view.fieldFactory.DoubleFieldFactory;
 import view.fieldFactory.IFieldFactory;
-import view.fieldFactory.NumberFieldFactory;
+import view.fieldFactory.IntegerFieldFactory;
 import view.fieldFactory.TextFieldFactory;
 import view.mainframe.MainAppFrame;
 import view.table.ChildTablePanel;
@@ -77,7 +78,7 @@ public enum App {
 		switch (type) {
 			case "string": fieldFactory = new TextFieldFactory(); break;
 			case "date": fieldFactory = new DateFieldFactory(); break;
-			case "number": fieldFactory = new NumberFieldFactory(); break;
+			case "number": fieldFactory = new DoubleFieldFactory(); break;
 			case "boolean": fieldFactory = new BooleanFieldFactory(); break;
 			default: JOptionPane.showMessageDialog(null, "We dont know that type", "Invalid type",
 					JOptionPane.ERROR_MESSAGE);	break;
