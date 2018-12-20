@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 
 import controller.tableactions.TableMediator;
 import model.InformationResource;
-import model.Table;
 import model.resourceFactory.DBFactory;
 import model.resourceFactory.IResourceFactory;
 import model.resourceFactory.JSONFactory;
@@ -19,9 +18,6 @@ import view.fieldFactory.IntegerFieldFactory;
 import view.fieldFactory.VarcharFieldFactory;
 import view.fieldFactory.CharFieldFactory;
 import view.mainframe.MainAppFrame;
-import view.table.ChildTablePanel;
-import view.table.ParentTablePanel;
-import view.table.TablePanel;
 
 /**
  * 
