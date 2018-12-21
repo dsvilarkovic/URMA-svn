@@ -10,7 +10,7 @@ import model.Table;
  *
  */
 public interface IHandler {
-	public void create(Table table, HashMap<String, Object> data);
+	public Boolean create(Table table, HashMap<String, Object> data);
 	public Vector<Vector<Object>> read(Table table);
 	public void update();
 	public void delete();

@@ -11,7 +11,7 @@ public interface IField {
 		Metoda koja validira polje, implementiraju je validatori za konkretna polja	
 		@author - Jelena
 	**/
-	public Boolean validateField() ;
+	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) ;
 	public Object getField();
 	public void setField(Object o);
 	public void setValue(Object o);

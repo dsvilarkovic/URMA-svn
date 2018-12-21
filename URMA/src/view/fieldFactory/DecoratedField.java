@@ -45,8 +45,8 @@ public class DecoratedField extends JPanel implements IField{
 		@author - Jelena
 	**/
 	@Override
-	public Boolean validateField() {
-		return null;
+	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) {
+		return true;
 	}
 
 	@Override

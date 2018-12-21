@@ -45,17 +45,26 @@ public class DBHandler implements IHandler {
 		@author - Jelena
 		@param param1 - Tabela nad kojom se izvršava akcija
 		@param param2 - podatci koji se unose u tabelu u obliku mape(kolona, podatak)  
+		@return - uspesnost operacije
 	**/
 	@Override
-	public void create(Table table, HashMap<String, Object> data) {
+	public Boolean create(Table table, HashMap<String, Object> data) {
 		String coloumn_str = "";
 		String value_str = "'";
 		Map<String, Attribute> attributes = table.getAttributes();
 		for (String key : attributes.keySet()) {
 			coloumn_str += key + ",";
 			Attribute attribute = attributes.get(key);
-			//dodati validaciju prema duzini, nullable i ostalim stvarima
-			value_str += ((IField)data.get(attribute.getTitle())).getValue().toString() + "','";
+			IField field = (IField)data.get(attribute.getTitle());
+			if(!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(), attribute.getMaxLength())){
+				JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " not valid");
+				return false;
+			}
+			if(field.getValue() == null) {
+				value_str = value_str.substring(0, value_str.length() - 1) + "NULL,'";
+			}else {
+				value_str += field.getValue().toString() + "','";
+			}
 		}
 		coloumn_str = coloumn_str.substring(0, coloumn_str.length() - 1);
 		value_str = value_str.substring(0, value_str.length() - 2);
@@ -110,6 +119,7 @@ public class DBHandler implements IHandler {
 		}
 		
 		App.INSTANCE.getTableMediator().showTable(table);
+		return true;
 	}
 
 	@Override

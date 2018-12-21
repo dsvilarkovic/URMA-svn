@@ -43,8 +43,9 @@ public class CreateAction extends AbstractAction{
 		IResourceFactory factory = App.INSTANCE.getFactory();
 		IHandler handler = factory.createHandler();
 		
-		handler.create(parentCaller.getTable(), (HashMap<String, Object>) fields);
-		parentCaller.dispose();
+		if(handler.create(parentCaller.getTable(), (HashMap<String, Object>) fields)){
+			parentCaller.dispose();
+		}
 //		System.out.println(parentCaller.getClass());
 	}
 }

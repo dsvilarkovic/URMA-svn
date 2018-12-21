@@ -50,7 +50,7 @@ public class DateField extends JPanel implements IField{
 		@author - Jelena
 	**/
 	@Override
-	public Boolean validateField() {
+	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) {
 		return true;
 	}
 
@@ -77,12 +77,11 @@ public class DateField extends JPanel implements IField{
 	@Override
 	public Object getValue() {
 		int day = field.getModel().getDay();
-		int month = field.getModel().getMonth();
+		int month = field.getModel().getMonth() + 1;
 		int year = field.getModel().getYear();
 		
 		String date_db = "";
-		date_db += day + "-" + month + 1 + "-" + year;
-		
+		date_db += year + "-" + month  + "-" + day;
 		return date_db;
 	}
 

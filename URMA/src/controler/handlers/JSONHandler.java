@@ -18,9 +18,9 @@ public class JSONHandler implements IHandler {
 	 * @see controler.handlers.IHandler#create()
 	 */
 	@Override
-	public void create(Table table, HashMap<String, Object> datav) {
+	public Boolean create(Table table, HashMap<String, Object> datav) {
 		// TODO Auto-generated method stub
-
+		return true;
 	}
 
 	/* (non-Javadoc)

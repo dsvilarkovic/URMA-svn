@@ -68,9 +68,9 @@ public class IntegerField extends JPanel implements IField{
 		@author - Jelena
 	**/
 	@Override
-	public Boolean validateField() {
+	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) {
 //		return validateJFormatedTextField(this.field);
-		return null; // ovde ide validacija na osnovu kolone
+		return true;
 	}
 
 	@Override
@@ -94,6 +94,9 @@ public class IntegerField extends JPanel implements IField{
 
 	@Override
 	public Object getValue() {
+		if(field.getText().equals("")) {
+			return null;
+		}
 		return field.getText();
 	}
 

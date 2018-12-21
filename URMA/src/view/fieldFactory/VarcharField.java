@@ -41,7 +41,19 @@ public class VarcharField extends JPanel implements IField{
 		@author - Jelena
 	**/
 	@Override
-	public Boolean validateField() {
+	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) {
+		if(isReq && field.getText() == "") {
+			System.out.println("Requiref field is empty");
+			return false;
+		}
+		if(isPK && field.getText() == "") {
+			System.out.println("PK field is empty");
+			return false;
+		}
+		if(field.getText().length() >= maxLen) {
+			System.out.println("wrong len");
+			return false;
+		}
 		return true;
 	}
 
@@ -66,6 +78,9 @@ public class VarcharField extends JPanel implements IField{
 
 	@Override
 	public Object getValue() {		
+		if(field.getText().equals("")) {
+			return null;
+		}
 		return field.getText();
 	}
 

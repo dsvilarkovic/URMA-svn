@@ -18,9 +18,9 @@ public class XMLHandler implements IHandler {
 	 * @see controler.handlers.IHandler#create()
 	 */
 	@Override
-	public void create(Table table, HashMap<String, Object> data) {
+	public Boolean create(Table table, HashMap<String, Object> data) {
 		// TODO Auto-generated method stub
-
+		return true;
 	}
 
 	/* (non-Javadoc)

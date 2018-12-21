@@ -38,7 +38,8 @@ public class BooleanField  extends JPanel implements IField{
 		@author - Jelena
 	**/
 	@Override
-	public Boolean validateField() {
+	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) {
+		// TODO Auto-generated method stub
 		return true;
 	}
 
