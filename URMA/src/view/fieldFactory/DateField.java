@@ -67,15 +67,23 @@ public class DateField extends JPanel implements IField{
 	@Override
 	public void setValue(Object o) {
 		if(o != null) {
-			Integer[] date = (Integer[]) o;
-			field.getModel().setDate(date[2], date[1], date[0]);
+			String date = (String)o;
+			String[] dates = date.split("-");
+			field.getModel().setDate(Integer.parseInt(dates[0]), Integer.parseInt(dates[1])-1, Integer.parseInt(dates[2]));
 			field.getModel().setSelected(true);
 		}
 	}
 
 	@Override
 	public Object getValue() {
-		return field.getModel().getValue();
+		int day = field.getModel().getDay();
+		int month = field.getModel().getMonth();
+		int year = field.getModel().getYear();
+		
+		String date_db = "";
+		date_db += day + "-" + month + 1 + "-" + year;
+		
+		return date_db;
 	}
 
 }

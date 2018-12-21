@@ -85,13 +85,13 @@ public enum App {
 	**/
 	public void createFieldFactory(String type) {
 		switch (type) {
-//			case "char": fieldFactory = new CharFieldFactory(); break;
-//			case "varchar": fieldFactory = new VarcharFieldFactory(); break;
-			case "string" : fieldFactory = new VarcharFieldFactory(); break; 
+			case "char": fieldFactory = new CharFieldFactory(); break;
+			case "varchar": fieldFactory = new VarcharFieldFactory(); break;
+//			case "string" : fieldFactory = new VarcharFieldFactory(); break; 
 			case "date": fieldFactory = new DateFieldFactory(); break;
-//			case "double": fieldFactory = new DoubleFieldFactory(); break;
-//			case "int": fieldFactory = new IntegerFieldFactory(); break;
-			case "number": fieldFactory = new IntegerFieldFactory(); break;
+			case "double": fieldFactory = new DoubleFieldFactory(); break;
+			case "int": fieldFactory = new IntegerFieldFactory(); break;
+//			case "number": fieldFactory = new IntegerFieldFactory(); break;
 			case "boolean": fieldFactory = new BooleanFieldFactory(); break;
 			default: JOptionPane.showMessageDialog(null, "We dont know that type", "Invalid type",
 					JOptionPane.ERROR_MESSAGE);	break;
