@@ -167,6 +167,29 @@ public class TableMediator {
 		
 		return calledTable;
 	}
+	
+	/**
+	 * Sluzi da nadje odgovarajuci TableModel za referenciranu tabelu iz pogleda
+	 * @param table
+	 * @return odgovarajuci model za poziv
+	 */
+	public TableModel getCalledTableModel(Table table) {
+		TableModel chosenTableModel = null;
+		//uzmi aktivni roditeljski table model iz pogleda, ako se tabele poklapaju vrati taj model
+		TableModel activeParentTableModel = parentTablePanel.getParentTableModel();
+		
+		if(activeParentTableModel.getTable().getCode().equals(table.getCode())) {
+			chosenTableModel = activeParentTableModel;
+		}
+		
+		//uzmi aktivni child table model iz pogleda, ako se tabele poklapaju vrati taj model
+		TableModel activeChildTableModel = childTablePanel.getSelectedChildTableModel();
+		if(activeChildTableModel.getTable().getCode().equals(table.getCode())) {
+			chosenTableModel = activeChildTableModel;
+		}
+		
+		return chosenTableModel;
+	}
 
 	/**
 	 * Sluzi da se child tabelama uvede novi uslov za filtriranje u njihove filtere.

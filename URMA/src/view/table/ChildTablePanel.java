@@ -136,6 +136,17 @@ public class ChildTablePanel extends TablePanel {
 		return selectedTableModel.getTable();
 	}
 	
+	
+	/**
+	 * Sluzi da vrati model aktivne tabele u child panelu
+	 * @return - tabelu modela aktivnog child-a
+	 */
+	public TableModel getSelectedChildTableModel() {
+		JTable selectedTable = getSelectedChildTableView();
+		
+		return (TableModel) selectedTable.getModel();
+	}
+	
 	/**
 	 * Na osnovu indeks JTabbedPane nalazi odabrani pogled na tabelu i vraca odgovarajucu tabelu
 	 * @return pogled na tabelu selektovanu, ili null ako nije nista nasao
