@@ -65,7 +65,6 @@ public class CrudWindow extends JDialog{
 			jp.add(new JLabel(attribute.getTitle()));
 			add(jp);
 			IField field = App.INSTANCE.getFieldFactory().createField();
-			System.out.println(values.get(i));
 			field.setValue(values.get(i));
 			add((Component) field);
 			fields.put(attribute.getTitle(), field);
