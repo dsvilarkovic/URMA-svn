@@ -1,0 +1,65 @@
+{
+    "packages": [
+        {
+            "title": "main",
+            "code": "main",
+            "tables": [
+                {
+                    "title": "Sve",
+                    "code": "SVE",
+                    "attributes": [
+                        {
+                            "title": "Char",
+                            "code": "CHAR",
+                            "type": "char",
+                            "maxLength": 3,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "Varchar",
+                            "code": "VARCHAR",
+                            "type": "varchar",
+                            "maxLength": 128,
+                            "isRequired": false,
+                            "isPK": false
+                        },
+                        {
+                            "title": "Integer",
+                            "code": "INT",
+                            "type": "int",
+                            "maxLength": 12,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "Double",
+                            "code": "DOUBLE",
+                            "type": "double",
+                            "maxLength": 120,
+                            "isRequired": true,
+                            "isPK": false
+                        },
+                        {
+                            "title": "Boolean",
+                            "code": "BOOL",
+                            "type": "boolean",
+                            "isRequired": false,
+                            "isPK": false
+                        },
+                        {
+                            "title": "Date",
+                            "code": "DATE",
+                            "type": "date",
+                            "isRequired": false,
+                            "isPK": false
+                        }                        
+                    ]
+                }                
+            ],
+            "packages": [ ]
+        }
+    ],
+    "relations": [
+    ]
+}

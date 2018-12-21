@@ -11,7 +11,7 @@
                         {
                             "title": "Oznaka",
                             "code": "DRZ_ID",
-                            "type": "string",
+                            "type": "char",
                             "maxLength": 3,
                             "isRequired": true,
                             "isPK": true
@@ -19,7 +19,7 @@
                         {
                             "title": "Naziv",
                             "code": "DRZ_NAZIV",
-                            "type": "string",
+                            "type": "varchar",
                             "maxLength": 128,
                             "isRequired": true,
                             "isPK": false
@@ -27,7 +27,7 @@
                         {
                             "title": "Glavni grad",
                             "code": "NM_PB",
-                            "type": "string",
+                            "type": "char",
                             "maxLength": 5,
                             "isRequired": false,
                             "isPK": false
@@ -41,7 +41,7 @@
                         {
                             "title": "Drzava",
                             "code": "DRZ_ID",
-                            "type": "string",
+                            "type": "char",
                             "maxLength": 3,
                             "isRequired": true,
                             "isPK": true
@@ -49,7 +49,7 @@
                         {
                             "title": "Post. broj",
                             "code": "NM_PB",
-                            "type": "string",
+                            "type": "char",
                             "maxLength": 5,
                             "isRequired": true,
                             "isPK": true
@@ -57,7 +57,7 @@
                         {
                             "title": "Naziv",
                             "code": "NM_NAZIV",
-                            "type": "string",
+                            "type": "varchar",
                             "maxLength": 128,
                             "isRequired": true,
                             "isPK": false
@@ -65,7 +65,7 @@
                         {
                             "title": "Broj stanovnika",
                             "code": "NM_STAN",
-                            "type": "number",
+                            "type": "int",
                             "maxLength": 10,
                             "isRequired": false,
                             "isPK": false
@@ -86,7 +86,7 @@
                         {
                             "title": "Indeks",
                             "code": "STU_INDEKS",
-                            "type": "string",
+                            "type": "char",
                             "maxLength": 15,
                             "isRequired": true,
                             "isPK": true
@@ -94,7 +94,7 @@
                         {
                             "title": "Ime",
                             "code": "STU_IME",
-                            "type": "string",
+                            "type": "varchar",
                             "maxLength": 64,
                             "isRequired": true,
                             "isPK": false
@@ -102,7 +102,7 @@
                         {
                             "title": "Prezime",
                             "code": "STU_PREZIME",
-                            "type": "string",
+                            "type": "varchar",
                             "maxLength": 64,
                             "isRequired": true,
                             "isPK": false
@@ -110,7 +110,7 @@
                         {
                             "title": "Drzava rodjenja",
                             "code": "STU_DRZRODJ",
-                            "type": "string",
+                            "type": "char",
                             "maxLength": 3,
                             "isRequired": true,
                             "isPK": false
@@ -118,7 +118,7 @@
                         {
                             "title": "Mesto rodjenja",
                             "code": "STU_MESTORODJ",
-                            "type": "string",
+                            "type": "char",
                             "maxLength": 5,
                             "isRequired": true,
                             "isPK": false
@@ -126,7 +126,7 @@
                         {
                             "title": "Drzava stanovanja",
                             "code": "STU_DRZSTAN",
-                            "type": "string",
+                            "type": "char",
                             "maxLength": 3,
                             "isRequired": false,
                             "isPK": false
@@ -134,8 +134,16 @@
                         {
                             "title": "Mesto stanovanja",
                             "code": "STU_MESTOSTAN",
-                            "type": "string",
+                            "type": "char",
                             "maxLength": 5,
+                            "isRequired": false,
+                            "isPK": false
+                        },
+                        {
+                            "title": "Visina",
+                            "code": "STU_VISINA",
+                            "type": "double",
+                            "maxLength": 300,
                             "isRequired": false,
                             "isPK": false
                         }

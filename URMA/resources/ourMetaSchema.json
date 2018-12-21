@@ -61,7 +61,7 @@
 												"properties": {
 													"type": {
 														"enum": [
-															"string"
+															"char"
 														]
 													},
 													"maxLength": {
@@ -78,7 +78,41 @@
 												"properties": {
 													"type": {
 														"enum": [
-															"number"
+															"varchar"
+														]
+													},
+													"maxLength": {
+														"type": "integer",
+														"minimum": 0
+													}
+												},
+												"required": [
+													"type",
+													"maxLength"
+												]
+											},
+											{
+												"properties": {
+													"type": {
+														"enum": [
+															"int"
+														]
+													},
+													"maxLength": {
+														"type": "integer",
+														"minimum": 0
+													}
+												},
+												"required": [
+													"type",
+													"maxLength"
+												]
+											},
+											{
+												"properties": {
+													"type": {
+														"enum": [
+															"double"
 														]
 													},
 													"maxLength": {
