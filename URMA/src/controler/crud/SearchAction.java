@@ -10,8 +10,8 @@ import view.fieldFactory.DecoratedField;
 import view.fieldFactory.IField;
 
 /**
- * 
- * @author jelena
+ * Akcija koja služi za search nad bazom
+ * @author Jelena
  *
  */
 
@@ -24,6 +24,10 @@ public class SearchAction extends AbstractAction{
 		this.parentCaller = parentCaller;
 	}
 
+	/**
+		Akcija koja se poziva nakon popunjavanja polja za search akciju u CrudWindow-u da bi izvršila akciju nad bazom		
+		@author - Jelena
+	**/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Map<String, Object> fields = parentCaller.getFields();

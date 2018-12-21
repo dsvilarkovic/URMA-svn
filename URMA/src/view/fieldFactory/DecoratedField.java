@@ -6,8 +6,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 /**
- * 
- * @author jelena
+ * Klasa koja dekoriše polja boolean poljem na crud prozoru
+ * @author Jelena
  *
  */
 
@@ -17,6 +17,10 @@ public class DecoratedField extends JPanel implements IField{
 	IField field = null;
 	JCheckBox checkbox = null;
 	
+	/**
+		Konstruktor - kreira polje boolean tipa koje dekoriše polja ostalih tipova - potrebno za search		
+		@author - Jelena
+	**/
 	public DecoratedField(IField field) {
 		super();
 		this.field = field;
@@ -36,7 +40,10 @@ public class DecoratedField extends JPanel implements IField{
 		this.checkbox = checkbox;
 	}
 
-
+	/**
+		Metoda koja validira polje 		
+		@author - Jelena
+	**/
 	@Override
 	public Boolean validateField() {
 		return null;

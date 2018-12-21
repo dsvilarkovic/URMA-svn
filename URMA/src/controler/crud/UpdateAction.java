@@ -8,8 +8,8 @@ import view.CrudWindow;
 import view.fieldFactory.IField;
 
 /**
- * 
- * @author jelena
+ * Akcija koja služi za update nad bazom
+ * @author Jelena
  *
  */
 
@@ -26,6 +26,10 @@ public class UpdateAction extends AbstractAction{
 		this.parentCaller = parentCaller;
 	}
 
+	/**
+		Akcija koja se poziva nakon popunjavanja polja za update akciju u CrudWindow-u da bi izvršila akciju nad bazom		
+		@author - Jelena
+	**/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Map<String, Object> fields = parentCaller.getFields();

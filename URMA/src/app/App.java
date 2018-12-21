@@ -56,6 +56,12 @@ public enum App {
 		return factory;
 	}
 	
+	/**
+		Izbor fabrike za kreiranje parsera, handlera i validatora		
+		@author - Jelena
+		@param param1 - String, ekstenzija fajla metaseme na osnovu kojeg se formira fabrika(json, xml, db)  
+		@return - fabrika izabranog tipa
+	**/
 	public void setFactory(String extension) {
 		switch (extension) {
 		case "sch": factory = new JSONFactory(); break;
@@ -71,11 +77,21 @@ public enum App {
 		return fieldFactory;
 	}
 	
+	/**
+		Izbor fabrike za kreiranje polja različitih tipova		
+		@author - Jelena
+		@param param1 - tip polja koje je potrebno kreirati(char, varchar, int, double, date, boolean)  
+		@return - fabrika izabranog tipa
+	**/
 	public void createFieldFactory(String type) {
 		switch (type) {
-			case "string": fieldFactory = new VarcharFieldFactory(); break;
+//			case "char": fieldFactory = new CharFieldFactory(); break;
+//			case "varchar": fieldFactory = new VarcharFieldFactory(); break;
+			case "string" : fieldFactory = new VarcharFieldFactory(); break; 
 			case "date": fieldFactory = new DateFieldFactory(); break;
-			case "number": fieldFactory = new DoubleFieldFactory(); break;
+//			case "double": fieldFactory = new DoubleFieldFactory(); break;
+//			case "int": fieldFactory = new IntegerFieldFactory(); break;
+			case "number": fieldFactory = new IntegerFieldFactory(); break;
 			case "boolean": fieldFactory = new BooleanFieldFactory(); break;
 			default: JOptionPane.showMessageDialog(null, "We dont know that type", "Invalid type",
 					JOptionPane.ERROR_MESSAGE);	break;

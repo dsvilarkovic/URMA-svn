@@ -1,18 +1,28 @@
 package view.fieldFactory;
 
 /**
- * 
- * @author jelena
+ * Fabrika koja kreira boolean polja za crud akcije
+ * @author Jelena
  *
  */
 
 public class BooleanFieldFactory implements IFieldFactory{
 
+	/**
+		Fabrika za kreiranje boolean polja	
+		@author - Jelena
+		@return - boolean polje
+	**/
 	@Override
 	public IField createField() {
 		return new BooleanField();
 	}
-
+	
+	/**
+		Fabrika za kreiranje boolean polja	
+		@author - Jelena
+		@return - boolean polje
+	**/
 	@Override
 	public IField[] createDoubleField() {
 		IField[] searchField = new IField[2];

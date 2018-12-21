@@ -8,8 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- * 
- * @author jelena
+ * Klasa koja opisuje integer tip polja koja su potrebna za crud akcije
+ * @author Jelena
  *
  */
 
@@ -18,6 +18,10 @@ public class IntegerField extends JPanel implements IField{
 	
 	private JFormattedTextField field;
 
+	/**
+		Konstruktor - kreira polje integer tipa i dodaje akciju za validaciju formata broja	
+		@author - Jelena
+	**/
 	public IntegerField() {
 		this.field = new JFormattedTextField();
 		field.setColumns(10);
@@ -59,6 +63,10 @@ public class IntegerField extends JPanel implements IField{
 		}
 	}
 
+	/**
+		Metoda koja validira polje 		
+		@author - Jelena
+	**/
 	@Override
 	public Boolean validateField() {
 //		return validateJFormatedTextField(this.field);

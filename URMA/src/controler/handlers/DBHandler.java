@@ -16,6 +16,7 @@ import java.util.Vector;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import app.App;
 import model.Attribute;
 import model.Table;
 import view.fieldFactory.IField;
@@ -39,6 +40,12 @@ public class DBHandler implements IHandler {
 //		}
 	}
 	
+	/**
+		Create akcija nad bazom - unos torke sa zadatim parametrima		
+		@author - Jelena
+		@param param1 - Tabela nad kojom se izvršava akcija
+		@param param2 - podatci koji se unose u tabelu u obliku mape(kolona, podatak)  
+	**/
 	@Override
 	public void create(Table table, HashMap<String, Object> data) {
 		String coloumn_str = "";
@@ -101,6 +108,8 @@ public class DBHandler implements IHandler {
 //			JOptionPane.showMessageDialog(null, text, "INVALID SQL", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
+		
+		App.INSTANCE.getTableMediator().showTable(table);
 	}
 
 	@Override

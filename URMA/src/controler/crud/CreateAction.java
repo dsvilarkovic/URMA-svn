@@ -14,8 +14,8 @@ import view.fieldFactory.IField;
 import view.table.ParentTablePanel;
 
 /**
- * 
- * @author jelena
+ * Akcija koja služi za create nad bazom
+ * @author Jelena
  *
  */
 
@@ -28,6 +28,10 @@ public class CreateAction extends AbstractAction{
 		this.parentCaller = parentCaller;
 	}
 
+	/**
+		Akcija koja se poziva nakon popunjavanja polja za create akciju u CrudWindow-u da bi izvršila akciju nad bazom		
+		@author - Jelena
+	**/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Map<String, Object> fields = parentCaller.getFields();

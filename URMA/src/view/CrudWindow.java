@@ -24,8 +24,8 @@ import view.fieldFactory.DecoratedField;
 import view.fieldFactory.IField;
 
 /**
- * 
- * @author jelena
+ * Prozor koji služi za popunjavanje polja za create, update i search akcije nad podacima
+ * @author Jelena
  *
  */
 
@@ -36,8 +36,13 @@ public class CrudWindow extends JDialog{
 	Vector<Object> values;
 	Map<String, Object> fields;
 
-	//edit
-	public CrudWindow(Table t, Vector<Object> v) {
+	/**
+		Metoda kreira i prikazuje crud window za akciju update	
+		@author - Jelena
+		@param param1 - tabela za koju se kreira crud window  
+		@param param2 - vektor trenutnih vrednosti u tabeli koji se menjaju  
+	**/
+	public CrudWindow(Table t, Vector<Object> v) {	//edit
 		this.table = t;
 		this.values = v;
 		this.fields = new HashMap<String, Object>();
@@ -75,8 +80,14 @@ public class CrudWindow extends JDialog{
 		validate();
 	}
 	
-	//new/search
-	public CrudWindow(Table t, boolean search) {
+	
+	/**
+		Metoda kreira i prikazuje crud window za akcije create i search	
+		@author - Jelena
+		@param param1 - tabela za koju se kreira crud window  
+		@param param2 - parametar koji odredjuje koja je akcija u pitanju(true za search, false za create)  
+	**/
+	public CrudWindow(Table t, boolean search) {//new/search
 		this.table = t;
 		this.values = new Vector<Object>();
 		this.fields = new HashMap<String, Object>();
@@ -158,6 +169,10 @@ public class CrudWindow extends JDialog{
 		this.fields = fields;
 	}
 	
+	/**
+		Konstruktor - podešava parametre prozora	
+		@author - Jelena
+	**/
 	private void CreateWindow() {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();

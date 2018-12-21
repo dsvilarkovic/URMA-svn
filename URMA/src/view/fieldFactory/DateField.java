@@ -9,8 +9,8 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 /**
- * 
- * @author jelena
+ * Klasa koja opisuje date tip polja koja su potrebna za crud akcije
+ * @author Jelena
  *
  */
 
@@ -19,6 +19,10 @@ public class DateField extends JPanel implements IField{
 	
 	private JDatePickerImpl field;
 
+	/**
+		Konstruktor - kreira i podešava polje date tipa 		
+		@author - Jelena
+	**/
 	public DateField() {
 		UtilDateModel model = new UtilDateModel();
 		Properties p = new Properties();
@@ -41,6 +45,10 @@ public class DateField extends JPanel implements IField{
 		this.field = field;
 	}
 
+	/**
+		Metoda koja validira polje 		
+		@author - Jelena
+	**/
 	@Override
 	public Boolean validateField() {
 		return true;

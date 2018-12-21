@@ -4,8 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.JCheckBox;
 
 /**
- * 
- * @author jelena
+ * Klasa koja opisuje boolean tip polja koja su potrebna za crud akcije
+ * @author Jelena
  *
  */
 
@@ -13,6 +13,10 @@ public class BooleanField  extends JPanel implements IField{
 	private static final long serialVersionUID = 1L;
 	private JCheckBox field;
 
+	/**
+		Konstruktor - kreira polje boolean tipa 		
+		@author - Jelena
+	**/
 	public BooleanField() {
 		field = new JCheckBox();
 		
@@ -29,6 +33,10 @@ public class BooleanField  extends JPanel implements IField{
 		this.field = field;
 	}
 
+	/**
+		Metoda koja validira polje 		
+		@author - Jelena
+	**/
 	@Override
 	public Boolean validateField() {
 		return true;

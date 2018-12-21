@@ -7,8 +7,8 @@ import java.util.Calendar;
 import javax.swing.JFormattedTextField.AbstractFormatter;
 
 /**
- * 
- * @author jelena
+ * Klasa koja formatira date polja na crud prozoru
+ * @author Jelena
  *
  */
 
