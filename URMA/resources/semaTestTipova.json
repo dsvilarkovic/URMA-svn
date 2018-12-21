@@ -10,7 +10,7 @@
                     "attributes": [
                         {
                             "title": "Char",
-                            "code": "CHAR",
+                            "code": "SVE_CHAR",
                             "type": "char",
                             "maxLength": 3,
                             "isRequired": true,
@@ -18,7 +18,7 @@
                         },
                         {
                             "title": "Varchar",
-                            "code": "VARCHAR",
+                            "code": "SVE_VARCHAR",
                             "type": "varchar",
                             "maxLength": 128,
                             "isRequired": false,
@@ -26,7 +26,7 @@
                         },
                         {
                             "title": "Integer",
-                            "code": "INT",
+                            "code": "SVE_INT",
                             "type": "int",
                             "maxLength": 12,
                             "isRequired": true,
@@ -34,7 +34,7 @@
                         },
                         {
                             "title": "Double",
-                            "code": "DOUBLE",
+                            "code": "SVE_DOUBLE",
                             "type": "double",
                             "maxLength": 120,
                             "isRequired": true,
@@ -42,14 +42,14 @@
                         },
                         {
                             "title": "Boolean",
-                            "code": "BOOL",
+                            "code": "SVE_BOOLEAN",
                             "type": "boolean",
                             "isRequired": false,
                             "isPK": false
                         },
                         {
                             "title": "Date",
-                            "code": "DATE",
+                            "code": "SVE_DATE",
                             "type": "date",
                             "isRequired": false,
                             "isPK": false
