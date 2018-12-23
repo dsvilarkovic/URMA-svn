@@ -1,4 +1,4 @@
-package controller.tableactions;
+package controler.tableactions;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -12,7 +12,7 @@ import javax.swing.table.TableRowSorter;
 import app.App;
 import model.Table;
 import view.dialogs.ChooseParentTableDialog;
-import view.mainframe.MainAppPanel;
+import view.mainFrame.MainAppPanel;
 import view.table.ChildTablePanel;
 import view.table.ParentTablePanel;
 import view.table.RowPrimaryKeyFilter;

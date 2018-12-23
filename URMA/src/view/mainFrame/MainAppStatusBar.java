@@ -1,4 +1,4 @@
-package view.mainframe;
+package view.mainFrame;
 
 import java.awt.Color;
 import java.awt.event.ItemEvent;

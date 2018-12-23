@@ -1,4 +1,4 @@
-package view;
+package view.editorFrame;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
