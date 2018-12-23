@@ -9,8 +9,8 @@ import java.util.Vector;
 import model.Table;
 
 /**
+ * Handler za rad sa jason-om
  * @author filip
- *
  */
 public class JSONHandler implements IHandler {
 

@@ -1,11 +1,8 @@
-/**
- * 
- */
 package controler.parsers;
 
 /**
+ * Parser za XML
  * @author filip
- *
  */
 public class XMLParser implements IParser {
 

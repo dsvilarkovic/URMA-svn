@@ -11,9 +11,8 @@ import controler.SaveSchemeAction;
 import controler.ValidateAction;
 
 /**
- * 
+ * Klasa toolbar za Editor, gde se nalaze sve akcije za Editor u vidu dugmica.
  * @author filip
- *
  */
 public class Toolbar extends JToolBar {
 
@@ -35,7 +34,6 @@ public class Toolbar extends JToolBar {
 		add(chooseMetaScheme);
 		add(validateScheme);
 
-		// path.setEnabled(false);
 		add(path);
 
 		setVisible(true);

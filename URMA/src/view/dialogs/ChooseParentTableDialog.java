@@ -17,7 +17,6 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
-import app.App;
 import model.Table;
 
 public class ChooseParentTableDialog extends JDialog{

@@ -11,7 +11,10 @@ import javax.swing.KeyStroke;
 
 import app.App;
 
-
+/**
+ * Akcija za pokretanje Editora seme baze
+ * @author filip 
+ */
 public class OpenSchemaEditor extends AbstractAction {
 
 	private static final long serialVersionUID = 4574103938667763415L;
@@ -36,6 +39,10 @@ public class OpenSchemaEditor extends AbstractAction {
 						KeyEvent.CTRL_DOWN_MASK));
 	}
 
+	/**
+	 * Akcija koja se izvrsi klikom na dugme, editor postaje vidljiv
+	 * @author filip
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		App.INSTANCE.getEditorWindow().setVisible(true);

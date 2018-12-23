@@ -7,10 +7,19 @@ import model.InformationResource;
 import model.Package;
 import model.Table;
 
+/**
+ * Klasa adapter za paket. Adaptira paket za stablo i za dalju upotrebu u programu.
+ * @author filip
+ */
 public class AdapterPackage implements TreeParts{
 
 	private Package paket;
-
+	
+	/**
+	 * Konstruktor za kreiranje adaptera paketa
+	 * @author filip
+	 * @param pkt - paket koji treba da se adaptira
+	 */
 	public AdapterPackage(Package pkt) {
 		paket = pkt;
 	}

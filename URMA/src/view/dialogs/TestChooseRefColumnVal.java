@@ -1,12 +1,7 @@
 package view.dialogs;
 
-import java.util.Vector;
-
-import app.App;
-import controler.handlers.IHandler;
 import model.Attribute;
 import model.Table;
-import model.resourceFactory.IResourceFactory;
 
 public class TestChooseRefColumnVal {
 

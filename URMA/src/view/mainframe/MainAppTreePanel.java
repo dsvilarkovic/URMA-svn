@@ -16,9 +16,9 @@ import model.InformationResource;
 import model.treeAdapter.TreeParts;
 
 /**
- * 
+ * Klasa panel za stablo u aplikaciji. <br>
+ * Sadrzi TreeModel i Tree u sebi
  * @author filip
- *
  */
 public class MainAppTreePanel extends JPanel {
 
@@ -27,11 +27,24 @@ public class MainAppTreePanel extends JPanel {
 	private static DefaultTreeModel treeModel;
 	InformationResource infRes;
 
+	/**
+	 * Konstruktor za kreiranje panela za stablo. <br>
+	 * Inicijalno se kreira samo prazan panel.
+	 * @author filip
+	 * @param none
+	 */
 	public MainAppTreePanel() {
 		setLayout(new BorderLayout());
 		setBackground(Color.orange);
 	}
 
+	/**
+	 * Metoda za inicijalizaciju stabla (Iscrtavanje stabla u panelu)
+	 * @author filip
+	 * @param elderNodek - nastariji vrhovni cvor u stablu iz koga svi krecu. <br>
+	 * On kao i svi ostali cvorovi stabla moraju biti tipa {@link TreeParts}.
+	 * @return {@link Void}
+	 */
 	public void init(TreeParts elderNodek) {
 
 		infRes = App.INSTANCE.getModel();
@@ -57,6 +70,16 @@ public class MainAppTreePanel extends JPanel {
 
 	}
 
+	/**
+	 * Rekurzivna metoda za pravljenje stabla. <br>
+	 * Metoda koja ce vratiti ceo sistem pod cvorova stabla za dati cvor. <br>
+	 * Stoga ako joj se prosledi najstariji cvor dobije se celo podstablo.
+	 * @author filip
+	 * @param node - cvor za koji hocemo da konstruisemo stablo. <br>
+	 * Mora svaki cvor za pravilno iscrtavanje treba da implemetira {@link TreeParts}
+	 * @return {@link DefaultMutableTreeNode} - vraca nastariji cvor (sa njim povezani i svi ostali cvorovi). <br>
+	 * Efektivno vrati stablo spremno za crtanje
+	 */
 	public DefaultMutableTreeNode updateTreeModel(TreeParts node) {
 		DefaultMutableTreeNode parentNode = new DefaultMutableTreeNode(node);
 

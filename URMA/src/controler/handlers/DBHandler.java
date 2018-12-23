@@ -3,7 +3,6 @@
  */
 package controler.handlers;
 
-import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import app.App;
@@ -22,8 +20,8 @@ import model.Table;
 import view.fieldFactory.IField;
 
 /**
+ * Handler za rad sa bazom
  * @author filip
- *
  */
 public class DBHandler implements IHandler {
 	
@@ -122,6 +120,12 @@ public class DBHandler implements IHandler {
 		return true;
 	}
 
+	/**
+	 * Metoda za ucitavanje podataka tabele iz baze
+	 * @author filip
+	 * @param table - tabela za koju treba da se izvuku podaci
+	 * @return {@link Vector}&lt;{@link Vector}&lt;{@link Object}>> - vektor redova u tabeli
+	 */
 	@Override
 	public Vector<Vector<Object>> read(Table table) {
 		

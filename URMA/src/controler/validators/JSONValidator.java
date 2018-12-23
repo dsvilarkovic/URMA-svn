@@ -13,11 +13,17 @@ import app.App;
 import controler.Open;
 
 /**
+ * Validator za JSON
  * @author filip
- *
  */
 public class JSONValidator implements IValidator {
 
+	/**
+	 * Metoda koja validira trenutno otvorenu JSON semu prema izbaranoj meta semi
+	 * @author filip
+	 * @param none
+	 * @return void
+	 */
 	@Override
 	public void validate() {
 		String path = App.INSTANCE.getEditorWindow().getToolbar().getPath().getText();

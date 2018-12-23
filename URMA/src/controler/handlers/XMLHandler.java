@@ -9,8 +9,8 @@ import java.util.Vector;
 import model.Table;
 
 /**
+ * Handler za rad sa xml-om
  * @author filip
- *
  */
 public class XMLHandler implements IHandler {
 

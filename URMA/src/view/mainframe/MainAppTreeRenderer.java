@@ -11,10 +11,20 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 
 import model.treeAdapter.TreeParts;
 
+/**
+ * Klasa zaduzeno za iscrtavanje cvorova u stablu.
+ * Kupi informaciju o imenu i slici koju treba da nalepi za svaki cvor
+ * @author filip
+ */
 public class MainAppTreeRenderer extends DefaultTreeCellRenderer{
 
 	private static final long serialVersionUID = 1257570282495001153L;
 
+	/**
+	 * Akcija koja se poziva prilikom iscrtavanja svakog cvora
+	 * Kupi informaciju o imenu i slici koju treba da nalepi za svaki cvor
+	 * @author filip
+	 */
 	@Override
 	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);

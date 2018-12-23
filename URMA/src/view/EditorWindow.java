@@ -10,9 +10,8 @@ import javax.swing.JDialog;
 import controler.EditorWindowClosingAction;
 
 /**
- * 
+ * Klasa koja pravi Editor Panel i sve njegove komponente.
  * @author filip
- *
  */
 public class EditorWindow extends JDialog {
 

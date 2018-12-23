@@ -12,7 +12,10 @@ import controler.parsers.IParser;
 import model.Package;
 import model.resourceFactory.IResourceFactory;
 import model.treeAdapter.AdapterPackage;
-
+/**
+ * Akcija za parsiranje seme i inicijalizaciju stabla
+ * @author filip
+ */
 public class ParseSchemaAction extends AbstractAction {
 
 	private static final long serialVersionUID = 5566983032113661361L;
@@ -22,6 +25,11 @@ public class ParseSchemaAction extends AbstractAction {
 		putValue(MNEMONIC_KEY, KeyEvent.VK_L);
 	}
 
+	/**
+	 * Akcija koja se izvrsi klikom na dugme, pokrece parsiranje i ako je 
+	 * parsiranje uspesno inicira iscrtavanje satabla
+	 * @author filip
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {

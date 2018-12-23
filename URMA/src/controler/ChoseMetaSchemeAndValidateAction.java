@@ -16,7 +16,10 @@ import org.json.JSONTokener;
 
 import app.App;
 
-
+/**
+ * Akcija za izbor meta seme sa kojom ce se vrsiti validacija (nisam siguran da se koristi)
+ * @author filip
+ */
 public class ChoseMetaSchemeAndValidateAction extends AbstractAction {
 
 	private static final long serialVersionUID = 8475599976877544200L;

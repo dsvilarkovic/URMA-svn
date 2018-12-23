@@ -11,14 +11,20 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- * 
+ * Klasa za univerzlno snimanje objekta
  * @author filip
- *
  */
 public class Save implements Serializable {
 
 	private static final long serialVersionUID = 2283855445039462791L;
 
+	/**
+	 * Metoda za snimanje objekta neke klase
+	 * @author filip
+	 * @param object - objekat koji treba da se snimi
+	 * @param extension - ekstenzije pod kojom zeli da se snimi objekat
+	 * @return {@link Void}
+	 */
 	public void saveAs(Object object, String extension) {
 
 		JFileChooser fc = new JFileChooser();

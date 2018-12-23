@@ -12,16 +12,31 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- * 
+ * Klasa za univerzalno otvaranje i ucitavanje objekata
  * @author filip
- *
  */
 public class Open {
 
+	/**
+	 * Metoda za otvaranje i ucitavanje objekta.
+	 * Prvo se nudi dijalog za izbor objekta koji treba da se ucita,
+	 * a onda se ucitava izabrani objekat
+	 * @author filip
+	 * @param extension - ekstenzije vrste objekta za JFileChooser filter <br>
+	 * 	moze da se navodi vise ekstenzija npr: json/db/xml
+	 * @return {@link Object} - vraca otvoren/ucitan objekat
+	 */
 	public Object open(String extension) {
 		return openThis(getPath(extension));
 	}
 
+	/**
+	 * Metoda za otvaranje i ucitavanje objekta.
+	 * Ucitava objekat kad je poznata putanja do njega
+	 * @author filip
+	 * @param path - putanja do objekta
+	 * @return {@link Object} - vraca otvoren/ucitan objekat
+	 */
 	public Object openThis(String path) {
 
 		if (path != null) {
@@ -51,6 +66,13 @@ public class Open {
 		}
 	}
 
+	/**
+	 * Metoda za otvaranje dijaloga za izbor fajla.
+	 * @author filip
+	 * @param extension - ekstenzije vrste objekta za JFileChooser filter <br>
+	 * moze da se navodi vise ekstenzija npr: json/db/xml
+	 * @return {@link String} - vraca putanju do izabranog fajla
+	 */
 	public String getPath(String extension) {
 
 		File f = null;

@@ -11,13 +11,18 @@ import model.InformationResource;
 import model.Table;
 
 /**
+ * Klasa adapter za tabelu. Adaptira tabelu za stablo i za dalju upotrebu u programu.
  * @author filip
- *
  */
 public class AdapterTable implements TreeParts {
 
 	private Table tabela;
 	
+	/**
+	 * Konstruktor za kreiranje adaptera tabele
+	 * @author filip
+	 * @param tbl - tabela koja treba da se adaptira
+	 */
 	public AdapterTable(Table tbl) {
 		tabela = tbl;
 	}

@@ -25,6 +25,8 @@ import javax.swing.filechooser.FileFilter;
  *
  */
 public class ChooseSourceDialog extends JDialog {
+
+	private static final long serialVersionUID = 220262571980011642L;
 	private JLabel sourceTypeLabel = new JLabel("Source type");
 	private String [] sourceTypes = {"JSON", "DB", "XML"};
 	private JComboBox<String> combobox = new JComboBox<>(sourceTypes);

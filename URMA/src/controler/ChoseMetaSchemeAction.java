@@ -10,7 +10,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 import app.App;
-
+/**
+ * Akcija za izbor meta seme sa kojom ce se vrsiti validacija
+ * @author filip
+ */
 public class ChoseMetaSchemeAction extends AbstractAction {
 
 	private static final long serialVersionUID = 1L;
@@ -25,6 +28,11 @@ public class ChoseMetaSchemeAction extends AbstractAction {
 		putValue(MNEMONIC_KEY, KeyEvent.VK_Z);
 	}
 
+	/**
+	 * Akcija koja se izvrsi klikom na dugme, pokretanje dijaloga za izbor meta seme
+	 * i pamcenje izabrane meta seme
+	 * @author filip
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String path = new Open().getPath("sch/json");

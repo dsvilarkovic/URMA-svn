@@ -7,9 +7,9 @@ import javax.swing.JOptionPane;
 import app.App;
 
 /**
- * 
+ * Akcija koja se desava prilikom pokretanja zatvaranja editora.
+ * Nudi korisniku mogucnost da snimi semu ako je zaboravio to da uradi.
  * @author filip
- *
  */
 public class EditorWindowClosingAction extends WindowAdapter {
 	@Override

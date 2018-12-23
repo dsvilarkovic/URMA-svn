@@ -8,9 +8,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import de.javasoft.plaf.synthetica.SyntheticaBlackStarLookAndFeel;
 
 /**
- * 
+ * Mejn metoda aplikacije
  * @author filip
- *
  */
 public class ApplicationStart {
 

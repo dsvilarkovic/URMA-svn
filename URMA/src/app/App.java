@@ -24,9 +24,8 @@ import view.fieldFactory.CharFieldFactory;
 import view.mainframe.MainAppFrame;
 
 /**
- * 
+ * Enumeracija koja predstavlja singletone klasu
  * @author filip
- *
  */
 public enum App {
 	INSTANCE;
@@ -41,6 +40,12 @@ public enum App {
 	private ResourceBundle resourceBundle;
 	private LocalizationManager localizationManager;
 	
+	/**
+	 * Metoda koja inicijalizuje prozore u aplikaciji
+	 * @author filip
+	 * @param none
+	 * @return {@link Void}
+	 */
 	public void start() {
 		//postavljanje lokalizacije
 		localizationManager = new LocalizationManager();
@@ -90,8 +95,8 @@ public enum App {
 	
 	/**
 		Izbor fabrike za kreiranje parsera, handlera i validatora		
-		@author - Jelena
-		@param param1 - String, ekstenzija fajla metaseme na osnovu kojeg se formira fabrika(json, xml, db)  
+		@author - Jelena (zapravo mislim da sam ja autor @author filip)
+		@param param1 - String, ekstenzija fajla metaseme na osnovu kojeg se formira fabrika(json, xml, db, sch)  
 		@return - fabrika izabranog tipa
 	**/
 	public void setFactory(String extension) {

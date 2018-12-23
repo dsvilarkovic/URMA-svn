@@ -10,9 +10,8 @@ import javax.swing.ImageIcon;
 
 import app.App;
 /**
- * 
+ * Akcija za izbor seme sa kojom treba da se validira pomocu meta seme
  * @author filip
- *
  */
 public class ImportSchemeAction extends AbstractAction {
 
@@ -28,6 +27,11 @@ public class ImportSchemeAction extends AbstractAction {
 		putValue(MNEMONIC_KEY, KeyEvent.VK_Z);
 	}
 
+	/**
+	 * Akcija koja se izvrsi klikom na dugme, pokretanje dijaloga za izbor seme
+	 * i ispis njenog sadrzaja u editor
+	 * @author filip
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String str = null;

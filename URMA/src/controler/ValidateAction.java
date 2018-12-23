@@ -13,6 +13,11 @@ import org.apache.commons.io.FilenameUtils;
 import app.App;
 import controler.validators.IValidator;
 
+/**
+ * Akcija za validacije seme u editoru izabranom meta semom ako nema izbrane meta seme
+ * inicira se biranje meta seme
+ * @author filip
+ */
 public class ValidateAction extends AbstractAction {
 
 	private static final long serialVersionUID = -3285634366755856783L;
@@ -27,6 +32,11 @@ public class ValidateAction extends AbstractAction {
 		putValue(MNEMONIC_KEY, KeyEvent.VK_Z);
 	}
 
+	/**
+	 * Akcija koja se izvrsi klikom na dugme, pokretanje dijaloga za izbor meta seme
+	 * ako nije izabrana i pokretanje validacije
+	 * @author filip
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

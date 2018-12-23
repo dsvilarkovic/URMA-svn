@@ -3,14 +3,12 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -19,13 +17,11 @@ import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import app.App;
 import controller.tableactions.CreateCrudWindowAction;
 import controller.tableactions.DemoteParentAction;
 import controller.tableactions.PromoteChildAction;
 import model.Table;
 import view.localizationManager.LocalizationObserver;
-import view.mainframe.MainAppFrame;
 
 
 /**

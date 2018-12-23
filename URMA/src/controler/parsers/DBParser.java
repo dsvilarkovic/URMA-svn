@@ -1,11 +1,8 @@
-/**
- * 
- */
 package controler.parsers;
 
 /**
+ * Parser za bazu podataka
  * @author filip
- *
  */
 public class DBParser implements IParser {
 

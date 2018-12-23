@@ -10,9 +10,8 @@ import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
 /**
- * 
+ * Klasa glavnog dela Editora. Deo gde se vrsi unos seme.
  * @author filip
- *
  */
 public class MainPanel extends JPanel {
 

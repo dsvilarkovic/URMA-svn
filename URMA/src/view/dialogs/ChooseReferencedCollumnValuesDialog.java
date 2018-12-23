@@ -31,6 +31,7 @@ import view.table.TableModel;
  */
 public class ChooseReferencedCollumnValuesDialog extends JDialog {
 
+	private static final long serialVersionUID = -274698934217211351L;
 	private TableModel tableModel = null;
 	private JTable tableView = null;
 	private JTabbedPane tabbedPane = new JTabbedPane();

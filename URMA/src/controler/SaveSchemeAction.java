@@ -11,9 +11,8 @@ import javax.swing.ImageIcon;
 import app.App;
 
 /**
- * 
+ * Akcija za snimanje sadrzaja u editoru
  * @author filip
- *
  */
 public class SaveSchemeAction extends AbstractAction {
 
@@ -29,6 +28,11 @@ public class SaveSchemeAction extends AbstractAction {
 		putValue(MNEMONIC_KEY, KeyEvent.VK_Z);
 	}
 
+	/**
+	 * Akcija koja se izvrsi klikom na dugme, pokretanje dijaloga za izbor
+	 * lokacije seme i snimanje seme
+	 * @author filip
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		new Save().saveAs(App.INSTANCE.getEditorWindow().getMainPanel().getTextArea().getText(), "sch");
