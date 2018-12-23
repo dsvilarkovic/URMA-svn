@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -15,12 +17,14 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 import app.App;
 import controller.tableactions.CreateCrudWindowAction;
 import controller.tableactions.DemoteParentAction;
 import controller.tableactions.PromoteChildAction;
 import model.Table;
+import view.localizationManager.LocalizationObserver;
 import view.mainframe.MainAppFrame;
 
 
@@ -29,7 +33,7 @@ import view.mainframe.MainAppFrame;
  * @author Dusan
  *
  */
-public class TablePanel extends JPanel {
+public class TablePanel extends JPanel implements LocalizationObserver {
 
 	
 	private static final long serialVersionUID = 1988065650430728153L;
@@ -40,14 +44,19 @@ public class TablePanel extends JPanel {
 	private JButton search = new JButton("Search");
 	private JButton changeableButton = new JButton("");
 	private ButtonGroup buttonGroup = new ButtonGroup();
-		
+	private String title;
+	private Border titledBorder;
 
 	public TablePanel(String title) {
-		//setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.title = title;
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		
 		setLayout(new BorderLayout());
 		Border blackline = BorderFactory.createMatteBorder(1,1, 1, 1, Color.black);
-		Border titledBorder = BorderFactory.createTitledBorder(blackline, title);
+		Border titledBorder = BorderFactory.createTitledBorder(blackline, resourceBundle.getString("table." + title));
 		this.setBorder(titledBorder);
+		
+		
 		
 		
 		
@@ -118,6 +127,7 @@ public class TablePanel extends JPanel {
 	 * @param className - parametar imena dugmeta za koje se podesava akcija
 	 */
 	public void setChangeableButtonAction(String className) {
+		
 		switch (className) {
 		case "Child":
 			changeableButton.setAction(new PromoteChildAction());
@@ -129,6 +139,13 @@ public class TablePanel extends JPanel {
 		default:
 			break;
 		}
+		
+	}
+
+	@Override
+	public void updateLanguage(String language) {
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		((TitledBorder) titledBorder).setTitle(resourceBundle.getString("table." + title));
 		
 	}
 

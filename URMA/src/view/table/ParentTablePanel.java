@@ -1,7 +1,9 @@
 package view.table;
 
 
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.TreeMap;
 
 import javax.swing.JScrollPane;
@@ -13,17 +15,19 @@ import javax.swing.event.ListSelectionListener;
 
 import app.App;
 import model.Table;
+import view.localizationManager.LocalizationObserver;
 
 /**
  * Tabela za roditeljski panel
  * @author Dusan
  *
  */
-public class ParentTablePanel extends TablePanel {
+public class ParentTablePanel extends TablePanel implements LocalizationObserver {
 
 	private static final long serialVersionUID = 6101952337575963863L;
 	private TableModel tableModel;
 	private JTabbedPane tab = new JTabbedPane();
+	private JScrollPane jScrollPane;
 	
 	/**
 	 * Konstruktor tabela za roditeljski panel
@@ -32,12 +36,16 @@ public class ParentTablePanel extends TablePanel {
 	 */
 	public ParentTablePanel(String title) {
 		super(title);
-		super.setChangeableButtonAction("Parent");
+		//super.setChangeableButtonAction("Parent");
+		
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
+		super.setChangeableButtonAction(resourceBundle.getString("table.parent"));
 		
 		// Zaglavlje kolone se ne mora ruÄ�no ubacivati. JScrollPane Ä‡e odraditi
 		// taj posao.
-		JScrollPane jScrollPane = new JScrollPane(tableView);
-		jScrollPane.setName("Tabela naslov");
+		jScrollPane = new JScrollPane(tableView);
+		jScrollPane.setName(resourceBundle.getString("table.tab.title"));
 		tab.add(jScrollPane);
 		addTableTabs(tab);
 		
@@ -131,6 +139,14 @@ public class ParentTablePanel extends TablePanel {
 	public TableModel getParentTableModel() {
 		// TODO Auto-generated method stub
 		return tableModel;
+	}
+	
+	@Override
+	public void updateLanguage(String language) {
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		jScrollPane.setName(resourceBundle.getString("table.tab.title"));
+		super.setChangeableButtonAction(resourceBundle.getString("table.child"));
+
 	}
 	
 }

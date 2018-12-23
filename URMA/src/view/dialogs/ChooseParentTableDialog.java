@@ -6,7 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -15,6 +17,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
+import app.App;
 import model.Table;
 
 public class ChooseParentTableDialog extends JDialog{
@@ -37,7 +40,10 @@ public class ChooseParentTableDialog extends JDialog{
 		setSize(width, height);
 		setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		setResizable(true);
-		setTitle("Choose new parent table");
+		
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		setTitle(resourceBundle.getString("table.parent.dialog.choose"));
+		
 		setModal(true);
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -61,7 +67,7 @@ public class ChooseParentTableDialog extends JDialog{
 		gbc.gridheight = 3;
 		add(scrollPane);
 
-		selectButton = new JButton("Select");
+		selectButton = new JButton(resourceBundle.getString("select"));
 		selectButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -76,7 +82,7 @@ public class ChooseParentTableDialog extends JDialog{
 		gbc.gridwidth = 1;
 		add(selectButton);
 
-		cancelButton = new JButton("Cancel");
+		cancelButton = new JButton(resourceBundle.getString("cancel"));
 		cancelButton.addActionListener(new ActionListener() {
 
 			@Override

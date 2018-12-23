@@ -3,30 +3,37 @@ package view.mainframe;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
+
+import app.App;
+import view.localizationManager.LocalizationObserver;
 
 /**
  * 
  * @author Dusan
  *
  */
-public class MainAppFrame extends JFrame {
+public class MainAppFrame extends JFrame implements LocalizationObserver {
 
 	private static final long serialVersionUID = 6322913707486736787L;
 	private MainAppToolbar mainAppToolbar = new MainAppToolbar();
 	private MainAppTreePanel treePanel = new MainAppTreePanel();
 	private MainAppMenuBar mainAppMenubar = new MainAppMenuBar();
 	private MainAppPanel mainAppPanel = new MainAppPanel();
+	private MainAppStatusBar mainAppStatusBar = new MainAppStatusBar();
 
 	/**
 	 * Glavni prozor aplikacije
 	 */
 	public MainAppFrame() {
-		// ResourceBundle resourceBundle =
-		// ResourceBundle.getBundle("localisationresources.localisationresources",
-		// Locale.getDefault());
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		setTitle(resourceBundle.getString("menu.title"));
+		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
+		
 		// podesavanje izgleda glavnog prozora
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
@@ -55,6 +62,11 @@ public class MainAppFrame extends JFrame {
 		splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treePanel, mainAppPanel);
 
 		getContentPane().add(splitPane, BorderLayout.WEST);
+		
+		mainAppStatusBar.setPreferredSize(new Dimension(width, 30));
+		
+		
+		getContentPane().add(mainAppStatusBar, BorderLayout.SOUTH);
 	}
 
 	public MainAppPanel getMainAppPanel() {
@@ -67,6 +79,27 @@ public class MainAppFrame extends JFrame {
 
 	public MainAppTreePanel getTreePanel() {
 		return treePanel;
+	}
+	
+	
+	/**
+	 * @return the mainAppStatusBar
+	 */
+	public MainAppStatusBar getMainAppStatusBar() {
+		return mainAppStatusBar;
+	}
+
+	/**
+	 * @param mainAppStatusBar the mainAppStatusBar to set
+	 */
+	public void setMainAppStatusBar(MainAppStatusBar mainAppStatusBar) {
+		this.mainAppStatusBar = mainAppStatusBar;
+	}
+
+	@Override
+	public void updateLanguage(String language) {
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		setTitle(resourceBundle.getString("menu.title"));
 	}
 
 }

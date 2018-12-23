@@ -1,6 +1,9 @@
 package app;
 
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javax.swing.JOptionPane;
 
 import controller.tableactions.TableMediator;
@@ -16,6 +19,7 @@ import view.fieldFactory.DoubleFieldFactory;
 import view.fieldFactory.IFieldFactory;
 import view.fieldFactory.IntegerFieldFactory;
 import view.fieldFactory.VarcharFieldFactory;
+import view.localizationManager.LocalizationManager;
 import view.fieldFactory.CharFieldFactory;
 import view.mainframe.MainAppFrame;
 
@@ -34,14 +38,42 @@ public enum App {
 	private IFieldFactory fieldFactory = null;
 	private TableMediator tableMediator;
 	private InformationResource model;
+	private ResourceBundle resourceBundle;
+	private LocalizationManager localizationManager;
 	
 	public void start() {
+		//postavljanje lokalizacije
+		localizationManager = new LocalizationManager();
+		Locale.setDefault(new Locale("sr", "RS"));
+		resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+
 		editorWindow = new EditorWindow();
 		mainAppFrame = new MainAppFrame();
 		tableMediator = new TableMediator();
 		
 		mainAppFrame.setVisible(true);
 		
+	}
+
+	/**
+	 * @return the localizationManager
+	 */
+	public LocalizationManager getLocalizationManager() {
+		return localizationManager;
+	}
+
+	/**
+	 * @param localizationManager the localizationManager to set
+	 */
+	public void setLocalizationManager(LocalizationManager localizationManager) {
+		this.localizationManager = localizationManager;
+	}
+
+	/**
+	 * @return the resourceBundle
+	 */
+	public ResourceBundle getResourceBundle() {
+		return resourceBundle;
 	}
 
 	public MainAppFrame getMainAppFrame() {

@@ -11,8 +11,8 @@ import view.table.ParentTablePanel;
 public class MainAppPanel extends JPanel {
 
 	private static final long serialVersionUID = -4595102150851785070L;
-	private ChildTablePanel childTablePanel = new ChildTablePanel("Child");
-	private ParentTablePanel parentTablePanel = new ParentTablePanel("Parent");
+	private ChildTablePanel childTablePanel = new ChildTablePanel("child");
+	private ParentTablePanel parentTablePanel = new ParentTablePanel("parent");
 
 	public MainAppPanel() {		
 		setLayout(new GridLayout(2, 1));
