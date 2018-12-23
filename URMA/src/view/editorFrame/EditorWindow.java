@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 
-import controler.EditorWindowClosingAction;
+import controler.editorActions.EditorWindowClosingAction;
 
 /**
  * Klasa koja pravi Editor Panel i sve njegove komponente.

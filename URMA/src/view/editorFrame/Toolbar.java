@@ -4,11 +4,11 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
-import controler.ChoseMetaSchemeAction;
-import controler.CreateSchemaAction;
-import controler.ImportSchemeAction;
-import controler.SaveSchemeAction;
-import controler.ValidateAction;
+import controler.editorActions.ChoseMetaSchemeAction;
+import controler.editorActions.CreateSchemaAction;
+import controler.editorActions.ImportSchemeAction;
+import controler.editorActions.SaveSchemeAction;
+import controler.editorActions.ValidateAction;
 
 /**
  * Klasa toolbar za Editor, gde se nalaze sve akcije za Editor u vidu dugmica.

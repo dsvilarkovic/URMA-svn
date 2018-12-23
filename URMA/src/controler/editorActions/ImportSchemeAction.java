@@ -1,4 +1,4 @@
-package controler;
+package controler.editorActions;
 
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -9,6 +9,7 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
 import app.App;
+import controler.Open;
 /**
  * Akcija za izbor seme sa kojom treba da se validira pomocu meta seme
  * @author filip

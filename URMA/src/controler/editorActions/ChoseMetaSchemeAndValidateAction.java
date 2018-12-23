@@ -1,4 +1,4 @@
-package controler;
+package controler.editorActions;
 
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import app.App;
+import controler.Open;
 
 /**
  * Akcija za izbor meta seme sa kojom ce se vrsiti validacija (nisam siguran da se koristi)

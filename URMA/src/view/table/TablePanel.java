@@ -17,9 +17,9 @@ import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import controler.tableactions.CreateCrudWindowAction;
-import controler.tableactions.DemoteParentAction;
-import controler.tableactions.PromoteChildAction;
+import controler.tableActions.CreateCrudWindowAction;
+import controler.tableActions.DemoteParentAction;
+import controler.tableActions.PromoteChildAction;
 import model.Table;
 import view.localizationManager.LocalizationObserver;
 

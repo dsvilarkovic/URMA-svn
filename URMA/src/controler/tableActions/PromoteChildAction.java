@@ -1,4 +1,4 @@
-package controler.tableactions;
+package controler.tableActions;
 
 import java.awt.event.ActionEvent;
 import java.util.Locale;

@@ -1,10 +1,11 @@
-package controler;
+package controler.editorActions;
 
 import java.awt.event.WindowAdapter;
 
 import javax.swing.JOptionPane;
 
 import app.App;
+import controler.Save;
 
 /**
  * Akcija koja se desava prilikom pokretanja zatvaranja editora.

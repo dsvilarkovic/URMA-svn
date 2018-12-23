@@ -1,4 +1,4 @@
-package controler;
+package controler.editorActions;
 
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 import app.App;
+import controler.Open;
 /**
  * Akcija za izbor meta seme sa kojom ce se vrsiti validacija
  * @author filip

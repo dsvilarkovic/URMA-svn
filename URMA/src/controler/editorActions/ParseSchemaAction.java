@@ -1,4 +1,4 @@
-package controler;
+package controler.editorActions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -8,6 +8,7 @@ import javax.swing.AbstractAction;
 import org.apache.commons.io.FilenameUtils;
 
 import app.App;
+import controler.Open;
 import controler.parsers.IParser;
 import model.Package;
 import model.resourceFactory.IResourceFactory;

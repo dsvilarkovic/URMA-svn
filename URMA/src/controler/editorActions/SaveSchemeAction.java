@@ -1,4 +1,4 @@
-package controler;
+package controler.editorActions;
 
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -9,6 +9,7 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
 import app.App;
+import controler.Save;
 
 /**
  * Akcija za snimanje sadrzaja u editoru

@@ -1,4 +1,4 @@
-package controler.mainframe;
+package controler.mainFrameActions;
 
 import java.awt.Image;
 import java.awt.Toolkit;

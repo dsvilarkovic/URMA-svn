@@ -1,4 +1,4 @@
-package controler.tableactions;
+package controler.tableActions;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

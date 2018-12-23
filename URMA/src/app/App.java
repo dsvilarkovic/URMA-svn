@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
-import controler.tableactions.TableMediator;
+import controler.tableActions.TableMediator;
 import model.InformationResource;
 import model.resourceFactory.DBFactory;
 import model.resourceFactory.IResourceFactory;

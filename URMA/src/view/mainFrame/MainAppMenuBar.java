@@ -8,8 +8,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import app.App;
-import controler.ParseSchemaAction;
-import controler.mainframe.OpenSchemaEditor;
+import controler.editorActions.ParseSchemaAction;
+import controler.mainFrameActions.OpenSchemaEditor;
 import view.localizationManager.LocalizationObserver;
 
 public class MainAppMenuBar extends JMenuBar implements LocalizationObserver{
