@@ -8,6 +8,7 @@ import javax.swing.AbstractAction;
 
 import app.App;
 import controler.handlers.IHandler;
+import model.resourceFactory.IResourceFactory;
 import view.CrudWindow;
 
 /**
@@ -33,9 +34,11 @@ public class SearchAction extends AbstractAction{
 		Map<String, Object> fields = parentCaller.getFields();
 		System.out.println("SEARCH");
 		
+		//App.INSTANCE.setFactory("db");
+		//IResourceFactory factory = App.INSTANCE.getFactory();
 		IHandler handler = App.INSTANCE.getFactory().createHandler();
 		
-		if(handler.create(parentCaller.getTable(), (HashMap<String, Object>) fields)){
+		if(handler.search(parentCaller.getTable(), (HashMap<String, Object>) fields)){
 			parentCaller.dispose();
 		}
 		

@@ -50,6 +50,7 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 			IResourceFactory factory = App.INSTANCE.getFactory();
 			IParser parser = factory.createParser();
 			parser.parse(str);
+			
 		} catch (NullPointerException npe) {
 			return;
 		}
