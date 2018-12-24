@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import app.App;
 import model.Attribute;
 import model.Table;
+import view.fieldFactory.DecoratedField;
 import view.fieldFactory.IField;
 
 /**
@@ -264,5 +265,71 @@ public class DBHandler implements IHandler {
 		}
 		
 		App.INSTANCE.getTableMediator().showTable(table);
+	}
+
+	@Override
+	public Boolean search(Table table, HashMap<String, Object> data) {
+		
+//		String coloumn_str = "";
+//		String value_str = "'";
+//		Map<String, Attribute> attributes = 
+		
+		String where = "where ";
+		
+		
+		//iteracija kroz prosledjenja polja koja su u vidu dekorisanih polja atributa
+		for (String key : data.keySet()) {
+			DecoratedField[] decField = (DecoratedField[]) data.get(key); //posto iz nekog razloga se salje kao niz dekorisanih polja
+			
+			DecoratedField first = decField[0];
+			DecoratedField second = decField[0];
+			
+			//ako je selektovano polje znaci po njemu cemo traziti
+			if(((boolean) first.getValue())) {
+				IField field = (IField) first.getField();
+				
+				//posto iz HashMapa prosledjuje title a ne code obelezjea moramo naci code obelezja te iteriramo dog ga ne nadjemo
+				for (Attribute atrib : table.getAttributes().values()) {
+					if (atrib.getTitle().equals(key)) {}
+				}
+				
+				
+			}
+			
+			
+		}
+		
+//		for (String key : attributes.keySet()) {
+//			Attribute attribute = attributes.get(key);
+//			IField field = (IField) data.get(attribute.getTitle());
+//			
+//		}
+		
+		
+//		for (String key : attributes.keySet()) {
+//			coloumn_str += key + ",";
+//			Attribute attribute = attributes.get(key);
+//			IField field = (IField)data.get(attribute.getTitle());
+//			if(!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(), attribute.getMaxLength())){
+//				JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " not valid");
+//				return false;
+//			}
+//			if(field.getValue() == null) {
+//				value_str = value_str.substring(0, value_str.length() - 1) + "NULL,'";
+//			}else {
+//				value_str += field.getValue().toString() + "','";
+//			}
+//		}
+//		coloumn_str = coloumn_str.substring(0, coloumn_str.length() - 1);
+//		value_str = value_str.substring(0, value_str.length() - 2);
+//		String sql = "insert into " + table.getCode() + "(" + coloumn_str + ")" + " values (" + value_str + ");";
+//		System.out.println(sql);
+//		
+//		PreparedStatement pstmt;
+//		
+		
+		
+		
+		return null;
 	}
 }

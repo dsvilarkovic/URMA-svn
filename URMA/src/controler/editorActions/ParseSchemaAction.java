@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -39,8 +40,13 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
+			
+			Object[] possibilities = {"json", "xml", "db"};
+			String s = (String)JOptionPane.showInputDialog(null,"Choose parser","Parser chooser Dialog",JOptionPane.PLAIN_MESSAGE,null, possibilities,"json");
+			App.INSTANCE.setFactory(FilenameUtils.getExtension(s));
+			
 			String str = (String) new Open().getPath("sch/json/xml/db");
-			App.INSTANCE.setFactory(FilenameUtils.getExtension(str));
+			//App.INSTANCE.setFactory(FilenameUtils.getExtension(str));
 			IResourceFactory factory = App.INSTANCE.getFactory();
 			IParser parser = factory.createParser();
 			parser.parse(str);

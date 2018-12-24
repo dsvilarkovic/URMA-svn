@@ -57,6 +57,12 @@ public class CreateCrudWindowAction extends AbstractAction {
 		/**
 		 *Nova funkcija za implementaciju koda
 		 */
+		
+		System.out.println("Pelepa");
+		
+		
+		
+		
 		try {
 			this.tableCalling  = App.INSTANCE.getTableMediator().getCalledTable(panelCalling);
 		} catch (Exception e1) {

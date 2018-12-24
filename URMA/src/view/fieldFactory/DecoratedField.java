@@ -49,6 +49,7 @@ public class DecoratedField extends JPanel implements IField{
 		return true;
 	}
 
+	// Jelena zasto ovo vraca objekat a ne IField
 	@Override
 	public Object getField() {
 		return field;
@@ -68,6 +69,8 @@ public class DecoratedField extends JPanel implements IField{
 		}
 	}
 
+	
+	// Jelena zasto ovo vraca objekat a ne boolean
 	@Override
 	public Object getValue() {
 		return checkbox.isSelected();

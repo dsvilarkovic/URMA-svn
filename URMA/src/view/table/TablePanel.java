@@ -86,7 +86,6 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	 */
 	private void setButtonActions() {
 		//podesavanje akcija
-		
 		addRow.setAction(new CreateCrudWindowAction(this, addRow.getText()));
 //		removeRow.setAction(new CreateCrudWindowAction(this, removeRow.getText()));
 		removeRow.addActionListener(new DeleteAction(this));

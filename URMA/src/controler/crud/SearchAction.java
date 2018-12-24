@@ -1,18 +1,18 @@
 package controler.crud;
 
 import java.awt.event.ActionEvent;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.AbstractAction;
 
+import app.App;
+import controler.handlers.IHandler;
 import view.CrudWindow;
-import view.fieldFactory.DecoratedField;
-import view.fieldFactory.IField;
 
 /**
  * Akcija koja služi za search nad bazom
- * @author Jelena
- *
+ * @author JelenaS
  */
 
 public class SearchAction extends AbstractAction{
@@ -32,12 +32,13 @@ public class SearchAction extends AbstractAction{
 	public void actionPerformed(ActionEvent e) {
 		Map<String, Object> fields = parentCaller.getFields();
 		System.out.println("SEARCH");
-		for (String mapKey : fields.keySet()) {
-			if(((DecoratedField[])fields.get(mapKey))[1] != null){
-				System.out.println(mapKey + " " + ((IField)((DecoratedField[])fields.get(mapKey))[0].getField()).getValue().toString() + "(" + ((DecoratedField[])fields.get(mapKey))[0].getValue().toString() + ") - " + ((IField)((DecoratedField[])fields.get(mapKey))[1].getField()).getValue().toString() + "(" + ((DecoratedField[])fields.get(mapKey))[1].getValue().toString() + ")");
-			}else {
-				System.out.println(mapKey + " " + ((IField)((DecoratedField[])fields.get(mapKey))[0].getField()).getValue().toString() + "(" + ((DecoratedField[])fields.get(mapKey))[0].getValue().toString() + ")");
-			}
+		
+		IHandler handler = App.INSTANCE.getFactory().createHandler();
+		
+		if(handler.create(parentCaller.getTable(), (HashMap<String, Object>) fields)){
+			parentCaller.dispose();
 		}
+		
+		
 	}
 }

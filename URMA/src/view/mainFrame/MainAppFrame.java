@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
@@ -43,6 +44,8 @@ public class MainAppFrame extends JFrame implements LocalizationObserver {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(true);
+		//setovana the palma za ikonicu
+		setIconImage((new ImageIcon("resources/palm-tree.png")).getImage());
 		// setTitle(resourceBundle.getString("menu.title"));
 		setLayout(new BorderLayout());
 		setVisible(true);

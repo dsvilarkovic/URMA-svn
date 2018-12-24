@@ -15,4 +15,5 @@ public interface IHandler {
 	public Vector<Vector<Object>> read(Table table);
 	public void update();
 	public void delete(Table table, Vector<Object> values);
+	public Boolean search(Table table, HashMap<String, Object> data);
 }

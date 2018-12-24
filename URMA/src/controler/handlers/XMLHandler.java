@@ -49,4 +49,10 @@ public class XMLHandler implements IHandler {
 	public void delete(Table table, Vector<Object> values) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public Boolean search(Table table, HashMap<String, Object> data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
