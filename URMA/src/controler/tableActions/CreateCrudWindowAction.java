@@ -1,6 +1,8 @@
 package controler.tableActions;
 
 import java.awt.event.ActionEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Vector;
 
 import javax.swing.AbstractAction;
@@ -68,20 +70,41 @@ public class CreateCrudWindowAction extends AbstractAction {
 		
 		try {		
 			//uzmi buttonName u switch		
-			switch(buttonName) {
-			//vidi kog je tipa dugme
-			case "Add":
+//			switch(buttonName) {
+//			//vidi kog je tipa dugme
+//			case "Add":
+//				addRow(table);
+//				break;
+//			case "Remove":
+//				removeRow(table);
+//				break;
+//			case "Update":
+//				updateRow(table);
+//				break;
+//			case "Search":
+//				searchRows(table);
+//				break;
+//			}
+			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+			String add = resourceBundle.getString("table.button.add");
+			String remove = resourceBundle.getString("table.button.remove");
+			String update = resourceBundle.getString("table.button.update");
+			String search = resourceBundle.getString("table.button.search");
+			
+			if(buttonName.equals(add)) {
 				addRow(table);
-				break;
-			case "Remove":
+				return;
+			}
+			if(buttonName.equals(remove)) {
 				removeRow(table);
-				break;
-			case "Update":
+				return;
+			}
+			if(buttonName.equals(update)) {
 				updateRow(table);
-				break;
-			case "Search":
+				return;
+			}
+			if(buttonName.equals(search)) {
 				searchRows(table);
-				break;
 			}
 		}
 		catch (ArrayIndexOutOfBoundsException indexException) {
