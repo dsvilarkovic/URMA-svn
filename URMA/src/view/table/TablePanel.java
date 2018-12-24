@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import app.App;
 import controler.tableActions.CreateCrudWindowAction;
 import controler.tableActions.DemoteParentAction;
 import controler.tableActions.PromoteChildAction;
@@ -34,10 +35,10 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	
 	private static final long serialVersionUID = 1988065650430728153L;
 	protected JTable tableView;
-	private JButton addRow = new JButton("Add");
-	private JButton removeRow = new JButton("Remove");
-	private JButton updateRow = new JButton("Update");
-	private JButton search = new JButton("Search");
+	private JButton addRow = new JButton();
+	private JButton removeRow = new JButton();
+	private JButton updateRow = new JButton();
+	private JButton search = new JButton();
 	private JButton changeableButton = new JButton("");
 	private ButtonGroup buttonGroup = new ButtonGroup();
 	private String title;
@@ -46,10 +47,12 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	public TablePanel(String title) {
 		this.title = title;
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
 		
 		setLayout(new BorderLayout());
 		Border blackline = BorderFactory.createMatteBorder(1,1, 1, 1, Color.black);
-		Border titledBorder = BorderFactory.createTitledBorder(blackline, resourceBundle.getString("table." + title));
+		titledBorder = BorderFactory.createTitledBorder(blackline, resourceBundle.getString("table." + title));
+
 		this.setBorder(titledBorder);
 		
 		
@@ -58,10 +61,26 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 		
 		initTables();
 		
+		initButtons();
 		setButtons();
 		setButtonActions();
 	}	
 	
+	/**
+	 * Inicijalizacija dugmica na odgovarajucem jeziku
+	 */
+	private void initButtons() {
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		
+		addRow.setText(resourceBundle.getString("table.button.add")); 
+		removeRow.setText(resourceBundle.getString("table.button.remove"));
+		updateRow.setText(resourceBundle.getString("table.button.update"));
+		search.setText(resourceBundle.getString("table.button.search"));
+	}
+	
+	/**
+	 * Sluzi za postavljajne akcija na dugmice
+	 */
 	private void setButtonActions() {
 		//podesavanje akcija
 		
@@ -88,7 +107,8 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	/**
 	 * Funkcija za podesavanje dugmadi
 	 */
-	private void setButtons() {		
+	private void setButtons() {				
+		
 		buttonGroup.add(addRow);
 		buttonGroup.add(removeRow);
 		buttonGroup.add(updateRow);
@@ -123,7 +143,6 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	 * @param className - parametar imena dugmeta za koje se podesava akcija
 	 */
 	public void setChangeableButtonAction(String className) {
-		
 		switch (className) {
 		case "Child":
 			changeableButton.setAction(new PromoteChildAction());
@@ -142,7 +161,8 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	public void updateLanguage(String language) {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		((TitledBorder) titledBorder).setTitle(resourceBundle.getString("table." + title));
-		
+		initButtons();
+		repaint();
 	}
 
 

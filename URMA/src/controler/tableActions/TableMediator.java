@@ -3,7 +3,9 @@ package controler.tableActions;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -58,9 +60,14 @@ public class TableMediator {
 		Table oldChildTable;
 		try {
 			oldChildTable = childTablePanel.getSelectedChildTable();
+			if(oldChildTable.getCode() == null || oldChildTable.getCode() == null) {
+				throw new NullPointerException();
+			}
 		}
 		catch (NullPointerException npe) {
-			JOptionPane.showMessageDialog(null, "Error: Table not found", "Error", JOptionPane.ERROR_MESSAGE);
+			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+			String message = resourceBundle.getString("table.emptyerror");
+			JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
@@ -86,7 +93,16 @@ public class TableMediator {
 	public void demoteParent() {
 		setPanels();
  		//1.izvuci iz panela parentTablePanel tabelu 
-		Table oldParentTable = parentTablePanel.getParentTable();
+		Table oldParentTable = null;
+		try {
+			oldParentTable = parentTablePanel.getParentTable();
+		} catch (NullPointerException e) {
+			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+			String message = resourceBundle.getString("table.emptyerror");
+			JOptionPane.showMessageDialog(null, message, "", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
 		
 		//2. proveri ima li roditelja
 		Map<String, Table> parentTableMap = oldParentTable.getParentTables();

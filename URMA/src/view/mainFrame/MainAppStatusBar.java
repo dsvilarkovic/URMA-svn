@@ -3,6 +3,8 @@ package view.mainFrame;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
@@ -15,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import app.App;
+import view.localizationManager.LocalizationObserver;
 
 /**
  * Status bar u kojem ce se menjati jezik i ispisivati sta je odabrano od hendlera, parsera i validatora 
@@ -22,7 +25,7 @@ import app.App;
  *
  */
 @SuppressWarnings("serial")
-public class MainAppStatusBar extends JPanel {
+public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 
 	private JLabel languageLabel = new JLabel("Chosen language");
 	private String[] languageString = {"Srpski - RS", "English - EN"};
@@ -45,6 +48,9 @@ public class MainAppStatusBar extends JPanel {
 		//setLayout(new FlowLayout(FlowLayout.LEFT));
 		setLayout(new BoxLayout(this,  BoxLayout.LINE_AXIS));
 		
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
+		
 		languageComboBox.addItemListener(new ItemListener() {
 			
 			@Override
@@ -56,6 +62,7 @@ public class MainAppStatusBar extends JPanel {
 			}
 		});
 		
+		setLabels();
 		//add(languageLabel);
 		add(languageComboBox);
 		add(new JSeparator(SwingConstants.VERTICAL));
@@ -69,7 +76,17 @@ public class MainAppStatusBar extends JPanel {
 		add(validatorLabelType);
 	}
 	
-	
+	/**
+	 * Sluzi za podesavanje vrednosti labela po jeziku.
+	 */
+	private void setLabels() {
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		handlerLabel.setText(resourceBundle.getString("statusbar.handler"));
+		parserLabel.setText(resourceBundle.getString("statusbar.parser"));
+		validatorLabel.setText(resourceBundle.getString("statusbar.validator"));
+	}
+
+
 	/**
 	 * @return the handlerLabelType
 	 */
@@ -105,6 +122,12 @@ public class MainAppStatusBar extends JPanel {
 	 */
 	public void setValidatorLabelType(String validatorLabelType) {
 		this.validatorLabelType.setText(validatorLabelType);
+	}
+
+
+	@Override
+	public void updateLanguage(String language) {
+		setLabels();
 	}
 
 }

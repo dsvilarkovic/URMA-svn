@@ -35,7 +35,11 @@ public class TableModel extends DefaultTableModel {
 		return columnsCode;
 	}
 
-	//TODO namestiti da se komunicira preko dogadjaja
+	/**
+	 * Model tabele po <code> JTable </code> formatu. <br>
+	 * Nasledjuje <code> DefaultTableModel </code>
+	 * @param table
+	 */
 	public TableModel(Table table) {
 		this.table = table;
 		

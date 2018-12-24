@@ -40,7 +40,7 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 		
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
-		super.setChangeableButtonAction(resourceBundle.getString("table.parent"));
+		super.setChangeableButtonAction("Parent");
 		
 		// Zaglavlje kolone se ne mora ruÄ�no ubacivati. JScrollPane Ä‡e odraditi
 		// taj posao.
@@ -144,9 +144,11 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 	@Override
 	public void updateLanguage(String language) {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
-		jScrollPane.setName(resourceBundle.getString("table.tab.title"));
-		super.setChangeableButtonAction(resourceBundle.getString("table.child"));
-
+		tab.setTitleAt(0,resourceBundle.getString("table.tab.title"));
+		super.setChangeableButtonAction("Parent");
+		
+		//mora ovako, problem naslednjivanja
+		super.updateLanguage(language);
 	}
 	
 }

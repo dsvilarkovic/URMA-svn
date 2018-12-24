@@ -11,7 +11,10 @@ import app.App;
 import controler.editorActions.ParseSchemaAction;
 import controler.mainFrameActions.OpenSchemaEditor;
 import view.localizationManager.LocalizationObserver;
-
+/**
+ * @author Dusan
+ * Meni bar koji logicno, predstavlja gornju policu u glavnom prozoru
+ */
 public class MainAppMenuBar extends JMenuBar implements LocalizationObserver{
 
 	private static final long serialVersionUID = -1119472832127166620L;
@@ -20,6 +23,10 @@ public class MainAppMenuBar extends JMenuBar implements LocalizationObserver{
 	private JMenu edit;
 	private JMenu help;
 
+	/**
+	 * @author Dusan
+	 * Meni bar koji logicno, predstavlja gornju policu u glavnom prozoru
+	 */
 	public MainAppMenuBar() {
 		//JMenu file = new JMenu("File");
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());

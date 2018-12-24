@@ -35,6 +35,7 @@ public class DemoteParentAction extends AbstractAction implements LocalizationOb
 
 	@Override
 	public void updateLanguage(String language) {
+		
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		putValue(NAME, resourceBundle.getString("table.demote"));
 		

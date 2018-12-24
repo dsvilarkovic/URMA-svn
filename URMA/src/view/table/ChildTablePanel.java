@@ -31,11 +31,17 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	private List<TableRowSorter<TableModel>> tableSorters = new ArrayList<TableRowSorter<TableModel>>();
 	private List<RowPrimaryKeyFilter<TableModel>> primaryKeyFilters = new ArrayList<RowPrimaryKeyFilter<TableModel>>();
 	private JScrollPane jScrollPane;
+	
+	/**
+	 * Panel deteta koje ce se konstruisati jednom u pogledu
+	 * @author Dusan
+	 * @param title - naslov po kojem se diferencira od roditeljskog panela
+	 */
 	public ChildTablePanel(String title) {
 		super("child");
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
-		super.setChangeableButtonAction(resourceBundle.getString("table.child"));
+		super.setChangeableButtonAction("Child");
 	
 			
 		
@@ -45,11 +51,13 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 		addTableTabs(childTabs);
 	}
 	
+	
+	private Map<String, TableModel>  tableModelMap = new TreeMap<String, TableModel>();
 	/**
 	 * Podesavanje mape dece
-	 * @param tableMap
+	 * @author Dusan
+	 * @param tableMap - tabela po kojoj ce se podesavati modeli
 	 */
-	private Map<String, TableModel>  tableModelMap = new TreeMap<String, TableModel>();
 	public void setTableModelMap(Map<String, Table> tableMap) {
 		this.tableModelMap.clear();
 			
@@ -124,6 +132,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 
 	/**
 	 * Na osnovu indeks JTabbedPane nalazi odabranu tabelu u kolekciji childModelList i vraca odgovarajucu tabelu
+	 * @author Dusan
 	 * @return tabelu selektovanu, ili null ako nije nista nasao
 	 */
 	public Table getSelectedChildTable() {
@@ -142,6 +151,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	
 	/**
 	 * Sluzi da vrati model aktivne tabele u child panelu
+	 * @author Dusan
 	 * @return - tabelu modela aktivnog child-a
 	 */
 	public TableModel getSelectedChildTableModel() {
@@ -152,6 +162,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	
 	/**
 	 * Na osnovu indeks JTabbedPane nalazi odabrani pogled na tabelu i vraca odgovarajucu tabelu
+	 * @author Dusan
 	 * @return pogled na tabelu selektovanu, ili null ako nije nista nasao
 	 */
 	public JTable getSelectedChildTableView() {
@@ -166,6 +177,12 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	
 	
 
+	/**
+	 * Konstruisanje filtera
+	 * @param childTableModel
+	 * @param parentTableModel
+	 * @return
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private RowFilter<TableModel, Integer> constructFilter(TableModel childTableModel, TableModel parentTableModel) {
 		//RowPrimaryKeyFilter<TableModel> primaryKeyFilter = new RowPrimaryKeyFilter<>(childTableModel,parentTableModel);
@@ -180,8 +197,10 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	@Override
 	public void updateLanguage(String language) {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
-		jScrollPane.setName(resourceBundle.getString("table.tab.title"));
-		super.setChangeableButtonAction(resourceBundle.getString("table.child"));
+		childTabs.setTitleAt(childTabs.getSelectedIndex(), resourceBundle.getString("table.tab.title"));
+		super.setChangeableButtonAction("Child");
+		//mora ovako, problem naslednjivanja
+		super.updateLanguage(language);
 
 	}
 }

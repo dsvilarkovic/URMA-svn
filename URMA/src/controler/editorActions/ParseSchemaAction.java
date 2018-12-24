@@ -2,6 +2,8 @@ package controler.editorActions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 
@@ -13,16 +15,19 @@ import controler.parsers.IParser;
 import model.Package;
 import model.resourceFactory.IResourceFactory;
 import model.treeAdapter.AdapterPackage;
+import view.localizationManager.LocalizationObserver;
 /**
  * Akcija za parsiranje seme i inicijalizaciju stabla
  * @author filip
  */
-public class ParseSchemaAction extends AbstractAction {
+public class ParseSchemaAction extends AbstractAction implements LocalizationObserver{
 
 	private static final long serialVersionUID = 5566983032113661361L;
 
 	public ParseSchemaAction() {
-		putValue(NAME, "Load Schema");
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
+		putValue(NAME, resourceBundle.getString("schema.load"));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_L);
 	}
 
@@ -51,6 +56,13 @@ public class ParseSchemaAction extends AbstractAction {
 
 		App.INSTANCE.getMainAppFrame().getTreePanel().removeAll();
 		App.INSTANCE.getMainAppFrame().getTreePanel().init(new AdapterPackage(elderPackage));
+	}
+
+	@Override
+	public void updateLanguage(String language) {
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+
+		putValue(NAME, resourceBundle.getString("schema.load"));		
 	}
 
 }

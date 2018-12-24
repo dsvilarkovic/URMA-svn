@@ -37,8 +37,8 @@ public class LocalizationManager {
 				break;
 		}
 		
-		for (LocalizationObserver localizationObserver : localizationObservers) {
-			localizationObserver.updateLanguage(language);
+		for (int i = 0; i < localizationObservers.size(); i++) {
+			localizationObservers.get(i).updateLanguage(language);
 		}
 	}
 	

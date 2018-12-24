@@ -1,21 +1,26 @@
 package view.dialogs;
 
+import java.util.Vector;
+
+import app.App;
+import controler.handlers.IHandler;
 import model.Attribute;
 import model.Table;
+import model.resourceFactory.IResourceFactory;
 
 public class TestChooseRefColumnVal {
 
 	public static void main(String[] args) {
 		//Table table = App.INSTANCE.getModel().getAllTables().get("NASELJENO_MESTO");
-//		Table table = createMockTable();
-//		App.INSTANCE.setFactory("db");
-//		IResourceFactory factory = App.INSTANCE.getFactory();
-//		IHandler handler = factory.createHandler();
-//		Vector<Vector<Object>> valueList = handler.read(table);
-//		
-//		ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(table);
+		Table table = createMockTable();
+		App.INSTANCE.setFactory("db");
+		IResourceFactory factory = App.INSTANCE.getFactory();
+		IHandler handler = factory.createHandler();
+		Vector<Vector<Object>> valueList = handler.read(table);
 		
-		new ChooseSourceDialog();
+		ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(table);
+		
+//		new ChooseSourceDialog();
 	}
 	
 	public static Table createMockTable() {
