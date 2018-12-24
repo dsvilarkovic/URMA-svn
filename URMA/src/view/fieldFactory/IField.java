@@ -12,6 +12,7 @@ public interface IField {
 		@author - Jelena
 	**/
 	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) ;
+	public void setEditable(Boolean editable) ;
 	public Object getField();
 	public void setField(Object o);
 	public void setValue(Object o);

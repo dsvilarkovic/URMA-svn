@@ -85,4 +85,9 @@ public class DateField extends JPanel implements IField{
 		return date_db;
 	}
 
+	@Override
+	public void setEditable(Boolean editable) {
+		field.getComponent(1).setEnabled(false);
+	}
+
 }

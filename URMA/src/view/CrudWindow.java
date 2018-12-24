@@ -66,6 +66,9 @@ public class CrudWindow extends JDialog{
 			add(jp);
 			IField field = App.INSTANCE.getFieldFactory().createField();
 			field.setValue(values.get(i));
+			if(attribute.getIsPrimaryKey()) {
+				field.setEditable(false);
+			}
 			add((Component) field);
 			fields.put(attribute.getTitle(), field);
 			add(new JPanel());

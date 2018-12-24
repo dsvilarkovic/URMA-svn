@@ -73,4 +73,9 @@ public class DecoratedField extends JPanel implements IField{
 		return checkbox.isSelected();
 	}
 
+	@Override
+	public void setEditable(Boolean editable) {
+		
+	}
+
 }

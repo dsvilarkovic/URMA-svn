@@ -66,4 +66,9 @@ public class BooleanField  extends JPanel implements IField{
 	public Object getValue() {
 		return field.isSelected();
 	}
+
+	@Override
+	public void setEditable(Boolean editable) {
+		field.setEnabled(false);
+	}
 }

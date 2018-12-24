@@ -115,4 +115,9 @@ public class IntegerField extends JPanel implements IField{
 		return field.getText();
 	}
 
+	@Override
+	public void setEditable(Boolean editable) {
+		field.setEditable(false);
+	}
+
 }

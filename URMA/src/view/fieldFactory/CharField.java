@@ -84,4 +84,9 @@ public class CharField extends JPanel implements IField{
 		return field.getText();
 	}
 
+	@Override
+	public void setEditable(Boolean editable) {
+		field.setEditable(false);
+	}
+
 }
