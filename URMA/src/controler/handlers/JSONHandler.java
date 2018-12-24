@@ -37,7 +37,8 @@ public class JSONHandler implements IHandler {
 	 * @see controler.handlers.IHandler#update()
 	 */
 	@Override
-	public void update() {
+	public Boolean update(Table table, HashMap<String, Object> data) {
+		return null;
 		// TODO Auto-generated method stub
 
 	}

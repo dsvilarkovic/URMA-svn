@@ -13,7 +13,7 @@ import model.Table;
 public interface IHandler {
 	public Boolean create(Table table, HashMap<String, Object> data);
 	public Vector<Vector<Object>> read(Table table);
-	public void update();
+	public Boolean update(Table table, HashMap<String, Object> data);
 	public void delete(Table table, Vector<Object> values);
 	public Boolean search(Table table, HashMap<String, Object> data);
 }

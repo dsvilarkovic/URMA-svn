@@ -99,12 +99,12 @@ public class DBHandler implements IHandler {
 //		}
 		
 		
-		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+//		try {
+//			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 
 		try {
 			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
@@ -114,7 +114,7 @@ public class DBHandler implements IHandler {
 		} catch (SQLException e) {
 //			String text = "<html>No such table <strong style=\"color: red;\">"+ table.getTitle() +"</strong> in database or no connection</html>";
 //			JOptionPane.showMessageDialog(null, text, "INVALID SQL", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Insert constraints not valid");
 		}
 		
 		App.INSTANCE.getTableMediator().showTable(table);
@@ -207,9 +207,47 @@ public class DBHandler implements IHandler {
 	}
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
+	public Boolean update(Table table, HashMap<String, Object> data) {
+		String sql = "update " + table.getCode() + " set ";
+		String sql_where = " where ";
+		Map<String, Attribute> attributes = table.getAttributes();
+		for (String key : attributes.keySet()) {
+			Attribute attribute = attributes.get(key);
+			IField field = (IField)data.get(attribute.getTitle());
+			if(attribute.getIsPrimaryKey()) {
+				sql_where += key + "='" + field.getValue().toString() + "' AND ";
+			}else {
+				sql += key + "='";
+				if(!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(), attribute.getMaxLength())){
+					JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " not valid");
+					return false;
+				}
+				if(field.getValue() == null) {
+					sql+= "NULL, ";
+				}else {
+					sql += field.getValue().toString() + "', ";
+				}
+			}
+		}
+		sql = sql.substring(0, sql.length() - 2);
+		sql_where = sql_where.substring(0, sql_where.length() - 5);
+		sql += sql_where + ";";
+		System.out.println(sql);
+		
+		PreparedStatement pstmt;
+		
+		try {
+			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.execute();
+			pstmt.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Update constraints not valid");
+		}
+		
+		App.INSTANCE.getTableMediator().showTable(table);
+		
+		return true;
 	}
 
 	@Override
@@ -226,13 +264,6 @@ public class DBHandler implements IHandler {
 		sql += ";";
 		System.out.println(sql);
 		PreparedStatement pstmt;
-		
-		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 
 		try {
 			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
