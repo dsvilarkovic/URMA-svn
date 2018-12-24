@@ -197,7 +197,13 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	@Override
 	public void updateLanguage(String language) {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
-		childTabs.setTitleAt(childTabs.getSelectedIndex(), resourceBundle.getString("table.tab.title"));
+		
+		try {
+			childTabs.setTitleAt(childTabs.getSelectedIndex(), resourceBundle.getString("table.tab.title"));
+		}
+		catch(ArrayIndexOutOfBoundsException aiobe) {
+			System.err.println("No child found. Localization skipped");
+		}
 		super.setChangeableButtonAction("Child");
 		//mora ovako, problem naslednjivanja
 		super.updateLanguage(language);

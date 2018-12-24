@@ -81,8 +81,9 @@ public class TableModel extends DefaultTableModel {
 		
 		try {
 			Vector<Vector<Object>> valueList = handler.read(table);
-			
+			//idi po redovima
 			for (int i = 0; i < valueList.size(); i++) {
+				//sad idi po vrednostima 
 				this.addRow(valueList.get(i));
 			}
 		}catch (Exception e) {

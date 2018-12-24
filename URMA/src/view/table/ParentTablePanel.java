@@ -78,7 +78,20 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 								//ispis obelezja i vrednosti
 								//String columnName = tableView.getColumnName(i);
 								String columnCode = tableModel.getColumnsCode().get(i);
-								String columnValue = (String) tableView.getValueAt(tableView.getSelectedRow(), i);
+								Object objectColumnValue = tableView.getValueAt(tableView.getSelectedRow(), i);
+								String columnValue = null;
+								if(objectColumnValue instanceof Boolean) {
+									columnValue = Boolean.toString((Boolean)objectColumnValue);
+								}
+								else if(objectColumnValue instanceof Double) {
+									columnValue = Double.toString((Double)objectColumnValue);
+								}
+								else if(objectColumnValue instanceof Integer) {
+									columnValue = Integer.toString((Integer) objectColumnValue);
+								}
+								else {
+									columnValue = (String) tableView.getValueAt(tableView.getSelectedRow(), i);
+								}
 								
 								parentRowValues.put(columnCode, columnValue);
 								
