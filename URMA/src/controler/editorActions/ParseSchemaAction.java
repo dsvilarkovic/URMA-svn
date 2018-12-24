@@ -43,7 +43,7 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 			
 			Object[] possibilities = {"json", "xml", "db"};
 			String s = (String)JOptionPane.showInputDialog(null,"Choose parser","Parser chooser Dialog",JOptionPane.PLAIN_MESSAGE,null, possibilities,"json");
-			App.INSTANCE.setFactory(FilenameUtils.getExtension(s));
+			App.INSTANCE.setFactory(s);
 			
 			String str = (String) new Open().getPath("sch/json/xml/db");
 			//App.INSTANCE.setFactory(FilenameUtils.getExtension(str));
