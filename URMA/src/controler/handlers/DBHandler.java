@@ -232,7 +232,7 @@ public class DBHandler implements IHandler {
 	}
 
 	@Override
-	public Boolean delete(Table table, Vector<Object> values) {
+	public void delete(Table table, Vector<Object> values) {
 		// TODO Auto-generated method stub
 		String sql = "delete from " + table.getCode() + " where ";
 		Map<String, Attribute> attributes = table.getAttributes();
@@ -264,6 +264,5 @@ public class DBHandler implements IHandler {
 		}
 		
 		App.INSTANCE.getTableMediator().showTable(table);
-		return true;
 	}
 }
