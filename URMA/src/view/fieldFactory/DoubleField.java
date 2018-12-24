@@ -25,13 +25,13 @@ public class DoubleField extends JPanel implements IField{
 	public DoubleField() {
 		this.field = new JFormattedTextField();
 		field.setColumns(10);
-		this.field.addFocusListener(new FocusAdapter() {
-		    public void focusLost(FocusEvent e) {
-		      if (!validateJFormatedTextField((JFormattedTextField)e.getComponent())){
-		        JOptionPane.showMessageDialog(null, "Please Enter Valid Number");
-		      }
-		    }
-		});
+//		this.field.addFocusListener(new FocusAdapter() {
+//		    public void focusLost(FocusEvent e) {
+//		      if (!validateJFormatedTextField((JFormattedTextField)e.getComponent())){
+//		        JOptionPane.showMessageDialog(null, "Please Enter Valid Number");
+//		      }
+//		    }
+//		});
 		add(field);
 		
 		validate();
@@ -60,8 +60,22 @@ public class DoubleField extends JPanel implements IField{
 	**/
 	@Override
 	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) {
-//		return validateJFormatedTextField(this.field);
-		return true;
+		if(validateJFormatedTextField(field) || field.getText().equals("")) {
+			if(isReq && field.getText().equals("")) {
+				System.out.println("Required field is empty");
+				return false;
+			}
+			if(isPK && field.getText().equals("")) {
+				System.out.println("PK field is empty");
+				return false;
+			}
+			if(field.getText().length() > maxLen) {
+				System.out.println("wrong len");
+				return false;
+			}
+			return true;
+		}
+		return false;
 	}
 
 	@Override

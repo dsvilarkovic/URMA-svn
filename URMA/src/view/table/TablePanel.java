@@ -18,6 +18,7 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import app.App;
+import controler.crud.DeleteAction;
 import controler.tableActions.CreateCrudWindowAction;
 import controler.tableActions.DemoteParentAction;
 import controler.tableActions.PromoteChildAction;
@@ -35,10 +36,12 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	
 	private static final long serialVersionUID = 1988065650430728153L;
 	protected JTable tableView;
+
 	private JButton addRow = new JButton();
 	private JButton removeRow = new JButton();
 	private JButton updateRow = new JButton();
 	private JButton search = new JButton();
+
 	private JButton changeableButton = new JButton("");
 	private ButtonGroup buttonGroup = new ButtonGroup();
 	private String title;
@@ -85,7 +88,8 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 		//podesavanje akcija
 		
 		addRow.setAction(new CreateCrudWindowAction(this, addRow.getText()));
-		removeRow.setAction(new CreateCrudWindowAction(this, removeRow.getText()));
+//		removeRow.setAction(new CreateCrudWindowAction(this, removeRow.getText()));
+		removeRow.addActionListener(new DeleteAction(this));
 		updateRow.setAction(new CreateCrudWindowAction(this, updateRow.getText()));
 		search.setAction(new CreateCrudWindowAction(this, search.getText()));
 	}

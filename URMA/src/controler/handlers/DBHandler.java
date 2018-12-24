@@ -232,8 +232,38 @@ public class DBHandler implements IHandler {
 	}
 
 	@Override
-	public void delete() {
+	public Boolean delete(Table table, Vector<Object> values) {
 		// TODO Auto-generated method stub
+		String sql = "delete from " + table.getCode() + " where ";
+		Map<String, Attribute> attributes = table.getAttributes();
+		int i = 0;
+		for (String key : attributes.keySet()) {
+			sql += key + "='" + values.get(i) + "' AND ";
+			i++;
+		}
+		sql = sql.substring(0, sql.length() - 5);
+		sql += ";";
+		System.out.println(sql);
+		
+		PreparedStatement pstmt;
 
+		try {
+			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.execute();
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		App.INSTANCE.getTableMediator().showTable(table);
+		return true;
 	}
 }

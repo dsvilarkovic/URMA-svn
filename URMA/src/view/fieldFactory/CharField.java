@@ -42,11 +42,11 @@ public class CharField extends JPanel implements IField{
 	**/
 	@Override
 	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) {
-		if(isReq && field.getText() == "") {
+		if(isReq && field.getText().equals("")) {
 			System.out.println("Requiref field is empty");
 			return false;
 		}
-		if(isPK && field.getText() == "") {
+		if(isPK && field.getText().equals("")) {
 			System.out.println("PK field is empty");
 			return false;
 		}

@@ -46,8 +46,8 @@ public class JSONHandler implements IHandler {
 	 * @see controler.handlers.IHandler#delete()
 	 */
 	@Override
-	public void delete() {
+	public Boolean delete(Table table, Vector<Object> values) {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
 }
