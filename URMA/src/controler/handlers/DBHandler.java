@@ -274,6 +274,7 @@ public class DBHandler implements IHandler {
 	@Override
 	public void delete(Table table, Vector<Object> values) {
 		// TODO Auto-generated method stub
+		System.out.println("DELETE");
 		String sql = "delete from " + table.getCode() + " where ";
 		Map<String, Attribute> attributes = table.getAttributes();
 		int i = 0;

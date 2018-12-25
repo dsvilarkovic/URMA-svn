@@ -18,10 +18,12 @@ import javax.swing.JPanel;
 
 import app.App;
 import controler.crud.CreateAction;
+import controler.crud.ForeignKeyAction;
 import controler.crud.SearchAction;
 import controler.crud.UpdateAction;
 import model.Attribute;
 import model.Table;
+import view.dialogs.ChooseReferencedCollumnValuesDialog;
 import view.fieldFactory.DecoratedField;
 import view.fieldFactory.IField;
 
@@ -52,7 +54,6 @@ public class CrudWindow extends JDialog{
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		button.setText(resourceBundle.getString("button.update"));
 		button.addActionListener(new UpdateAction(this));
-		
 		CreateWindow();
 		add(new JPanel());
 		JPanel jp = new JPanel();
@@ -83,6 +84,17 @@ public class CrudWindow extends JDialog{
 		jp.add(button);
 		add(jp);
 
+		for (String key : t.getParentTables().keySet()) {
+			Table table = t.getParentTables().get(key);
+			JButton b = new JButton();
+			JPanel j = new JPanel();
+			b.addActionListener(new ForeignKeyAction(this, table, key));
+			b.setText(key);
+			j.add(b);
+			add(j);
+//			ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(t.getParentTables().get(table));
+		}
+		
 		validate();
 	}
 	
@@ -185,7 +197,7 @@ public class CrudWindow extends JDialog{
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setSize((int) (screenSize.getWidth() * 0.4), (int) (screenSize.getHeight() * 0.71));
-		setModal(true);
+//		setModal(true);
 		setLocationRelativeTo(null);
 		setResizable(true);
 		setTitle("CRUD");
