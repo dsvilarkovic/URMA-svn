@@ -2,7 +2,9 @@ package controler.crud;
 
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 
@@ -32,7 +34,8 @@ public class UpdateAction extends AbstractAction{
 		@param parentCaller - prozor iz kojeg je pozvana akcija
 	**/
 	public UpdateAction(CrudWindow parentCaller) {
-		putValue(NAME, "Update");
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		putValue(NAME, resourceBundle.getString("button.update"));
 		this.parentCaller = parentCaller;
 	}
 
@@ -43,7 +46,6 @@ public class UpdateAction extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Map<String, Object> fields = parentCaller.getFields();
-		System.out.println("UPDATE");
 //		for (String mapKey : fields.keySet()) {
 //			System.out.println(mapKey + " " + ((IField)fields.get(mapKey)).getValue().toString());
 //		}

@@ -2,7 +2,9 @@ package controler.crud;
 
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.Vector;
 
 import javax.swing.AbstractAction;
@@ -34,7 +36,8 @@ public class DeleteAction extends AbstractAction{
 		@param parentCaller - tabela iz koje je pozvana akcija
 	**/
 	public DeleteAction(TablePanel parentCaller) {
-		putValue(NAME, "Delete");
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		putValue(NAME, resourceBundle.getString("button.delete"));
 		this.parentCaller = parentCaller;
 	}
 

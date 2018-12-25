@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
@@ -61,7 +63,8 @@ public class DBHandler implements IHandler {
 			IField field = (IField) data.get(attribute.getTitle());
 			if (!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(),
 					attribute.getMaxLength())) {
-				JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " not valid");
+				ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+				JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " " + resourceBundle.getString("table.attribute.notvalid"));
 				return false;
 			}
 			if (field.getValue() == null) {
@@ -116,9 +119,8 @@ public class DBHandler implements IHandler {
 			pstmt.execute();
 			pstmt.close();
 		} catch (SQLException e) {
-//			String text = "<html>No such table <strong style=\"color: red;\">"+ table.getTitle() +"</strong> in database or no connection</html>";
-//			JOptionPane.showMessageDialog(null, text, "INVALID SQL", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
+			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+			JOptionPane.showMessageDialog(null, resourceBundle.getString("table.constraints.notvalid"));
 		}
 
 		App.INSTANCE.getTableMediator().showTable(table);
@@ -230,7 +232,8 @@ public class DBHandler implements IHandler {
 			}else {
 				sql += key + "='";
 				if(!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(), attribute.getMaxLength())){
-					JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " not valid");
+					ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+					JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " " + resourceBundle.getString("table.attribute.notvalid"));
 					return false;
 				}
 				if(field.getValue() == null) {
@@ -253,7 +256,8 @@ public class DBHandler implements IHandler {
 			pstmt.execute();
 			pstmt.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Update constraints not valid");
+			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+			JOptionPane.showMessageDialog(null, resourceBundle.getString("table.constraints.notvalid"));
 		}
 		
 		App.INSTANCE.getTableMediator().showTable(table);

@@ -2,7 +2,9 @@ package controler.crud;
 
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 
@@ -21,7 +23,8 @@ public class SearchAction extends AbstractAction{
 	public CrudWindow parentCaller;
 	
 	public SearchAction(CrudWindow parentCaller) {
-		putValue(NAME, "Create");
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		putValue(NAME, resourceBundle.getString("button.search"));
 		this.parentCaller = parentCaller;
 	}
 

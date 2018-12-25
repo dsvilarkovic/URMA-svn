@@ -5,7 +5,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -47,7 +49,8 @@ public class CrudWindow extends JDialog{
 		this.values = v;
 		this.fields = new HashMap<String, Object>();
 		JButton button = new JButton();
-		button.setText("update");
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		button.setText(resourceBundle.getString("button.update"));
 		button.addActionListener(new UpdateAction(this));
 		
 		CreateWindow();
@@ -133,10 +136,12 @@ public class CrudWindow extends JDialog{
 		}
 		
 		if(search) {
-			button.setText("search");
+			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+			button.setText(resourceBundle.getString("button.search"));
 			button.addActionListener(new SearchAction(this));
 		}else {
-			button.setText("create");
+			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+			button.setText(resourceBundle.getString("button.create"));
 			button.addActionListener(new CreateAction(this));
 		}
 
