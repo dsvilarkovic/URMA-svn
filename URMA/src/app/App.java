@@ -96,7 +96,7 @@ public enum App {
 	/**
 		Izbor fabrike za kreiranje parsera, handlera i validatora		
 		@author - Jelena (zapravo mislim da sam ja autor @author filip)
-		@param param1 - String, ekstenzija fajla metaseme na osnovu kojeg se formira fabrika(json, xml, db, sch)  
+		@param extension - ekstenzija fajla metaseme na osnovu kojeg se formira fabrika(json, xml, db, sch)  
 		@return - fabrika izabranog tipa
 	**/
 	public void setFactory(String extension) {
@@ -117,7 +117,7 @@ public enum App {
 	/**
 		Izbor fabrike za kreiranje polja različitih tipova		
 		@author - Jelena
-		@param param1 - tip polja koje je potrebno kreirati(char, varchar, int, double, date, boolean)  
+		@param type - tip polja koje je potrebno kreirati(char, varchar, int, double, date, boolean)  
 		@return - fabrika izabranog tipa
 	**/
 	public void createFieldFactory(String type) {

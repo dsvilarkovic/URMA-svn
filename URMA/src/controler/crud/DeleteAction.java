@@ -28,11 +28,20 @@ public class DeleteAction extends AbstractAction{
 	public TablePanel parentCaller;
 	private JTable tableCalling;
 	
+	/**
+		Konstruktor akcije koja briše izabrano polje iz tabele		
+		@author - Jelena
+		@param parentCaller - tabela iz koje je pozvana akcija
+	**/
 	public DeleteAction(TablePanel parentCaller) {
 		putValue(NAME, "Delete");
 		this.parentCaller = parentCaller;
 	}
 
+	/**
+		Akcija brisanja		
+		@author - Jelena
+	**/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {

@@ -13,7 +13,7 @@ import view.CrudWindow;
 
 /**
  * Akcija koja služi za search nad bazom
- * @author JelenaS
+ * @author Jelena
  */
 
 public class SearchAction extends AbstractAction{

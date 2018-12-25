@@ -44,13 +44,12 @@ public class DBHandler implements IHandler {
 	}
 
 	/**
-	 * Create akcija nad bazom - unos torke sa zadatim parametrima
-	 * 
-	 * @author - Jelena
-	 * @param param1 - Tabela nad kojom se izvršava akcija
-	 * @param param2 - podatci koji se unose u tabelu u obliku mape(kolona, podatak)
-	 * @return - uspesnost operacije
-	 **/
+		Create akcija nad bazom - unos torke sa zadatim parametrima		
+		@author - Jelena
+		@param table - Tabela nad kojom se izvršava akcija
+		@param data - podatci koji se unose u tabelu u obliku mape(kolona, podatak)  
+		@return - uspesnost operacije
+	**/
 	@Override
 	public Boolean create(Table table, HashMap<String, Object> data) {
 		String coloumn_str = "";
@@ -211,6 +210,63 @@ public class DBHandler implements IHandler {
 //		return valueMap;
 	}
 
+	/**
+		Update akcija nad bazom - izmena torke sa zadatim parametrima		
+		@author - Jelena
+		@param table - Tabela nad kojom se izvršava akcija
+		@param data - podatci koji se unose u tabelu u obliku mape(kolona, podatak)  
+		@return - uspesnost operacije
+	**/
+	@Override
+	public Boolean update(Table table, HashMap<String, Object> data) {
+		String sql = "update " + table.getCode() + " set ";
+		String sql_where = " where ";
+		Map<String, Attribute> attributes = table.getAttributes();
+		for (String key : attributes.keySet()) {
+			Attribute attribute = attributes.get(key);
+			IField field = (IField)data.get(attribute.getTitle());
+			if(attribute.getIsPrimaryKey()) {
+				sql_where += key + "='" + field.getValue().toString() + "' AND ";
+			}else {
+				sql += key + "='";
+				if(!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(), attribute.getMaxLength())){
+					JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " not valid");
+					return false;
+				}
+				if(field.getValue() == null) {
+					sql+= "NULL, ";
+				}else {
+					sql += field.getValue().toString() + "', ";
+				}
+			}
+		}
+		sql = sql.substring(0, sql.length() - 2);
+		sql_where = sql_where.substring(0, sql_where.length() - 5);
+		sql += sql_where + ";";
+		System.out.println(sql);
+		
+		PreparedStatement pstmt;
+		
+		try {
+			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.execute();
+			pstmt.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Update constraints not valid");
+		}
+		
+		App.INSTANCE.getTableMediator().showTable(table);
+		
+		return true;
+	}
+
+	/**
+		Delete akcija nad bazom - brisanje torke koja je izabrana u tabeli		
+		@author - Jelena
+		@param table - Tabela nad kojom se izvršava akcija
+		@param values - podatci koji se brišu
+	**/
 	@Override
 	public void delete(Table table, Vector<Object> values) {
 		// TODO Auto-generated method stub
@@ -342,11 +398,5 @@ public class DBHandler implements IHandler {
 		pstmt.close();
 
 		return valueMap;
-	}
-
-	@Override
-	public Boolean update(Table table, HashMap<String, Object> data) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

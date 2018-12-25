@@ -39,8 +39,8 @@ public class CrudWindow extends JDialog{
 	/**
 		Metoda kreira i prikazuje crud window za akciju update	
 		@author - Jelena
-		@param param1 - tabela za koju se kreira crud window  
-		@param param2 - vektor trenutnih vrednosti u tabeli koji se menjaju  
+		@param t - tabela za koju se kreira crud window  
+		@param v - vektor trenutnih vrednosti u tabeli koji se menjaju  
 	**/
 	public CrudWindow(Table t, Vector<Object> v) {	//edit
 		this.table = t;
@@ -87,8 +87,8 @@ public class CrudWindow extends JDialog{
 	/**
 		Metoda kreira i prikazuje crud window za akcije create i search	
 		@author - Jelena
-		@param param1 - tabela za koju se kreira crud window  
-		@param param2 - parametar koji odredjuje koja je akcija u pitanju(true za search, false za create)  
+		@param t - tabela za koju se kreira crud window  
+		@param search - parametar koji odredjuje koja je akcija u pitanju(true za search, false za create)  
 	**/
 	public CrudWindow(Table t, boolean search) {//new/search
 		this.table = t;

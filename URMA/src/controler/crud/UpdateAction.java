@@ -26,6 +26,11 @@ public class UpdateAction extends AbstractAction{
 	private static final long serialVersionUID = 1L;
 	public CrudWindow parentCaller;
 	
+	/**
+		Konstruktor akcije koja se poziva nakon popunjavanja polja za update akciju u CrudWindow-u da bi izvršila akciju nad bazom		
+		@author - Jelena
+		@param parentCaller - prozor iz kojeg je pozvana akcija
+	**/
 	public UpdateAction(CrudWindow parentCaller) {
 		putValue(NAME, "Update");
 		this.parentCaller = parentCaller;
