@@ -4,6 +4,7 @@ package view.table;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.JScrollPane;
@@ -155,13 +156,16 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 	}
 	
 	@Override
-	public void updateLanguage(String language) {
+	public void updateLanguage() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		tab.setTitleAt(0,resourceBundle.getString("table.tab.title"));
+		tableModel.updateLanguage();
+		
+		
 		super.setChangeableButtonAction("Parent");
 		
 		//mora ovako, problem naslednjivanja
-		super.updateLanguage(language);
+		super.updateLanguage();
 	}
 	
 }

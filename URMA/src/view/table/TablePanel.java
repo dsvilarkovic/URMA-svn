@@ -166,10 +166,11 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	}
 
 	@Override
-	public void updateLanguage(String language) {
+	public void updateLanguage() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		((TitledBorder) titledBorder).setTitle(resourceBundle.getString("table." + title));
 		initButtons();
+		setButtonActions();
 		repaint();
 	}
 

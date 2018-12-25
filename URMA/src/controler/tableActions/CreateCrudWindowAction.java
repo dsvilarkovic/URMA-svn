@@ -96,7 +96,6 @@ public class CreateCrudWindowAction extends AbstractAction {
 			String remove = resourceBundle.getString("table.button.remove");
 			String update = resourceBundle.getString("table.button.update");
 			String search = resourceBundle.getString("table.button.search");
-			
 			if(buttonName.equals(add)) {
 				addRow(table);
 				return;

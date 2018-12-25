@@ -1,7 +1,12 @@
 package view.table;
 
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
 
@@ -12,13 +17,15 @@ import controler.handlers.IHandler;
 import model.Attribute;
 import model.Table;
 import model.resourceFactory.IResourceFactory;
+import view.localizationManager.LocalizationManager;
+import view.localizationManager.LocalizationObserver;
 
 /**
  * Tabela modela koji cuva podatke za tabelu. Koristi <code>DefaultTableModel</code>
  * @author Dusan
  *
  */
-public class TableModel extends DefaultTableModel {
+public class TableModel extends DefaultTableModel implements LocalizationObserver {
 	private static final long serialVersionUID = -5330690347427736920L;
 
 	private Table table;
@@ -78,18 +85,23 @@ public class TableModel extends DefaultTableModel {
 		App.INSTANCE.setFactory("db");
 		IResourceFactory factory = App.INSTANCE.getFactory();
 		IHandler handler = factory.createHandler();
+		LocalizationManager.nulifyFormats();
 		
 		try {
 			Vector<Vector<Object>> valueList = handler.read(table);
 			//idi po redovima
 			for (int i = 0; i < valueList.size(); i++) {
 				//sad idi po vrednostima 
-				this.addRow(valueList.get(i));
+				Vector<Object> row = valueList.get(i);//localize(valueList.get(i));				
+				this.addRow(row);
 			}
 		}catch (Exception e) {
 			//JOptionPane.showMessageDialog(null, "Wrong file", "Invalid scheme", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		
+		//podesi lokalizovanje datuma
+		updateLanguage();
 		
 	}
 	
@@ -107,7 +119,41 @@ public class TableModel extends DefaultTableModel {
 	}
 
 	
-	
+//	/**
+//	 * Metoda za lokalizovanje pojedinih delova vektora objekata,ukoliko je potrebno.
+//	 * @param row - red koji se lokalizuje
+//	 * @return
+//	 */
+//	private Vector<Object> localize(Vector<Object> row) {
+//		
+//		//za svaku vrednost torke
+//		for (int i = 0; i < row.size(); i++) {
+//			//proveri da li je datum
+//			Object value = row.get(i);	
+//			value = LocalizationManager.formatDateString(value.toString());
+//			//ako nije datum vrati u value vrednost
+//			if(value.equals("date_format_error")) {
+//				value = row.get(i);
+//			}
+//			//u suprotnom je podesi i teraj dalje
+//			else {
+//				System.out.println(i);
+//				row.set(i, value);
+//				continue;
+//			}
+//			//proveri da li je broj
+//			if(value instanceof Number) {
+//				//TODO: neki kod
+//			}
+//						
+//		}
+//		
+//		//podesi novi rezim za date i number format lokalizacije
+//		LocalizationManager.currentDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
+//		LocalizationManager.currentNumberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
+//		return row;
+//	}
+
 	/**
 	 * (non-Javadoc)
 	 * 
@@ -115,17 +161,7 @@ public class TableModel extends DefaultTableModel {
 	 * Provera da li je strani kljuc ili primarni
 	 **/
 	@Override
-	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		//String columnName = this.columnsCode.get(columnIndex);  
-		//Attribute attribute = this.table.getAttributes().get(columnName);
-		
-		
-		/*
-		if(attribute.getIsPrimaryKey()) {
-			return false;
-		}
-		*/
-		
+	public boolean isCellEditable(int rowIndex, int columnIndex) {		
 		return false;
 	}
 
@@ -141,6 +177,29 @@ public class TableModel extends DefaultTableModel {
 	 */
 	public void setTable(Table table) {
 		this.table = table;
+	}
+
+	@Override
+	public void updateLanguage() {
+		
+		//idi kroz sve kolone koje su tipa date i number
+		Map<String, Attribute> attributes = table.getAttributes();
+		for (int i = 0; i < this.getColumnCount(); i++) {
+			Attribute attribute = attributes.get(columnsCode.get(i));
+			//ako je tipa datum
+			if(attribute.getType().equals("date")) {
+				//idi kroz celu kolonu i lokalizuj
+				for (int j = 0; j < this.getRowCount(); j++) {
+					String value = (String) this.getValueAt(j, i);
+					value = LocalizationManager.formatDateString(value);
+					this.setValueAt(value, j, i);
+				}
+				
+			}
+		}
+		//TODO: ovde je, al treba izmeniti
+		
+		//LocalizationManager.currentDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
 	}
 
 	

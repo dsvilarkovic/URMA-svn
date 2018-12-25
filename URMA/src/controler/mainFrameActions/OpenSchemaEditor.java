@@ -52,7 +52,7 @@ public class OpenSchemaEditor extends AbstractAction implements LocalizationObse
 	}
 
 	@Override
-	public void updateLanguage(String language) {
+	public void updateLanguage() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		putValue(NAME, resourceBundle.getString("schema.open"));
 	}

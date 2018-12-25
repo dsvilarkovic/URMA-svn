@@ -93,7 +93,7 @@ public class LoadLanguagePackAction extends AbstractAction implements Localizati
 	}
 	
 	@Override
-	public void updateLanguage(String language) {
+	public void updateLanguage() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		putValue(NAME, resourceBundle.getString("languagePack.menu"));	
 	}

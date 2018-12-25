@@ -55,7 +55,7 @@ public class MainAppMenuBar extends JMenuBar implements LocalizationObserver{
 	}
 
 	@Override
-	public void updateLanguage(String language) {
+	public void updateLanguage() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		
 		tools.setText(resourceBundle.getString("menu.tools"));

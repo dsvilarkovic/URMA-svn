@@ -1,5 +1,7 @@
 package view.fieldFactory;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.swing.JPanel;
@@ -7,6 +9,8 @@ import javax.swing.JPanel;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+
+import view.localizationManager.LocalizationManager;
 
 /**
  * Klasa koja opisuje date tip polja koja su potrebna za crud akcije
@@ -68,8 +72,16 @@ public class DateField extends JPanel implements IField{
 	public void setValue(Object o) {
 		if(o != null) {
 			String date = (String)o;
-			String[] dates = date.split("-");
-			field.getModel().setDate(Integer.parseInt(dates[0]), Integer.parseInt(dates[1])-1, Integer.parseInt(dates[2]));
+//			String[] dates = date.split("-");
+//			field.getModel().setDate(Integer.parseInt(dates[0]), Integer.parseInt(dates[1])-1, Integer.parseInt(dates[2]));
+			
+			//TODO: @Dusan dirao - begin
+			Date dateObject  = LocalizationManager.formatDate(date);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(dateObject);
+			field.getModel().setDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+			//TODO: @Dusan dirao - end
+			
 			field.getModel().setSelected(true);
 		}
 	}

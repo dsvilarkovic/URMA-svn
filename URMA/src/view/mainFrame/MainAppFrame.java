@@ -100,7 +100,7 @@ public class MainAppFrame extends JFrame implements LocalizationObserver {
 	}
 
 	@Override
-	public void updateLanguage(String language) {
+	public void updateLanguage() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		setTitle(resourceBundle.getString("menu.title"));
 	}

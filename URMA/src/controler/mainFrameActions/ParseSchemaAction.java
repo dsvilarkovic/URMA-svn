@@ -111,7 +111,7 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 	}
 
 	@Override
-	public void updateLanguage(String language) {
+	public void updateLanguage() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",
 				Locale.getDefault());
 

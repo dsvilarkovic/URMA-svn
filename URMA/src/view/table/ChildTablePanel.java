@@ -1,10 +1,12 @@
 package view.table;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.JScrollPane;
@@ -195,7 +197,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 
 
 	@Override
-	public void updateLanguage(String language) {
+	public void updateLanguage() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		
 		try {
@@ -204,9 +206,17 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 		catch(ArrayIndexOutOfBoundsException aiobe) {
 			System.err.println("No child found. Localization skipped");
 		}
+		
+		//podesi podatke u svim tabelama sa updateLanguage(language)
+		Set<String> keys = tableModelMap.keySet();
+		for (String tableModelKey : keys) {
+			TableModel tableModel = tableModelMap.get(tableModelKey);
+			tableModel.updateLanguage();
+		}
+		
 		super.setChangeableButtonAction("Child");
 		//mora ovako, problem naslednjivanja
-		super.updateLanguage(language);
+		super.updateLanguage();
 
 	}
 }

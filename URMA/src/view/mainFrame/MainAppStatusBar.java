@@ -3,6 +3,7 @@ package view.mainFrame;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.DateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -17,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import app.App;
+import view.localizationManager.LocalizationManager;
 import view.localizationManager.LocalizationObserver;
 
 /**
@@ -57,7 +59,7 @@ public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					String language = (String) languageComboBox.getSelectedItem();
-					App.INSTANCE.getLocalizationManager().updateLanguage(language);				
+					App.INSTANCE.getLocalizationManager().updateLanguage(language);		
 				}
 			}
 		});
@@ -126,7 +128,7 @@ public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 
 
 	@Override
-	public void updateLanguage(String language) {
+	public void updateLanguage() {
 		setLabels();
 	}
 

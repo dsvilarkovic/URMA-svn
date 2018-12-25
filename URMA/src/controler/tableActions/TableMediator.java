@@ -226,10 +226,7 @@ public class TableMediator {
 			System.out.println(childTablePanel);
 			System.out.println(childTablePanel.getTableSorters());
 		}
-		
-		
-		
-		
+				
 	}
 
 	/**
@@ -248,7 +245,6 @@ public class TableMediator {
 		}
 		
 	}
-	
 	
 	
 	
