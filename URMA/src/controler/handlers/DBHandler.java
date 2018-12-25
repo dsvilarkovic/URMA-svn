@@ -353,7 +353,12 @@ public class DBHandler implements IHandler {
 		}
 		// pravljenje sql upita
 		where = where.substring(0, where.length() - 5);
-		String sql = "Select * from " + table.getCode() + where;
+		String str = "";
+		for (Attribute attrib : table.getAttributes().values()) {
+			str += attrib.getCode() + ",";
+		}
+		str = str.substring(0, str.length() - 1);
+		String sql = "select " + str + " from " + table.getCode() + where;
 		System.out.println(sql);
 		
 		//slanje upita ka bazi i updejtovanje modela tabele
