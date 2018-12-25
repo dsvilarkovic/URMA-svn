@@ -8,12 +8,14 @@ import javax.swing.JOptionPane;
 
 import controler.tableActions.TableMediator;
 import model.InformationResource;
+import model.TitleLanguagePack;
 import model.resourceFactory.DBFactory;
 import model.resourceFactory.IResourceFactory;
 import model.resourceFactory.JSONFactory;
 import model.resourceFactory.XMLFactory;
 import view.editorFrame.EditorWindow;
 import view.fieldFactory.BooleanFieldFactory;
+import view.fieldFactory.CharFieldFactory;
 import view.fieldFactory.DateFieldFactory;
 import view.fieldFactory.DoubleFieldFactory;
 import view.fieldFactory.IFieldFactory;
@@ -21,7 +23,6 @@ import view.fieldFactory.IntegerFieldFactory;
 import view.fieldFactory.VarcharFieldFactory;
 import view.localizationManager.LocalizationManager;
 import view.mainFrame.MainAppFrame;
-import view.fieldFactory.CharFieldFactory;
 
 /**
  * Enumeracija koja predstavlja singletone klasu
@@ -39,6 +40,7 @@ public enum App {
 	private InformationResource model;
 	private ResourceBundle resourceBundle;
 	private LocalizationManager localizationManager;
+	private TitleLanguagePack titleLanguagePack;
 	
 	/**
 	 * Metoda koja inicijalizuje prozore u aplikaciji
@@ -115,7 +117,7 @@ public enum App {
 	}
 	
 	/**
-		Izbor fabrike za kreiranje polja različitih tipova		
+		Izbor fabrike za kreiranje polja razliÄ�itih tipova		
 		@author - Jelena
 		@param type - tip polja koje je potrebno kreirati(char, varchar, int, double, date, boolean)  
 		@return - fabrika izabranog tipa
@@ -150,4 +152,14 @@ public enum App {
 		this.model = model;
 	}
 
+	public TitleLanguagePack getTitleLanguagePack() {
+		if (this.titleLanguagePack == null) {
+			this.titleLanguagePack = new TitleLanguagePack();
+		}
+		return titleLanguagePack;
+	}
+
+	public void setTitleLanguagePack(TitleLanguagePack titleLanguagePack) {
+		this.titleLanguagePack = titleLanguagePack;
+	}
 }

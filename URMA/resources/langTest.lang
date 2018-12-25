@@ -1,0 +1,145 @@
+{
+    "packages": [
+        {
+            "code": "MAIN",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "main"
+                },
+                {
+                    "lang": "sr",
+                    "value": "glavni"
+                }
+            ]
+        }
+    ],
+    "tables": [
+        {
+            "code": "PAR",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Parent"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Roditelj"
+                }
+            ]
+        },
+        {
+            "code": "CHI",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Child"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Dete"
+                }
+            ]
+        }
+    ],
+    "attributes": [
+        {
+            "table_code": "PAR",
+            "code": "NAM",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "ParentName"
+                },
+                {
+                    "lang": "sr",
+                    "value": "ImeRoditelja"
+                }
+            ]
+        },
+        {
+            "table_code": "PAR",
+            "code": "ADD",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Address"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Adresa"
+                }
+            ]
+        },
+        {
+            "table_code": "PAR",
+            "code": "AGE",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Age"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Starost"
+                }
+            ]
+        },
+        {
+            "table_code": "PAR",
+            "code": "DOB",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Date of birth"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Datum rodjenja"
+                }
+            ]
+        },
+        {
+            "table_code": "CHI",
+            "code": "NAM",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "ChildName"
+                },
+                {
+                    "lang": "sr",
+                    "value": "ImeDeteta"
+                }
+            ]
+        },
+        {
+            "table_code": "CHI",
+            "code": "SUR",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Surname"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Prezime"
+                }
+            ]
+        },
+        {
+            "table_code": "CHI",
+            "code": "NOP",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Number of presents"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Broj poklona"
+                }
+            ]
+        }
+    ]
+}

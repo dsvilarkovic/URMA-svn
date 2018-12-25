@@ -8,8 +8,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import app.App;
-import controler.editorActions.ParseSchemaAction;
+import controler.mainFrameActions.LoadLanguagePackAction;
 import controler.mainFrameActions.OpenSchemaEditor;
+import controler.mainFrameActions.ParseSchemaAction;
 import view.localizationManager.LocalizationObserver;
 /**
  * @author Dusan
@@ -41,6 +42,9 @@ public class MainAppMenuBar extends JMenuBar implements LocalizationObserver{
 		
 		JMenuItem ParscheSchemaItem = new JMenuItem(new ParseSchemaAction());
 		tools.add(ParscheSchemaItem);
+		
+		JMenuItem LoadLanguagePackItem = new JMenuItem(new LoadLanguagePackAction());
+		tools.add(LoadLanguagePackItem);
 		
 		//add(file);
 		add(tools);
