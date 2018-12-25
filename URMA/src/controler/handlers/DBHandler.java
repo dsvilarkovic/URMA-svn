@@ -19,18 +19,22 @@ import model.Attribute;
 import model.Table;
 import view.fieldFactory.DecoratedField;
 import view.fieldFactory.IField;
+import view.table.TableModel;
 
 /**
  * Handler za rad sa bazom
+ * 
  * @author filip
  */
 public class DBHandler implements IHandler {
-	
+
 	Connection conn;
+
 	public DBHandler() {
-		
-		//pitaj Peru da li da se svaki put otvara konkcija ili da ovako nekako otvoris konekciju i da ostane
-		
+
+		// pitaj Peru da li da se svaki put otvara konkcija ili da ovako nekako otvoris
+		// konekciju i da ostane
+
 //		try {
 //			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
 //		} catch (SQLException e) {
@@ -38,14 +42,15 @@ public class DBHandler implements IHandler {
 //			e.printStackTrace();
 //		}
 	}
-	
+
 	/**
-		Create akcija nad bazom - unos torke sa zadatim parametrima		
-		@author - Jelena
-		@param param1 - Tabela nad kojom se izvršava akcija
-		@param param2 - podatci koji se unose u tabelu u obliku mape(kolona, podatak)  
-		@return - uspesnost operacije
-	**/
+	 * Create akcija nad bazom - unos torke sa zadatim parametrima
+	 * 
+	 * @author - Jelena
+	 * @param param1 - Tabela nad kojom se izvršava akcija
+	 * @param param2 - podatci koji se unose u tabelu u obliku mape(kolona, podatak)
+	 * @return - uspesnost operacije
+	 **/
 	@Override
 	public Boolean create(Table table, HashMap<String, Object> data) {
 		String coloumn_str = "";
@@ -54,14 +59,15 @@ public class DBHandler implements IHandler {
 		for (String key : attributes.keySet()) {
 			coloumn_str += key + ",";
 			Attribute attribute = attributes.get(key);
-			IField field = (IField)data.get(attribute.getTitle());
-			if(!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(), attribute.getMaxLength())){
+			IField field = (IField) data.get(attribute.getTitle());
+			if (!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(),
+					attribute.getMaxLength())) {
 				JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " not valid");
 				return false;
 			}
-			if(field.getValue() == null) {
+			if (field.getValue() == null) {
 				value_str = value_str.substring(0, value_str.length() - 1) + "NULL,'";
-			}else {
+			} else {
 				value_str += field.getValue().toString() + "','";
 			}
 		}
@@ -69,9 +75,8 @@ public class DBHandler implements IHandler {
 		value_str = value_str.substring(0, value_str.length() - 2);
 		String sql = "insert into " + table.getCode() + "(" + coloumn_str + ")" + " values (" + value_str + ");";
 		System.out.println(sql);
-		
+
 		PreparedStatement pstmt;
-		
 
 //		/**
 //		 * @author Dusan
@@ -97,8 +102,7 @@ public class DBHandler implements IHandler {
 //				break;
 //			}
 //		}
-		
-		
+
 //		try {
 //			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
 //		} catch (SQLException e1) {
@@ -107,29 +111,32 @@ public class DBHandler implements IHandler {
 //		}
 
 		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1",
+					"psw-2018-tim7-1", "tim7-19940718");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.execute();
 			pstmt.close();
 		} catch (SQLException e) {
 //			String text = "<html>No such table <strong style=\"color: red;\">"+ table.getTitle() +"</strong> in database or no connection</html>";
 //			JOptionPane.showMessageDialog(null, text, "INVALID SQL", JOptionPane.ERROR_MESSAGE);
-			JOptionPane.showMessageDialog(null, "Insert constraints not valid");
+			e.printStackTrace();
 		}
-		
+
 		App.INSTANCE.getTableMediator().showTable(table);
 		return true;
 	}
 
 	/**
 	 * Metoda za ucitavanje podataka tabele iz baze
+	 * 
 	 * @author filip
 	 * @param table - tabela za koju treba da se izvuku podaci
-	 * @return {@link Vector}&lt;{@link Vector}&lt;{@link Object}>> - vektor redova u tabeli
+	 * @return {@link Vector}&lt;{@link Vector}&lt;{@link Object}>> - vektor redova
+	 *         u tabeli
 	 */
 	@Override
 	public Vector<Vector<Object>> read(Table table) {
-		
+
 		String str = "";
 		for (Attribute attrib : table.getAttributes().values()) {
 			str += attrib.getCode() + ",";
@@ -137,18 +144,16 @@ public class DBHandler implements IHandler {
 		str = str.substring(0, str.length() - 1);
 		String sql = "select " + str + " from " + table.getCode();
 		System.out.println(sql);
-		
-		PreparedStatement pstmt;
+
 		try {
 			return executeStatement(sql, table);
 		} catch (SQLException e) {
-			String text = "<html>No such table <strong style=\"color: red;\">"+ table.getTitle() +"</strong> in database or no connection</html>";
+			String text = "<html>No such table <strong style=\"color: red;\">" + table.getTitle()
+					+ "</strong> in database or no connection</html>";
 			JOptionPane.showMessageDialog(null, text, "INVALID SQL", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
-		
-		
-		
+
 //		/**
 //		 * @author Dusan 
 //		 */
@@ -207,50 +212,6 @@ public class DBHandler implements IHandler {
 	}
 
 	@Override
-	public Boolean update(Table table, HashMap<String, Object> data) {
-		String sql = "update " + table.getCode() + " set ";
-		String sql_where = " where ";
-		Map<String, Attribute> attributes = table.getAttributes();
-		for (String key : attributes.keySet()) {
-			Attribute attribute = attributes.get(key);
-			IField field = (IField)data.get(attribute.getTitle());
-			if(attribute.getIsPrimaryKey()) {
-				sql_where += key + "='" + field.getValue().toString() + "' AND ";
-			}else {
-				sql += key + "='";
-				if(!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(), attribute.getMaxLength())){
-					JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " not valid");
-					return false;
-				}
-				if(field.getValue() == null) {
-					sql+= "NULL, ";
-				}else {
-					sql += field.getValue().toString() + "', ";
-				}
-			}
-		}
-		sql = sql.substring(0, sql.length() - 2);
-		sql_where = sql_where.substring(0, sql_where.length() - 5);
-		sql += sql_where + ";";
-		System.out.println(sql);
-		
-		PreparedStatement pstmt;
-		
-		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
-			pstmt = conn.prepareStatement(sql);
-			pstmt.execute();
-			pstmt.close();
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Update constraints not valid");
-		}
-		
-		App.INSTANCE.getTableMediator().showTable(table);
-		
-		return true;
-	}
-
-	@Override
 	public void delete(Table table, Vector<Object> values) {
 		// TODO Auto-generated method stub
 		String sql = "delete from " + table.getCode() + " where ";
@@ -264,19 +225,21 @@ public class DBHandler implements IHandler {
 		sql += ";";
 		System.out.println(sql);
 		PreparedStatement pstmt;
+		
 
 		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1",
+					"psw-2018-tim7-1", "tim7-19940718");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.execute();
 			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		App.INSTANCE.getTableMediator().showTable(table);
 	}
-
+	
 	/**
 	 * Metoda za search akciju
 	 * @author filip
@@ -310,6 +273,13 @@ public class DBHandler implements IHandler {
 						break;
 					}
 				}
+				// ako je postoji drugo polje za unose sa 
+				IField field2 = null;
+				if(second != null) {
+					field2 = (IField) second.getField();
+					if(field2.getValue() == null)
+						field2 = field;
+				}
 						
 				switch (type) {
 				case "varchar":
@@ -318,8 +288,8 @@ public class DBHandler implements IHandler {
 				case "boolean": where = where + code + "='" + field.getValue().toString() + "'" + and;
 					break;
 				case "int":
-				case "double": where = where + code + " between " + field.getValue().toString() + and + ((IField) second.getField()).getValue().toString() + and; break;
-				case "date": where = where + code + " between '" + field.getValue().toString() + "'" + and + "'" + ((IField) second.getField()).getValue().toString() + "'" + and; break;
+				case "double": where = where + code + " between " + field.getValue().toString() + and + field2.getValue().toString() + and; break;
+				case "date": where = where + code + " between '" + field.getValue().toString() + "'" + and + "'" + field2.getValue().toString() + "'" + and; break;
 				default:
 					break;
 				}					
@@ -330,27 +300,36 @@ public class DBHandler implements IHandler {
 		String sql = "Select * from " + table.getCode() + where;
 		System.out.println(sql);
 		
-		//slanje upita ka bazi
+		//slanje upita ka bazi i updejtovanje modela tabele
 		try {
-			Vector<Vector<Object>> valueMap = executeStatement(sql, table);
+			Vector<Vector<Object>> valuesFromDB = executeStatement(sql, table);
+			TableModel menjajOvu = App.INSTANCE.getMainAppFrame().getMainAppPanel().getParentTablePanel().getParentTableModel();
+			if(menjajOvu.getTable().getTitle().equals(table.getTitle())) {
+				menjajOvu.searchUpdate(valuesFromDB);
+			}else {
+				menjajOvu = App.INSTANCE.getMainAppFrame().getMainAppPanel().getChildTablePanel().getSelectedChildTableModel();
+				menjajOvu.searchUpdate(valuesFromDB);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 				
 		return true;
 	}
-	
-	private Vector<Vector<Object>> executeStatement(String sql, Table table) throws SQLException{
+
+	private Vector<Vector<Object>> executeStatement(String sql, Table table) throws SQLException {
 		PreparedStatement pstmt;
-		//conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
-		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+		// conn =
+		// DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1", "psw-2018-tim7-1",
+				"tim7-19940718");
 
 		pstmt = conn.prepareStatement(sql);
 		ResultSet rset = pstmt.executeQuery();
-		
+
 		Vector<Vector<Object>> valueMap = new Vector<Vector<Object>>();
-		while(rset.next()) {
-		
+		while (rset.next()) {
+
 			Vector<Object> valueList = new Vector<Object>();
 			for (int i = 1; i <= table.getAttributes().size(); i++) {
 				Object object = rset.getObject(i);
@@ -358,10 +337,16 @@ public class DBHandler implements IHandler {
 			}
 			valueMap.add(valueList);
 		}
-		
+
 		rset.close();
 		pstmt.close();
-		
+
 		return valueMap;
+	}
+
+	@Override
+	public Boolean update(Table table, HashMap<String, Object> data) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

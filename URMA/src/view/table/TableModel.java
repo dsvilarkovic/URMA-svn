@@ -92,6 +92,19 @@ public class TableModel extends DefaultTableModel {
 		}
 		
 	}
+	
+	/**
+	 * Funkcija namenjenja da zameni podatke u tabeli sa onim sto vrati search
+	 * @author filip
+	 * @param valueList - vektor redova podataka posle search operacije
+	 * @return {@link Void}
+	 */	
+	public void searchUpdate(Vector<Vector<Object>> valueList) {
+		this.setRowCount(0);
+		for (int i = 0; i < valueList.size(); i++) {
+			this.addRow(valueList.get(i));
+		}
+	}
 
 	
 	

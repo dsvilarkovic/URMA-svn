@@ -107,6 +107,11 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 		// Širenje tabele kompletno po visini pogleda scrollpane-a.
 		tableView.setFillsViewportHeight(true);
 	}
+	
+	public TableModel getTableModel() {
+		return (TableModel) tableView.getModel();
+	}
+	
 	/**
 	 * Funkcija za podesavanje dugmadi
 	 */
