@@ -50,7 +50,7 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	public TablePanel(String title) {
 		this.title = title;
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
-		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
+		
 		
 		setLayout(new BorderLayout());
 		Border blackline = BorderFactory.createMatteBorder(1,1, 1, 1, Color.black);
