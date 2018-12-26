@@ -75,7 +75,6 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 	}
 	
 	
-	//TODO promeniti svrhu funkcije
 	/**
 	 * @author Dusan
 	 * Prvobitno za test sluzi da se poziva prilikom klika na njega u stablu ili ako je dete, LAZY FETCH.
@@ -118,41 +117,6 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 		}
 	}
 
-	
-//	/**
-//	 * Metoda za lokalizovanje pojedinih delova vektora objekata,ukoliko je potrebno.
-//	 * @param row - red koji se lokalizuje
-//	 * @return
-//	 */
-//	private Vector<Object> localize(Vector<Object> row) {
-//		
-//		//za svaku vrednost torke
-//		for (int i = 0; i < row.size(); i++) {
-//			//proveri da li je datum
-//			Object value = row.get(i);	
-//			value = LocalizationManager.formatDateString(value.toString());
-//			//ako nije datum vrati u value vrednost
-//			if(value.equals("date_format_error")) {
-//				value = row.get(i);
-//			}
-//			//u suprotnom je podesi i teraj dalje
-//			else {
-//				System.out.println(i);
-//				row.set(i, value);
-//				continue;
-//			}
-//			//proveri da li je broj
-//			if(value instanceof Number) {
-//				//TODO: neki kod
-//			}
-//						
-//		}
-//		
-//		//podesi novi rezim za date i number format lokalizacije
-//		LocalizationManager.currentDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
-//		LocalizationManager.currentNumberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
-//		return row;
-//	}
 
 	/**
 	 * (non-Javadoc)
@@ -181,7 +145,7 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 
 	@Override
 	public void updateLanguage() {
-		
+		//readData();
 		//idi kroz sve kolone koje su tipa date i number
 		Map<String, Attribute> attributes = table.getAttributes();
 		for (int i = 0; i < this.getColumnCount(); i++) {
@@ -197,11 +161,21 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 				
 			}
 		}
-		//TODO: ovde je, al treba izmeniti
-		
-		//LocalizationManager.currentDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
-	}
 
+	}	
 	
 	
+	/**
+	 * Za debagovnje sluzi, iscitava vrednosti tabele tableModel-a
+	 */
+	public void readData() {
+		System.out.println("___Pocetak pre udpdate____");
+		for (int i = 0; i < getRowCount(); i++) {
+			for (int j = 0; j < getColumnCount(); j++) {
+				System.out.print(this.getValueAt(i, j) + "|\t");
+			}
+			System.out.println();
+		}
+		System.out.println("___Kraj___________________");
+	}
 }

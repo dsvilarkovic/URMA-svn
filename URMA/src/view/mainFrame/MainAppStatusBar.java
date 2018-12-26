@@ -30,7 +30,7 @@ import view.localizationManager.LocalizationObserver;
 public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 
 	private JLabel languageLabel = new JLabel("Chosen language");
-	private String[] languageString = {"Srpski - RS", "English - EN"};
+	private String[] languageString = {"Srpski - RS", "English - UK"};
 	private JComboBox<String> languageComboBox = new JComboBox<>(languageString);
 	
 	private JLabel handlerLabel = new JLabel("Handler: ");
@@ -54,18 +54,17 @@ public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
 		
 		languageComboBox.addItemListener(new ItemListener() {
-			
+				
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {					
 					String language = (String) languageComboBox.getSelectedItem();
-					App.INSTANCE.getLocalizationManager().updateLanguage(language);		
+					App.INSTANCE.getLocalizationManager().updateLanguage(language);							
 				}
 			}
 		});
 		
 		setLabels();
-		//add(languageLabel);
 		add(languageComboBox);
 		add(new JSeparator(SwingConstants.VERTICAL));
 		add(handlerLabel);

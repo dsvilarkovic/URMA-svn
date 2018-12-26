@@ -8,10 +8,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 import java.util.Vector;
 
 import app.App;
+import view.table.ParentTablePanel;
+import view.table.TableModel;
 
 /**
  * Lokalizacioni menadzer koji radi po principu observer sablona 
@@ -24,8 +28,8 @@ public class LocalizationManager {
 	private List<LocalizationObserver> localizationObservers = new ArrayList<>();
 	public static DateFormat currentDateFormat = null;
 	public static NumberFormat currentNumberFormat = null;
-	public static List<DateFormat> dateFormats = new ArrayList<>();
-	public static List<NumberFormat> numberFormats = new ArrayList<>();
+	public static Map<String, DateFormat> dateFormats = new TreeMap<>();
+	public static Map<String, NumberFormat> numberFormats = new TreeMap<>();
  	
 	/**
 	 * Lokalizacioni menadzer koji radi po principu observer sablona 
@@ -34,9 +38,13 @@ public class LocalizationManager {
 	 *
 	 */
 	public LocalizationManager() {
-		dateFormats.add(new SimpleDateFormat("yyyy-MM-dd"));
-		dateFormats.add(DateFormat.getDateInstance(DateFormat.DEFAULT, new Locale("sr", "RS")));
-		dateFormats.add(DateFormat.getDateInstance(DateFormat.DEFAULT, new Locale("en", "UK")));
+		dateFormats.put( "Simple", new SimpleDateFormat("yyyy-MM-dd"));
+		dateFormats.put( "RS", DateFormat.getDateInstance(DateFormat.DEFAULT, new Locale("sr", "RS")));
+		dateFormats.put( "UK", DateFormat.getDateInstance(DateFormat.DEFAULT, new Locale("en", "UK")));
+		
+		
+		numberFormats.put("RS", NumberFormat.getInstance(new Locale("sr", "RS")));
+		numberFormats.put("UK", NumberFormat.getInstance(new Locale("en", "UK")));
 	}
 	
 	/**
@@ -44,20 +52,27 @@ public class LocalizationManager {
 	 * @param language
 	 */
 	public void updateLanguage(String language) {		
+		Locale locale = Locale.getDefault();
+		
+		if(currentDateFormat == null || currentDateFormat.equals(dateFormats.get("Simple"))) {
+			currentDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
+		}
 		switch(language) {
 			case "Srpski - RS":
 				Locale.setDefault(new Locale("sr", "RS")); 
 				break;
-			case "English - EN":
+			case "English - UK":
 				Locale.setDefault(new Locale("en", "UK")); 
 				break;
 		}
+		
+		
 		
 		for (int i = 0; i < localizationObservers.size(); i++) {
 			localizationObservers.get(i).updateLanguage();
 		}
 		
-		
+		currentDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
 	}
 	
 	
@@ -86,8 +101,12 @@ public class LocalizationManager {
 	 */
 	public static String formatDateString(String dateString) {
 		DateFormat newDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
+	
 		
-		setDateFormats(dateString);
+		if(currentDateFormat == null) {
+			currentDateFormat = dateFormats.get("Simple");
+		}
+		
 		
 		String returnDateString = "none";
 		try {	
@@ -110,7 +129,6 @@ public class LocalizationManager {
 	 * @return - adekvatni {@link Date} objekat
 	 */
 	public static Date formatDate(String dateString) {
-		setDateFormats(dateString);
 		Date returnDate = null;
 		try {	
 			returnDate = (Date)currentDateFormat.parse(dateString);
@@ -122,10 +140,12 @@ public class LocalizationManager {
 	/**
 	 * Podesava trenutni dateformat po kojem se postavlja, proverava se da li odgovara
 	 * trenutnom formatu	
-	 * @param dateFormats - 
+	 * @param dateString - string po kojem se proverava prolaznost parsiranja za neki dateFormat
 	 */
-	public static void setDateFormats(String dateString) {		
-		for (DateFormat dateFormat : dateFormats) {
+	public static void setDateFormats(String dateString) {
+		DateFormat dateFormat;
+		for (String dateFormatKey : dateFormats.keySet()) {
+			dateFormat = dateFormats.get(dateFormatKey);
 			if(checkDateFormatIfEligible(dateFormat,dateString)) {
 				currentDateFormat = dateFormat;
 				return;
@@ -133,6 +153,13 @@ public class LocalizationManager {
 		}
 	}
 	
+	
+	/**
+	 * Proverava da li se moze parsirati po datom dateFormat-u
+	 * @param dateFormat
+	 * @param dateString
+	 * @return - da/ne u zavisnosti od uspeha parsiranja.
+	 */
 	public static boolean checkDateFormatIfEligible(DateFormat dateFormat, String dateString) {
 		try {
 			dateFormat.parse(dateString);
@@ -142,6 +169,8 @@ public class LocalizationManager {
 		}
 		return true;
 	}
+	
+	
 	
 	
 	
@@ -179,6 +208,49 @@ public class LocalizationManager {
 		
 	}
 
+	/**
+	 * Podesava na osnovu jezika format datuma
+	 * @param language
+	 */
+	public static void setCurrentFormat(String language) {
+		if(language.equals("")) {
+			currentDateFormat = dateFormats.get("Simple");
+			
+		}
+		if(language.contains("UK")) {
+			System.out.println("UK");
+			currentNumberFormat = numberFormats.get("UK");
+			currentDateFormat = dateFormats.get("UK");
+			return;
+		}
+		if(language.contains("RS")) {
+			System.out.println("RS");
+			currentNumberFormat = numberFormats.get("RS");
+			currentDateFormat = dateFormats.get("RS");
+			return;
+		}
+		
+	}
+
+	
+	/**
+	 * Ispisuje tip trenutnog formata sa kojim se radi
+	 */
+	private static void printCurrentFormatType() {
+		
+		for (String dateFormatKey : dateFormats.keySet()) {
+			DateFormat dateFormat = dateFormats.get(dateFormatKey);
+			
+			if(dateFormat.equals(currentDateFormat)) {
+				System.out.println("currentDateFormat = " + dateFormatKey);
+				return;
+			}
+		}
+		
+		System.out.println("Nije nista nasao");
+	}
+	
+	
 	
 	
 
