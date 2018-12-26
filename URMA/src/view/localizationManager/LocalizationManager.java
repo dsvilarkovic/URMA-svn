@@ -26,10 +26,10 @@ import view.table.TableModel;
 public class LocalizationManager {
 
 	private List<LocalizationObserver> localizationObservers = new ArrayList<>();
-	public static DateFormat currentDateFormat = null;
-	public static NumberFormat currentNumberFormat = null;
-	public static Map<String, DateFormat> dateFormats = new TreeMap<>();
-	public static Map<String, NumberFormat> numberFormats = new TreeMap<>();
+	private static DateFormat currentDateFormat = null;
+	private static NumberFormat currentNumberFormat = null;
+	private static Map<String, DateFormat> dateFormats = new TreeMap<>();
+	private static Map<String, NumberFormat> numberFormats = new TreeMap<>();
  	
 	/**
 	 * Lokalizacioni menadzer koji radi po principu observer sablona 
@@ -45,6 +45,7 @@ public class LocalizationManager {
 		
 		numberFormats.put("RS", NumberFormat.getInstance(new Locale("sr", "RS")));
 		numberFormats.put("UK", NumberFormat.getInstance(new Locale("en", "UK")));
+		numberFormats.put("US", NumberFormat.getInstance(new Locale("en", "US")));
 	}
 	
 	/**
@@ -56,6 +57,9 @@ public class LocalizationManager {
 		
 		if(currentDateFormat == null || currentDateFormat.equals(dateFormats.get("Simple"))) {
 			currentDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
+		}
+		if(currentNumberFormat == null || currentNumberFormat.equals(numberFormats.get("US"))) {
+			currentNumberFormat = NumberFormat.getInstance(Locale.getDefault());
 		}
 		switch(language) {
 			case "Srpski - RS":
@@ -73,6 +77,7 @@ public class LocalizationManager {
 		}
 		
 		currentDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
+		currentNumberFormat = NumberFormat.getInstance(Locale.getDefault());
 	}
 	
 	
@@ -101,7 +106,7 @@ public class LocalizationManager {
 	 */
 	public static String formatDateString(String dateString) {
 		DateFormat newDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
-	
+		
 		
 		if(currentDateFormat == null) {
 			currentDateFormat = dateFormats.get("Simple");
@@ -249,7 +254,45 @@ public class LocalizationManager {
 		
 		System.out.println("Nije nista nasao");
 	}
+
+	public static String formatNumberString(String numberString) {
+		NumberFormat newNumberFormat = NumberFormat.getInstance(Locale.getDefault());
+		
+		
+		if(currentNumberFormat == null) {
+			currentNumberFormat = numberFormats.get("US");
+		}
+		
+		
+		String returnNumberString = "none";
+		try {	
+			Number n = (Number)currentNumberFormat.parse(numberString);
+			returnNumberString = newNumberFormat.format(n);
+		}
+		catch (Exception e) {
+			returnNumberString = "number_format_error";
+		}
+		return returnNumberString;
+	}
 	
+	
+	/**
+	 * Metoda koja sluzi za parsiranje numbera i formatiranje u adekvatni {@link Number} oblik.
+	 * U obzir se uvode i podrzane lokalizacije.
+	 * @author Dusan
+	 * @param numberString - string iz tabele koji ce se parsirati
+	 * 
+	 * @return - adekvatni {@link Number} objekat
+	 */
+	public static Number formatNumber(String numberString) {
+		Number returnNumber = null;
+		try {	
+			returnNumber = (Number)currentNumberFormat.parse(numberString);
+		}
+		catch (Exception e) {
+		}
+		return returnNumber;
+	}
 	
 	
 	

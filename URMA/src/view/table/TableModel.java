@@ -160,6 +160,15 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 				}
 				
 			}
+			//ako je tipa broj
+			if(attribute.getType().equals("double") || attribute.getType().equals("int")) {
+				//idi kroz celu kolonu i lokalizuj
+				for (int j = 0; j < this.getRowCount(); j++) {
+					String value = LocalizationManager.convertToString(this.getValueAt(j, i));
+					value = LocalizationManager.formatNumberString(value);
+					this.setValueAt(value, j, i);
+				}
+			}
 		}
 
 	}	
