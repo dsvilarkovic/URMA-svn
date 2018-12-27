@@ -11,16 +11,16 @@ import model.resourceFactory.IResourceFactory;
 public class TestChooseRefColumnVal {
 
 	public static void main(String[] args) {
-		//Table table = App.INSTANCE.getModel().getAllTables().get("NASELJENO_MESTO");
-		Table table = createMockTable();
-		App.INSTANCE.setFactory("db");
-		IResourceFactory factory = App.INSTANCE.getFactory();
-		IHandler handler = factory.createHandler();
-		Vector<Vector<Object>> valueList = handler.read(table);
-		
-		ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(table, null);
-		
-//		new ChooseSourceDialog();
+//		//Table table = App.INSTANCE.getModel().getAllTables().get("NASELJENO_MESTO");
+//		Table table = createMockTable();
+//		App.INSTANCE.setFactory("db");
+//		IResourceFactory factory = App.INSTANCE.getFactory();
+//		IHandler handler = factory.createHandler();
+//		Vector<Vector<Object>> valueList = handler.read(table);
+//		
+//		ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(table, null);
+//		
+		new ChooseSourceDialog();
 	}
 	
 	public static Table createMockTable() {
