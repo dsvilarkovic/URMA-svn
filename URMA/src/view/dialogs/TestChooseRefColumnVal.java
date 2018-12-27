@@ -18,7 +18,7 @@ public class TestChooseRefColumnVal {
 		IHandler handler = factory.createHandler();
 		Vector<Vector<Object>> valueList = handler.read(table);
 		
-		ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(table);
+		ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(table, null);
 		
 //		new ChooseSourceDialog();
 	}

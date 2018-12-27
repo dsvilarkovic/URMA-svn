@@ -28,7 +28,11 @@ public class ForeignKeyAction extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(this.table);
+		ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(this.table, this);	
+	}
+	
+	public void fillFields() {
+		System.out.println("USPEO");
 	}
 
 }

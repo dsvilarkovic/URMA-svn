@@ -19,6 +19,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import app.App;
+import controler.crud.ForeignKeyAction;
 import model.Table;
 import view.table.TableModel;
 
@@ -36,6 +37,7 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 	private JTable tableView = null;
 	private JTabbedPane tabbedPane = new JTabbedPane();
 	private JButton chooseButton = null;
+	private ForeignKeyAction parentCaller = null;
 	
 	
 	/**
@@ -44,8 +46,10 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 	 * odakle će se birati torka sa referenciranim vrednostima u stranom ključu.
 	 * Vraća odabranu torku sa vrednostima koje se biraju kako je zapisano.
 	 * @param table - tabela po kojoj ce se praviti dijalog
+	 * @param parentCaller - akcija iz koje se poyiva dijalog
 	 */
-	public ChooseReferencedCollumnValuesDialog(Table table) {
+	public ChooseReferencedCollumnValuesDialog(Table table, ForeignKeyAction parentCaller) {
+		this.parentCaller = parentCaller;
 		
 		JPanel contentPanel = new JPanel();
 		contentPanel.setLayout(new BorderLayout());
@@ -101,8 +105,9 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 		}
 		JOptionPane.showMessageDialog(null,text,"Naslov",JOptionPane.INFORMATION_MESSAGE);
 		dispose();
+		parentCaller.fillFields();
 	}
-	
+
 	/**
 	 * Inicijalizacija tabele sa svim njenim potrebnim funkcionalnostima
 	 * @param tableModel - model po kojem se podesavaju podaci
