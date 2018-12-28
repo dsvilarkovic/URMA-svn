@@ -3,9 +3,11 @@ package model.treeAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.App;
 import model.InformationResource;
 import model.Package;
 import model.Table;
+import model.TitleLanguagePack;
 
 /**
  * Klasa adapter za paket. Adaptira paket za stablo i za dalju upotrebu u programu.
@@ -31,6 +33,7 @@ public class AdapterPackage implements TreeParts{
 
 	@Override
 	public String getName() {
+		
 		return paket.getTitle();
 	}
 

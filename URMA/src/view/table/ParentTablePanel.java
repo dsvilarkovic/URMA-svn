@@ -161,8 +161,13 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 	@Override
 	public void updateLanguage() {
 		TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
-		String localizedTitle = titleLanguagePack.getTableTitle(tableModel.getTable().getCode());
-		tab.setTitleAt(0, localizedTitle);
+		try {
+			String localizedTitle = titleLanguagePack.getTableTitle(tableModel.getTable().getCode());
+			tab.setTitleAt(0, localizedTitle);
+		}
+		catch(NullPointerException npe) {
+			System.err.println("No table found inserted in parent. Skipping localization here");
+		}
 		//tab.setTitleAt(0,resourceBundle.getString("table.tab.title"));
 		try {
 			tableModel.updateLanguage();

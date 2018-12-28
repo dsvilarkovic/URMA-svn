@@ -220,6 +220,9 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 		catch(ArrayIndexOutOfBoundsException aiobe) {
 			System.err.println("No child found. Localization skipped");
 		}
+		catch(NullPointerException npe) {
+			System.err.println("Problems with tile language pack");
+		}
 		
 		
 		//podesi podatke u svim tabelama sa updateLanguage(language)

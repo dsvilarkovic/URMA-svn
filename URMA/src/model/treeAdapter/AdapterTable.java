@@ -9,6 +9,7 @@ import java.util.List;
 import app.App;
 import model.InformationResource;
 import model.Table;
+import model.TitleLanguagePack;
 
 /**
  * Klasa adapter za tabelu. Adaptira tabelu za stablo i za dalju upotrebu u programu.
@@ -31,7 +32,14 @@ public class AdapterTable implements TreeParts {
 	public String getImgPath() {return "resources/spreadsheet.png";}
 
 	@Override
-	public String getName() {return tabela.getTitle();}
+	public String getName() {
+		String localizedTitle = tabela.getTitle();
+		TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+		if(titleLanguagePack.isLanguagePackLoaded()) {
+			localizedTitle = titleLanguagePack.getTableTitle(tabela.getCode());
+		}
+		return localizedTitle;		
+	}
 
 	@Override
 	public void action() {
