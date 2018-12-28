@@ -67,6 +67,10 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 		//setUpData();
 	}
 	
+	/**
+	 * Sluzi za inicijalno podesavanje imena kolona koje ce stojati za ovu tabelu
+	 * @param table - tabela tipa {@link Table} iz koje ce izvlaciti tipovi atributa iz {@link Attribute}
+	 */
 	public void setUpColumns(Table table) {
 		Map<String, Attribute> attributes = table.getAttributes();
 		for (String attributeKey : attributes.keySet()) {

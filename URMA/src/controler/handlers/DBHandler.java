@@ -312,6 +312,13 @@ public class DBHandler implements IHandler {
 		App.INSTANCE.getTableMediator().showTable(table);
 	}
 	
+	/**
+	 * Sluzi za formatiranje vrednosti za bazu u skladu sa fomratom koji baza prima.
+	 * @author Dusan
+	 * @param value - vrednost iz tabele koja se konvertuje
+	 * @param type - tip po kojem se konvertuje
+	 * @return -odgovarajuci {@link String}  oblik
+	 */
 	private String convertValue(String value, String type) {
 		switch(type) {
 			case "double":{

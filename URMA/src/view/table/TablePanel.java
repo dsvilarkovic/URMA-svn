@@ -47,6 +47,10 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	private String title;
 	private Border titledBorder;
 
+	/**
+	 * Konstruktor nadpanela kojim se opisuju i {@link ParentTablePanel} i {@link ChildTablePanel}
+	 * @param title - naslov pod kojim ce se nazivati panel
+	 */
 	public TablePanel(String title) {
 		this.title = title;
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
@@ -113,7 +117,7 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	}
 	
 	/**
-	 * Funkcija za podesavanje dugmadi
+	 * Funkcija za podesavanje dugmadi u vizuelnoj predstavi
 	 */
 	private void setButtons() {				
 		
@@ -141,7 +145,10 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 		//add(box);		
 		add(box, BorderLayout.NORTH);
 	}
-	
+	/**
+	 * Dodavanje tabova za {@link TablePanel}
+	 * @param jTabbedPane
+	 */
 	public void addTableTabs(JTabbedPane jTabbedPane) {
 		add(jTabbedPane, BorderLayout.CENTER);
 	}

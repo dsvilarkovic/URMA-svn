@@ -1,6 +1,5 @@
 package controler.tableActions;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.List;
 import java.util.Locale;
@@ -32,10 +31,17 @@ public class TableMediator {
 	private ParentTablePanel parentTablePanel = null;
 	/**
 	 * Medijator za promenu modela u panelima predstavljenim
+	 * @author Dusan
 	 */
 	public TableMediator() {
 	}
 	
+	/**
+	 * Sluzi za predstavljanje tabela u {@code childTablePanel} i {@code parentTablePanel}
+	 * @author Dusan
+	 * @param table - tabela tipa {@link Table} po kojoj se ona podesava za roditeljsku tabelu,
+	 * a njegova deca za child tabele.
+	 */
 	public void showTable(Table table) {
 		setPanels();
 		//0. pitaj da li zeli da sacuva prethodne izmene 
@@ -51,6 +57,11 @@ public class TableMediator {
 		
 		setChildVisibility(childTableMap);
 	}
+	
+	/**
+	 * @author Dusan
+	 * Akcija za promociju selektovane tabele u {@code childTablePanel} u {@code parentTablePanel}. <br>
+	 */
 	public void promoteChild() {
 		
 		setPanels();
@@ -88,7 +99,10 @@ public class TableMediator {
 	}
 	
 	/**
-	 * Sva logika za podesavanje spustanja roditelja se vrsi ovde, zabraniti ukoliko roditelj nema svog roditelja
+	 * Sva logika za podesavanje spustanja roditelja se vrsi ovde, zabraniti ukoliko roditelj nema svog roditelja. <br>
+	 * Takodje ukoliko spustana tabela iz {@code parentTablePanel} ima vise svojih roditelja, nudi se <br>
+	 * dijalog prozor za spustanje.
+	 * @author Dusan
 	 */
 	public void demoteParent() {
 		setPanels();
@@ -136,6 +150,7 @@ public class TableMediator {
 	
 	/**
 	 * Podesavanje panela <code>childTablePanel </code>  i <code> parentTablePanel</code>, kratki snippet
+	 * @author Dusan
 	 */
 	private void setPanels() {
 		if(childTablePanel == null || parentTablePanel == null) {
@@ -144,7 +159,10 @@ public class TableMediator {
 		}
 	}
 	
-	
+	/**
+	 * Podesavanje vidljivosti child tabela u {@code childTablePanel}
+	 * @param childTableMap - mapa child tabela koje ce se ubaciti
+	 */
 	private void setChildVisibility(Map<String, Table> childTableMap) {
 		MainAppPanel mainAppPanel = App.INSTANCE.getMainAppFrame().getMainAppPanel();
 		boolean isNotVisible = childTableMap == null || childTableMap.isEmpty();
@@ -164,7 +182,8 @@ public class TableMediator {
 
 	/**
 	 * Tabela koja ce vratiti pozvani pogled na tabelu putem crud operacija
-	 * @param panelCalling
+	 * @author Dusan
+	 * @param panelCalling - panel iz kog se poziva tbaela
 	 * @return pogled na tabelu u obliku <code>JTable</code>
 	 * @throws Exception - baca izuzetak ako mu je prosledio pogresnu tabelu
 	 */
@@ -186,7 +205,8 @@ public class TableMediator {
 	
 	/**
 	 * Sluzi da nadje odgovarajuci TableModel za referenciranu tabelu iz pogleda
-	 * @param table
+	 * @author Dusan
+	 * @param table  - pozivana tabela tipa {@link Table}
 	 * @return odgovarajuci model za poziv
 	 */
 	public TableModel getCalledTableModel(Table table) {
@@ -209,8 +229,10 @@ public class TableMediator {
 
 	/**
 	 * Sluzi da se child tabelama uvede novi uslov za filtriranje u njihove filtere.
-	 * Svaki od childova ima svoj filter
-	 * @param parentRowValues
+	 * Svaki od childova ima svoj filter.
+	 * @author Dusan
+	 * @param parentRowValues - vrednosti po mapi odabrane torke iz roditelja kljuc kod atributa <br>
+	 * za vrednost mape vrednost atributa.
 	 */
 	public void setParentRowValues(Map<String, String> parentRowValues) {
 		
@@ -230,7 +252,8 @@ public class TableMediator {
 	}
 
 	/**
-	 * Poziv za realtime sortiranje trazenih pretraga
+	 * Poziv za realtime sortiranje trazenih pretraga za svako dete u {@code childTablePanel}
+	 * @author Dusan
 	 */
 	public void callTableSorters() {
 		List<TableRowSorter<TableModel>> tableSorters =  childTablePanel.getTableSorters();

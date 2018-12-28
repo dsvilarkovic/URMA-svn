@@ -50,6 +50,13 @@ public class RowPrimaryKeyFilter<M> extends RowFilter<TableModel, Integer> {
 		return true;
 	}
 	
+	/**
+	 * Vraca indeks za ime kolone po kojoj se trazi
+	 * @param columnsCode - kodovi tabele po kojoj se trazi
+	 * @author Dusan
+	 * @param header - naziv ciljanog atributa
+	 * @return tacan indeks, ili -1 ako nije nista nasao
+	 */
 	private int getColumnIndex (List<String> columnsCode, String header) {
 	    for (int i=0; i < columnsCode.size(); i++) {
 	        if (columnsCode.get(i).equals(header)) return i;
@@ -57,6 +64,12 @@ public class RowPrimaryKeyFilter<M> extends RowFilter<TableModel, Integer> {
 	    return -1;
 	}
 	
+	/**
+	 * Pomocna funkcija za {@link findRelation()} metodu
+	 * @author Dusan
+	 * @param childTableModel - tabela koja se nalazi u donjem TablePanelu
+	 * @param parentTableModel - tabela koja se nalazi u gornjem TablePanel-u
+	 */
 	public RowPrimaryKeyFilter(TableModel childTableModel, TableModel parentTableModel){
 		//nadji relaciju po kojoj se vezuju
 		relation = findRelation(childTableModel, parentTableModel);
@@ -64,6 +77,13 @@ public class RowPrimaryKeyFilter<M> extends RowFilter<TableModel, Integer> {
 	}
 
 	
+	/**
+	 * Sluzi za trazenje relacije po kojoj su <code>childTableModel</code> i <br>
+	 *  <code>parentTableModel</code> povezani
+	 * @author Dusan
+	 * @param childTableModel - tabela koja se nalazi u donjem TablePanelu
+	 * @param parentTableModel - tabela koja se nalazi u gornjem TablePanel-u
+	 */
 	public Relation findRelation(TableModel childTableModel, TableModel parentTableModel) {
 		
 		//nadji tu relaciju
@@ -84,6 +104,12 @@ public class RowPrimaryKeyFilter<M> extends RowFilter<TableModel, Integer> {
 
 	
 	private Map<String,String> parentRowValues = null;
+	
+	/**
+	 * Sluzi za podesavanje selektovane torke po maperskom principu gde je kljuc <br>
+	 * naziv atributa a vrednost je ustvari vrednost atributa.
+	 * @param parentRowValues - mapa vrednosti po gore navedenom principu.
+	 */
 	public void setRowValues(Map<String, String> parentRowValues) {
 		this.parentRowValues = parentRowValues;
 		

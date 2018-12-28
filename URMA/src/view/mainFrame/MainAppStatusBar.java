@@ -3,7 +3,6 @@ package view.mainFrame;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.text.DateFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -18,7 +17,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import app.App;
-import view.localizationManager.LocalizationManager;
 import view.localizationManager.LocalizationObserver;
 
 /**
@@ -29,7 +27,6 @@ import view.localizationManager.LocalizationObserver;
 @SuppressWarnings("serial")
 public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 
-	private JLabel languageLabel = new JLabel("Chosen language");
 	private String[] languageString = {"Srpski - RS", "English - UK"};
 	private JComboBox<String> languageComboBox = new JComboBox<>(languageString);
 	
@@ -50,7 +47,6 @@ public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 		//setLayout(new FlowLayout(FlowLayout.LEFT));
 		setLayout(new BoxLayout(this,  BoxLayout.LINE_AXIS));
 		
-		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
 		
 		languageComboBox.addItemListener(new ItemListener() {

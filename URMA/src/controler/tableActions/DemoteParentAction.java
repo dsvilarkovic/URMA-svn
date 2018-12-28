@@ -19,8 +19,9 @@ public class DemoteParentAction extends AbstractAction implements LocalizationOb
 	private static final long serialVersionUID = -7321060857740238634L;
 
 	/**
-	 * Akcija koja sluzi da preveze poziv na medijatora <code> TableMediator </code> koji radi ostatak posla
-	 *
+	 * Akcija koja sluzi da preveze poziv na medijatora <code> TableMediator </code> koji radi ostatak posla <br>
+	 * vezanog za {@code childTablePanel} i {@code parentTablePanel} i spustanje roditelja.
+	 * @author Dusan
 	 */
 	public DemoteParentAction() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());

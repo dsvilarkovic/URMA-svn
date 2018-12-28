@@ -203,7 +203,8 @@ public class ChooseSourceDialog extends JDialog {
 	}
 	
 	/**
-	 * Za podesavanje vidljivosti
+	 * Za podesavanje vidljivosti u zavisnosti od tipa izvora iz kojeg ce se vaditi fajl.
+	 * @author Dusan
 	 */
 	private void setComponentVisibility() {
 		boolean setVisibility = combobox.getSelectedItem() == "DB";

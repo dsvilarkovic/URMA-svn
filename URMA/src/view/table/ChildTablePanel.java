@@ -1,7 +1,6 @@
 package view.table;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -60,7 +59,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	/**
 	 * Podesavanje mape dece
 	 * @author Dusan
-	 * @param tableMap - tabela po kojoj ce se podesavati modeli
+	 * @param tableMap - tabela po kojoj ce se podesavati child table modeli tipa {@link TableModel}
 	 */
 	public void setTableModelMap(Map<String, Table> tableMap) {
 		this.tableModelMap.clear();
@@ -140,7 +139,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 
 
 	/**
-	 * Na osnovu indeks JTabbedPane nalazi odabranu tabelu u kolekciji childModelList i vraca odgovarajucu tabelu
+	 * Na osnovu indeks {@code JTabbedPanel} nalazi odabranu tabelu u kolekciji {@code childTabs} i vraca odgovarajucu tabelu
 	 * @author Dusan
 	 * @return tabelu selektovanu, ili null ako nije nista nasao
 	 */
@@ -159,7 +158,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	
 	
 	/**
-	 * Sluzi da vrati model aktivne tabele u child panelu
+	 * Sluzi da vrati model aktivne tabele u {@code childTablePanel}
 	 * @author Dusan
 	 * @return - tabelu modela aktivnog child-a
 	 */
@@ -170,7 +169,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	}
 	
 	/**
-	 * Na osnovu indeks JTabbedPane nalazi odabrani pogled na tabelu i vraca odgovarajucu tabelu
+	 * Na osnovu indeks JTabbedPane nalazi odabrani pogled na tabelu i vraca odgovarajucu tabelu tipa {@link JTable}
 	 * @author Dusan
 	 * @return pogled na tabelu selektovanu, ili null ako nije nista nasao
 	 */
@@ -187,7 +186,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	
 
 	/**
-	 * Konstruisanje filtera
+	 * Konstruisanje filtera za sve table modele u {@code childTablePanel}
 	 * @param childTableModel
 	 * @param parentTableModel
 	 * @return
@@ -205,7 +204,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 
 	@Override
 	public void updateLanguage() {
-		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		//ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		
 		
 		try {

@@ -4,7 +4,6 @@ package view.table;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.JScrollPane;
@@ -34,7 +33,7 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 	/**
 	 * Konstruktor tabela za roditeljski panel
 	 * @author Dusan
-	 *
+	 * @param title - naziv tabele po kojoj se podesava
 	 */
 	public ParentTablePanel(String title) {
 		super(title);
@@ -53,7 +52,6 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 		
 		addSelectionEvent();
 	}
-	
 	
 	private void addSelectionEvent() {
 		tableView.getSelectionModel().addListSelectionListener(
@@ -113,6 +111,11 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 		
 	}
 	
+	/**
+	 * Metoda za pozivanje fitriranje dece po {@code parentRowValues}
+	 * @param parentRowValues - mapa po kojoj se izvrsava filtriranje,<br>
+	 *  kljuc je kod atributa, a vrednost vrednost tog atributa
+	 */
 	private void filter(Map<String, String> parentRowValues) {
 		App.INSTANCE.getTableMediator().setParentRowValues(parentRowValues);
 		
@@ -122,7 +125,10 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 	}
 	
 
-
+	/**
+	 * Podesavanje roditeljske tabele u {@code parentTablePanel}
+	 * @param tableModel
+	 */
 	public void setParentModel(TableModel tableModel) {
 		this.tableModel = tableModel;
 		tableView.setModel(tableModel);

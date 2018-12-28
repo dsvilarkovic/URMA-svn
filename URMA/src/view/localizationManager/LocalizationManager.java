@@ -2,20 +2,13 @@ package view.localizationManager;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.TreeMap;
-import java.util.Vector;
-
-import app.App;
-import view.table.ParentTablePanel;
-import view.table.TableModel;
 
 /**
  * Lokalizacioni menadzer koji radi po principu observer sablona 
@@ -32,7 +25,7 @@ public class LocalizationManager {
 	private static Map<String, NumberFormat> numberFormats = new TreeMap<>();
  	
 	/**
-	 * Lokalizacioni menadzer koji radi po principu observer sablona 
+	 * Lokalizacioni menadzer koji radi po principu observer sablona <br>
 	 * Obavestava i namece promenu jezika preko combobox-a statusbar-a
 	 * @author Dusan
 	 *
@@ -50,10 +43,10 @@ public class LocalizationManager {
 	
 	/**
 	 * Ovime se podesava jezik u svim jezicki zavisnim komponentama
-	 * @param language
+	 * @author Dusan
+	 * @param language - jezik po kojem se podesava lokalizaciji
 	 */
-	public void updateLanguage(String language) {		
-		Locale locale = Locale.getDefault();
+	public void updateLanguage(String language) {
 		
 		if(currentDateFormat == null || currentDateFormat.equals(dateFormats.get("Simple"))) {
 			currentDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
@@ -83,8 +76,9 @@ public class LocalizationManager {
 	
 	
 	/**
-	 * Ovako se dodaju lokalizacioni menadzeri
-	 * @param localizationObserver
+	 * Dodavanje observera u lokalizacionog menadzera
+	 * @author Dusan
+	 * @param localizationObserver - interfejs observera koji se dodaje
 	 */
 	public void addLocalizationObserver(LocalizationObserver localizationObserver) {
 		localizationObservers.add(localizationObserver);
@@ -146,6 +140,7 @@ public class LocalizationManager {
 	/**
 	 * Podesava trenutni dateformat po kojem se postavlja, proverava se da li odgovara
 	 * trenutnom formatu	
+	 * @author Dusan
 	 * @param dateString - string po kojem se proverava prolaznost parsiranja za neki dateFormat
 	 */
 	public static void setDateFormats(String dateString) {
@@ -162,9 +157,10 @@ public class LocalizationManager {
 	
 	/**
 	 * Proverava da li se moze parsirati po datom dateFormat-u
-	 * @param dateFormat
-	 * @param dateString
-	 * @return - da/ne u zavisnosti od uspeha parsiranja.
+	 * @author Dusan
+	 * @param dateFormat - format za koji se proverava, tipa {@link DateFormat}
+	 * @param dateString - vrednost po kojom se formatira.
+	 * @return - true/false u zavisnosti od uspeha parsiranja.
 	 */
 	public static boolean checkDateFormatIfEligible(DateFormat dateFormat, String dateString) {
 		try {
@@ -181,10 +177,10 @@ public class LocalizationManager {
 	
 	
 	/**
-	 * Sluzi za konvertovanje objekta u string
+	 * Sluzi za konvertovanje tipa wrapper objekta u string.
 	 * @author Dusan
-	 * @param object
-	 * @return
+	 * @param object - vrednost koji se konvertuje.
+	 * @return - {@literal null} ako ne uspe da konvertuje u bilo koji vrednost
 	 */
 	public static String convertToString(Object object) {
 		try {
@@ -240,8 +236,9 @@ public class LocalizationManager {
 
 	
 	/**
-	 * Ispisuje tip trenutnog formata sa kojim se radi
+	 * Ispisuje tip trenutnog formata sa kojim se radi.
 	 */
+	@SuppressWarnings("unused")
 	private static void printCurrentFormatType() {
 		
 		for (String dateFormatKey : dateFormats.keySet()) {
@@ -256,6 +253,20 @@ public class LocalizationManager {
 		System.out.println("Nije nista nasao");
 	}
 
+	/**
+	  * Parser i formater u odgovarajuci lokalizacioni tip brojne vrednosti. <br>
+	 * Primer, Ameri koriste format za decimalni broj 17000.355 kao 17,000.355 <br>
+	 * Srbi koriste format 17.000,355
+	 * 
+	 * <br> <br>
+	 * Napomena: trenutno formatira na osnovu onoga kako je u bazi prikazano, a to je US format.
+	 * @author Dusan
+	 * @param numberString - string po kojem se radi parsiranje i lokalizacija, pretpostavka je da se<br>
+	 * tu nalazi broj u stringu. Ukoliko ne, adekvatno se obradjuje.
+	 * @return tacan broj ako se nalazio u stringu <br>
+	 * "none" - kao vrednost pri debugovanju <br>
+	 * "number_format_error" - kao nepostojanje broja u numberString stringu
+	 */
 	public static String formatNumberString(String numberString) {
 		NumberFormat newNumberFormat = NumberFormat.getInstance(Locale.getDefault());
 		
@@ -296,28 +307,13 @@ public class LocalizationManager {
 		return returnNumber;
 	}
 	
+
 	
-//	/**
-//	 * Vraca broj u obliku pogodnom za bazu podataka
-//	 * @param numberString - oblik preuzet iz tabele
-//	 * @return broj u odgovarajucem formatu, ali kao {@link} String
-//	 */
-//	public static String formatNumberStringDatabase(String numberString) {
-//		Number returnNumber = null;
-//		String returnNumberString = "none";
-//		NumberFormat fromTableFormat = NumberFormat.getInstance(Locale.getDefault());
-//		NumberFormat databaseFormat = numberFormats.get("US");
-//		try {	
-//			returnNumber = (Number)fromTableFormat.parse(numberString);
-//			returnNumberString = databaseFormat.format(returnNumber);
-//		}
-//		catch (Exception e) {
-//			returnNumberString = "number_format_error";
-//		}
-//		return returnNumberString;
-//	}
-	
-	
+	/**
+	 * Vraca u date oblik koji se koristi u bazi podataka i koji prihvata, a to je yyyy-MM-dd format.
+	 * @param dateString - string iz vrednosti tabele
+	 * @return - odgovarajuci {@link String} oblik
+	 */
 	public static String formatDateStringDatabase(String dateString) {
 		Date returnDate = null;
 		String returnDateString = "none";

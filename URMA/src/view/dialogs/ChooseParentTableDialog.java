@@ -18,7 +18,11 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 import model.Table;
-
+/**
+ * Dialog iz koje se bira roditelj pri spustanju roditeljske tabele iz {@link inparentTablePanel}
+ * @author Dusan
+ *
+ */
 public class ChooseParentTableDialog extends JDialog{
 
 	private static final long serialVersionUID = -2861236282515127819L;
@@ -30,6 +34,11 @@ public class ChooseParentTableDialog extends JDialog{
 	protected String retVal;
 	private JButton cancelButton;
 
+	/**
+	 * Dialog iz koje se bira roditelj pri spustanju roditeljske tabele iz {@link inparentTablePanel}
+	 * @author Dusan
+	 * @param parentTableMap - mapa ponudjenih tabela kandidata za roditelja
+	 */
 	public ChooseParentTableDialog(Map<String, Table> parentTableMap) {
 		super();
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -95,6 +104,10 @@ public class ChooseParentTableDialog extends JDialog{
 		setVisible(true);
 	}
 
+	/**
+	 * Vraca kod selektovanog roditelja u {@link String} obliku
+	 * @return
+	 */
 	public String getSelected() {
 		return retVal;
 	}

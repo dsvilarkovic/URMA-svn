@@ -45,8 +45,9 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 	 * Klasa koja služi za predstavu dijaloga u kojem ce se nalaziti tabela
 	 * odakle će se birati torka sa referenciranim vrednostima u stranom ključu.
 	 * Vraća odabranu torku sa vrednostima koje se biraju kako je zapisano.
+	 * @author Dusan
 	 * @param table - tabela po kojoj ce se praviti dijalog
-	 * @param parentCaller - akcija iz koje se poyiva dijalog
+	 * @param parentCaller - akcija iz koje se poziva dijalog
 	 */
 	public ChooseReferencedCollumnValuesDialog(Table table, ForeignKeyAction parentCaller) {
 		this.parentCaller = parentCaller;
@@ -94,6 +95,7 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 	
 	/**
 	 * Metoda koja se koristi za gasenje dijaloga.
+	 * @author Dusan
 	 */
 	private void closeDialog() {
 		//TODO: @Jelena implementiraj kako ti bude potrebno
@@ -110,8 +112,9 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 
 	/**
 	 * Inicijalizacija tabele sa svim njenim potrebnim funkcionalnostima
+	 * @author Dusan
 	 * @param tableModel - model po kojem se podesavaju podaci
-	 * @return - inicijalizovanu jtabelu
+	 * @return - inicijalizovanu {@link JTable}
 	 */
 	private JTable init_table(TableModel tableModel) {
 		JTable tableView = new JTable(tableModel);
@@ -133,17 +136,20 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 		return tableView;
 	}
 	/**
-	 * Nalazi selektovani tableModel na osnovu cijeg table-a je radjen CRUD prozor
-	 * @param table
-	 * @return
+	 * Nalazi selektovani {@link TableModel} na osnovu cijeg table-a je radjen CRUD prozor
+	 * @author Dusan
+	 * @param table - tabela po kojoj se trazi, tipa {@code Table}
+	 * @return - odgovarajuca pozivana {@link TableModel} tabela
 	 */
+	@SuppressWarnings("unused")
 	private TableModel findTableModel(Table table) {
 		return App.INSTANCE.getTableMediator().getCalledTableModel(table);
 	}
 	
 	/**
-	 * Vraca vrednosti odabrane kolone u tabeli
-	 * @return
+	 * Vraca vrednosti odabrane kolone u tabeli u  {@code Vector<Object>}  obliku
+	 * @author Dusan
+	 * @return niz objekata vrednosti selektovane torke
 	 */
 	private Vector<Object> getSelectedRowValues(){
 		Vector<Object> selectedRow = new Vector<>();

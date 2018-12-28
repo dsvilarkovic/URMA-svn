@@ -12,17 +12,13 @@ import javax.swing.JOptionPane;
 import app.App;
 import controler.Save;
 
-/**
- * 
- * @author Dusan
- *
- */
 public class CreateSchemaAction extends AbstractAction {
 	
 	private static final long serialVersionUID = -1109003278878012826L;
 
 	/**
 	 * Konstruktor za kreiranje seme
+	 * 
 	 */
 	public CreateSchemaAction() {
 		int prefferedSize = 23;
