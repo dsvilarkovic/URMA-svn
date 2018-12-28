@@ -34,7 +34,8 @@ public class AdapterPackage implements TreeParts{
 	@Override
 	public String getName() {
 		
-		return paket.getTitle();
+		//return paket.getTitle();
+		return App.INSTANCE.getTitleLanguagePack().getPackageTitle(paket.getCode());
 	}
 
 	@Override

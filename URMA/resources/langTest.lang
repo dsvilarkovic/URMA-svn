@@ -12,6 +12,19 @@
                     "value": "glavni"
                 }
             ]
+        },
+        {
+            "code": "INFRES",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "InfResource"
+                },
+                {
+                    "lang": "sr",
+                    "value": "InfResurs"
+                }
+            ]
         }
     ],
     "tables": [

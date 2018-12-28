@@ -38,34 +38,46 @@ public class TitleLanguagePack {
 	 */
 	public String getAttributeTitle(String attrtibuteCode, String tableCode) {
 		Map<String, String> values = attributeTitles.get(tableCode.toLowerCase() + attrtibuteCode.toUpperCase());
-		if (this.isLanguagePackLoaded()) {
-			Locale locale = Locale.getDefault();
+		if (values == null) {
+			return null;
+		}
+		Locale locale = Locale.getDefault();
+		String lang = locale.getLanguage();
+		if (this.isLanguagePackLoaded() && values.containsKey(lang)) {
 			return values.get(locale.getLanguage());
 		}
 		else {
-			return values.values().iterator().next();
+			return values.get("default");
 		}
 	}
 	
 	public String getTableTitle(String code) {
 		Map<String, String> values = tableTitles.get(code);
-		if (this.isLanguagePackLoaded()) {
-			Locale locale = Locale.getDefault();
+		if (values == null) {
+			return null;
+		}
+		Locale locale = Locale.getDefault();
+		String lang = locale.getLanguage();
+		if (this.isLanguagePackLoaded() && values.containsKey(lang)) {
 			return values.get(locale.getLanguage());
 		}
 		else {
-			return values.values().iterator().next();
+			return values.get("default");
 		}
 	}
 	
 	public String getPackageTitle(String code) {
 		Map<String, String> values = packageTitles.get(code);
-		if (this.isLanguagePackLoaded()) {
-			Locale locale = Locale.getDefault();
+		if (values == null) {
+			return null;
+		}
+		Locale locale = Locale.getDefault();
+		String lang = locale.getLanguage();
+		if (this.isLanguagePackLoaded() && values.containsKey(lang)) {
 			return values.get(locale.getLanguage());
 		}
 		else {
-			return values.values().iterator().next();
+			return values.get("default");
 		}
 	}
 

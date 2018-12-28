@@ -14,6 +14,10 @@ import org.json.JSONTokener;
 
 import app.App;
 import controler.Open;
+import model.Attribute;
+import model.InformationResource;
+import model.Package;
+import model.Table;
 import model.TitleLanguagePack;
 import view.localizationManager.LocalizationObserver;
 
@@ -31,7 +35,38 @@ public class LoadLanguagePackAction extends AbstractAction implements Localizati
 		loadLanguagePack(path);
 	}
 	
+	public static boolean loadDefaultLanguagePack(InformationResource ir) {
+		TitleLanguagePack tlp = new TitleLanguagePack();
+		for (Package pack : ir.getPackages().values()) {
+			HashMap<String, String> values = new HashMap<>();
+			values.put("default", pack.getTitle());
+			tlp.addPackageTitles(pack.getCode(), values);
+		}
+		
+		//TODO: Hardcode, jbg. (Boris)
+		HashMap<String, String> val = new HashMap<>();
+		val.put("default", "InfResource");
+		tlp.addPackageTitles("INFRES", val);
+		
+		for (Table tab : ir.getAllTables().values()) {
+			HashMap<String, String> values = new HashMap<>();
+			values.put("default", tab.getTitle());
+			tlp.addTableTitles(tab.getCode(), values);
+
+			for (Attribute attr : tab.getAttributes().values()) {
+				HashMap<String, String> values1 = new HashMap<>();
+				values1.put("default", attr.getTitle());
+				tlp.addAttributeTitles(attr.getCode(), tab.getCode(), values1);
+			}
+		}
+		tlp.setLanguagePackLoaded(false);
+		App.INSTANCE.setTitleLanguagePack(tlp);
+		
+		return true;
+	}
+	
 	public static boolean loadLanguagePack(String path) {
+		loadDefaultLanguagePack(App.INSTANCE.getModel());
 		TitleLanguagePack tlp = App.INSTANCE.getTitleLanguagePack();
 		if (path != null) {
 			JSONTokener tokener = new JSONTokener((String) new Open().openThis(path));

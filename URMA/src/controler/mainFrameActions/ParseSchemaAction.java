@@ -66,14 +66,13 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 		// Pravi paket koji ce sadrzati sve ostale pakete (Najstariji cvor stabla)
 		Package elderPackage = new Package();
 		elderPackage.setTitle("InfResource");
+		elderPackage.setCode("INFRES");
 		for (Package value : App.INSTANCE.getModel().getPackages().values())
 			elderPackage.addChildPackages(value);
 
 		App.INSTANCE.getMainAppFrame().getTreePanel().removeAll();
 		App.INSTANCE.getMainAppFrame().getTreePanel().init(new AdapterPackage(elderPackage));
 
-		// Language paket
-		App.INSTANCE.setTitleLanguagePack(new TitleLanguagePack());
 
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",
 				Locale.getDefault());
@@ -89,25 +88,7 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 		// Ako je rekao da nece ili nije nista selektovano punimo sa "default" =>
 		// vrednost iz modela
 		InformationResource ir = App.INSTANCE.getModel();
-		TitleLanguagePack tlp = new TitleLanguagePack();
-		for (Package pack : ir.getPackages().values()) {
-			HashMap<String, String> values = new HashMap<>();
-			values.put("default", pack.getTitle());
-			tlp.addPackageTitles(pack.getCode(), values);
-		}
-		for (Table tab : ir.getAllTables().values()) {
-			HashMap<String, String> values = new HashMap<>();
-			values.put("default", tab.getTitle());
-			tlp.addTableTitles(tab.getCode(), values);
-
-			for (Attribute attr : tab.getAttributes().values()) {
-				HashMap<String, String> values1 = new HashMap<>();
-				values1.put("default", attr.getTitle());
-				tlp.addAttributeTitles(attr.getCode(), tab.getCode(), values1);
-			}
-		}
-		tlp.setLanguagePackLoaded(false);
-		App.INSTANCE.setTitleLanguagePack(tlp);
+		LoadLanguagePackAction.loadDefaultLanguagePack(ir);
 	}
 
 	@Override
