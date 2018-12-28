@@ -285,28 +285,7 @@ public class DBHandler implements IHandler {
 			String type = attribute.getType();
 			String value = values.get(i).toString();
 			sql += key + "='";
-			switch(type) {
-				case "double":{
-					value = LocalizationManager.formatNumber(value).toString();
-					break;
-				}
-				case "int":{
-					value = LocalizationManager.formatNumber(value).toString();
-					break;
-				}
-				case "date":{
-					value = LocalizationManager.formatDateStringDatabase(value);
-					break;
-				}
-				case "bool":{
-					if(value.equals("true")) {
-						value = "1";
-					}
-					else if(value.equals("false")) {
-						value = "0";
-					}
-				}
-			}			
+			value = convertValue(value, type);		
 			sql += value + "' AND ";
 			//kraj doradjivanja by @Dusan
 			
@@ -333,6 +312,32 @@ public class DBHandler implements IHandler {
 		App.INSTANCE.getTableMediator().showTable(table);
 	}
 	
+	private String convertValue(String value, String type) {
+		switch(type) {
+			case "double":{
+				value = LocalizationManager.formatNumber(value).toString();
+				break;
+			}
+			case "int":{
+				value = LocalizationManager.formatNumber(value).toString();
+				break;
+			}
+			case "date":{
+				value = LocalizationManager.formatDateStringDatabase(value);
+				break;
+			}
+			case "bool":{
+				if(value.equals("true")) {
+					value = "1";
+				}
+				else if(value.equals("false")) {
+					value = "0";
+				}
+			}
+		}
+		return value;
+	}
+
 	/**
 	 * Metoda za search akciju
 	 * @author filip
