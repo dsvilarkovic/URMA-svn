@@ -26,8 +26,8 @@ import view.table.TableModel;
 public class LocalizationManager {
 
 	private List<LocalizationObserver> localizationObservers = new ArrayList<>();
-	private static DateFormat currentDateFormat = null;
-	private static NumberFormat currentNumberFormat = null;
+	public static DateFormat currentDateFormat = null;
+	public static NumberFormat currentNumberFormat = null;
 	private static Map<String, DateFormat> dateFormats = new TreeMap<>();
 	private static Map<String, NumberFormat> numberFormats = new TreeMap<>();
  	
@@ -135,6 +135,7 @@ public class LocalizationManager {
 	 */
 	public static Date formatDate(String dateString) {
 		Date returnDate = null;
+		currentDateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
 		try {	
 			returnDate = (Date)currentDateFormat.parse(dateString);
 		}
