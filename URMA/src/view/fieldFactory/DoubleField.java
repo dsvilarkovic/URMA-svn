@@ -51,9 +51,9 @@ public class DoubleField extends JPanel implements IField{
 		try {
 			//TODO: @Dusan uradio, @Jelena da proveri
 			Number formattedNumber = LocalizationManager.formatNumber(field.getText());
-			if((formattedNumber instanceof Double) == false) {
-				throw new Exception("Not double type exception");
-			}
+//			if((formattedNumber instanceof Double) == false) {
+//				throw new Exception("Not double type exception");
+//			}
 			//Jelena prethodno radila
 			//Double.parseDouble(field.getText());
 			return true;
@@ -110,7 +110,11 @@ public class DoubleField extends JPanel implements IField{
 		if(field.getText().equals("")) {
 			return null;
 		}
-		return field.getText();
+		//TODO: @Dusan radio, @Jelena da proveri
+		Number formattedNumber = LocalizationManager.formatNumber(field.getText());
+		return formattedNumber;
+		//Jelena radila
+		//return field.getText();
 	}
 
 	@Override

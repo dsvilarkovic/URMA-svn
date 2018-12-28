@@ -283,7 +283,7 @@ public class LocalizationManager {
 	 * @author Dusan
 	 * @param numberString - string iz tabele koji ce se parsirati
 	 * 
-	 * @return - adekvatni {@link Number} objekat
+	 * @return - adekvatni {@link Number} objekat ili null ako ne odgovara format
 	 */
 	public static Number formatNumber(String numberString) {
 		Number returnNumber = null;

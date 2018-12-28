@@ -59,12 +59,9 @@ public class IntegerField extends JPanel implements IField{
 //        }
 		try {
 			//TODO: @Dusan uradio, @Jelena da proveri
-			System.out.println("1");
 			Number formattedNumber = LocalizationManager.formatNumber(field.getText());
-			System.out.println("2");
 			if((formattedNumber instanceof Integer) == false &&
 					(formattedNumber instanceof Long) == false) {
-				System.out.println("3");
 				throw new Exception("Not integer type exception");
 			}
 			//Jelena prethodno radila
@@ -125,7 +122,11 @@ public class IntegerField extends JPanel implements IField{
 		if(field.getText().equals("")) {
 			return null;
 		}
-		return field.getText();
+		//TODO: @Dusan radio, @Jelena da proveri
+		Number formattedNumber = LocalizationManager.formatNumber(field.getText());
+		return formattedNumber;
+		//Jelena radila
+		//return field.getText();
 	}
 
 	@Override
