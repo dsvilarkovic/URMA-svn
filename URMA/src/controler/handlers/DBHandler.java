@@ -237,7 +237,7 @@ public class DBHandler implements IHandler {
 					return false;
 				}
 				if(field.getValue() == null) {
-					sql+= "NULL, ";
+					sql+= "NULL, "; 
 				}else {
 					sql += field.getValue().toString() + "', ";
 				}

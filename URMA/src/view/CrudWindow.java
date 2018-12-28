@@ -23,6 +23,7 @@ import controler.crud.SearchAction;
 import controler.crud.UpdateAction;
 import model.Attribute;
 import model.Table;
+import model.TitleLanguagePack;
 import view.dialogs.ChooseReferencedCollumnValuesDialog;
 import view.fieldFactory.DecoratedField;
 import view.fieldFactory.IField;
@@ -57,7 +58,13 @@ public class CrudWindow extends JDialog{
 		CreateWindow();
 		add(new JPanel());
 		JPanel jp = new JPanel();
-		jp.add(new JLabel(table.getTitle()));
+		
+		//Dusan radio lokalizaciju
+		TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+		String localizedString = titleLanguagePack.getTableTitle(table.getCode());
+		jp.add(new JLabel(localizedString));
+		//Jelena
+		//jp.add(new JLabel(table.getTitle()));
 		add(jp);
 		add(new JPanel());
 		Map<String, Attribute> attributes = table.getAttributes();
@@ -66,7 +73,11 @@ public class CrudWindow extends JDialog{
 			Attribute attribute = attributes.get(attributeKey);
 			App.INSTANCE.createFieldFactory(attribute.getType());
 			jp = new JPanel();
-			jp.add(new JLabel(attribute.getTitle()));
+			//Dusan radio lokalizaciju
+			localizedString = titleLanguagePack.getAttributeTitle(attribute.getCode(), table.getCode());
+			jp.add(new JLabel(localizedString));
+			//Jelena
+			//jp.add(new JLabel(attribute.getTitle()));
 			add(jp);
 			IField field = App.INSTANCE.getFieldFactory().createField();
 			field.setValue(values.get(i));
@@ -114,7 +125,13 @@ public class CrudWindow extends JDialog{
 		CreateWindow();
 		add(new JPanel());
 		JPanel jp = new JPanel();
-		jp.add(new JLabel(table.getTitle()));
+		//Dusan radio lokalizaciju
+		TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+		String localizedString = titleLanguagePack.getTableTitle(table.getCode());
+		jp.add(new JLabel(localizedString));
+		//Jelena
+		//jp.add(new JLabel(table.getTitle()));
+		
 		add(jp);
 		add(new JPanel());
 		Map<String, Attribute> attributes = table.getAttributes();
@@ -122,7 +139,11 @@ public class CrudWindow extends JDialog{
 			Attribute attribute = attributes.get(attributeKey);
 			App.INSTANCE.createFieldFactory(attribute.getType());
 			jp = new JPanel();
-			jp.add(new JLabel(attribute.getTitle()));
+			//Dusan radio lokalizaciju
+			localizedString = titleLanguagePack.getAttributeTitle(attribute.getCode(), table.getCode());
+			jp.add(new JLabel(localizedString));
+			//Jelena
+			//jp.add(new JLabel(attribute.getTitle()));
 			add(jp);
 			if(search) {
 				IField[] field = App.INSTANCE.getFieldFactory().createDoubleField();

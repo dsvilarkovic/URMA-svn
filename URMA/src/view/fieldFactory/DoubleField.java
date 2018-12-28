@@ -7,6 +7,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import view.localizationManager.LocalizationManager;
+
 /**
  * Klasa koja opisuje double tip polja koja su potrebna za crud akcije
  * @author Jelena
@@ -47,7 +49,13 @@ public class DoubleField extends JPanel implements IField{
 	
 	private boolean validateJFormatedTextField(JFormattedTextField field) {
 		try {
-			Double.parseDouble(field.getText());
+			//TODO: @Dusan uradio, @Jelena da proveri
+			Number formattedNumber = LocalizationManager.formatNumber(field.getText());
+			if((formattedNumber instanceof Double) == false) {
+				throw new Exception("Not double type exception");
+			}
+			//Jelena prethodno radila
+			//Double.parseDouble(field.getText());
 			return true;
 		}catch (Exception e) {
 			return false;

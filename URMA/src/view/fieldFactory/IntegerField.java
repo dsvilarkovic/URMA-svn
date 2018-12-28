@@ -7,6 +7,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import view.localizationManager.LocalizationManager;
+
 /**
  * Klasa koja opisuje integer tip polja koja su potrebna za crud akcije
  * @author Jelena
@@ -56,7 +58,17 @@ public class IntegerField extends JPanel implements IField{
 //            return false;
 //        }
 		try {
-			Integer.parseInt(field.getText());
+			//TODO: @Dusan uradio, @Jelena da proveri
+			System.out.println("1");
+			Number formattedNumber = LocalizationManager.formatNumber(field.getText());
+			System.out.println("2");
+			if((formattedNumber instanceof Integer) == false &&
+					(formattedNumber instanceof Long) == false) {
+				System.out.println("3");
+				throw new Exception("Not integer type exception");
+			}
+			//Jelena prethodno radila
+			//Integer.parseInt(field.getText());
 			return true;
 		}catch (Exception e) {
 			return false;
@@ -80,6 +92,7 @@ public class IntegerField extends JPanel implements IField{
 			}
 			System.out.println(maxLen);
 			if(field.getText().length() > maxLen) {
+				System.out.println("IntegerField");
 				System.out.println("wrong len");
 				return false;
 			}

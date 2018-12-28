@@ -287,6 +287,7 @@ public class LocalizationManager {
 	 */
 	public static Number formatNumber(String numberString) {
 		Number returnNumber = null;
+		currentNumberFormat = NumberFormat.getInstance(Locale.getDefault());
 		try {	
 			returnNumber = (Number)currentNumberFormat.parse(numberString);
 		}
