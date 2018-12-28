@@ -297,6 +297,43 @@ public class LocalizationManager {
 	}
 	
 	
+//	/**
+//	 * Vraca broj u obliku pogodnom za bazu podataka
+//	 * @param numberString - oblik preuzet iz tabele
+//	 * @return broj u odgovarajucem formatu, ali kao {@link} String
+//	 */
+//	public static String formatNumberStringDatabase(String numberString) {
+//		Number returnNumber = null;
+//		String returnNumberString = "none";
+//		NumberFormat fromTableFormat = NumberFormat.getInstance(Locale.getDefault());
+//		NumberFormat databaseFormat = numberFormats.get("US");
+//		try {	
+//			returnNumber = (Number)fromTableFormat.parse(numberString);
+//			returnNumberString = databaseFormat.format(returnNumber);
+//		}
+//		catch (Exception e) {
+//			returnNumberString = "number_format_error";
+//		}
+//		return returnNumberString;
+//	}
+	
+	
+	public static String formatDateStringDatabase(String dateString) {
+		Date returnDate = null;
+		String returnDateString = "none";
+		DateFormat fromTableFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
+		DateFormat databaseFormat = dateFormats.get("Simple");
+		try {
+			returnDate = (Date) fromTableFormat.parse(dateString);
+			returnDateString = databaseFormat.format(returnDate);
+		}
+		catch(Exception e){
+			returnDateString = "date_format_error";
+		}
+		return returnDateString;
+	}
+	
+	
 	
 
 }

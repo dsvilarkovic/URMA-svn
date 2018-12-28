@@ -21,6 +21,7 @@ import model.Attribute;
 import model.Table;
 import view.fieldFactory.DecoratedField;
 import view.fieldFactory.IField;
+import view.localizationManager.LocalizationManager;
 import view.table.TableModel;
 
 /**
@@ -279,7 +280,38 @@ public class DBHandler implements IHandler {
 		Map<String, Attribute> attributes = table.getAttributes();
 		int i = 0;
 		for (String key : attributes.keySet()) {
-			sql += key + "='" + values.get(i) + "' AND ";
+			//TODO: @Dusan radio, Jelena da proveri
+			Attribute attribute = table.getAttribute(key);
+			String type = attribute.getType();
+			String value = values.get(i).toString();
+			sql += key + "='";
+			switch(type) {
+				case "double":{
+					value = LocalizationManager.formatNumber(value).toString();
+					break;
+				}
+				case "int":{
+					value = LocalizationManager.formatNumber(value).toString();
+					break;
+				}
+				case "date":{
+					value = LocalizationManager.formatDateStringDatabase(value);
+					break;
+				}
+				case "bool":{
+					if(value.equals("true")) {
+						value = "1";
+					}
+					else if(value.equals("false")) {
+						value = "0";
+					}
+				}
+			}			
+			sql += value + "' AND ";
+			//kraj doradjivanja by @Dusan
+			
+			//Jelena radila
+			//sql += key + "='" + values.get(i) + "' AND ";
 			i++;
 		}
 		sql = sql.substring(0, sql.length() - 5);
