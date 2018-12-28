@@ -17,6 +17,7 @@ import javax.swing.table.TableRowSorter;
 
 import app.App;
 import model.Table;
+import model.TitleLanguagePack;
 import view.localizationManager.LocalizationObserver;
 
 /**
@@ -33,6 +34,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	private List<TableRowSorter<TableModel>> tableSorters = new ArrayList<TableRowSorter<TableModel>>();
 	private List<RowPrimaryKeyFilter<TableModel>> primaryKeyFilters = new ArrayList<RowPrimaryKeyFilter<TableModel>>();
 	private JScrollPane jScrollPane;
+	private List<String> titleCodes = new ArrayList<>();
 	
 	/**
 	 * Panel deteta koje ce se konstruisati jednom u pogledu
@@ -84,6 +86,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 		//i row filtera
 		tableSorters.clear();
 		primaryKeyFilters.clear();
+		titleCodes.clear();
 		
 		
 		for (String tableKey : this.tableModelMap.keySet()) {
@@ -94,7 +97,9 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 			JTable stagod = new JTable(tableModelInsert);
 			
 			JScrollPane jScrollPane = new JScrollPane(stagod);
-			jScrollPane.setName(tableModelInsert.getTable().getTitle());
+			TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+			String localizedTitle =titleLanguagePack.getTableTitle(tableModelInsert.getTable().getCode()); 
+			jScrollPane.setName(localizedTitle);
 			this.childTabs.add(jScrollPane);
 			
 			//podesi sorter (jedan za svako dete)
@@ -107,6 +112,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 			stagod.setRowSorter(tableSorter);	
 			
 					
+			titleCodes.add(tableModelInsert.getTable().getCode());
 			
 		}
 		
@@ -201,8 +207,15 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 	public void updateLanguage() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		
+		
 		try {
-			childTabs.setTitleAt(childTabs.getSelectedIndex(), resourceBundle.getString("table.tab.title"));
+			
+			//childTabs.setTitleAt(childTabs.getSelectedIndex(), resourceBundle.getString("table.tab.title"));
+			TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+			for (int i = 0; i < titleCodes.size(); i++) {
+				String localizedTitle = titleLanguagePack.getTableTitle(titleCodes.get(i));
+				childTabs.setTitleAt(i, localizedTitle);
+			}
 		}
 		catch(ArrayIndexOutOfBoundsException aiobe) {
 			System.err.println("No child found. Localization skipped");
@@ -214,8 +227,8 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 		for (String tableModelKey : keys) {
 			TableModel tableModel = tableModelMap.get(tableModelKey);
 			tableModel.updateLanguage();
+			
 		}
-		
 		super.setChangeableButtonAction("Child");
 		//mora ovako, problem naslednjivanja
 		super.updateLanguage();

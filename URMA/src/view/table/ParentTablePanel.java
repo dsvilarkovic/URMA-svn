@@ -16,6 +16,7 @@ import javax.swing.event.ListSelectionListener;
 
 import app.App;
 import model.Table;
+import model.TitleLanguagePack;
 import view.localizationManager.LocalizationObserver;
 
 /**
@@ -125,7 +126,9 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 	public void setParentModel(TableModel tableModel) {
 		this.tableModel = tableModel;
 		tableView.setModel(tableModel);
-		tab.setTitleAt(0, tableModel.getTable().getTitle());
+		TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+		String localizedTitle = titleLanguagePack.getTableTitle(tableModel.getTable().getCode());
+		tab.setTitleAt(0, localizedTitle);
 		
 		//podesi podatke
 		tableModel.setUpData();
@@ -157,8 +160,10 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 	
 	@Override
 	public void updateLanguage() {
-		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
-		tab.setTitleAt(0,resourceBundle.getString("table.tab.title"));
+		TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+		String localizedTitle = titleLanguagePack.getTableTitle(tableModel.getTable().getCode());
+		tab.setTitleAt(0, localizedTitle);
+		//tab.setTitleAt(0,resourceBundle.getString("table.tab.title"));
 		try {
 			tableModel.updateLanguage();
 		} 
