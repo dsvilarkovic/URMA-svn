@@ -90,6 +90,7 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 		IHandler handler = factory.createHandler();
 		LocalizationManager.nulifyFormats();
 		
+		
 		try {
 			Vector<Vector<Object>> valueList = handler.read(table);
 			//idi po redovima
@@ -100,13 +101,13 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 			}
 		}catch (Exception e) {
 			//JOptionPane.showMessageDialog(null, "Wrong file", "Invalid scheme", JOptionPane.ERROR_MESSAGE);
-			//podesi lokalizovanje datuma
-			updateLanguage();
-			return;
+			
+			//return;
 		}
 		
 		
-		
+		//podesi lokalizovanje datuma
+		updateLanguage();
 	}
 	
 	/**
@@ -183,7 +184,6 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 	
 	
 	private void setLocalizedIdentifiers() {
-		System.out.println("Lokalizujemo");
 		List<String> newIdentifiersList = new ArrayList<>();
 		TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
 		for (int i = 0; i < this.getColumnCount(); i++) {
