@@ -27,6 +27,13 @@ public interface TreeParts {
 	 */
 	public String getName();
 	
+//	/**
+//	 * Metoda za podesavanje imena cvora koji treba da se prikaze na stablu.
+//	 * @author Dusan
+//	 * @param treePartName - ime stabla koje treba da se prikaze
+//	 */
+//	public void setName(String treePartName);
+	
 	/**
 	 * Metoda koja definise akciju klika na cvor stabla
 	 * @author filip

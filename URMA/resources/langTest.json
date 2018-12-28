@@ -75,5 +75,18 @@
             "packages": []
         }
     ],
-    "relations": []
+    "relations": [
+    	{
+    		"title": "Parent - Child",
+            "code": "P-C",
+            "source": "PAR",
+            "destination": "CHI",
+            "keysSource": [
+                "NAM"
+            ],
+            "keysDestination": [
+                "NAM"
+            ]
+    	}
+    ]
 }

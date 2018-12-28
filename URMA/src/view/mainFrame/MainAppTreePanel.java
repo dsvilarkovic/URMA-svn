@@ -14,13 +14,14 @@ import javax.swing.tree.DefaultTreeModel;
 import app.App;
 import model.InformationResource;
 import model.treeAdapter.TreeParts;
+import view.localizationManager.LocalizationObserver;
 
 /**
  * Klasa panel za stablo u aplikaciji. <br>
  * Sadrzi TreeModel i Tree u sebi
  * @author filip
  */
-public class MainAppTreePanel extends JPanel {
+public class MainAppTreePanel extends JPanel implements LocalizationObserver{
 
 	private static final long serialVersionUID = 198264279977978230L;
 	private JTree tree;
@@ -36,6 +37,7 @@ public class MainAppTreePanel extends JPanel {
 	public MainAppTreePanel() {
 		setLayout(new BorderLayout());
 		setBackground(Color.orange);
+		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
 	}
 
 	/**
@@ -93,5 +95,10 @@ public class MainAppTreePanel extends JPanel {
 
 	public JTree getTree() {
 		return tree;
+	}
+
+	@Override
+	public void updateLanguage() {
+		
 	}
 }

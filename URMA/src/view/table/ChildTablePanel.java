@@ -17,6 +17,7 @@ import javax.swing.table.TableRowSorter;
 
 import app.App;
 import model.Table;
+import model.TitleLanguagePack;
 import view.localizationManager.LocalizationObserver;
 
 /**
@@ -93,7 +94,8 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 			tableModelInsert.setUpData();
 			JTable stagod = new JTable(tableModelInsert);
 			JScrollPane jScrollPane = new JScrollPane(stagod);
-			jScrollPane.setName(tableModelInsert.getTable().getTitle());
+			TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+			jScrollPane.setName(titleLanguagePack.getTableTitle(tableModelInsert.getTable().getCode()));
 			this.childTabs.add(jScrollPane);
 			
 			//podesi sorter (jedan za svako dete)
@@ -201,7 +203,11 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		
 		try {
-			childTabs.setTitleAt(childTabs.getSelectedIndex(), resourceBundle.getString("table.tab.title"));
+			//childTabs.setTitleAt(childTabs.getSelectedIndex(), resourceBundle.getString("table.tab.title"));
+			
+			updateChildTabs();
+			
+		
 		}
 		catch(ArrayIndexOutOfBoundsException aiobe) {
 			System.err.println("No child found. Localization skipped");

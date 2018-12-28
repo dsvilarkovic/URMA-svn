@@ -3,6 +3,9 @@ package model;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
+
+import app.App;
 
 public class TitleLanguagePack {
 	private Map<String,Map<String, String>> tableTitles;
@@ -15,6 +18,12 @@ public class TitleLanguagePack {
 		this.packageTitles = new HashMap<String, Map<String,String>>();
 		this.attributeTitles = new HashMap<String, Map<String,String>>();
 		this.setLanguagePackLoaded(false);
+		
+		//dodaj informacioni resurs po kojem se menja
+		Map<String, String> infResValues = new HashMap<>();
+		infResValues.put("en", "Information Resource");
+		infResValues.put("sr", "Informacioni Resurs");
+		addPackageTitles(new Integer(App.INSTANCE.getModel().hashCode()).toString(), infResValues);
 	}
 	
 	public void addAttributeTitles(String attributeCode, String tableCode, Map<String,String> values) {
@@ -38,8 +47,9 @@ public class TitleLanguagePack {
 	 */
 	public String getAttributeTitle(String attrtibuteCode, String tableCode) {
 		Map<String, String> values = attributeTitles.get(tableCode.toLowerCase() + attrtibuteCode.toUpperCase());
+		
 		if (this.isLanguagePackLoaded()) {
-			Locale locale = Locale.getDefault();
+			Locale locale = Locale.getDefault();			
 			return values.get(locale.getLanguage());
 		}
 		else {

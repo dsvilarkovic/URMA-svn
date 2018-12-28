@@ -16,6 +16,7 @@ import javax.swing.event.ListSelectionListener;
 
 import app.App;
 import model.Table;
+import model.TitleLanguagePack;
 import view.localizationManager.LocalizationObserver;
 
 /**
@@ -125,7 +126,9 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 	public void setParentModel(TableModel tableModel) {
 		this.tableModel = tableModel;
 		tableView.setModel(tableModel);
-		tab.setTitleAt(0, tableModel.getTable().getTitle());
+		
+		TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+		tab.setTitleAt(0, titleLanguagePack.getTableTitle(tableModel.getTable().getCode()));
 		
 		//podesi podatke
 		tableModel.setUpData();
@@ -158,10 +161,14 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 	@Override
 	public void updateLanguage() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
-		tab.setTitleAt(0,resourceBundle.getString("table.tab.title"));
-		tableModel.updateLanguage();
-		
-		
+		TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+		tab.setTitleAt(0,titleLanguagePack.getTableTitle(tableModel.getTable().getCode()));		
+		try {
+			tableModel.updateLanguage();
+		}
+		catch(NullPointerException npe) {
+			System.err.println("No parent found. Localization skipped");
+		}
 		super.setChangeableButtonAction("Parent");
 		
 		//mora ovako, problem naslednjivanja

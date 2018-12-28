@@ -18,8 +18,8 @@ public class TestChooseRefColumnVal {
 //		IHandler handler = factory.createHandler();
 //		Vector<Vector<Object>> valueList = handler.read(table);
 //		
-//		ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(table, null);
-//		
+//		ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(table);
+		
 		new ChooseSourceDialog();
 	}
 	

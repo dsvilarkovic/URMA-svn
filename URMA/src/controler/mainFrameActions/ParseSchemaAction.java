@@ -66,6 +66,7 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 		// Pravi paket koji ce sadrzati sve ostale pakete (Najstariji cvor stabla)
 		Package elderPackage = new Package();
 		elderPackage.setTitle("InfResource");
+		elderPackage.setCode(new Integer(App.INSTANCE.getModel().hashCode()).toString());
 		for (Package value : App.INSTANCE.getModel().getPackages().values())
 			elderPackage.addChildPackages(value);
 

@@ -16,6 +16,7 @@ import app.App;
 import controler.handlers.IHandler;
 import model.Attribute;
 import model.Table;
+import model.TitleLanguagePack;
 import model.resourceFactory.IResourceFactory;
 import view.localizationManager.LocalizationManager;
 import view.localizationManager.LocalizationObserver;
@@ -66,10 +67,16 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 	}
 	
 	public void setUpColumns(Table table) {
+		this.setColumnCount(0);
+		this.columnsCode.clear();
+		
 		Map<String, Attribute> attributes = table.getAttributes();
 		for (String attributeKey : attributes.keySet()) {
 			Attribute attribute = attributes.get(attributeKey);
-			this.addColumn(attribute.getTitle());
+			
+			TitleLanguagePack titleLanguagePack =  App.INSTANCE.getTitleLanguagePack();
+			String localizedTitle = titleLanguagePack.getAttributeTitle(attributeKey, table.getCode());
+			this.addColumn(localizedTitle);
 			this.columnsCode.add(attributeKey);
 		}
 	}
@@ -170,6 +177,8 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 				}
 			}
 		}
+		
+		setUpColumns(table);
 
 	}	
 	
