@@ -27,7 +27,7 @@
                         {
                             "title": "Random number P1",
                             "code": "P1_RI",
-                            "type": "integer",
+                            "type": "int",
                             "maxLength": 5,
                             "isRequired": false,
                             "isPK": false
@@ -93,7 +93,7 @@
                         {
                             "title": "Random number MT",
                             "code": "MT_RI",
-                            "type": "integer",
+                            "type": "int",
                             "maxLength": 5,
                             "isRequired": false,
                             "isPK": false
