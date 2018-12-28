@@ -16,6 +16,7 @@ import app.App;
 import controler.handlers.IHandler;
 import model.Attribute;
 import model.Table;
+import model.TitleLanguagePack;
 import model.resourceFactory.IResourceFactory;
 import view.localizationManager.LocalizationManager;
 import view.localizationManager.LocalizationObserver;
@@ -61,6 +62,7 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 //		this.table.addAttributes(new Attribute("title3", "code3", false, true, "string", 0, this.table));
 //		this.table.addAttributes(new Attribute("title4", "code4", true, true, "string", 0, this.table));
 //		
+		
 		setUpColumns(this.table);
 		//setUpData();
 	}
@@ -69,6 +71,8 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 		Map<String, Attribute> attributes = table.getAttributes();
 		for (String attributeKey : attributes.keySet()) {
 			Attribute attribute = attributes.get(attributeKey);
+			TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+			String localizedTitle = titleLanguagePack.getAttributeTitle(attributeKey, table.getCode());
 			this.addColumn(attribute.getTitle());
 			this.columnsCode.add(attributeKey);
 		}
@@ -96,11 +100,12 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 			}
 		}catch (Exception e) {
 			//JOptionPane.showMessageDialog(null, "Wrong file", "Invalid scheme", JOptionPane.ERROR_MESSAGE);
+			//podesi lokalizovanje datuma
+			updateLanguage();
 			return;
 		}
 		
-		//podesi lokalizovanje datuma
-		updateLanguage();
+		
 		
 	}
 	
@@ -170,8 +175,24 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 				}
 			}
 		}
-
+		
+		
+		
+		setLocalizedIdentifiers();
 	}	
+	
+	
+	private void setLocalizedIdentifiers() {
+		System.out.println("Lokalizujemo");
+		List<String> newIdentifiersList = new ArrayList<>();
+		TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
+		for (int i = 0; i < this.getColumnCount(); i++) {
+			String attributeCode = columnsCode.get(i);
+			String localizedTitle = titleLanguagePack.getAttributeTitle(attributeCode, table.getCode());
+			newIdentifiersList.add(localizedTitle);
+		}
+		this.setColumnIdentifiers(newIdentifiersList.toArray());
+	}
 	
 	
 	/**

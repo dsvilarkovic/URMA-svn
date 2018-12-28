@@ -92,6 +92,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 			//podesi podatke
 			tableModelInsert.setUpData();
 			JTable stagod = new JTable(tableModelInsert);
+			
 			JScrollPane jScrollPane = new JScrollPane(stagod);
 			jScrollPane.setName(tableModelInsert.getTable().getTitle());
 			this.childTabs.add(jScrollPane);
@@ -206,6 +207,7 @@ public class ChildTablePanel extends TablePanel implements LocalizationObserver{
 		catch(ArrayIndexOutOfBoundsException aiobe) {
 			System.err.println("No child found. Localization skipped");
 		}
+		
 		
 		//podesi podatke u svim tabelama sa updateLanguage(language)
 		Set<String> keys = tableModelMap.keySet();

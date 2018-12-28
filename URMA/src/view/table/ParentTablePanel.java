@@ -159,7 +159,12 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 	public void updateLanguage() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		tab.setTitleAt(0,resourceBundle.getString("table.tab.title"));
-		tableModel.updateLanguage();
+		try {
+			tableModel.updateLanguage();
+		} 
+		catch(NullPointerException npe) {
+			System.err.println("No parent found. Skipping localization");
+		}
 		
 		
 		super.setChangeableButtonAction("Parent");
