@@ -46,6 +46,7 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		InformationResource model;
 		try {
 
 			Object[] possibilities = { "json", "xml", "db" };
@@ -57,11 +58,17 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 			// App.INSTANCE.setFactory(FilenameUtils.getExtension(str));
 			IResourceFactory factory = App.INSTANCE.getFactory();
 			IParser parser = factory.createParser();
-			parser.parse(str);
+			model = parser.parse(str);
 
 		} catch (NullPointerException npe) {
 			return;
 		}
+		
+		if (model == null) {
+			return;
+		}
+		
+		App.INSTANCE.setModel(model);
 
 		// Pravi paket koji ce sadrzati sve ostale pakete (Najstariji cvor stabla)
 		Package elderPackage = new Package();
@@ -87,8 +94,7 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 
 		// Ako je rekao da nece ili nije nista selektovano punimo sa "default" =>
 		// vrednost iz modela
-		InformationResource ir = App.INSTANCE.getModel();
-		LoadLanguagePackAction.loadDefaultLanguagePack(ir);
+		LoadLanguagePackAction.loadDefaultLanguagePack(model);
 	}
 
 	@Override

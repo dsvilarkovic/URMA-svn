@@ -36,6 +36,9 @@ public class LoadLanguagePackAction extends AbstractAction implements Localizati
 	}
 	
 	public static boolean loadDefaultLanguagePack(InformationResource ir) {
+		if (ir == null) {
+			return false;
+		}
 		TitleLanguagePack tlp = new TitleLanguagePack();
 		for (Package pack : ir.getPackages().values()) {
 			HashMap<String, String> values = new HashMap<>();

@@ -1,5 +1,7 @@
 package controler.parsers;
 
+import model.InformationResource;
+
 /**
  * Parser za bazu podataka
  * @author filip
@@ -10,8 +12,8 @@ public class DBParser implements IParser {
 	 * @see controler.parsers.IParser#parse()
 	 */
 	@Override
-	public void parse(String path) {
+	public InformationResource parse(String path) {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
 }

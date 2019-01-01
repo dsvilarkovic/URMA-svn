@@ -84,7 +84,7 @@ public class JSONParser implements IParser {
 	}
 
 	@Override
-	public void parse(String path) {
+	public InformationResource parse(String path) {
 		JSONTokener tokener = new JSONTokener((String) new Open().openThis(path));
 		JSONObject informationResourceJSON = new JSONObject(tokener);
 		
@@ -115,7 +115,7 @@ public class JSONParser implements IParser {
 						"Error while parsing relation " + newRelation.getCode() + ", table reference not found.",
 						"Parse error",
 						JOptionPane.WARNING_MESSAGE);
-				return;
+				return null;
 			}
 			newRelation.setSourceTable(sourceTable);
 			newRelation.setDestinationTable(destinationTable);
@@ -129,14 +129,14 @@ public class JSONParser implements IParser {
 							"Error while parsing relation " + newRelation.getCode() + ", source attribute reference " + keyCode + " not found.",
 							"Parse error",
 							JOptionPane.WARNING_MESSAGE);
-					return;
+					return null;
 				}
 				if (!sourceKey.getIsPrimaryKey()) {
 					JOptionPane.showMessageDialog(null,
 							"Error while parsing relation " + newRelation.getCode() + ", source attribute " + keyCode + " is not a primary key.",
 							"Parse error",
 							JOptionPane.WARNING_MESSAGE);
-					return;
+					return null;
 				}
 				newRelation.addSourceKeys(sourceKey);
 			}
@@ -151,7 +151,7 @@ public class JSONParser implements IParser {
 							"Error while parsing relation " + newRelation.getCode() + ", destination attribute reference " + keyCode + " not found.",
 							"Parse error",
 							JOptionPane.WARNING_MESSAGE);
-					return;
+					return null;
 				}
 				
 				// Da li je referencijalni integritet?
@@ -166,7 +166,7 @@ public class JSONParser implements IParser {
 			informationResource.addRelations(newRelation);
 		}
 		
-		App.INSTANCE.setModel(informationResource);
+		return informationResource;
 	}
 
 }
