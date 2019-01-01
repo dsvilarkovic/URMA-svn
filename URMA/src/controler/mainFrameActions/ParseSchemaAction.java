@@ -54,11 +54,9 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 					JOptionPane.PLAIN_MESSAGE, null, possibilities, "json");
 			App.INSTANCE.setFactory(s);
 
-			String str = (String) new Open().getPath("sch/json/xml/db");
-			// App.INSTANCE.setFactory(FilenameUtils.getExtension(str));
 			IResourceFactory factory = App.INSTANCE.getFactory();
 			IParser parser = factory.createParser();
-			model = parser.parse(str);
+			model = parser.parse();
 
 		} catch (NullPointerException npe) {
 			return;

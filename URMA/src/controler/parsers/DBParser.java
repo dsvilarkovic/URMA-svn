@@ -12,7 +12,7 @@ public class DBParser implements IParser {
 	 * @see controler.parsers.IParser#parse()
 	 */
 	@Override
-	public InformationResource parse(String path) {
+	public InformationResource parse() {
 		// TODO Auto-generated method stub
 		return null;
 	}

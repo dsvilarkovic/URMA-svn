@@ -84,7 +84,8 @@ public class JSONParser implements IParser {
 	}
 
 	@Override
-	public InformationResource parse(String path) {
+	public InformationResource parse() {
+		String path = (String) new Open().getPath("sch/json");
 		JSONTokener tokener = new JSONTokener((String) new Open().openThis(path));
 		JSONObject informationResourceJSON = new JSONObject(tokener);
 		

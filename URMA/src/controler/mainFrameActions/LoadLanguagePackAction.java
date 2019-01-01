@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
+import javax.swing.plaf.BorderUIResource.TitledBorderUIResource;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,6 +36,15 @@ public class LoadLanguagePackAction extends AbstractAction implements Localizati
 		loadLanguagePack(path);
 	}
 	
+	public static void recursivePackages(Package pack, TitleLanguagePack tlp) {
+		for (Package child : pack.getChildPackages().values()) {
+			HashMap<String, String> values = new HashMap<>();
+			values.put("default", child.getTitle());
+			tlp.addPackageTitles(child.getCode(), values);
+			recursivePackages(child, tlp);
+		}
+	}
+	
 	public static boolean loadDefaultLanguagePack(InformationResource ir) {
 		if (ir == null) {
 			return false;
@@ -44,6 +54,7 @@ public class LoadLanguagePackAction extends AbstractAction implements Localizati
 			HashMap<String, String> values = new HashMap<>();
 			values.put("default", pack.getTitle());
 			tlp.addPackageTitles(pack.getCode(), values);
+			recursivePackages(pack, tlp);
 		}
 		
 		//TODO: Hardcode, jbg. (Boris)

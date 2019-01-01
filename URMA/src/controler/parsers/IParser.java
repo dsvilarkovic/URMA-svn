@@ -8,5 +8,5 @@ import model.InformationResource;
  * @author filip
  */
 public interface IParser {
-	public InformationResource parse(String path);
+	public InformationResource parse();
 }
