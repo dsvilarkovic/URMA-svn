@@ -25,7 +25,7 @@ public class MainAppTreePanel extends JPanel implements LocalizationObserver {
 
 	private static final long serialVersionUID = 198264279977978230L;
 	private JTree tree;
-	private static DefaultTreeModel treeModel;
+	private static DefaultTreeModel treeModel = null;
 	InformationResource infRes;
 
 	/**
@@ -47,8 +47,7 @@ public class MainAppTreePanel extends JPanel implements LocalizationObserver {
 	 * On kao i svi ostali cvorovi stabla moraju biti tipa {@link TreeParts}.
 	 * @return {@link Void}
 	 */
-	public void init(TreeParts elderNodek) {
-
+	public void init(TreeParts elderNodek) { 
 		infRes = App.INSTANCE.getModel();
 		treeModel = new DefaultTreeModel(updateTreeModel(elderNodek));
 		tree = new JTree(treeModel);
@@ -99,6 +98,10 @@ public class MainAppTreePanel extends JPanel implements LocalizationObserver {
 
 	@Override
 	public void updateLanguage() {
+		//ako jos nista nije ucitano u stablo
+		if(treeModel == null) {
+			return;
+		}
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode) treeModel.getRoot();
 		if(root != null) {
 			updateNode(root);
