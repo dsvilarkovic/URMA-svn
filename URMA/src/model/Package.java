@@ -12,6 +12,13 @@ public class Package {
 
 	private Map<String, Package> childPackages;
 	private Map<String, Table> tables;
+	
+	public Package() {}
+	
+	public Package(String code, String title) {
+		this.code = code;
+		this.title = title;
+	}
 
 	public Map<String, Package> getChildPackages() {
 		if (childPackages == null)

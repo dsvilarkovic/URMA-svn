@@ -24,6 +24,45 @@ public class Attribute {
 	/** @pdRoleInfo migr=no name=Table assc=kolekcijaAtributa mult=1..1 side=A */
 	private Table table;
 
+	public Attribute() {
+	}
+
+	public Attribute(String title, String code, boolean isPrimaryKey, boolean isRequired, String type, int maxLength) {
+		super();
+		this.title = title;
+		this.code = code;
+		this.isPrimaryKey = isPrimaryKey;
+		this.isRequired = isRequired;
+		this.type = type;
+		this.maxLength = maxLength;
+	}
+
+	/**
+	 * Konstruktor za testiranje.
+	 * 
+	 * @author Dusan
+	 * 
+	 * 
+	 * @param title
+	 * @param code
+	 * @param isPrimaryKey
+	 * @param isRequired
+	 * @param type
+	 * @param maxLength
+	 * @param table
+	 */
+	public Attribute(String title, String code, Boolean isPrimaryKey, Boolean isRequired, String type,
+			Integer maxLength, Table table) {
+		super();
+		this.title = title;
+		this.code = code;
+		this.isPrimaryKey = isPrimaryKey;
+		this.isRequired = isRequired;
+		this.type = type;
+		this.maxLength = maxLength;
+		this.table = table;
+	}
+
 	/** @pdGenerated default parent getter */
 	public Table getTable() {
 		return table;
@@ -94,35 +133,10 @@ public class Attribute {
 	public void setMaxLength(int maxLength) {
 		this.maxLength = maxLength;
 	}
-	
-	public Attribute() {}
 
-	/**
-	 * Konstruktor za testiranje. 
-	 * @author Dusan 
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * 
-	 * @param title
-	 * @param code
-	 * @param isPrimaryKey
-	 * @param isRequired
-	 * @param type
-	 * @param maxLength
-	 * @param table
-	 */
-	public Attribute(String title, String code, Boolean isPrimaryKey, Boolean isRequired, String type,
-			Integer maxLength, Table table) {
-		super();
-		this.title = title;
-		this.code = code;
-		this.isPrimaryKey = isPrimaryKey;
-		this.isRequired = isRequired;
-		this.type = type;
-		this.maxLength = maxLength;
-		this.table = table;
-	}
-
-	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -133,7 +147,9 @@ public class Attribute {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -154,5 +170,4 @@ public class Attribute {
 		return true;
 	}
 
-	
 }

@@ -46,6 +46,7 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		ResourceBundle rb = App.INSTANCE.getResourceBundle();
 		InformationResource model;
 		try {
 
@@ -63,6 +64,7 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 		}
 		
 		if (model == null) {
+			JOptionPane.showMessageDialog(null, rb.getString("parser.error"), rb.getString("message.error"), JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		

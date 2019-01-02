@@ -19,6 +19,14 @@ public class Relation {
 	private Table destinationTable;
 	private HashSet<Attribute> sourceKeys;
 	private HashSet<Attribute> destinationKeys;
+	
+	public Relation() {}
+	
+	public Relation(String title, String code) {
+		super();
+		this.title = title;
+		this.code = code;
+	}
 
 	public HashSet<Attribute> getSourceKeys() {
 		if (sourceKeys == null)
