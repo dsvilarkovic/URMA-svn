@@ -176,8 +176,9 @@ public class DBParser implements IParser {
 				String atype = rset.getString(5);
 				boolean areq = rset.getBoolean(6);
 				int alen = rset.getInt(7);
+				int prec = rset.getInt(8);
 				boolean aipk = rset.getBoolean(9);
-				Attribute a = new Attribute(atitle, acode, aipk, areq, atype, alen);
+				Attribute a = new Attribute(atitle, acode, aipk, areq, atype, alen, prec);
 				
 				a.setTable(t);				
 			}

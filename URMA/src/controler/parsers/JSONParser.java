@@ -58,6 +58,9 @@ public class JSONParser implements IParser {
 					if (attributeJSON.keySet().contains("maxLength")) {
 						newAttribute.setMaxLength(attributeJSON.getInt("maxLength"));
 					}
+					if (attributeJSON.keySet().contains("precision")) {
+						newAttribute.setPrecision(attributeJSON.getInt("precision"));
+					}
 					// Dodaj atribut u novu tabelu
 					newTable.addAttributes(newAttribute);
 				}

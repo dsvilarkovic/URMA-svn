@@ -36,6 +36,7 @@
                             "title": "Double",
                             "code": "SVE_DOUBLE",
                             "type": "double",
+                            "precision": 2,
                             "maxLength": 120,
                             "isRequired": true,
                             "isPK": false

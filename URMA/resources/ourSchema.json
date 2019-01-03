@@ -144,6 +144,7 @@
                             "code": "STU_VISINA",
                             "type": "double",
                             "maxLength": 300,
+                            "precision": 2,
                             "isRequired": false,
                             "isPK": false
                         }
@@ -162,7 +163,7 @@
                                 {
                                     "title": "Indeks",
                                     "code": "STU_INDEKS",
-                                    "type": "string",
+                                    "type": "char",
                                     "maxLength": 15,
                                     "isRequired": true,
                                     "isPK": true
@@ -170,7 +171,7 @@
                                 {
                                     "title": "Ime",
                                     "code": "STU_IME",
-                                    "type": "string",
+                                    "type": "varchar",
                                     "maxLength": 64,
                                     "isRequired": true,
                                     "isPK": false
@@ -178,7 +179,7 @@
                                 {
                                     "title": "Prezime",
                                     "code": "STU_PREZIME",
-                                    "type": "string",
+                                    "type": "varchar",
                                     "maxLength": 64,
                                     "isRequired": true,
                                     "isPK": false

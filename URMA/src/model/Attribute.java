@@ -20,6 +20,7 @@ public class Attribute {
 	private String type;
 	/** @pdOid aae8a747-923e-4db4-b7a2-14d9946a9f8c */
 	private int maxLength;
+	private int precision;
 
 	/** @pdRoleInfo migr=no name=Table assc=kolekcijaAtributa mult=1..1 side=A */
 	private Table table;
@@ -27,7 +28,7 @@ public class Attribute {
 	public Attribute() {
 	}
 
-	public Attribute(String title, String code, boolean isPrimaryKey, boolean isRequired, String type, int maxLength) {
+	public Attribute(String title, String code, boolean isPrimaryKey, boolean isRequired, String type, int maxLength, int precision) {
 		super();
 		this.title = title;
 		this.code = code;
@@ -35,6 +36,7 @@ public class Attribute {
 		this.isRequired = isRequired;
 		this.type = type;
 		this.maxLength = maxLength;
+		this.precision = precision;
 	}
 
 	/**
@@ -132,6 +134,14 @@ public class Attribute {
 
 	public void setMaxLength(int maxLength) {
 		this.maxLength = maxLength;
+	}
+
+	public int getPrecision() {
+		return precision;
+	}
+
+	public void setPrecision(int precision) {
+		this.precision = precision;
 	}
 
 	/*
