@@ -125,6 +125,8 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 		for (int i = 0; i < valueList.size(); i++) {
 			this.addRow(valueList.get(i));
 		}
+		// TODO Dusan od Filipa
+		//updateLanguage();
 	}
 
 
