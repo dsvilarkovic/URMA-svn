@@ -186,7 +186,10 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 		setLocalizedIdentifiers();
 	}	
 	
-	
+	/**
+	 * Podesavanje lokalizovanih vrednosti atributa tabele.
+	 * @author Dusan
+	 */
 	private void setLocalizedIdentifiers() {
 		List<String> newIdentifiersList = new ArrayList<>();
 		TitleLanguagePack titleLanguagePack = App.INSTANCE.getTitleLanguagePack();
