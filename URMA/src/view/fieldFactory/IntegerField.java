@@ -60,10 +60,14 @@ public class IntegerField extends JPanel implements IField{
 		try {
 			//TODO: @Dusan uradio, @Jelena da proveri
 			Number formattedNumber = LocalizationManager.formatNumber(field.getText());
+			if(formattedNumber == null) {
+				throw new Exception("Bad format exception");
+			}
 			if((formattedNumber instanceof Integer) == false &&
 					(formattedNumber instanceof Long) == false) {
 				throw new Exception("Not integer type exception");
 			}
+			
 			//Jelena prethodno radila
 			//Integer.parseInt(field.getText());
 			return true;

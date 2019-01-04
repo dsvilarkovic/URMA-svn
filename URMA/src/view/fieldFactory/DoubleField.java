@@ -47,6 +47,9 @@ public class DoubleField extends JPanel implements IField{
 		try {
 			//TODO: @Dusan uradio, @Jelena da proveri
 			Number formattedNumber = LocalizationManager.formatNumber(field.getText());
+			if(formattedNumber == null) {
+				throw new Exception("Bad format exception");
+			}
 //			if((formattedNumber instanceof Double) == false) {
 //				throw new Exception("Not double type exception");
 //			}
