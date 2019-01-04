@@ -2,6 +2,7 @@ package view.localizationManager;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -300,7 +301,11 @@ public class LocalizationManager {
 		Number returnNumber = null;
 		currentNumberFormat = NumberFormat.getInstance(Locale.getDefault());
 		try {	
-			returnNumber = (Number)currentNumberFormat.parse(numberString);
+			ParsePosition pp = new ParsePosition(0);
+			returnNumber = (Number)currentNumberFormat.parse(numberString,pp);
+			if(pp.getIndex() != numberString.length()) {
+				throw new Exception("Suffix exception");
+			}
 		}
 		catch (Exception e) {
 		}
