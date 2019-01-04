@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import app.App;
@@ -22,6 +23,7 @@ import controler.crud.ForeignKeyAction;
 import controler.crud.SearchAction;
 import controler.crud.UpdateAction;
 import model.Attribute;
+import model.Relation;
 import model.Table;
 import model.TitleLanguagePack;
 import view.dialogs.ChooseReferencedCollumnValuesDialog;
@@ -103,10 +105,34 @@ public class CrudWindow extends JDialog{
 			b.setText(key);
 			j.add(b);
 			add(j);
-//			ChooseReferencedCollumnValuesDialog testDialog = new ChooseReferencedCollumnValuesDialog(t.getParentTables().get(table));
 		}
 		
 		validate();
+	}
+	
+	/**
+	 * Sluzi za trazenje relacije po kojoj su <code>childTableModel</code> i <br>
+	 *  <code>parentTableModel</code> povezani
+	 * @author Dusan
+	 * @param childTable - tabela koja se nalazi u donjem TablePanelu
+	 * @param parentTable- tabela koja se nalazi u gornjem TablePanel-u
+	 */
+	public Relation findRelation(Table childTable, Table parentTable) {
+		
+		//nadji tu relaciju
+		Map<String, Relation> relations = App.INSTANCE.getModel().getRelations();
+		System.out.println(relations);
+		//nadji relaciju gde se ove dve tabele nalaze
+		for (String relationKey : relations.keySet()) {
+			Relation relationValue = relations.get(relationKey);
+			if(relationValue.getDestinationTable().getCode().equals(childTable.getCode())
+					&& relationValue.getSourceTable().getCode().equals(parentTable.getCode())) {
+				return relationValue;
+			}
+				
+		}
+		
+		return null;
 	}
 	
 	
@@ -183,6 +209,16 @@ public class CrudWindow extends JDialog{
 		jp.add(button);
 		add(jp);
 		
+		for (String key : t.getParentTables().keySet()) {
+			Table table = t.getParentTables().get(key);
+			JButton b = new JButton();
+			JPanel j = new JPanel();
+			b.addActionListener(new ForeignKeyAction(this, table, key));
+			b.setText(key);
+			j.add(b);
+			add(j);
+		}
+		
 		validate();
 	}
 	
@@ -224,6 +260,32 @@ public class CrudWindow extends JDialog{
 		setTitle("CRUD");
 		setLayout(new GridLayout(0,3));
 		setIconImage((new ImageIcon("resources/palm-tree.png")).getImage());
+	}
+
+
+	public void fillFields(Map<String, Object> selectedRow) {
+		Map<String, Attribute> attributes = this.table.getAttributes();
+		IField field = null;
+		for (String attributeKey : attributes.keySet()) {
+			Attribute attribute = attributes.get(attributeKey);
+			if(fields.get(attribute.getTitle()) instanceof IField) {
+				field = (IField) fields.get(attribute.getTitle());
+			}else if(fields.get(attribute.getTitle()) instanceof DecoratedField[]) {
+				DecoratedField decField = ((DecoratedField) ((DecoratedField[])fields.get(attribute.getTitle()))[0]);
+				field = (IField) decField.getField();
+			}
+			
+			if(selectedRow.get(attribute.getTitle()) != null){
+				if(!attribute.getIsPrimaryKey()) {
+					field.setValue(selectedRow.get(attribute.getTitle()));
+				}else {
+					ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+					JOptionPane.showMessageDialog(null, resourceBundle.getString("table.constraints.fk_change"));
+					return;
+				}
+			}
+			
+		}
 	}
 }
 

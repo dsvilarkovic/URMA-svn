@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -20,6 +23,8 @@ import javax.swing.event.ListSelectionListener;
 
 import app.App;
 import controler.crud.ForeignKeyAction;
+import model.Attribute;
+import model.Relation;
 import model.Table;
 import view.table.TableModel;
 
@@ -98,16 +103,9 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 	 * @author Dusan
 	 */
 	private void closeDialog() {
-		//TODO: @Jelena implementiraj kako ti bude potrebno
-		String text = "Odabrani red je :  \n";
-		
-		Vector<Object> selectedRow = getSelectedRowValues();
-		for (Object object : selectedRow) {
-			text += object.toString() + " | ";
-		}
-		JOptionPane.showMessageDialog(null,text,"Naslov",JOptionPane.INFORMATION_MESSAGE);
+		Map<String, Object> selectedRow = getSelectedRowValues();
 		dispose();
-		parentCaller.fillFields();
+		parentCaller.fillFields(selectedRow);
 	}
 
 	/**
@@ -147,20 +145,66 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 	}
 	
 	/**
-	 * Vraca vrednosti odabrane kolone u tabeli u  {@code Vector<Object>}  obliku
+	 * Vraca vrednosti odabrane kolone u tabeli u  {@code Map<String, Object>}  obliku
 	 * @author Dusan
-	 * @return niz objekata vrednosti selektovane torke
+	 * @return mapa objekata vrednosti selektovane torke
 	 */
-	private Vector<Object> getSelectedRowValues(){
-		Vector<Object> selectedRow = new Vector<>();
+	private Map<String, Object> getSelectedRowValues(){
+		Map<String, Object> selectedRowRelation = new HashMap<String, Object>();
+		Map<String, Object> selectedRow = new HashMap<String, Object>();
 		int selectedRowIndex = tableView.getSelectedRow();
+		Table table = tableModel.getTable();
 		
 		for (int columnIndex = 0; columnIndex < tableView.getColumnCount(); columnIndex++) {
 			
 			Object colValue = tableView.getValueAt(selectedRowIndex, columnIndex);
-			selectedRow.add(colValue);			
+//			System.out.println(tableView.getColumnName(columnIndex) + " " + tableView.getValueAt(selectedRowIndex, columnIndex));
+			selectedRowRelation.put(tableView.getColumnName(columnIndex), tableView.getValueAt(selectedRowIndex, columnIndex))	;		
 		}
 		
+		Relation relation = findRelation(parentCaller.getParentCaller().getTable(), table);
+		
+		Iterator<Attribute> iterSource = relation.getSourceKeys().iterator();
+		Iterator<Attribute> iterDestination = relation.getDestinationKeys().iterator();
+		
+
+		while(iterSource.hasNext()) {			
+			Attribute sourceAttribute = iterSource.next();
+			Attribute destinationAttribute = iterDestination.next();
+			
+//			System.out.println(sourceAttribute.getTitle() + " + " + destinationAttribute.getTitle());
+//			System.out.println(selectedRowRelation.get(sourceAttribute.getTitle()));
+			System.out.println("value: " + destinationAttribute.getTitle() + " " + selectedRowRelation.get(sourceAttribute.getTitle()));
+			selectedRow.put(destinationAttribute.getTitle(), selectedRowRelation.get(sourceAttribute.getTitle()));
+		}
+		
+		
+		
 		return selectedRow;
+	}
+	
+	/**
+	 * Sluzi za trazenje relacije po kojoj su <code>childTableModel</code> i <br>
+	 *  <code>parentTableModel</code> povezani
+	 * @author Dusan
+	 * @param childTable - tabela koja se nalazi u donjem TablePanelu
+	 * @param parentTable- tabela koja se nalazi u gornjem TablePanel-u
+	 */
+	public Relation findRelation(Table childTable, Table parentTable) {
+		
+		//nadji tu relaciju
+		Map<String, Relation> relations = App.INSTANCE.getModel().getRelations();
+		System.out.println(relations);
+		//nadji relaciju gde se ove dve tabele nalaze
+		for (String relationKey : relations.keySet()) {
+			Relation relationValue = relations.get(relationKey);
+			if(relationValue.getDestinationTable().getCode().equals(childTable.getCode())
+					&& relationValue.getSourceTable().getCode().equals(parentTable.getCode())) {
+				return relationValue;
+			}
+				
+		}
+		
+		return null;
 	}
 }

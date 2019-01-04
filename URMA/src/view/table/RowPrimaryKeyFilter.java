@@ -24,7 +24,6 @@ public class RowPrimaryKeyFilter<M> extends RowFilter<TableModel, Integer> {
 		}
 		List<String> columnsCode = entry.getModel().getColumnsCode();
 		
-
 		
 		Iterator<Attribute> iterSource = relation.getSourceKeys().iterator();
 		Iterator<Attribute> iterDestination = relation.getDestinationKeys().iterator();
