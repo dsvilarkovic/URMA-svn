@@ -304,6 +304,7 @@ public class LocalizationManager {
 			ParsePosition pp = new ParsePosition(0);
 			returnNumber = (Number)currentNumberFormat.parse(numberString,pp);
 			if(pp.getIndex() != numberString.length()) {
+				returnNumber = null;
 				throw new Exception("Suffix exception");
 			}
 		}
