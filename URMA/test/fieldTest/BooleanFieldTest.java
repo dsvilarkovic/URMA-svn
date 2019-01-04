@@ -21,13 +21,13 @@ public class BooleanFieldTest {
 	public void testValidateField() {
 		BooleanField field = new BooleanField();
 		field.setValue(false);
-		assertEquals(field.validateField(true, true, 1, 1), true);
+		assertEquals(true, field.validateField(true, true, 1, 1));
 	}
 	
 	@Test
 	public void testValidateField1() {
 		BooleanField field = new BooleanField();
 		field.setValue(true);
-		assertEquals(field.validateField(false, false, 1, 1), true);
+		assertEquals(true, field.validateField(false, false, 1, 1));
 	}
 }

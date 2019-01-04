@@ -25,7 +25,7 @@ public class DoubleFieldTest {
 		DoubleField copy = spy(field);
 		doReturn(",").when(copy).splitChar();
 		copy.setValue("12,22");
-		assertEquals(copy.validateField(true, true, 12, 2), true);
+		assertEquals(true, copy.validateField(true, true, 12, 2));
 	}
 	
 	@Test
@@ -34,7 +34,7 @@ public class DoubleFieldTest {
 		DoubleField copy = spy(field);
 		doReturn(",").when(copy).splitChar();
 		copy.setValue("12,222");
-		assertEquals(copy.validateField(true, true, 12, 2), false);
+		assertEquals(false, copy.validateField(true, true, 12, 2));
 	}
 	
 	@Test
@@ -43,7 +43,7 @@ public class DoubleFieldTest {
 		DoubleField copy = spy(field);
 		doReturn(".").when(copy).splitChar();
 		copy.setValue("10,002.22");
-		assertEquals(copy.validateField(true, true, 12, 2), true);
+		assertEquals(true, copy.validateField(true, true, 12, 2));
 	}
 	
 	@Test
@@ -52,7 +52,7 @@ public class DoubleFieldTest {
 		DoubleField copy = spy(field);
 		doReturn("\\.").when(copy).splitChar();
 		copy.setValue("12.222");
-		assertEquals(copy.validateField(true, true, 12, 2), false);
+		assertEquals(false, copy.validateField(true, true, 12, 2));
 	}
 	
 	@Test
@@ -61,14 +61,14 @@ public class DoubleFieldTest {
 		DoubleField copy = spy(field);
 		doReturn(",").when(copy).splitChar();
 		copy.setValue("a");
-		assertEquals(copy.validateField(true, true, 12, 2), false);
+		assertEquals(false, copy.validateField(true, true, 12, 2));
 	}
 	
 	@Test
 	public void testValidateFieldNegative1() {
 		DoubleField field = new DoubleField();
 		field.setValue("2a2");
-		assertEquals(field.validateField(true, true, 12, 2), false);
+		assertEquals(false, field.validateField(true, true, 12, 2));
 	}
 	
 	@Test
@@ -77,7 +77,7 @@ public class DoubleFieldTest {
 		DoubleField copy = spy(field);
 		doReturn(",").when(copy).splitChar();
 		copy.setValue(null);
-		assertEquals(copy.validateField(true, false, 12, 2), false);
+		assertEquals(false, copy.validateField(true, false, 12, 2));
 	}
 	
 	@Test
@@ -86,6 +86,6 @@ public class DoubleFieldTest {
 		DoubleField copy = spy(field);
 		doReturn(",").when(copy).splitChar();
 		copy.setValue(null);
-		assertEquals(copy.validateField(false, false, 12, 2), true);
+		assertEquals(true, copy.validateField(false, false, 12, 2));
 	}
 }

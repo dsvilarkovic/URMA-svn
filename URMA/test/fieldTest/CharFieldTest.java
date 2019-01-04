@@ -21,62 +21,62 @@ public class CharFieldTest {
 	public void testValidateFieldMaxLenFalse() {
 		CharField field = new CharField();
 		field.setValue("test");
-		assertEquals(field.validateField(true, true, 1, 1), false);
+		assertEquals(false, field.validateField(true, true, 1, 1));
 	}
 	
 	@Test
 	public void testValidateFieldMaxLenFalse1() {
 		CharField field = new CharField();
 		field.setValue("test");
-		assertEquals(field.validateField(true, true, 10, 1), false);
+		assertEquals(false, field.validateField(true, true, 10, 1));
 	}
 	
 	@Test
 	public void testValidateFieldMaxLenTrue() {
 		CharField field = new CharField();
 		field.setValue("test");
-		assertEquals(field.validateField(true, true, 4, 1), true);
+		assertEquals(true, field.validateField(true, true, 4, 1));
 	}
 	
 	@Test
 	public void testValidateFieldRequiredTrue() {
 		CharField field = new CharField();
 		field.setValue("test");
-		assertEquals(field.validateField(true, true, 4, 1), true);
+		assertEquals(true, field.validateField(true, true, 4, 1));
 	}
 	
 	@Test
 	public void testValidateFieldRequiredFalse() {
 		CharField field = new CharField();
 		field.setValue(null);
-		assertEquals(field.validateField(true, true, 4, 1), false);
+		assertEquals(false, field.validateField(true, true, 4, 1));
 	}
 	
 	@Test
 	public void testValidateFieldRequiredTrue1() {
 		CharField field = new CharField();
 		field.setValue(null);
-		assertEquals(field.validateField(false, true, 4, 1), false);
+		assertEquals(false, field.validateField(false, true, 4, 1));
 	}
 	
 	@Test
 	public void testValidateFieldPKTrue() {
 		CharField field = new CharField();
 		field.setValue("test");
-		assertEquals(field.validateField(true, true, 4, 1), true);
+		assertEquals(true, field.validateField(true, true, 4, 1));
 	}
 	
 	@Test
 	public void testValidateFieldPKFalse() {
 		CharField field = new CharField();
 		field.setValue(null);
-		assertEquals(field.validateField(true, true, 4, 1), false);
+		assertEquals(false, field.validateField(true, true, 4, 1));
 	}
 	
 	@Test
 	public void testValidateFieldPKTrue1() {
 		CharField field = new CharField();
 		field.setValue(null);
-		assertEquals(field.validateField(true, false, 4, 1), false);
+		assertEquals(false, field.validateField(true, false, 4, 1));
 	}
 }

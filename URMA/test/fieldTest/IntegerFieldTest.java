@@ -22,34 +22,34 @@ public class IntegerFieldTest {
 	public void testValidateFieldPositive() {
 		IntegerField field = new IntegerField();
 		field.setValue("12");
-		assertEquals(field.validateField(false, true, 12, 2), true);
+		assertEquals(true, field.validateField(false, true, 12, 2));
 	}
 	
 	@Test
 	public void testValidateFieldNegative() {
 		IntegerField field = new IntegerField();
 		field.setValue("a");
-		assertEquals(field.validateField(true, true, 12, 2), false);
+		assertEquals(false, field.validateField(true, true, 12, 2));
 	}
 	
 	@Test
 	public void testValidateFieldNegative1() {
 		IntegerField field = new IntegerField();
 		field.setValue("2a2");
-		assertEquals(field.validateField(true, true, 12, 2), false);
+		assertEquals(false, field.validateField(true, true, 12, 2));
 	}
 	
 	@Test
 	public void testValidateFieldNull() {
 		IntegerField field = new IntegerField();
 		field.setValue(null);
-		assertEquals(field.validateField(true, false, 12, 2), false);
+		assertEquals(false, field.validateField(true, false, 12, 2));
 	}
 	
 	@Test
 	public void testValidateFieldNull1() {
 		IntegerField field = new IntegerField();
 		field.setValue(null);
-		assertEquals(field.validateField(false, false, 12, 2), true);
+		assertEquals(true, field.validateField(false, false, 12, 2));
 	}
 }

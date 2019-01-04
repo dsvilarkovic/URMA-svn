@@ -21,6 +21,6 @@ public class DateFieldTest {
 	public void testValidateField() {
 		DateField field = new DateField();
 //		field.setValue("2018-12-18");
-		assertEquals(field.validateField(true, true, 1, 1), false);
+		assertEquals(false, field.validateField(true, true, 1, 1));
 	}
 }
