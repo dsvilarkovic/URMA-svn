@@ -63,7 +63,7 @@ public class DBHandler implements IHandler {
 			Attribute attribute = attributes.get(key);
 			IField field = (IField) data.get(attribute.getTitle());
 			if (!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(),
-					attribute.getMaxLength())) {
+					attribute.getMaxLength(), attribute.getPrecision())) {
 				ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 				JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " " + resourceBundle.getString("table.attribute.notvalid"));
 				return false;
@@ -232,7 +232,7 @@ public class DBHandler implements IHandler {
 				sql_where += key + "='" + field.getValue().toString() + "' AND ";
 			}else {
 				sql += key + "='";
-				if(!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(), attribute.getMaxLength())){
+				if(!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(), attribute.getMaxLength(), attribute.getPrecision())){
 					ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 					JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " " + resourceBundle.getString("table.attribute.notvalid"));
 					return false;

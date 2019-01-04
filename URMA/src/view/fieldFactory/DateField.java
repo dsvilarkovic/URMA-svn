@@ -54,7 +54,7 @@ public class DateField extends JPanel implements IField{
 		@author - Jelena
 	**/
 	@Override
-	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) {
+	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen, int precision) {
 		return true;
 	}
 

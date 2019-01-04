@@ -1,5 +1,8 @@
 package view.fieldFactory;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 
@@ -66,7 +69,7 @@ public class DoubleField extends JPanel implements IField{
 		@author - Jelena
 	**/
 	@Override
-	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) {
+	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen, int precision) {
 		if(validateJFormatedTextField(field) || field.getText().equals("")) {
 			if(isReq && field.getText().equals("")) {
 				System.out.println("Required field is empty");
@@ -79,6 +82,15 @@ public class DoubleField extends JPanel implements IField{
 			if(field.getText().length() > maxLen) {
 				System.out.println("wrong len");
 				return false;
+			}
+			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+			String[] parts = field.getText().split(resourceBundle.getString("double.parse"));
+			if(parts.length > 1) {
+				if(parts[1].length() > precision) {
+					System.out.println("wrong precision");
+					return false;
+				}
+				
 			}
 			return true;
 		}

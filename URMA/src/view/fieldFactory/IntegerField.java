@@ -81,7 +81,7 @@ public class IntegerField extends JPanel implements IField{
 		@author - Jelena
 	**/
 	@Override
-	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) {
+	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen, int precision) {
 		if(validateJFormatedTextField(field) || field.getText().equals("")) {
 			if(isReq && field.getText().equals("")) {
 				System.out.println("Required field is empty");

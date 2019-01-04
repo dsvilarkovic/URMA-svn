@@ -41,7 +41,7 @@ public class VarcharField extends JPanel implements IField{
 		@author - Jelena
 	**/
 	@Override
-	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen) {
+	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen, int precision) {
 		if(isReq && field.getText().equals("")) {
 			System.out.println("Requiref field is empty");
 			return false;
