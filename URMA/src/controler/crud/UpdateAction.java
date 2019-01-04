@@ -12,7 +12,6 @@ import app.App;
 import controler.handlers.IHandler;
 import model.resourceFactory.IResourceFactory;
 import view.CrudWindow;
-import view.fieldFactory.IField;
 
 /**
  * Akcija koja služi za update nad bazom

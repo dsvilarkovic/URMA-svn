@@ -1,10 +1,7 @@
 package controler.crud;
 
 import java.awt.event.ActionEvent;
-import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.Vector;
 
 import javax.swing.AbstractAction;
 

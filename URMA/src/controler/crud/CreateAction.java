@@ -13,8 +13,6 @@ import app.App;
 import controler.handlers.IHandler;
 import model.resourceFactory.IResourceFactory;
 import view.CrudWindow;
-import view.fieldFactory.IField;
-import view.table.ParentTablePanel;
 
 /**
  * Akcija koja služi za create nad bazom

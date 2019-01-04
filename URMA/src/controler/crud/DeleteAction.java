@@ -1,9 +1,7 @@
 package controler.crud;
 
 import java.awt.event.ActionEvent;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -15,7 +13,6 @@ import app.App;
 import controler.handlers.IHandler;
 import model.Table;
 import model.resourceFactory.IResourceFactory;
-import view.CrudWindow;
 import view.table.TableModel;
 import view.table.TablePanel;
 
@@ -69,6 +66,7 @@ public class DeleteAction extends AbstractAction{
 	
 	private Vector<Object> getSelectedRowValues(){
 		int selectedRow = tableCalling.getSelectedRow();
+		@SuppressWarnings("unchecked")
 		Vector<Object> v = (Vector<Object>) (((TableModel)  tableCalling.getModel()).getDataVector()).elementAt(selectedRow);
 		return v;
 	}

@@ -10,7 +10,6 @@ import javax.swing.AbstractAction;
 
 import app.App;
 import controler.handlers.IHandler;
-import model.resourceFactory.IResourceFactory;
 import view.CrudWindow;
 
 /**

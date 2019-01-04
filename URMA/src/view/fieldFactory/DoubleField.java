@@ -1,10 +1,6 @@
 package view.fieldFactory;
 
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-
 import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import view.localizationManager.LocalizationManager;
