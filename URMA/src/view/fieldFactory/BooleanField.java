@@ -69,6 +69,6 @@ public class BooleanField  extends JPanel implements IField{
 
 	@Override
 	public void setEditable(Boolean editable) {
-		field.setEnabled(false);
+		field.setEnabled(editable);
 	}
 }

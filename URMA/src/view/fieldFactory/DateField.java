@@ -72,6 +72,7 @@ public class DateField extends JPanel implements IField{
 	public void setValue(Object o) {
 		if(o != null) {
 			String date = (String)o;
+//			System.out.println(date);
 //			String[] dates = date.split("-");
 //			field.getModel().setDate(Integer.parseInt(dates[0]), Integer.parseInt(dates[1])-1, Integer.parseInt(dates[2]));
 			
@@ -99,7 +100,7 @@ public class DateField extends JPanel implements IField{
 
 	@Override
 	public void setEditable(Boolean editable) {
-		field.getComponent(1).setEnabled(false);
+		field.getComponent(1).setEnabled(editable);
 	}
 
 }

@@ -83,8 +83,8 @@ public class DoubleField extends JPanel implements IField{
 				System.out.println("wrong len");
 				return false;
 			}
-			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
-			String[] parts = field.getText().split(resourceBundle.getString("double.parse"));
+			
+			String[] parts = field.getText().split(splitChar());
 			if(parts.length > 1) {
 				if(parts[1].length() > precision) {
 					System.out.println("wrong precision");
@@ -95,6 +95,11 @@ public class DoubleField extends JPanel implements IField{
 			return true;
 		}
 		return false;
+	}
+	
+	public String splitChar() {
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		return resourceBundle.getString("double.parse");
 	}
 
 	@Override
@@ -130,7 +135,7 @@ public class DoubleField extends JPanel implements IField{
 
 	@Override
 	public void setEditable(Boolean editable) {
-		field.setEditable(false);
+		field.setEditable(editable);
 	}
 
 }

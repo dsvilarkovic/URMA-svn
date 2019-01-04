@@ -135,7 +135,7 @@ public class IntegerField extends JPanel implements IField{
 
 	@Override
 	public void setEditable(Boolean editable) {
-		field.setEditable(false);
+		field.setEditable(editable);
 	}
 
 }
