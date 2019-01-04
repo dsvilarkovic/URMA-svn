@@ -49,8 +49,7 @@ public class IntegerFieldTest {
 	@Test
 	public void testValidateFieldNull1() {
 		IntegerField field = new IntegerField();
-		IntegerField copy = spy(field);
-		copy.setValue(null);
-		assertEquals(copy.validateField(false, false, 12, 2), true);
+		field.setValue(null);
+		assertEquals(field.validateField(false, false, 12, 2), true);
 	}
 }
