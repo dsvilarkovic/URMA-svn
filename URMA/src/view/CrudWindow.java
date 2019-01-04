@@ -276,7 +276,7 @@ public class CrudWindow extends JDialog{
 			}
 			
 			if(selectedRow.get(attribute.getTitle()) != null){
-				if(!attribute.getIsPrimaryKey()) {
+				if(!attribute.getIsPrimaryKey() || field.getValue() ==null) {
 					field.setValue(selectedRow.get(attribute.getTitle()));
 				}else {
 					ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
