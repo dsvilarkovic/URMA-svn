@@ -76,7 +76,6 @@ public class DateField extends JPanel implements IField{
 //			field.getModel().setDate(Integer.parseInt(dates[0]), Integer.parseInt(dates[1])-1, Integer.parseInt(dates[2]));
 			
 			//TODO: @Dusan dirao - begin
-			//TODO : @Dusan delete ne radi
 			Date dateObject  = LocalizationManager.formatDate(date);
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(dateObject);

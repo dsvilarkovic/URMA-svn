@@ -110,7 +110,6 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 		}
 		
 		
-		//podesi lokalizovanje datuma
 		updateLanguage();
 	}
 	
@@ -121,12 +120,13 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 	 * @return {@link Void}
 	 */	
 	public void searchUpdate(Vector<Vector<Object>> valueList) {
+		LocalizationManager.nulifyFormats();
 		this.setRowCount(0);
 		for (int i = 0; i < valueList.size(); i++) {
 			this.addRow(valueList.get(i));
 		}
 		// TODO Dusan od Filipa
-		//updateLanguage();
+		updateLanguage();
 	}
 
 
