@@ -174,6 +174,13 @@ public class DBParser implements IParser {
 				String acode = rset.getString(3);
 				String atitle = rset.getString(4);
 				String atype = rset.getString(5);
+				// numeric & decimal -> double
+				if (atype.toLowerCase().equals("numeric") || atype.toLowerCase().equals("decimal")) {
+					atype = "double";
+				}
+				if (atype.equals("datetime")) {
+					atype = "date";
+				}
 				boolean areq = rset.getBoolean(6);
 				int alen = rset.getInt(7);
 				int prec = rset.getInt(8);
