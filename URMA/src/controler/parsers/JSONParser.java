@@ -17,8 +17,8 @@ import model.Relation;
 import model.Table;
 
 /**
+ * Parser šema iz JSON Schema formata, na osnovu unapred specificirane meta-šeme.
  * @author (proud) Boris
- *
  */
 public class JSONParser implements IParser {
 	

@@ -21,7 +21,8 @@ import model.Table;
 import view.dialogs.DBParserConnectionDialog;
 
 /**
- * Parser za bazu podataka
+ * Parser za bazu podataka. Ponaša se po predefinisanim pravilima i nazivima tabelama
+ * u okviru tražene baze.
  * @author Boris
  */
 public class DBParser implements IParser {
@@ -183,6 +184,9 @@ public class DBParser implements IParser {
 				}
 				boolean areq = rset.getBoolean(6);
 				int alen = rset.getInt(7);
+				if (atype.equals("int")) {
+					alen = Integer.MAX_VALUE;
+				}
 				int prec = rset.getInt(8);
 				boolean aipk = rset.getBoolean(9);
 				Attribute a = new Attribute(atitle, acode, aipk, areq, atype, alen, prec);

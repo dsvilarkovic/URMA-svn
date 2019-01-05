@@ -3,8 +3,8 @@ package controler.parsers;
 import model.InformationResource;
 
 /**
- * Parser za XML
- * @author filip
+ * Parser za XML format.
+ * @author Boris
  */
 public class XMLParser implements IParser {
 
