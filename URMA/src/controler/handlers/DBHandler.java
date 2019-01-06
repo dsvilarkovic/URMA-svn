@@ -284,7 +284,7 @@ public class DBHandler implements IHandler {
 			//TODO: @Dusan radio, Jelena da proveri
 			Attribute attribute = table.getAttribute(key);
 			String type = attribute.getType();
-			if(values.get(i) != null) {
+			if(values.get(i) != null && !values.get(i).equals(TableModel.reservedNullValue)) {
 				String value = values.get(i).toString();
 				sql += key + "='";
 				value = convertValue(value, type);		
