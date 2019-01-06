@@ -283,10 +283,12 @@ public class DBHandler implements IHandler {
 			//TODO: @Dusan radio, Jelena da proveri
 			Attribute attribute = table.getAttribute(key);
 			String type = attribute.getType();
-			String value = values.get(i).toString();
-			sql += key + "='";
-			value = convertValue(value, type);		
-			sql += value + "' AND ";
+			if(values.get(i) != null) {
+				String value = values.get(i).toString();
+				sql += key + "='";
+				value = convertValue(value, type);		
+				sql += value + "' AND ";
+			}
 			//kraj doradjivanja by @Dusan
 			
 			//Jelena radila

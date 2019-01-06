@@ -79,7 +79,9 @@ public class DoubleField extends JPanel implements IField{
 				System.out.println("PK field is empty");
 				return false;
 			}
+			System.out.println(maxLen);
 			if(field.getText().length() > maxLen) {
+				System.out.println("DoubleField");
 				System.out.println("wrong len");
 				return false;
 			}

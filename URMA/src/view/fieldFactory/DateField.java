@@ -29,7 +29,7 @@ public class DateField extends JPanel implements IField{
 	**/
 	public DateField() {
 		UtilDateModel model = new UtilDateModel();
-		model.setDate(1, 0, 1);
+		model.setDate(2000, 0, 1);
 		Properties p = new Properties();
 		p.put("text.today", "Today");
 		p.put("text.month", "Month");
@@ -93,12 +93,13 @@ public class DateField extends JPanel implements IField{
 		int day = field.getModel().getDay();
 		int month = field.getModel().getMonth() + 1;
 		int year = field.getModel().getYear();
-		if(day == 1 && month == 1 && year == 1) {
+		System.out.println("YEAR" + year);
+		if(day == 1 && month == 1 && year == 2000) {
 			return null;
 		}
 		
 		String date_db = "";
-		date_db += year + "-" + month  + "-" + day;
+		date_db += month + "-" + day  + "-" + year;
 		return date_db;
 	}
 
