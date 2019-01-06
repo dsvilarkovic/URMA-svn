@@ -2,6 +2,8 @@ package view.fieldFactory;
 
 import javax.swing.JTextField;
 
+import view.table.TableModel;
+
 import javax.swing.JPanel;
 
 /**
@@ -80,7 +82,7 @@ public class VarcharField extends JPanel implements IField{
 
 	@Override
 	public Object getValue() {		
-		if(field.getText().equals("")) {
+		if(field.getText().equals("") || field.getText().equals(TableModel.reservedNullValue)) {
 			return null;
 		}
 		return field.getText();

@@ -11,6 +11,7 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import view.localizationManager.LocalizationManager;
+import view.table.TableModel;
 
 /**
  * Klasa koja opisuje date tip polja koja su potrebna za crud akcije
@@ -71,7 +72,7 @@ public class DateField extends JPanel implements IField{
 
 	@Override
 	public void setValue(Object o) {
-		if(o != null) {
+		if(o != null && !o.equals(TableModel.reservedNullValue)) {
 			String date = (String)o;
 //			System.out.println(date);
 //			String[] dates = date.split("-");
@@ -85,6 +86,8 @@ public class DateField extends JPanel implements IField{
 			//TODO: @Dusan dirao - end
 			
 			field.getModel().setSelected(true);
+		}else {
+			field.getModel().setDate(2000, 0, 1);
 		}
 	}
 

@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import view.localizationManager.LocalizationManager;
+import view.table.TableModel;
 
 /**
  * Klasa koja opisuje integer tip polja koja su potrebna za crud akcije
@@ -123,7 +124,7 @@ public class IntegerField extends JPanel implements IField{
 
 	@Override
 	public Object getValue() {
-		if(field.getText().equals("")) {
+		if(field.getText().equals("") || field.getText().equals(TableModel.reservedNullValue)) {
 			return null;
 		}
 		//TODO: @Dusan radio, @Jelena da proveri
