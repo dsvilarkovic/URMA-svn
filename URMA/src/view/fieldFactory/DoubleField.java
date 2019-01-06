@@ -117,7 +117,7 @@ public class DoubleField extends JPanel implements IField{
 
 	@Override
 	public void setValue(Object o) {
-		if(o != null) {
+		if(o != null && !o.equals(TableModel.reservedNullValue)) {
 			field.setText(o.toString());
 		}else {
 			field.setText("");
