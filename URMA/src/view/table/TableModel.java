@@ -28,7 +28,7 @@ import view.localizationManager.LocalizationObserver;
  */
 public class TableModel extends DefaultTableModel implements LocalizationObserver {
 	private static final long serialVersionUID = -5330690347427736920L;
-
+	public static final String reservedNullValue = "(NULL)";
 	private Table table;
 	
 	/**
@@ -100,7 +100,8 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 			//idi po redovima
 			for (int i = 0; i < valueList.size(); i++) {
 				//sad idi po vrednostima 
-				Vector<Object> row = valueList.get(i);//localize(valueList.get(i));				
+				Vector<Object> row = valueList.get(i);		
+				row = formatNullValues(row);
 				this.addRow(row);
 			}
 		}catch (Exception e) {
@@ -123,11 +124,31 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 		LocalizationManager.nulifyFormats();
 		this.setRowCount(0);
 		for (int i = 0; i < valueList.size(); i++) {
-			this.addRow(valueList.get(i));
+			Vector<Object> row = valueList.get(i);		
+			row = formatNullValues(row);
+			this.addRow(row);
 		}
 		// TODO Dusan od Filipa
 		updateLanguage();
 	}
+	
+	/**
+	 * Pomocna funkcija namenjena za vodjenje racuna o null vrednostima
+	 * @param row
+	 * @return
+	 */
+	private Vector<Object> formatNullValues(Vector<Object> row){
+		for (int i = 0; i < row.size(); i++) {
+			if(row.get(i) == null) {
+				row.set(i, TableModel.reservedNullValue);
+			}
+		}
+		
+		return row;
+	}
+	
+	
+	
 
 
 	/**

@@ -11,6 +11,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
+import model.Table;
+import view.table.TableModel;
+
 /**
  * Lokalizacioni menadzer koji radi po principu observer sablona 
  * Obavestava i namece promenu jezika preko combobox-a statusbar-a
@@ -114,7 +117,12 @@ public class LocalizationManager {
 			returnDateString = newDateFormat.format(d);
 		}
 		catch (Exception e) {
+			if(dateString == null || dateString.equals(TableModel.reservedNullValue)) {
+				returnDateString = TableModel.reservedNullValue;
+			}
+			else {
 			returnDateString = "date_format_error";
+			}
 		}
 		return returnDateString;
 	}
@@ -283,7 +291,12 @@ public class LocalizationManager {
 			returnNumberString = newNumberFormat.format(n);
 		}
 		catch (Exception e) {
-			returnNumberString = "number_format_error";
+			if(numberString == null || numberString.equals(TableModel.reservedNullValue)) {
+				returnNumberString = TableModel.reservedNullValue;
+			}
+			else {
+				returnNumberString = "number_format_error";
+			}
 		}
 		return returnNumberString;
 	}
@@ -330,7 +343,12 @@ public class LocalizationManager {
 			returnDateString = databaseFormat.format(returnDate);
 		}
 		catch(Exception e){
-			returnDateString = "date_format_error";
+			if(dateString == null || dateString.equals(TableModel.reservedNullValue)) {
+				returnDateString = TableModel.reservedNullValue;
+			}
+			else {
+				returnDateString = "date_format_error";
+			}
 		}
 		return returnDateString;
 	}
