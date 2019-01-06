@@ -10,6 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /** @pdOid 66940cd2-31c6-40c8-ab87-73f875f9b8d3 */
+/**
+ * Model informacionog resursa. U sebi sadrži veze ka svim unutrašnjim podelama.
+ * @author Boris
+ *
+ */
 public class InformationResource {
 	   /** @pdRoleInfo migr=no name=Relation assc=kolekcijaVeza coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */
 	   private Map<String,Relation> relations;

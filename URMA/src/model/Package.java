@@ -3,6 +3,12 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Model paketa u informacionom resursu.
+ * Sadrži njemu dodeljene tabele.
+ * @author Boris
+ *
+ */
 public class Package {
 
 	/** @pdOid 510b7405-40d6-4f44-90f3-185f7ef7760f */

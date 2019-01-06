@@ -16,7 +16,14 @@ import javax.swing.JTextField;
 
 import app.App;
 
+/**
+ * Dijalog za unošenje podataka o bazi prilikom korišćenja parsera baze podataka.
+ * @author Boris
+ *
+ */
 public class DBParserConnectionDialog extends JDialog {
+	private static final long serialVersionUID = 8952856249506754934L;
+	
 	private JLabel labIP;
 	private JLabel labUser;
 	private JLabel labPassword;

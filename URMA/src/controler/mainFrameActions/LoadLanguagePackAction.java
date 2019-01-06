@@ -22,8 +22,15 @@ import model.Table;
 import model.TitleLanguagePack;
 import view.localizationManager.LocalizationObserver;
 
+/**
+ * Akcija kojom se učitavaju paketi jezika šema. Očekuju se json fajlovi sa .lang ekstenzijom.
+ * @author Boris
+ *
+ */
 public class LoadLanguagePackAction extends AbstractAction implements LocalizationObserver {
-	
+
+	private static final long serialVersionUID = 7367662698511828186L;
+
 	public LoadLanguagePackAction() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
@@ -36,7 +43,7 @@ public class LoadLanguagePackAction extends AbstractAction implements Localizati
 		loadLanguagePack(path);
 	}
 	
-	public static void recursivePackages(Package pack, TitleLanguagePack tlp) {
+	private static void recursivePackages(Package pack, TitleLanguagePack tlp) {
 		for (Package child : pack.getChildPackages().values()) {
 			HashMap<String, String> values = new HashMap<>();
 			values.put("default", child.getTitle());
@@ -45,6 +52,11 @@ public class LoadLanguagePackAction extends AbstractAction implements Localizati
 		}
 	}
 	
+	/**
+	 * Metoda koja iz informacionog resursa izvlači nazive, da bi se koristili kao podrazumevani u lokalizaciji
+	 * @param ir - Informacioni resurs koji u sebi sadrži potrebne nazive.
+	 * @return Potvrda uspešnosti metode.
+	 */
 	public static boolean loadDefaultLanguagePack(InformationResource ir) {
 		if (ir == null) {
 			return false;
@@ -79,6 +91,11 @@ public class LoadLanguagePackAction extends AbstractAction implements Localizati
 		return true;
 	}
 	
+	/**
+	 * Metoda koja učitava jezičke pakete sa date putanje. Očekuju se datoteka json formata sa .lang ekstenzijom.
+	 * @param path - Putanja na kojoj se nalazi paket. 
+	 * @return Potvrda uspešnosti metode.
+	 */
 	public static boolean loadLanguagePack(String path) {
 		loadDefaultLanguagePack(App.INSTANCE.getModel());
 		TitleLanguagePack tlp = App.INSTANCE.getTitleLanguagePack();

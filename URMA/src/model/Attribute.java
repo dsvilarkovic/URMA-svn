@@ -7,6 +7,12 @@
 package model;
 
 /** @pdOid f68bbcd5-5fff-40bf-b2e4-b849591951d2 */
+/**
+ * Model atributa (kolone) jedne tabele šeme informacionog resursa.
+ * Identifikaciono je zavisan od matične tabele.
+ * @author Boris
+ *
+ */
 public class Attribute {
 	/** @pdOid 7040b2e2-2d9a-4727-ba48-9a7d1a7168b8 */
 	private String title;

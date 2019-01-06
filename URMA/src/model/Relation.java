@@ -9,6 +9,12 @@ package model;
 import java.util.HashSet;
 
 /** @pdOid 21a1a755-8af1-411b-9361-e211a1d1a8d1 */
+/**
+ * Model relacije u informacionom resursu.
+ * Sadrži sve informacije o vezi između dve tabele.
+ * @author Boris
+ *
+ */
 public class Relation {
 	/** @pdOid 0d370978-d9f9-48db-b853-69a6047aadb6 */
 	private String title;
