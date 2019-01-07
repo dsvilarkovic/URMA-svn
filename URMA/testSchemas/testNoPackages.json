@@ -1,0 +1,42 @@
+{
+	"tables": [
+		{
+            "title": "Parent",
+            "code": "PAR",
+            "attributes": [
+                {
+                    "title": "ParentName",
+                    "code": "NAM",
+                    "type": "char",
+                    "maxLength": 14,
+                    "isRequired": true,
+                    "isPK": true
+                },
+                {
+                    "title": "Address",
+                    "code": "ADD",
+                    "type": "varchar",
+                    "maxLength": 128,
+                    "isRequired": true,
+                    "isPK": false
+                },
+                {
+                    "title": "Age",
+                    "code": "AGE",
+                    "type": "int",
+                    "maxLength": 5,
+                    "isRequired": false,
+                    "isPK": false
+                },
+                {
+                    "title": "Date of birth",
+                    "code": "DOB",
+                    "type": "date",
+                    "isRequired": false,
+                    "isPK": false
+                }
+            ]
+        }
+	],
+	"relations": []
+}

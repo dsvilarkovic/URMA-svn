@@ -97,4 +97,40 @@ public class Package {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public boolean equals(Package p) {
+		if (p == null) {
+			return false;
+		}
+		
+		if (!this.title.equals(p.title)) {
+			return false;
+		}
+		
+		if (!this.code.equals(p.code)) {
+			return false;
+		}
+		
+		if (this.getTables().size() != p.getTables().size()) {
+			return false;
+		}
+		
+		for (String tcode : this.getTables().keySet()) {
+			if (!p.getTables().containsKey(tcode)) {
+				return false;
+			}
+		}
+		
+		if (this.getChildPackages().size() != p.getChildPackages().size()) {
+			return false;
+		}
+		
+		for (String pcode : this.getChildPackages().keySet()) {
+			if (!this.getChildPackages().get(pcode).equals(p.getChildPackages().get(pcode))) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }

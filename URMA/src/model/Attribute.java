@@ -185,5 +185,41 @@ public class Attribute {
 			return false;
 		return true;
 	}
+	
+	public boolean equals(Attribute a) {
+		if (a == null) {
+			return false;
+		}
+		
+		if (!this.title.equals(a.title)) {
+			return false;
+		}
+		
+		if (!this.code.equals(a.code)) {
+			return false;
+		}
+		
+		if (!this.type.equals(a.type)) {
+			return false;
+		}
+		
+		if (this.maxLength != a.maxLength) {
+			return false;
+		}
+		
+		if (this.precision != a.precision) {
+			return false;
+		}
+		
+		if (this.isRequired != a.isRequired) {
+			return false;
+		}
+		
+		if (this.isPrimaryKey != a.isPrimaryKey) {
+			return false;
+		}
+		
+		return true;
+	}
 
 }

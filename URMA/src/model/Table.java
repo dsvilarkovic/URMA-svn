@@ -142,5 +142,51 @@ public class Table {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public boolean equals(Table t) {
+		if (t == null) {
+			return false;
+		}
+		
+		if (!this.code.equals(t.code)) {
+			return false;
+		}
+		
+		if (!this.title.equals(t.title)) {
+			return false;
+		}
+		
+		if (this.getAttributes().size() != t.getAttributes().size()) {
+			return false;
+		}
+		
+		for (String acode : this.getAttributes().keySet()) {
+			if (!this.getAttributes().get(acode).equals(t.getAttributes().get(acode))) {
+				return false;
+			}
+		}
+		
+		if (this.getParentTables().size() != t.getParentTables().size()) {
+			return false;
+		}
+		
+		for (String tcode : this.getParentTables().keySet()) {
+			if (!t.getParentTables().containsKey(tcode)) {
+				return false;
+			}
+		}
+		
+		if (this.getChildTables().size() != t.getChildTables().size()) {
+			return false;
+		}
+		
+		for (String  tcode : this.getChildTables().keySet()) {
+			if (!t.getChildTables().containsKey(tcode)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 
 }

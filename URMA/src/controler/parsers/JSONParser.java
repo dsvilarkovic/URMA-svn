@@ -17,7 +17,7 @@ import model.Relation;
 import model.Table;
 
 /**
- * Parser �ema iz JSON Schema formata, na osnovu unapred specificirane meta-�eme.
+ * Parser šema iz JSON Schema formata, na osnovu unapred specificirane meta-šeme.
  * @author (proud) Boris
  */
 public class JSONParser implements IParser {
@@ -89,88 +89,103 @@ public class JSONParser implements IParser {
 	@Override
 	public InformationResource parse() {
 		String path = (String) new Open().getPath("sch/json");
-		JSONTokener tokener = new JSONTokener((String) new Open().openThis(path));
-		JSONObject informationResourceJSON = new JSONObject(tokener);
-		
-		informationResource = new InformationResource();
-		
-		// Paketi
-		JSONArray topPackagesJSON = informationResourceJSON.getJSONArray("packages");
-		for (Object packageObjectJSON : topPackagesJSON) {
-			JSONObject currPackageJSON = (JSONObject) packageObjectJSON;
-			Package newPackage = parsePackage(currPackageJSON);
-			informationResource.addPackages(newPackage);
-		}
-		
-		HashMap<String, Table> allTables = (HashMap<String, Table>) informationResource.getAllTables();
-		
-		// Relacije
-		JSONArray relationsJSON = informationResourceJSON.getJSONArray("relations");
-		for (Object relationObjectJSON : relationsJSON) {
-			JSONObject currRelationJSON = (JSONObject) relationObjectJSON;
-			Relation newRelation = new Relation();
-			newRelation.setCode(currRelationJSON.getString("code"));
-			newRelation.setTitle(currRelationJSON.getString("title"));
+		return parseThis(path);
+	}	
+	
+	/**
+	 * Metoda kojom se direktno pristupa parsiranju bez grafičkog dijaloga,
+	 * kada je unapred poznata putanja.
+	 * @param path - Putanja šeme.
+	 * @return Isparsirani informacioni resurs. Ukoliko se desi greška, vraća null.
+	 */
+	public InformationResource parseThis(String path) {
+		try {
+			JSONTokener tokener = new JSONTokener((String) new Open().openThis(path));
+			JSONObject informationResourceJSON = new JSONObject(tokener);
 			
-			Table sourceTable = allTables.get(currRelationJSON.getString("source"));
-			Table destinationTable = allTables.get(currRelationJSON.getString("destination"));
-			if (sourceTable == null || destinationTable == null) {
-				JOptionPane.showMessageDialog(null,
-						"Error while parsing relation " + newRelation.getCode() + ", table reference not found.",
-						"Parse error",
-						JOptionPane.WARNING_MESSAGE);
-				return null;
+			informationResource = new InformationResource();
+			
+			// Paketi
+			JSONArray topPackagesJSON = informationResourceJSON.getJSONArray("packages");
+			for (Object packageObjectJSON : topPackagesJSON) {
+				JSONObject currPackageJSON = (JSONObject) packageObjectJSON;
+				Package newPackage = parsePackage(currPackageJSON);
+				informationResource.addPackages(newPackage);
 			}
-			newRelation.setSourceTable(sourceTable);
-			newRelation.setDestinationTable(destinationTable);
 			
-			JSONArray sourceKeysJSON = currRelationJSON.getJSONArray("keysSource");
-			for (Object sourceKeyObjectJSON : sourceKeysJSON) {
-				String  keyCode = sourceKeyObjectJSON.toString();
-				Attribute sourceKey = sourceTable.getAttribute(keyCode);
-				if (sourceKey == null) {
+			HashMap<String, Table> allTables = (HashMap<String, Table>) informationResource.getAllTables();
+			
+			// Relacije
+			JSONArray relationsJSON = informationResourceJSON.getJSONArray("relations");
+			for (Object relationObjectJSON : relationsJSON) {
+				JSONObject currRelationJSON = (JSONObject) relationObjectJSON;
+				Relation newRelation = new Relation();
+				newRelation.setCode(currRelationJSON.getString("code"));
+				newRelation.setTitle(currRelationJSON.getString("title"));
+				
+				Table sourceTable = allTables.get(currRelationJSON.getString("source"));
+				Table destinationTable = allTables.get(currRelationJSON.getString("destination"));
+				if (sourceTable == null || destinationTable == null) {
 					JOptionPane.showMessageDialog(null,
-							"Error while parsing relation " + newRelation.getCode() + ", source attribute reference " + keyCode + " not found.",
+							"Error while parsing relation " + newRelation.getCode() + ", table reference not found.",
 							"Parse error",
 							JOptionPane.WARNING_MESSAGE);
 					return null;
 				}
-				if (!sourceKey.getIsPrimaryKey()) {
-					JOptionPane.showMessageDialog(null,
-							"Error while parsing relation " + newRelation.getCode() + ", source attribute " + keyCode + " is not a primary key.",
-							"Parse error",
-							JOptionPane.WARNING_MESSAGE);
-					return null;
-				}
-				newRelation.addSourceKeys(sourceKey);
-			}
-			
-			
-			JSONArray destinationKeysJSON = currRelationJSON.getJSONArray("keysDestination");
-			for (Object destinationKeyObjectJSON : destinationKeysJSON) {
-				String keyCode = destinationKeyObjectJSON.toString();
-				Attribute destinationKey = destinationTable.getAttribute(keyCode);
-				if (destinationKey == null) {
-					JOptionPane.showMessageDialog(null,
-							"Error while parsing relation " + newRelation.getCode() + ", destination attribute reference " + keyCode + " not found.",
-							"Parse error",
-							JOptionPane.WARNING_MESSAGE);
-					return null;
+				newRelation.setSourceTable(sourceTable);
+				newRelation.setDestinationTable(destinationTable);
+				
+				JSONArray sourceKeysJSON = currRelationJSON.getJSONArray("keysSource");
+				for (Object sourceKeyObjectJSON : sourceKeysJSON) {
+					String  keyCode = sourceKeyObjectJSON.toString();
+					Attribute sourceKey = sourceTable.getAttribute(keyCode);
+					if (sourceKey == null) {
+						JOptionPane.showMessageDialog(null,
+								"Error while parsing relation " + newRelation.getCode() + ", source attribute reference " + keyCode + " not found.",
+								"Parse error",
+								JOptionPane.WARNING_MESSAGE);
+						return null;
+					}
+					if (!sourceKey.getIsPrimaryKey()) {
+						JOptionPane.showMessageDialog(null,
+								"Error while parsing relation " + newRelation.getCode() + ", source attribute " + keyCode + " is not a primary key.",
+								"Parse error",
+								JOptionPane.WARNING_MESSAGE);
+						return null;
+					}
+					newRelation.addSourceKeys(sourceKey);
 				}
 				
-				// Da li je referencijalni integritet?
-				if (destinationKey.getIsPrimaryKey()) {
-					sourceTable.addChildTables(destinationTable);
-					destinationTable.addParentTables(sourceTable);
+				
+				JSONArray destinationKeysJSON = currRelationJSON.getJSONArray("keysDestination");
+				for (Object destinationKeyObjectJSON : destinationKeysJSON) {
+					String keyCode = destinationKeyObjectJSON.toString();
+					Attribute destinationKey = destinationTable.getAttribute(keyCode);
+					if (destinationKey == null) {
+						JOptionPane.showMessageDialog(null,
+								"Error while parsing relation " + newRelation.getCode() + ", destination attribute reference " + keyCode + " not found.",
+								"Parse error",
+								JOptionPane.WARNING_MESSAGE);
+						return null;
+					}
+					
+					// Da li je referencijalni integritet?
+					if (destinationKey.getIsPrimaryKey()) {
+						sourceTable.addChildTables(destinationTable);
+						destinationTable.addParentTables(sourceTable);
+					}
+					
+					newRelation.addDestinationKeys(destinationKey);
 				}
 				
-				newRelation.addDestinationKeys(destinationKey);
+				informationResource.addRelations(newRelation);
 			}
 			
-			informationResource.addRelations(newRelation);
+			return informationResource;
+		} catch (Exception e) {
+			return null;
 		}
 		
-		return informationResource;
 	}
 
 }

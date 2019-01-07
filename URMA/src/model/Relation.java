@@ -121,4 +121,48 @@ public class Relation {
 	public void setDestinationTable(Table destinationTable) {
 		this.destinationTable = destinationTable;
 	}
+	
+	public boolean equals(Relation r) {
+		if (!this.title.equals(r.title)) {
+			return false;
+		}
+		
+		if (!this.code.equals(r.code)) {
+			return false;
+		}
+		
+		if (!this.sourceTable.equals(r.sourceTable)) {
+			return false;
+		}
+		
+		if (!this.destinationTable.equals(r.destinationTable)) {
+			return false;
+		}
+		
+		if (this.getSourceKeys().size() != r.getSourceKeys().size()) {
+			return false;
+		}
+		
+		if (this.getDestinationKeys().size() != r.getDestinationKeys().size()) {
+			return false;
+		}
+		
+		Attribute[] aarray1 = (Attribute[]) this.getSourceKeys().toArray(new Attribute[this.getSourceKeys().size()]);
+		Attribute[] aarray2 = (Attribute[]) r.getSourceKeys().toArray(new Attribute[r.getSourceKeys().size()]);
+		for (int i = 0; i < aarray1.length; i++) {
+			if (!aarray1[i].equals(aarray2[i])) {
+				return false;
+			}
+		}
+		
+		aarray1 = (Attribute[]) this.getDestinationKeys().toArray(new Attribute[this.getDestinationKeys().size()]);
+		aarray2 = (Attribute[]) r.getDestinationKeys().toArray(new Attribute[this.getDestinationKeys().size()]);
+		for (int i = 0; i < aarray1.length; i++) {
+			if (!aarray1[i].equals(aarray2[i])) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }

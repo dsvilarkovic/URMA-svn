@@ -1,0 +1,92 @@
+{
+    "packages": [
+        {
+            "title": "main",
+            "code": "MAIN",
+            "tables": [
+                {
+                    "title": "Parent",
+                    "code": "PAR",
+                    "attributes": [
+                        {
+                            "title": "ParentName",
+                            "code": "NAM",
+                            "type": "char",
+                            "maxLength": 14,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "Address",
+                            "code": "ADD",
+                            "type": "varchar",
+                            "maxLength": 128,
+                            "isRequired": true,
+                            "isPK": false
+                        },
+                        {
+                            "title": "Age",
+                            "code": "AGE",
+                            "type": "int",
+                            "maxLength": 5,
+                            "isRequired": false,
+                            "isPK": false
+                        },
+                        {
+                            "title": "Date of birth",
+                            "code": "DOB",
+                            "type": "date",
+                            "isRequired": false,
+                            "isPK": false
+                        }
+                    ]
+                },
+                {
+                    "title": "Child",
+                    "code": "CHI",
+                    "attributes": [
+                        {
+                            "title": "ChildName",
+                            "code": "NAM",
+                            "type": "char",
+                            "maxLength": 14,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "Surname",
+                            "code": "SUR",
+                            "type": "varchar",
+                            "maxLength": 128,
+                            "isRequired": true,
+                            "isPK": true
+                        },
+                        {
+                            "title": "Number of presents",
+                            "code": "NOP",
+                            "type": "int",
+                            "maxLength": 5,
+                            "isRequired": false,
+                            "isPK": false
+                        }
+                    ]
+                }
+            ],
+            "packages": []
+        }
+    ],
+    "relations": [
+    	{
+    	"title": "Parent-Child",
+            "code": "P-C",
+            "source": "PAR",
+            "destination": "CHI",
+            "keysSource": [
+                "NAM"
+            ],
+            "keysDestination": [
+                "NAM"
+            ]
+    	}
+    ]
+}
