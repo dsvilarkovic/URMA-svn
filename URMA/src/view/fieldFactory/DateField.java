@@ -57,6 +57,14 @@ public class DateField extends JPanel implements IField{
 	**/
 	@Override
 	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen, int precision) {
+		int day = field.getModel().getDay();
+		int month = field.getModel().getMonth() + 1;
+		int year = field.getModel().getYear();
+		if(day == 1 && month == 1 && year == 2000) {
+			if(isReq || isPK) {
+				return false;
+			}
+		}
 		return true;
 	}
 
