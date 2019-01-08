@@ -62,8 +62,11 @@ public class DBHandler implements IHandler {
 			coloumn_str += key + ",";
 			Attribute attribute = attributes.get(key);
 			IField field = (IField) data.get(attribute.getTitle());
+			
+			
 			if (!field.validateField(attribute.getIsRequired(), attribute.getIsPrimaryKey(),
 					attribute.getMaxLength(), attribute.getPrecision())) {
+				
 				ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 				JOptionPane.showMessageDialog(null, attributes.get(key).getTitle() + " " + resourceBundle.getString("table.attribute.notvalid"));
 				return false;
@@ -74,6 +77,7 @@ public class DBHandler implements IHandler {
 				value_str += field.getValue().toString() + "','";
 			}
 		}
+		
 		coloumn_str = coloumn_str.substring(0, coloumn_str.length() - 1);
 		value_str = value_str.substring(0, value_str.length() - 2);
 		String sql = "insert into " + table.getCode() + "(" + coloumn_str + ")" + " values (" + value_str + ");";

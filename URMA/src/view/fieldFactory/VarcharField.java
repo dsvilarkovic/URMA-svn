@@ -81,7 +81,7 @@ public class VarcharField extends JPanel implements IField{
 	}
 
 	@Override
-	public Object getValue() {		
+	public Object getValue() {	
 		if(field.getText().equals("") || field.getText().equals(TableModel.reservedNullValue)) {
 			return null;
 		}
