@@ -123,6 +123,10 @@ public class Relation {
 	}
 	
 	public boolean equals(Relation r) {
+		if (r == null) {
+			return false;
+		}
+		
 		if (!this.title.equals(r.title)) {
 			return false;
 		}

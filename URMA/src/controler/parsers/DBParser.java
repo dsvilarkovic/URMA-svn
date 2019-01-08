@@ -42,7 +42,6 @@ public class DBParser implements IParser {
 	 */
 	@Override
 	public InformationResource parse() {
-		ResourceBundle rb = App.INSTANCE.getResourceBundle();
 		DBParserConnectionDialog dbpcd = new DBParserConnectionDialog();
 		dbpcd.setVisible(true);
 		if (!dbpcd.isDataValid()) {
@@ -52,7 +51,11 @@ public class DBParser implements IParser {
 		String ip = dbpcd.getIP();
 		String user = dbpcd.getUser();
 		String pass = dbpcd.getPassword();
-		
+		return parseThis(ip, user, pass);
+	}
+	
+	public InformationResource parseThis(String ip, String user, String pass) {
+		ResourceBundle rb = App.INSTANCE.getResourceBundle();
 		Connection con;
 		try {
 			con = DriverManager.getConnection(preIP + ip + '/' + user, user, pass);
@@ -210,6 +213,9 @@ public class DBParser implements IParser {
 			while (rset.next()) {
 				Table tpar = allTables.get(rset.getString(2));
 				Table tchi = allTables.get(rset.getString(4));
+				if (tpar == null || tchi == null) {
+					return null;
+				}
 				String rcode = rset.getString(5);
 				String rtitle = rset.getString(6);
 				
@@ -235,8 +241,14 @@ public class DBParser implements IParser {
 				Table tpar = allTables.get(rset.getString(2));
 				Table tchi = allTables.get(rset.getString(4));
 				Relation r = allRelations.get(rset.getString(5));
+				if (tpar == null || tchi == null || r == null) {
+					return null;
+				}
 				Attribute source = tpar.getAttribute(rset.getString(6));
 				Attribute dest = tchi.getAttribute(rset.getString(7));
+				if (source == null || dest == null) {
+					return null;
+				}
 				r.addSourceKeys(source);
 				r.addDestinationKeys(dest);
 				
