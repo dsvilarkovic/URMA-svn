@@ -1,15 +1,33 @@
 package handlerTest;
 
+import static org.powermock.api.mockito.PowerMockito.doReturn;
+import static org.powermock.api.mockito.PowerMockito.spy;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Vector;
 
 import model.Attribute;
 import model.Table;
+import view.fieldFactory.BooleanField;
+import view.fieldFactory.BooleanFieldFactory;
+import view.fieldFactory.CharField;
+import view.fieldFactory.CharFieldFactory;
+import view.fieldFactory.DateField;
+import view.fieldFactory.DateFieldFactory;
+import view.fieldFactory.DoubleField;
+import view.fieldFactory.DoubleFieldFactory;
+import view.fieldFactory.IField;
+import view.fieldFactory.IntegerField;
+import view.fieldFactory.IntegerFieldFactory;
+import view.fieldFactory.VarcharField;
+import view.fieldFactory.VarcharFieldFactory;
 
 /**
  * Klasa koja sluzi za kreiranje tabele u bazi nad kojom ce se proveravati rad  <br>
@@ -153,5 +171,99 @@ public class DatabaseMockTable {
 		}
 		
 		return columnCodes;
+	}
+	
+	
+	/**
+	 * Pravljenje torke na osnovu fiktivne forme
+	 * @return
+	 */
+	static HashMap<String, Object> getRowMap(){
+		HashMap<String, Object> rowMap = new HashMap<>();
+		//ispuni podacima		
+		CharField charField = (CharField) new CharFieldFactory().createField();
+		charField.setValue("xyz");
+		VarcharField varcharField = (VarcharField) new VarcharFieldFactory().createField();
+		varcharField.setValue("mock_varchar");
+		IntegerField integerField = (IntegerField) new IntegerFieldFactory().createField();
+		integerField.setValue((Integer) 1);
+		DoubleField doubleField = (DoubleField) new DoubleFieldFactory().createField();
+		DoubleField copyDoubleField = spy(doubleField);
+		doReturn(",").when(copyDoubleField).splitChar();
+		copyDoubleField.setValue("125.25");
+		BooleanField booleanField = (BooleanField) new BooleanFieldFactory().createField();
+		booleanField.setValue((Boolean)true); 
+		DateField dateField = (DateField) new DateFieldFactory().createField();
+				
+		rowMap.put("MOCK_CHAR", charField);
+		rowMap.put("MOCK_VARCHAR", varcharField);
+		rowMap.put("MOCK_INT", integerField);
+		rowMap.put("MOCK_DOUBLE", copyDoubleField);
+		rowMap.put("MOCK_BOOLEAN", booleanField);
+		rowMap.put("MOCK_DATE", dateField);
+
+		
+		return rowMap;
+	}
+	
+	
+	/**
+	 * Sluzi za proveru da li je to bas taj red
+	 * @param row - red iz baze
+	 * @param rowMap - red iz poslate torke za bazu
+	 * @return
+	 */
+	static boolean isThatRow(Vector<Object> row, HashMap<String, Object> rowMap) {
+		boolean isThat = true;
+		List<Object> valuesNew = new ArrayList<Object>(rowMap.values());
+		
+//		System.out.println();
+//		System.out.println("row");
+//		for (int i = 0; i < row.size(); i++) {
+//			System.out.print(row.get(i) + "|");
+//		}
+//		System.out.println();
+//		System.out.println("valuesNew");
+//		for (int i = 0; i < valuesNew.size(); i++) {
+//			System.out.print(((IField)valuesNew.get(i)).getValue() + "|");
+//		}
+//		System.out.println();
+		
+		
+		
+		for (int i = 0; i < row.size(); i++) {
+			Object value = ((IField)valuesNew.get(i)).getValue();
+			//System.out.println(value + " "  + row.get(i));
+			if(value == null && row.get(i) == null) {
+				continue;
+			}
+			
+			
+			if((value == null || row.get(i) == null) ||
+					value.toString().equals(row.get(i).toString()) == false) {
+				
+				System.out.println("Fejlovao za " + value);
+				isThat = false;
+				break;
+			}
+		}
+			
+		
+		return isThat;
+	}
+	
+	
+	static boolean rowNotExistsInDatabaseTable(Vector<Vector<Object>> valueList,
+			HashMap<String, Object> rowMap) {
+		boolean rowNotExists = true;
+		for (int i = 0; i < valueList.size(); i++) {
+			Vector<Object> row = valueList.get(i);
+			if(DatabaseMockTable.isThatRow(row, rowMap) == true){
+				rowNotExists = false;
+				break;
+			}
+		}
+		
+		return rowNotExists;
 	}
 }
