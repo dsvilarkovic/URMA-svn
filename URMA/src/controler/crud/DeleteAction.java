@@ -65,6 +65,7 @@ public class DeleteAction extends AbstractAction{
 	}
 	
 	private Vector<Object> getSelectedRowValues(){
+		//TODO: @Dusan ispravi ovo za selected iz Paskala
 		int selectedRow = tableCalling.getSelectedRow();
 		@SuppressWarnings("unchecked")
 		Vector<Object> v = (Vector<Object>) (((TableModel)  tableCalling.getModel()).getDataVector()).elementAt(selectedRow);
