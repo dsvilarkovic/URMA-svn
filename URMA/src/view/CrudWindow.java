@@ -77,6 +77,9 @@ public class CrudWindow extends JDialog{
 			jp = new JPanel();
 			//Dusan radio lokalizaciju
 			localizedString = titleLanguagePack.getAttributeTitle(attribute.getCode(), table.getCode());
+			if(attribute.getIsPrimaryKey() || attribute.getIsRequired()) {
+				localizedString += "*";
+			}
 			jp.add(new JLabel(localizedString));
 			//Jelena
 			//jp.add(new JLabel(attribute.getTitle()));
@@ -167,6 +170,9 @@ public class CrudWindow extends JDialog{
 			jp = new JPanel();
 			//Dusan radio lokalizaciju
 			localizedString = titleLanguagePack.getAttributeTitle(attribute.getCode(), table.getCode());
+			if((attribute.getIsPrimaryKey() || attribute.getIsRequired()) && !search) {
+				localizedString += "*";
+			}
 			jp.add(new JLabel(localizedString));
 			//Jelena
 			//jp.add(new JLabel(attribute.getTitle()));
