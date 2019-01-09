@@ -2,7 +2,6 @@ package controler.mainFrameActions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -12,11 +11,8 @@ import javax.swing.JOptionPane;
 import app.App;
 import controler.Open;
 import controler.parsers.IParser;
-import model.Attribute;
 import model.InformationResource;
 import model.Package;
-import model.Table;
-import model.TitleLanguagePack;
 import model.resourceFactory.IResourceFactory;
 import model.treeAdapter.AdapterPackage;
 import view.localizationManager.LocalizationObserver;
@@ -76,25 +72,21 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 		elderPackage.setCode("INFRES");
 		for (Package value : App.INSTANCE.getModel().getPackages().values())
 			elderPackage.addChildPackages(value);
-
-		App.INSTANCE.getMainAppFrame().getTreePanel().removeAll();
-		App.INSTANCE.getMainAppFrame().getTreePanel().init(new AdapterPackage(elderPackage));
-
-
+		
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",
 				Locale.getDefault());
 		int selectedOption = JOptionPane.showConfirmDialog(null, resourceBundle.getString("languagePack.load"), "",
 				JOptionPane.YES_NO_OPTION);
 		if (selectedOption == JOptionPane.YES_OPTION) {
 			String path = (String) new Open().getPath("lang");
-			if (LoadLanguagePackAction.loadLanguagePack(path)) {
-				return;
-			}
-		}
+			LoadLanguagePackAction.loadLanguagePack(path);
+		}else
+			// Ako je rekao da nece ili nije nista selektovano punimo sa "default" =>
+			// vrednost iz modela
+			LoadLanguagePackAction.loadDefaultLanguagePack(model);
 
-		// Ako je rekao da nece ili nije nista selektovano punimo sa "default" =>
-		// vrednost iz modela
-		LoadLanguagePackAction.loadDefaultLanguagePack(model);
+		App.INSTANCE.getMainAppFrame().getTreePanel().removeAll();
+		App.INSTANCE.getMainAppFrame().getTreePanel().init(new AdapterPackage(elderPackage));
 	}
 
 	@Override
