@@ -61,6 +61,7 @@ public class MainAppTreePanel extends JPanel implements LocalizationObserver {
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 				if (!(node == null))
 					((TreeParts) node.getUserObject()).action();
+				tree.clearSelection();
 			}
 		});
 
