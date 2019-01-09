@@ -219,7 +219,8 @@ public class DBHandler implements IHandler {
 			pstmt.execute();
 			pstmt.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+			JOptionPane.showMessageDialog(null, resourceBundle.getString("table.constraints.delete"));
 		}
 
 		App.INSTANCE.getTableMediator().showTable(table);
