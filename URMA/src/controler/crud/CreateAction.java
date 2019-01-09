@@ -15,7 +15,7 @@ import model.resourceFactory.IResourceFactory;
 import view.CrudWindow;
 
 /**
- * Akcija koja služi za create nad bazom
+ * Akcija koja služi za pozivanje handlera za create nad bazom
  * @author Jelena
  *
  */
