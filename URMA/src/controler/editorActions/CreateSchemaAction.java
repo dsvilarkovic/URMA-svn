@@ -4,6 +4,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -22,7 +24,8 @@ public class CreateSchemaAction extends AbstractAction {
 	 */
 	public CreateSchemaAction() {
 		int prefferedSize = 23;
-		putValue(NAME, "Create new schema");
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		putValue(NAME, resourceBundle.getString("button.createScheme"));
 		Image newProjectImg = Toolkit.getDefaultToolkit().getImage("resources/new_schema.png");
 		Image scaledImage3 = newProjectImg.getScaledInstance(prefferedSize, prefferedSize, Image.SCALE_SMOOTH);
 
@@ -37,7 +40,8 @@ public class CreateSchemaAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		String textArea = App.INSTANCE.getEditorWindow().getMainPanel().getTextArea().getText().toString();
 		if(textArea.isEmpty() != true) {
-			int a=JOptionPane.showConfirmDialog(null,"There has been another schema opened in editor. Would you like to save it?");  
+			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+			int a=JOptionPane.showConfirmDialog(null,resourceBundle.getString("message.saveBefore"));  
 			if(a==JOptionPane.YES_OPTION){  
 				new Save().saveAs(App.INSTANCE.getEditorWindow().getMainPanel().getTextArea().getText(), "sch");
 			} 

@@ -4,6 +4,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -21,7 +23,8 @@ public class SaveSchemeAction extends AbstractAction {
 
 	public SaveSchemeAction() {
 		int prefferedSize = 23;
-		putValue(NAME, "Save scheme");
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
+		putValue(NAME, resourceBundle.getString("button.saveScheme"));
 		Image newProjectImg = Toolkit.getDefaultToolkit().getImage("resources/save.png");
 		Image scaledImage3 = newProjectImg.getScaledInstance(prefferedSize, prefferedSize, Image.SCALE_SMOOTH);
 
