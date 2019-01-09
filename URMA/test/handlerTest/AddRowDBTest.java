@@ -19,6 +19,7 @@ import controler.handlers.IHandler;
 import model.Table;
 import view.fieldFactory.CharField;
 import view.fieldFactory.DoubleField;
+import view.fieldFactory.IntegerField;
 
 public class AddRowDBTest {
 
@@ -77,15 +78,8 @@ public class AddRowDBTest {
 		
 	
 				
-		boolean rowNotExists = true;
-		for (int i = 0; i < valueList.size(); i++) {
-			Vector<Object> row = valueList.get(i);
-			if(DatabaseMockTable.isThatRow(row, rowMap) == true){
-				rowNotExists = false;
-				break;
-			}
-		}
-		
+		//proveri da li postoji u bazi
+		boolean rowNotExists = DatabaseMockTable.rowNotExistsInDatabaseTable(valueList, rowMap);
 		assertEquals(false, rowNotExists);	
 	}
 	
@@ -123,24 +117,16 @@ public class AddRowDBTest {
 		
 		
 	
-				
-		boolean rowNotExists = true;
-		for (int i = 0; i < valueList.size(); i++) {
-			Vector<Object> row = valueList.get(i);
-			if(DatabaseMockTable.isThatRow(row, rowMap) == true){
-				rowNotExists = false;
-				break;
-			}
-		}
-		
-		assertEquals(false, rowNotExists);			
+		//proveri da li postoji u bazi
+		boolean rowNotExists = DatabaseMockTable.rowNotExistsInDatabaseTable(valueList, rowMap);
+		assertEquals(false, rowNotExists);		
 	}
 	
 	@Test
 	/**
 	 * Testiranje negativnog ulaza, tj kad se prosledi null vrednost za kljuc
 	 */
-	public void testNegativeAdd() {
+	public void testNegativeNullKeyAdd() {
 		Table table = DatabaseMockTable.createMockTable();
 		
 		
@@ -148,7 +134,7 @@ public class AddRowDBTest {
 		HashMap<String, Object> rowMap = DatabaseMockTable.getRowMap();
 		
 		/**
-		 * Podesavanje null vrednosti za MOCK_DOUBLE, za koji je dozvoljeno da se podesi
+		 * Podesavanje null vrednosti za MOCK_CHAR, za koji nije dozvoljeno da se podesi
 		 */
 		((CharField)rowMap.get("MOCK_CHAR")).setValue(null);
 		
@@ -170,15 +156,42 @@ public class AddRowDBTest {
 		
 		
 		
-		boolean rowNotExists = true;
-		for (int i = 0; i < valueList.size(); i++) {
-			Vector<Object> row = valueList.get(i);
-			if(DatabaseMockTable.isThatRow(row, rowMap) == true){
-				rowNotExists = false;
-				break;
-			}
+		//proveri da li postoji u bazi
+		boolean rowNotExists = DatabaseMockTable.rowNotExistsInDatabaseTable(valueList, rowMap);
+		assertEquals(true, rowNotExists);
+	}
+	
+	@Test 
+	public void testNegativeNullAdd() {
+		Table table = DatabaseMockTable.createMockTable();
+		
+		
+		//napravi podatke
+		HashMap<String, Object> rowMap = DatabaseMockTable.getRowMap();
+		
+		/**
+		 * Podesavanje null vrednosti za MOCK_INT, za koji nije dozvoljeno da se podesi
+		 */
+		((IntegerField)rowMap.get("MOCK_INT")).setValue(null);
+		
+		IHandler iHandler = new DBHandler();
+		//ubaci torku u tabelu u bazu
+		
+		try {
+			iHandler.create(table, rowMap);
+		}
+		catch(NullPointerException npe) {
+			//izuzetak za graficki prikaz
+		}
+		catch(MissingResourceException mre) {
+			//izuzetak za resource bundle
 		}
 		
+		//procitaj celu tabelu iz baze
+		Vector<Vector<Object>> valueList = iHandler.read(table);
+		
+		//proveri da li postoji u bazi
+		boolean rowNotExists = DatabaseMockTable.rowNotExistsInDatabaseTable(valueList, rowMap);
 		assertEquals(true, rowNotExists);	
 	}
 	

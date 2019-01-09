@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.MissingResourceException;
 import java.util.Vector;
 
 import javax.xml.crypto.Data;
@@ -72,7 +73,7 @@ public class UpdateRowDBTest {
 	/**
 	 * Azuriraj tabelu nekom non-null vrendoscu, npr MOCK_INT dodaj da prikazuje 100
 	 */
-	public void positiveUpdateTest() {
+	public void testPositiveUpdate() {
 		//isti row koji je prethodno dodat
 		HashMap<String, Object> rowMap = DatabaseMockTable.getRowMap();
 		//izmeni ga
@@ -104,7 +105,7 @@ public class UpdateRowDBTest {
 	/**
 	 * Testiranje ubacivanja null vrednosti na mesto koje sme, npr MOCK_DOUBLE
 	 */
-	public void positiveNullTest() {
+	public void testPositiveNullUpdate() {
 		//isti row koji je prethodno dodat
 		HashMap<String, Object> rowMap = DatabaseMockTable.getRowMap();
 		//izmeni ga
@@ -130,9 +131,10 @@ public class UpdateRowDBTest {
 	
 	@Test
 	/**
-	 * Azuriranje trojke promenom na null obelezja koje zabranjuje null vrednost
+	 * Azuriranje trojke promenom na null obelezja koje zabranjuje null vrednost,
+	 * tj kljuca
 	 */
-	public void negativeUpdateTest() {
+	public void testNegativeNullKeyUpdate() {
 		//isti row koji je prethodno dodat
 		HashMap<String, Object> rowMap = DatabaseMockTable.getRowMap();
 		//izmeni ga
@@ -141,7 +143,9 @@ public class UpdateRowDBTest {
 		
 		
 		try {
-			iHandler.update(table, rowMap);
+			
+			boolean result = iHandler.update(table, rowMap);
+			System.out.println("Rezultat je: " + result);
 		}
 		catch(NullPointerException npe) {
 			//zbog grafickog prikaza 
@@ -154,7 +158,33 @@ public class UpdateRowDBTest {
 		boolean rowNotExists = DatabaseMockTable.rowNotExistsInDatabaseTable(valueList, rowMap);
 		assertEquals(true, rowNotExists);		
 			
+	}
+	
+	@Test
+	public void testNegativeNullUpdate() {
+		//isti row koji je prethodno dodat
+		HashMap<String, Object> rowMap = DatabaseMockTable.getRowMap();
+		//izmeni ga
+		((IntegerField)rowMap.get("MOCK_INT")).setValue(null);
 		
+		
+		
+		try {
+			iHandler.update(table, rowMap);
+		}
+		catch(NullPointerException npe) {
+			//zbog grafickog prikaza 
+		}
+		catch(MissingResourceException mre) {
+			//zbog kljuca, jer se ne uzdamo u validaciju
+		}
+				
+		//procitaj celu tabelu iz baze
+		Vector<Vector<Object>> valueList = iHandler.read(table);
+				
+		//proveri da li postoji u bazi
+		boolean rowNotExists = DatabaseMockTable.rowNotExistsInDatabaseTable(valueList, rowMap);
+		assertEquals(true, rowNotExists);	
 	}
 
 }

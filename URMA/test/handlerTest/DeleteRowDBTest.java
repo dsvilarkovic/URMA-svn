@@ -1,9 +1,6 @@
 package handlerTest;
 
 import static org.junit.Assert.*;
-import static org.powermock.api.mockito.PowerMockito.doReturn;
-import static org.powermock.api.mockito.PowerMockito.spy;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,14 +12,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import app.App;
 import controler.handlers.DBHandler;
 import controler.handlers.IHandler;
 import model.Table;
-import view.fieldFactory.DoubleField;
 import view.fieldFactory.IField;
 import view.fieldFactory.IntegerField;
-import view.localizationManager.LocalizationManager;
 
 public class DeleteRowDBTest {
 
