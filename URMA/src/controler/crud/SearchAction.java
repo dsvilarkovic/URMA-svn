@@ -30,6 +30,7 @@ public class SearchAction extends AbstractAction{
 	/**
 		Akcija koja se poziva nakon popunjavanja polja za search akciju u CrudWindow-u da bi izvršila akciju nad bazom		
 		@author - Jelena
+		@param e - event
 	**/
 	@Override
 	public void actionPerformed(ActionEvent e) {

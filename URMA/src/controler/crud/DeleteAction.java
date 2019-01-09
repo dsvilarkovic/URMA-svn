@@ -41,6 +41,7 @@ public class DeleteAction extends AbstractAction{
 	/**
 		Akcija brisanja		
 		@author - Jelena
+		@param e - event
 	**/
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -269,6 +269,11 @@ public class CrudWindow extends JDialog{
 	}
 
 
+	/**
+		Metoda koja popunjava polja na osnovu stranog kljuca
+		@author - Jelena
+		@param selectedRow - mapa<atribut, vrednost> kojima treba popuniti polja
+	**/
 	public void fillFields(Map<String, Object> selectedRow) {
 		Map<String, Attribute> attributes = this.table.getAttributes();
 		IField field = null;

@@ -38,14 +38,13 @@ public class CreateAction extends AbstractAction{
 	/**
 		Akcija koja se poziva nakon popunjavanja polja za create akciju u CrudWindow-u da bi izvršila akciju nad bazom		
 		@author - Jelena
+		@param e - event
 	**/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
 			Map<String, Object> fields = parentCaller.getFields();
-	//		for (String mapKey : fields.keySet()) {
-	//			System.out.println(mapKey + " " + ((IField)fields.get(mapKey)).getValue().toString());
-	//		}
+			
 			App.INSTANCE.setFactory("db");
 			IResourceFactory factory = App.INSTANCE.getFactory();
 			IHandler handler = factory.createHandler();

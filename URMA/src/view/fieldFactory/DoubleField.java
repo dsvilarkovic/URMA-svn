@@ -68,6 +68,11 @@ public class DoubleField extends JPanel implements IField{
 	/**
 		Metoda koja validira polje 		
 		@author - Jelena
+		@param isReq - da li je polje obavezno
+		@param isPK - da li je polje primarni ključ
+		@param maxLen - maksimalna dužina polja
+		@param precision - preciznost(potrebna za double)
+		@return true ako je validno, false ako nije
 	**/
 	@Override
 	public Boolean validateField(Boolean isReq, Boolean isPK, int maxLen, int precision) {
@@ -90,9 +95,7 @@ public class DoubleField extends JPanel implements IField{
 			}
 			
 			String[] parts = field.getText().split(splitChar());
-			System.out.println("serbia");
 			if(parts.length > 1) {
-				System.out.println("serbia");
 				if(parts[1].length() > precision) {
 					System.out.println("wrong precision");
 					return false;
