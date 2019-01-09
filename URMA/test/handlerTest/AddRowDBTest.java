@@ -162,6 +162,9 @@ public class AddRowDBTest {
 	}
 	
 	@Test 
+	/**
+	 * Provera da li negativna vrednost za neprimarno obelezje ulazi u bazu
+	 */
 	public void testNegativeNullAdd() {
 		Table table = DatabaseMockTable.createMockTable();
 		
