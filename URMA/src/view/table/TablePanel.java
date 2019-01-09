@@ -37,10 +37,10 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	private static final long serialVersionUID = 1988065650430728153L;
 	protected JTable tableView;
 
-	private JButton addRow = new JButton();
-	private JButton removeRow = new JButton();
-	private JButton updateRow = new JButton();
-	private JButton search = new JButton();
+	private JButton addButton = new JButton();
+	private JButton removeButton = new JButton();
+	private JButton updateButton = new JButton();
+	private JButton searchButton = new JButton();
 
 	private JButton changeableButton = new JButton("");
 	private ButtonGroup buttonGroup = new ButtonGroup();
@@ -79,10 +79,10 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	private void initButtons() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 		
-		addRow.setText(resourceBundle.getString("table.button.add")); 
-		removeRow.setText(resourceBundle.getString("table.button.remove"));
-		updateRow.setText(resourceBundle.getString("table.button.update"));
-		search.setText(resourceBundle.getString("table.button.search"));
+		addButton.setText(resourceBundle.getString("table.button.add")); 
+		removeButton.setText(resourceBundle.getString("table.button.remove"));
+		updateButton.setText(resourceBundle.getString("table.button.update"));
+		searchButton.setText(resourceBundle.getString("table.button.search"));
 	}
 	
 	/**
@@ -90,11 +90,11 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	 */
 	private void setButtonActions() {
 		//podesavanje akcija
-		addRow.setAction(new CreateCrudWindowAction(this, addRow.getText()));
+		addButton.setAction(new CreateCrudWindowAction(this, addButton.getText()));
 //		removeRow.setAction(new CreateCrudWindowAction(this, removeRow.getText()));
-		removeRow.addActionListener(new DeleteAction(this));
-		updateRow.setAction(new CreateCrudWindowAction(this, updateRow.getText()));
-		search.setAction(new CreateCrudWindowAction(this, search.getText()));
+		removeButton.addActionListener(new DeleteAction(this));
+		updateButton.setAction(new CreateCrudWindowAction(this, updateButton.getText()));
+		searchButton.setAction(new CreateCrudWindowAction(this, searchButton.getText()));
 	}
 
 	private void initTables() {
@@ -121,23 +121,23 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 	 */
 	private void setButtons() {				
 		
-		buttonGroup.add(addRow);
-		buttonGroup.add(removeRow);
-		buttonGroup.add(updateRow);
-		buttonGroup.add(search);
+		buttonGroup.add(addButton);
+		buttonGroup.add(removeButton);
+		buttonGroup.add(updateButton);
+		buttonGroup.add(searchButton);
 		//buttonGroup.add(changeableButton);
 		
 		
 		
 		Box box = Box.createHorizontalBox();
 		box.add(Box.createHorizontalStrut(5));
-		box.add(addRow);
+		box.add(addButton);
 		box.add(Box.createHorizontalStrut(5));
-		box.add(removeRow);
+		box.add(removeButton);
 		box.add(Box.createHorizontalStrut(5));
-		box.add(updateRow);
+		box.add(updateButton);
 		box.add(Box.createHorizontalStrut(5));
-		box.add(search);
+		box.add(searchButton);
 		box.add(Box.createHorizontalGlue());
 		box.add(changeableButton);
 		box.add(Box.createHorizontalStrut(15));
