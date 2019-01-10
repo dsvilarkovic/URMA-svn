@@ -8,7 +8,6 @@ import static org.junit.Assert.assertEquals;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.util.HashMap;
 import java.util.Vector;
 
 import org.junit.AfterClass;
@@ -28,7 +27,6 @@ public class ReadDBTest {
 	private static Connection conn = null;
 	private static Table table = null;
 	private static IHandler iHandler = null;
-	private static HashMap<String, Object> fields;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
