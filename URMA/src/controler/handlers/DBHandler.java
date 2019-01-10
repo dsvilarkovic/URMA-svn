@@ -78,7 +78,7 @@ public class DBHandler implements IHandler {
 
 
 		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1",
+			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1",
 					"psw-2018-tim7-1", "tim7-19940718");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.execute();
@@ -163,7 +163,7 @@ public class DBHandler implements IHandler {
 		PreparedStatement pstmt;
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.execute();
 			pstmt.close();
@@ -213,7 +213,7 @@ public class DBHandler implements IHandler {
 		
 
 		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1",
+			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1",
 					"psw-2018-tim7-1", "tim7-19940718");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.execute();
@@ -336,7 +336,7 @@ public class DBHandler implements IHandler {
 		return valuesFromDB;
 	}
 	
-	private void updateTableInfo(Vector<Vector<Object>> valuesFromDB, Table table) throws SQLException {
+	public void updateTableInfo(Vector<Vector<Object>> valuesFromDB, Table table) throws SQLException {
 		TableModel menjajOvu = App.INSTANCE.getMainAppFrame().getMainAppPanel().getParentTablePanel().getParentTableModel();
 		if(menjajOvu.getTable().getTitle().equals(table.getTitle())) {
 			menjajOvu.searchUpdate(valuesFromDB);
@@ -350,7 +350,7 @@ public class DBHandler implements IHandler {
 		PreparedStatement pstmt;
 		// conn =
 		// DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
-		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1", "psw-2018-tim7-1",
+		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1", "psw-2018-tim7-1",
 				"tim7-19940718");
 
 		pstmt = conn.prepareStatement(sql);
