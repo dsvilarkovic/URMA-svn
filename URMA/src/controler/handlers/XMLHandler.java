@@ -52,7 +52,7 @@ public class XMLHandler implements IHandler {
 	}
 
 	@Override
-	public Boolean search(Table table, HashMap<String, Object> data) {
+	public Vector<Vector<Object>> search(Table table, HashMap<String, Object> data) {
 		// TODO Auto-generated method stub
 		return null;
 	}

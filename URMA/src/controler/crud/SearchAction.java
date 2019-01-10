@@ -41,7 +41,7 @@ public class SearchAction extends AbstractAction{
 		//IResourceFactory factory = App.INSTANCE.getFactory();
 		IHandler handler = App.INSTANCE.getFactory().createHandler();
 		
-		if(handler.search(parentCaller.getTable(), (HashMap<String, Object>) fields)){
+		if(handler.search(parentCaller.getTable(), (HashMap<String, Object>) fields) != null){
 			parentCaller.dispose();
 		}
 		

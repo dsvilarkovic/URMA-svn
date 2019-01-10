@@ -267,7 +267,7 @@ public class DBHandler implements IHandler {
 	 * @return {@link Boolean} - true da unisti search prozor
 	 */
 	@Override
-	public Boolean search(Table table, HashMap<String, Object> data) {
+	public Vector<Vector<Object>> search(Table table, HashMap<String, Object> data) {
 		String where = " where ";
 		String and = " and ";
 		
@@ -325,8 +325,9 @@ public class DBHandler implements IHandler {
 		System.out.println(sql);
 		
 		//slanje upita ka bazi i updejtovanje modela tabele
+		Vector<Vector<Object>> valuesFromDB = null;
 		try {
-			Vector<Vector<Object>> valuesFromDB = executeStatement(sql, table);
+			valuesFromDB = executeStatement(sql, table);
 			TableModel menjajOvu = App.INSTANCE.getMainAppFrame().getMainAppPanel().getParentTablePanel().getParentTableModel();
 			if(menjajOvu.getTable().getTitle().equals(table.getTitle())) {
 				menjajOvu.searchUpdate(valuesFromDB);
@@ -338,7 +339,7 @@ public class DBHandler implements IHandler {
 			e.printStackTrace();
 		}
 				
-		return true;
+		return valuesFromDB;
 	}
 
 	private Vector<Vector<Object>> executeStatement(String sql, Table table) throws SQLException {

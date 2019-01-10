@@ -37,5 +37,5 @@ public interface IHandler {
 		@param values - podatci koji se brišu
 	**/
 	public void delete(Table table, Vector<Object> values);
-	public Boolean search(Table table, HashMap<String, Object> data);
+	public Vector<Vector<Object>> search(Table table, HashMap<String, Object> data);
 }
