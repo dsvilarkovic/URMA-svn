@@ -1,11 +1,14 @@
 package controler.mainFrameActions;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import app.App;
@@ -30,6 +33,9 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",
 				Locale.getDefault());
 		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
+		Image newProjectImg = Toolkit.getDefaultToolkit().getImage("resources/loadScheme.png");
+		Image scaledImage3 = newProjectImg.getScaledInstance(23, 23, Image.SCALE_SMOOTH);
+		putValue(SMALL_ICON, (new ImageIcon(scaledImage3)));
 		putValue(NAME, resourceBundle.getString("schema.load"));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_L);
 	}
