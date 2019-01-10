@@ -3,14 +3,12 @@ package controler.mainFrameActions;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import javax.swing.plaf.BorderUIResource.TitledBorderUIResource;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

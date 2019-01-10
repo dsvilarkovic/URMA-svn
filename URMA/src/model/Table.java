@@ -11,7 +11,7 @@ import java.util.*;
 /** @pdOid 964e13bd-7bb2-48fd-8a10-ad5bb18e49aa */
 /**
  * Model tabele informacionog resursa.
- * Sadrži sve informacije o jednom entitetu u okviru resursa.
+ * Sadrï¿½i sve informacije o jednom entitetu u okviru resursa.
  * @author Boris
  *
  */

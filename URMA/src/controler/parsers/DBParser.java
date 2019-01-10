@@ -21,8 +21,8 @@ import model.Table;
 import view.dialogs.DBParserConnectionDialog;
 
 /**
- * Parser za bazu podataka. Ponaša se po predefinisanim pravilima i nazivima tabelama
- * u okviru tražene baze.
+ * Parser za bazu podataka. Ponaï¿½a se po predefinisanim pravilima i nazivima tabelama
+ * u okviru traï¿½ene baze.
  * @author Boris
  */
 public class DBParser implements IParser {
