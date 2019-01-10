@@ -336,7 +336,7 @@ public class DBHandler implements IHandler {
 		return valuesFromDB;
 	}
 	
-	public void updateTableInfo(Vector<Vector<Object>> valuesFromDB, Table table) throws SQLException {
+	private void updateTableInfo(Vector<Vector<Object>> valuesFromDB, Table table) throws SQLException {
 		TableModel menjajOvu = App.INSTANCE.getMainAppFrame().getMainAppPanel().getParentTablePanel().getParentTableModel();
 		if(menjajOvu.getTable().getTitle().equals(table.getTitle())) {
 			menjajOvu.searchUpdate(valuesFromDB);

@@ -11,8 +11,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Vector;
+
+import model.Table;
 
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.junit.After;
@@ -20,11 +21,11 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
-import controler.handlers.DBHandler;
-import controler.handlers.IHandler;
-import model.Table;
 import view.fieldFactory.BooleanField;
 import view.fieldFactory.BooleanFieldFactory;
 import view.fieldFactory.CharField;
@@ -39,11 +40,15 @@ import view.fieldFactory.IntegerField;
 import view.fieldFactory.IntegerFieldFactory;
 import view.fieldFactory.VarcharField;
 import view.fieldFactory.VarcharFieldFactory;
+import controler.handlers.DBHandler;
+import controler.handlers.IHandler;
 
 /**
  * @author filip
  *
  */
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(DBHandler.class)
 public class SearchDBTest {
 
 	private static Connection conn = null;
@@ -61,7 +66,7 @@ public class SearchDBTest {
 
 		// pravljenje spijuniranog handlera gde se updejt gui-a mockuje
 		DBHandler spied = PowerMockito.spy(new DBHandler());
-		doNothing().when(spied).updateTableInfo(anyObject(), anyObject());
+		doNothing().when(spied, "updateTableInfo",anyObject(), anyObject());
 		iHandler = spied;
 
 		// ubacivanje torki u tabelu
