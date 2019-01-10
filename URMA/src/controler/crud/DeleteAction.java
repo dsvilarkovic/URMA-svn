@@ -58,7 +58,8 @@ public class DeleteAction extends AbstractAction{
 		
 		Vector<Object> values = this.getSelectedRowValues();
 		
-		App.INSTANCE.setFactory("db");
+		App.INSTANCE.setFactory(App.INSTANCE.getHandlerType());
+		//App.INSTANCE.setFactory("db");
 		IResourceFactory factory = App.INSTANCE.getFactory();
 		IHandler handler = factory.createHandler();
 		

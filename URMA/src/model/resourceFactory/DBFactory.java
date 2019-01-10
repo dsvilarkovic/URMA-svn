@@ -42,6 +42,26 @@ public class DBFactory implements IResourceFactory{
 	**/
 	@Override
 	public IHandler createHandler() {
+		DBHandler dbHandler = new DBHandler();
+		dbHandler.setUpDBHandlerParameters(dbHandlerIp, dbHandlerUser, dbHandlerPass);
 		return new DBHandler();
+	}
+	
+	private String dbHandlerUser = "147.91.175.155";
+	private String dbHandlerPass = "psw-2018-tim7-1";
+	private String dbHandlerIp = "tim7-19940718";
+	
+	/**
+	 * Sluzi za podesavanje potrebnih parametara za handler za dalji rad
+	 * @param ip - adresa na kojoj se pogadja baza
+	 * @param user - username za tu bazu
+	 * @param pass - password za tu bazu
+	 * @author Dusan 
+	 * @return true ako vraca dobru vrednost, false ako ne.
+	 */
+	public void setUpDBHandlerParameters(String ip, String user, String pass) {
+		this.dbHandlerIp = ip;
+		this.dbHandlerUser = user;
+		this.dbHandlerPass = pass;
 	}
 }

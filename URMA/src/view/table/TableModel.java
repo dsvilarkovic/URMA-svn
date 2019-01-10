@@ -84,7 +84,8 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 	 */	
 	public void setUpData() {
 
-		App.INSTANCE.setFactory("db");
+		App.INSTANCE.setFactory(App.INSTANCE.getHandlerType());
+		//App.INSTANCE.setFactory("db");
 		IResourceFactory factory = App.INSTANCE.getFactory();
 		IHandler handler = factory.createHandler();
 		LocalizationManager.nulifyFormats();

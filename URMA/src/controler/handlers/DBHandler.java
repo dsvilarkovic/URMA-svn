@@ -32,10 +32,49 @@ import view.table.TableModel;
 public class DBHandler implements IHandler {
 
 	Connection conn;
+	private final static String preIP = "jdbc:jtds:sqlserver://";
 
+	private String ip = "147.91.175.155";
+	private String user = "psw-2018-tim7-1";
+	private String pass = "tim7-19940718"; 
+	
+	
 	public DBHandler() {
+		setUpConnection();
 	}
 
+	/**
+	 * Sluzi za podesavanje potrebnih parametar za dalji rad
+	 * @param ip - adresa na kojoj se pogadja baza
+	 * @param user - username za tu bazu
+	 * @param pass - password za tu bazu
+	 * @author Dusan 
+	 * @return true ako vraca dobru vrednost, false ako ne.
+	 */
+	public void setUpDBHandlerParameters(String ip, String user, String pass) {
+		this.ip = ip;
+		this.user = user;
+		this.pass = pass;
+	}
+	
+	/**
+	 * Sluzi za podesavanje konekcija ka bazi podataka
+	 * @return - true ako se uspesno podesi
+	 */
+	private boolean setUpConnection() {
+		ResourceBundle rb = App.INSTANCE.getResourceBundle();
+		try {
+			conn = DriverManager.getConnection(preIP + ip + '/' + user, user, pass);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, 
+					rb.getString("database.connection.error"), 
+					rb.getString("database.connection"), 
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		return true;
+	}
 	/**
 		Create akcija nad bazom - unos torke sa zadatim parametrima		
 		@author - Jelena
@@ -78,8 +117,8 @@ public class DBHandler implements IHandler {
 
 
 		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1",
-					"psw-2018-tim7-1", "tim7-19940718");
+//			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1",
+//					"psw-2018-tim7-1", "tim7-19940718");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.execute();
 			pstmt.close();
@@ -163,7 +202,7 @@ public class DBHandler implements IHandler {
 		PreparedStatement pstmt;
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
+//			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.execute();
 			pstmt.close();
@@ -213,8 +252,8 @@ public class DBHandler implements IHandler {
 		
 
 		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1",
-					"psw-2018-tim7-1", "tim7-19940718");
+//			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1",
+//					"psw-2018-tim7-1", "tim7-19940718");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.execute();
 			pstmt.close();
@@ -297,7 +336,7 @@ public class DBHandler implements IHandler {
 				if(second != null) {
 					field2 = (IField) second.getField();
 					if(field2.getValue() == null)
-						type = type + "Solo";
+						field2 = field;
 				}
 						
 				switch (type) {
@@ -309,9 +348,6 @@ public class DBHandler implements IHandler {
 				case "int":
 				case "double": where = where + code + " between " + field.getValue().toString() + and + field2.getValue().toString() + and; break;
 				case "date": where = where + code + " between '" + field.getValue().toString() + "'" + and + "'" + field2.getValue().toString() + "'" + and; break;
-				case "intSolo":
-				case "doubleSolo": where = where + code + " >= " + field.getValue().toString() + and; break;
-				case "dateSolo": where = where + code + " >= '" + field.getValue().toString() + "'" + and; break;
 				default:
 					break;
 				}					
@@ -353,8 +389,8 @@ public class DBHandler implements IHandler {
 		PreparedStatement pstmt;
 		// conn =
 		// DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
-		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1", "psw-2018-tim7-1",
-				"tim7-19940718");
+//		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1", "psw-2018-tim7-1",
+//				"tim7-19940718");
 
 		pstmt = conn.prepareStatement(sql);
 		ResultSet rset = pstmt.executeQuery();

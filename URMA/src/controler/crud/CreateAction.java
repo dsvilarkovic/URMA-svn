@@ -45,7 +45,8 @@ public class CreateAction extends AbstractAction{
 		try {
 			Map<String, Object> fields = parentCaller.getFields();
 			
-			App.INSTANCE.setFactory("db");
+			App.INSTANCE.setFactory(App.INSTANCE.getHandlerType());
+			//App.INSTANCE.setFactory("db");
 			IResourceFactory factory = App.INSTANCE.getFactory();
 			IHandler handler = factory.createHandler();
 			

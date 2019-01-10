@@ -42,6 +42,11 @@ public enum App {
 	private LocalizationManager localizationManager;
 	private TitleLanguagePack titleLanguagePack;
 	
+	
+	private String handlerType = "db";
+	private String parserType = "json";
+	private String validatorType = "json";
+	
 	/**
 	 * Metoda koja inicijalizuje prozore u aplikaciji
 	 * @author filip
@@ -66,6 +71,9 @@ public enum App {
 	 * @return the localizationManager
 	 */
 	public LocalizationManager getLocalizationManager() {
+//		if(localizationManager == null) {
+//			localizationManager = new LocalizationManager();
+//		}
 		return localizationManager;
 	}
 
@@ -107,9 +115,11 @@ public enum App {
 		case "json": factory = new JSONFactory(); break;
 		case "xml": factory = new XMLFactory(); break;
 		case "db": factory = new DBFactory(); break;
-		default: JOptionPane.showMessageDialog(null, "We dont know that resource", "Invalid resource",
+		default: JOptionPane.showMessageDialog(null, "We dont know that Filip resource", "Invalid resource",
 				JOptionPane.ERROR_MESSAGE);	break;
 		}
+		
+		
 	}
 	
 	public IFieldFactory getFieldFactory() {
@@ -162,4 +172,51 @@ public enum App {
 	public void setTitleLanguagePack(TitleLanguagePack titleLanguagePack) {
 		this.titleLanguagePack = titleLanguagePack;
 	}
+
+	/**
+	 * @return the handlerType
+	 */
+	public String getHandlerType() {
+		return handlerType.toLowerCase();
+	}
+
+	/**
+	 * @param handlerType the handlerType to set
+	 */
+	public void setHandlerType(String handlerType) {
+		this.handlerType = handlerType;
+		App.INSTANCE.getMainAppFrame().getMainAppStatusBar().setHandlerLabelType(handlerType);
+	}
+
+	/**
+	 * @return the parserType
+	 */
+	public String getParserType() {
+		return parserType;
+	}
+
+	/**
+	 * @param parserType the parserType to set
+	 */
+	public void setParserType(String parserType) {
+		this.parserType = parserType;
+		App.INSTANCE.getMainAppFrame().getMainAppStatusBar().setParserLabelType(parserType);
+	}
+
+	/**
+	 * @return the validatorType
+	 */
+	public String getValidatorType() {
+		return validatorType;
+	}
+
+	/**
+	 * @param validatorType the validatorType to set
+	 */
+	public void setValidatorType(String validatorType) {
+		this.validatorType = validatorType;
+		App.INSTANCE.getMainAppFrame().getMainAppStatusBar().setValidatorLabelType(validatorType);
+	}
+	
+	
 }

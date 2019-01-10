@@ -56,6 +56,7 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 			String s = (String) JOptionPane.showInputDialog(null, "Choose parser", "Parser chooser Dialog",
 					JOptionPane.PLAIN_MESSAGE, null, possibilities, "json");
 			App.INSTANCE.setFactory(s);
+			App.INSTANCE.setParserType(s);
 
 			IResourceFactory factory = App.INSTANCE.getFactory();
 			IParser parser = factory.createParser();

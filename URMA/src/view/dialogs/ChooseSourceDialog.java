@@ -19,6 +19,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
 
+import app.App;
+import model.resourceFactory.DBFactory;
+import view.fieldFactory.IFieldFactory;
+
 /**
  * Dijalog koji ce sluziti za odabir tipa izvora sa kojeg ce se preuzimati podaci
  * @author Dusan
@@ -29,7 +33,7 @@ public class ChooseSourceDialog extends JDialog {
 	private static final long serialVersionUID = 220262571980011642L;
 	private JLabel sourceTypeLabel = new JLabel("Source type");
 	private String [] sourceTypes = {"JSON", "DB", "XML"};
-	private JComboBox<String> combobox = new JComboBox<>(sourceTypes);
+	private JComboBox<String> sourceTypeCombobox = new JComboBox<>(sourceTypes);
 	
 	private JLabel chooseSourceLocationLabel = new JLabel("Source location: ");
 	private JTextField chooseSourceLocatonTextField = new JTextField(40);
@@ -42,6 +46,7 @@ public class ChooseSourceDialog extends JDialog {
 
 	private JLabel port = new JLabel("Port");
 	private JTextField portField = new JTextField(4);
+	private JButton confirmButton = new JButton();
 	
 	/**
 	 * Dijalog koji ce sluziti za odabir tipa izvora sa kojeg ce se preuzimati podaci
@@ -71,7 +76,7 @@ public class ChooseSourceDialog extends JDialog {
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		//this.add(combobox, gbc);
-		gridBagPanel.add(combobox, gbc);
+		gridBagPanel.add(sourceTypeCombobox, gbc);
 		
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
@@ -122,31 +127,17 @@ public class ChooseSourceDialog extends JDialog {
 		
 		gbc.gridx = 1;
 		gbc.gridy = 4;
-		//this.add(portField, gbc);
 		gridBagPanel.add(portField, gbc);
-		
-//		gbc.fill = GridBagConstraints.HORIZONTAL;
-//		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-//		JButton newButton = new JButton("Confirm");
-//		buttonPanel.add(newButton);
-//		gbc.gridx = 1;
-//		gbc.gridy = 5;
-//		//this.add(buttonPanel, gbc);
-//		gridBagPanel.add(buttonPanel, gbc);
-		
-//		gbc.gridx = 1;
-//		gbc.gridy = 4;
-//		this.add(portField, gbc);
 		
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JButton newButton = new JButton("Confirm");
-		buttonPanel.add(newButton);
+		confirmButton = new JButton("Confirm");
+		buttonPanel.add(confirmButton);
 		
 		add(gridBagPanel, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
 		
-		combobox.addActionListener(new ActionListener() {
+		sourceTypeCombobox.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {				
@@ -195,6 +186,28 @@ public class ChooseSourceDialog extends JDialog {
 		});
 		
 		
+		confirmButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//podesi zvanicni Handler
+				String sourceType = (String) sourceTypeCombobox.getSelectedItem();
+				App.INSTANCE.setFactory(sourceType.toLowerCase());
+				
+				//podesi parametre dobijene odavde i podesi za DBHandler
+				if(sourceType.equals("db")) {
+					DBFactory dbFactory = (DBFactory) App.INSTANCE.getFactory();
+					String ip = chooseSourceLocatonTextField.getText();
+					String user = userField.getText();
+					String pass = String.valueOf(passwordField.getPassword());
+					dbFactory.setUpDBHandlerParameters(ip, user, pass);
+				}
+				
+				App.INSTANCE.setHandlerType(sourceType);
+				dispose();
+			}
+		});
+				
 		setComponentVisibility();
 		setSize(600,300);
 		setVisible(true);
@@ -207,7 +220,7 @@ public class ChooseSourceDialog extends JDialog {
 	 * @author Dusan
 	 */
 	private void setComponentVisibility() {
-		boolean setVisibility = combobox.getSelectedItem() == "DB";
+		boolean setVisibility = sourceTypeCombobox.getSelectedItem() == "DB";
 		
 		chooseFileButton.setVisible(!setVisibility);
 		user.setVisible(setVisibility);
@@ -215,6 +228,24 @@ public class ChooseSourceDialog extends JDialog {
 		pass.setVisible(setVisibility);
 		passwordField.setVisible(setVisibility);
 		port.setVisible(setVisibility);
-		portField.setVisible(setVisibility);
+		portField.setVisible(setVisibility);		
+		prefill(setVisibility);
+	}
+	
+	public String getChosenSource() {
+		return (String)sourceTypeCombobox.getSelectedItem();
+	}
+	
+	private void prefill(boolean toFill) {
+		if(toFill) {
+			this.chooseSourceLocatonTextField.setText("147.91.175.155");
+			this.userField.setText("psw-2018-tim7-1");
+			this.passwordField.setText("tim7-19940718");
+		}
+		else {
+			this.chooseSourceLocatonTextField.setText("");
+			this.userField.setText("");
+			this.passwordField.setText("");
+		}
 	}
 }

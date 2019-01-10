@@ -48,7 +48,8 @@ public class ValidateAction extends AbstractAction {
 			App.INSTANCE.getEditorWindow().getToolbar().getChoseMetaSchemeButton().doClick();
 
 		App.INSTANCE.setFactory(FilenameUtils.getExtension(App.INSTANCE.getEditorWindow().getToolbar().getPath().getText()));
-
+		App.INSTANCE.setParserType(FilenameUtils.getExtension(App.INSTANCE.getEditorWindow().getToolbar().getPath().getText()));
+		
 		IValidator validator = App.INSTANCE.getFactory().createValidator();
 		validator.validate();
 

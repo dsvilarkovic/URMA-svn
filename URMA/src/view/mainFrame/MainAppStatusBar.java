@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import app.App;
+import controler.handlers.ChooseHandlerAction;
 import view.localizationManager.LocalizationObserver;
 
 /**
@@ -31,12 +33,14 @@ public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 	private JComboBox<String> languageComboBox = new JComboBox<>(languageString);
 	
 	private JLabel handlerLabel = new JLabel("Handler: ");
-	private JLabel handlerLabelType = new JLabel("JSON");
+	private JLabel handlerLabelType = new JLabel("DB");
 	private JLabel parserLabel = new JLabel("Parser: ");
 	private JLabel parserLabelType = new JLabel("JSON");
 	
 	private JLabel validatorLabel = new JLabel("Validator: ");
 	private JLabel validatorLabelType = new JLabel("JSON");
+	
+	private JButton switchButton = new JButton(new ChooseHandlerAction());
 	/**
 	 * Status bar u kojem ce se menjati jezik i ispisivati sta je odabrano od hendlera, parsera i validatora 
 	 * @author Dusan
@@ -62,9 +66,11 @@ public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 		
 		setLabels();
 		add(languageComboBox);
-		add(new JSeparator(SwingConstants.VERTICAL));
+		add(new JSeparator(SwingConstants.VERTICAL));		
 		add(handlerLabel);
 		add(handlerLabelType);
+		
+		add(switchButton);
 		add(new JSeparator(SwingConstants.VERTICAL));
 		add(parserLabel);
 		add(parserLabelType);
@@ -81,6 +87,7 @@ public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 		handlerLabel.setText(resourceBundle.getString("statusbar.handler"));
 		parserLabel.setText(resourceBundle.getString("statusbar.parser"));
 		validatorLabel.setText(resourceBundle.getString("statusbar.validator"));
+		switchButton.setText(resourceBundle.getString("statusbar.switch"));
 	}
 
 
