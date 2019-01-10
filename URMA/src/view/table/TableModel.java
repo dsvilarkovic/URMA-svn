@@ -1,25 +1,20 @@
 package view.table;
 
-import java.text.DateFormat;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
-import app.App;
-import controler.handlers.IHandler;
 import model.Attribute;
 import model.Table;
 import model.TitleLanguagePack;
 import model.resourceFactory.IResourceFactory;
 import view.localizationManager.LocalizationManager;
 import view.localizationManager.LocalizationObserver;
+import app.App;
+import controler.handlers.IHandler;
 
 /**
  * Tabela modela koji cuva podatke za tabelu. Koristi <code>DefaultTableModel</code>

@@ -97,7 +97,7 @@ public enum App {
 	
 	/**
 		Izbor fabrike za kreiranje parsera, handlera i validatora		
-		@author - Jelena (zapravo mislim da sam ja autor @author filip)
+		@author filip
 		@param extension - ekstenzija fajla metaseme na osnovu kojeg se formira fabrika(json, xml, db, sch)  
 		@return - fabrika izabranog tipa
 	**/

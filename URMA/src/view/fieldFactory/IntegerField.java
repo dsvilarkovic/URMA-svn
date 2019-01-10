@@ -1,10 +1,6 @@
 package view.fieldFactory;
 
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-
 import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import view.localizationManager.LocalizationManager;
@@ -81,8 +77,8 @@ public class IntegerField extends JPanel implements IField{
 		Metoda koja validira polje 		
 		@author - Jelena
 		@param isReq - da li je polje obavezno
-		@param isPK - da li je polje primarni ključ
-		@param maxLen - maksimalna dužina polja
+		@param isPK - da li je polje primarni kljuÄ�
+		@param maxLen - maksimalna duÅ¾ina polja
 		@param precision - preciznost(potrebna za double)
 		@return true ako je validno, false ako nije
 	**/

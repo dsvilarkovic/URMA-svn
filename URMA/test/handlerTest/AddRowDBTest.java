@@ -1,25 +1,25 @@
 package handlerTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.MissingResourceException;
 import java.util.Vector;
+
+import model.Table;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import controler.handlers.DBHandler;
-import controler.handlers.IHandler;
-import model.Table;
 import view.fieldFactory.CharField;
 import view.fieldFactory.DoubleField;
 import view.fieldFactory.IntegerField;
+import controler.handlers.DBHandler;
+import controler.handlers.IHandler;
 
 public class AddRowDBTest {
 

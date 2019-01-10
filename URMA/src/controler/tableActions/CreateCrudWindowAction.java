@@ -9,11 +9,11 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-import app.App;
 import model.Table;
 import view.CrudWindow;
 import view.table.TableModel;
 import view.table.TablePanel;
+import app.App;
 
 /**
  * Akcija koja služi za kreiranje CRUD prozora koja će se koristiti za CRUD operacije
@@ -21,7 +21,7 @@ import view.table.TablePanel;
  *
  */
 public class CreateCrudWindowAction extends AbstractAction {
-
+	private static final long serialVersionUID = -4195316945194287038L;
 	/**
 	 * Tabela za koju se odgovarajuca CRUD operacija poziva
 	 */
@@ -160,6 +160,7 @@ public class CreateCrudWindowAction extends AbstractAction {
 	 */
 	private Vector<Object> getSelectedRowValues(){
 		int selectedRow = tableCalling.getSelectedRow();
+		@SuppressWarnings("unchecked")
 		Vector<Object> values = (Vector<Object>) (((TableModel)  tableCalling.getModel()).getDataVector()).elementAt(selectedRow);
 		return values;
 	}

@@ -17,18 +17,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import model.Attribute;
+import model.Relation;
+import model.Table;
+import model.TitleLanguagePack;
+import view.fieldFactory.DecoratedField;
+import view.fieldFactory.IField;
 import app.App;
 import controler.crud.CreateAction;
 import controler.crud.ForeignKeyAction;
 import controler.crud.SearchAction;
 import controler.crud.UpdateAction;
-import model.Attribute;
-import model.Relation;
-import model.Table;
-import model.TitleLanguagePack;
-import view.dialogs.ChooseReferencedCollumnValuesDialog;
-import view.fieldFactory.DecoratedField;
-import view.fieldFactory.IField;
 
 /**
  * Prozor koji služi za popunjavanje polja za create, update i search akcije nad podacima

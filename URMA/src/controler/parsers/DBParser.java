@@ -7,18 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
-import app.App;
 import model.Attribute;
 import model.InformationResource;
 import model.Package;
 import model.Relation;
 import model.Table;
 import view.dialogs.DBParserConnectionDialog;
+import app.App;
 
 /**
  * Parser za bazu podataka. Pona�a se po predefinisanim pravilima i nazivima tabelama

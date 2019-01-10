@@ -11,7 +11,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
-import model.Table;
 import view.table.TableModel;
 
 /**

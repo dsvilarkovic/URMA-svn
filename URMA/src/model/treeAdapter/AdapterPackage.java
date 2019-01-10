@@ -3,11 +3,10 @@ package model.treeAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.App;
 import model.InformationResource;
 import model.Package;
 import model.Table;
-import model.TitleLanguagePack;
+import app.App;
 
 /**
  * Klasa adapter za paket. Adaptira paket za stablo i za dalju upotrebu u programu.

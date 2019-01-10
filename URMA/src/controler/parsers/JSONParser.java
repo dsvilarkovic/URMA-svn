@@ -4,17 +4,17 @@ import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
-import app.App;
-import controler.Open;
 import model.Attribute;
 import model.InformationResource;
 import model.Package;
 import model.Relation;
 import model.Table;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import controler.Open;
 
 /**
  * Parser šema iz JSON Schema formata, na osnovu unapred specificirane meta-šeme.

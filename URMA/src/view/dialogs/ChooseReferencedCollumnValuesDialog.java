@@ -8,11 +8,9 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -21,17 +19,17 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import app.App;
-import controler.crud.ForeignKeyAction;
 import model.Attribute;
 import model.Relation;
 import model.Table;
 import view.table.TableModel;
+import app.App;
+import controler.crud.ForeignKeyAction;
 
 /**
- * Klasa koja služi za predstavu dijaloga u kojem ce se nalaziti tabela
- * odakle će se birati torka sa referenciranim vrednostima u stranom ključu.
- * Vraća odabranu torku sa vrednostima koje se biraju kako je zapisano.
+ * Klasa koja sluÅ¾i za predstavu dijaloga u kojem ce se nalaziti tabela
+ * odakle Ä‡e se birati torka sa referenciranim vrednostima u stranom kljuÄ�u.
+ * VraÄ‡a odabranu torku sa vrednostima koje se biraju kako je zapisano.
  * @author Dusan
  *
  */
@@ -47,9 +45,9 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 	
 	/**
 	 * 
-	 * Klasa koja služi za predstavu dijaloga u kojem ce se nalaziti tabela
-	 * odakle će se birati torka sa referenciranim vrednostima u stranom ključu.
-	 * Vraća odabranu torku sa vrednostima koje se biraju kako je zapisano.
+	 * Klasa koja sluÅ¾i za predstavu dijaloga u kojem ce se nalaziti tabela
+	 * odakle Ä‡e se birati torka sa referenciranim vrednostima u stranom kljuÄ�u.
+	 * VraÄ‡a odabranu torku sa vrednostima koje se biraju kako je zapisano.
 	 * @author Dusan
 	 * @param table - tabela po kojoj ce se praviti dijalog
 	 * @param parentCaller - akcija iz koje se poziva dijalog
@@ -157,7 +155,7 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 		
 		for (int columnIndex = 0; columnIndex < tableView.getColumnCount(); columnIndex++) {
 			
-			Object colValue = tableView.getValueAt(selectedRowIndex, columnIndex);
+//			Object colValue = tableView.getValueAt(selectedRowIndex, columnIndex);
 //			System.out.println(tableView.getColumnName(columnIndex) + " " + tableView.getValueAt(selectedRowIndex, columnIndex));
 			selectedRowRelation.put(tableView.getColumnName(columnIndex), tableView.getValueAt(selectedRowIndex, columnIndex))	;		
 		}

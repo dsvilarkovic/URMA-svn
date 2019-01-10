@@ -1,18 +1,19 @@
 package parserTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import model.Attribute;
+import model.InformationResource;
+import model.Package;
+import model.Relation;
+import model.Table;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import controler.parsers.DBParser;
-import controler.parsers.JSONParser;
-import model.Attribute;
-import model.InformationResource;
-import model.Package;
-import model.Relation;
-import model.Table;
 
 public class DBParserTest {
 	private final static String DBIP = "147.91.175.155";

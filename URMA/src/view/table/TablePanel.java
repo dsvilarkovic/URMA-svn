@@ -17,13 +17,12 @@ import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import app.App;
+import model.Table;
+import view.localizationManager.LocalizationObserver;
 import controler.crud.DeleteAction;
 import controler.tableActions.CreateCrudWindowAction;
 import controler.tableActions.DemoteParentAction;
 import controler.tableActions.PromoteChildAction;
-import model.Table;
-import view.localizationManager.LocalizationObserver;
 
 
 /**
@@ -102,13 +101,13 @@ public class TablePanel extends JPanel implements LocalizationObserver {
 		
 		tableView.setModel(new TableModel(new Table()));
 
-		// Poželjna veličina pogleda tabele u okviru scrollpane-a. Layout
+		// PoÅ¾eljna veliÄ�ina pogleda tabele u okviru scrollpane-a. Layout
 		// manager uzima ovu osobinu u obzir.
 		Toolkit kit = Toolkit.getDefaultToolkit();
 	    Dimension screenSize = kit.getScreenSize();
 		tableView.setPreferredScrollableViewportSize(new Dimension(500, screenSize.height/4));
 		
-		// Širenje tabele kompletno po visini pogleda scrollpane-a.
+		// Å irenje tabele kompletno po visini pogleda scrollpane-a.
 		tableView.setFillsViewportHeight(true);
 	}
 	
