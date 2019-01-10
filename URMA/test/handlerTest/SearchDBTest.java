@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Vector;
 
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -52,6 +53,7 @@ public class SearchDBTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		//TODO : @Filip testiranje: Locale.setDefault(new Locale("en", "UK")) / Locale.setDefault(new Locale("sr", "RS"));
 		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1", "psw-2018-tim7-1",
 				"tim7-19940718");
 		DatabaseMockTable.createDatabaseTable(conn);
