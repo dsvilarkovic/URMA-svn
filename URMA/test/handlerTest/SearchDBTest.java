@@ -10,11 +10,13 @@ import static org.powermock.api.mockito.PowerMockito.doNothing;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Vector;
 
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.powermock.api.mockito.PowerMockito;
@@ -22,14 +24,19 @@ import org.powermock.api.mockito.PowerMockito;
 import controler.handlers.DBHandler;
 import controler.handlers.IHandler;
 import model.Table;
+import view.fieldFactory.BooleanField;
 import view.fieldFactory.BooleanFieldFactory;
 import view.fieldFactory.CharField;
 import view.fieldFactory.CharFieldFactory;
+import view.fieldFactory.DateField;
 import view.fieldFactory.DateFieldFactory;
 import view.fieldFactory.DecoratedField;
+import view.fieldFactory.DoubleField;
 import view.fieldFactory.DoubleFieldFactory;
 import view.fieldFactory.IField;
+import view.fieldFactory.IntegerField;
 import view.fieldFactory.IntegerFieldFactory;
+import view.fieldFactory.VarcharField;
 import view.fieldFactory.VarcharFieldFactory;
 
 /**
@@ -42,127 +49,107 @@ public class SearchDBTest {
 	private static Table table = null;
 	private static IHandler iHandler = null;
 	private static HashMap<String, Object> fields;
-//	private static HashMap<String, Object> rowMap1 = null;
-//	private static HashMap<String, Object> rowMap2 = null;
-//	private static HashMap<String, Object> rowMap3 = null;
 
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		// konektuj se na bazu i kreiraj mock tabelu
-		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1",
-					"psw-2018-tim7-1", "tim7-19940718");
-			DatabaseMockTable.createDatabaseTable(conn);
-			// conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
+		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1", "psw-2018-tim7-1",
+				"tim7-19940718");
+		DatabaseMockTable.createDatabaseTable(conn);
 		table = DatabaseMockTable.createMockTable();
-//		// napravi podatke
-//		HashMap<String, Object> rowMap1 = DatabaseMockTable.getRowMap();
-//		HashMap<String, Object> rowMap2 = DatabaseMockTable.getRowMap();
-//		HashMap<String, Object> rowMap3 = DatabaseMockTable.getRowMap();
 
-		iHandler = new DBHandler();
-		// ubaci torku u tabelu
+		// pravljenje spijuniranog handlera gde se updejt gui-a mockuje
+		DBHandler spied = PowerMockito.spy(new DBHandler());
+		doNothing().when(spied).updateTableInfo(anyObject(), anyObject());
+		iHandler = spied;
 
-		/**
-		 * Bitno znati, ovo je dodato u tabelu prethodno
-		 * 
-		 */
-		try {
-//			((CharField)rowMap1.get("MOCK_CHAR")).setValue("111");
-//			SearchDBTest.rowMap1 = rowMap1;
-////			System.out.println("Prelepa");
-////			iHandler.create(table, rowMap);
-//			((CharField)rowMap2.get("MOCK_CHAR")).setValue("222");
-//			((VarcharField)rowMap2.get("MOCK_VARCHAR")).setValue("druga_torka");
-//			((IntegerField)rowMap2.get("MOCK_INT")).setValue(200);
-//			((DoubleField)rowMap2.get("MOCK_DOUBLE")).setValue(222.22);
-//			((BooleanField)rowMap2.get("MOCK_BOOLEAN")).setValue(false);
-//			DateField date = (DateField)rowMap2.get("MOCK_DATE");
-//			((JDatePickerImpl) date.getField()).getModel().setDate(2019, 01,02);
-//			SearchDBTest.rowMap2 = rowMap2;
-////			System.out.println("Najlepsa");
-////			iHandler.create(table, rowMap);
-//			((CharField)rowMap3.get("MOCK_CHAR")).setValue("333");
-//			((VarcharField)rowMap3.get("MOCK_VARCHAR")).setValue("tri");
-//			((IntegerField)rowMap3.get("MOCK_INT")).setValue(300);
-//			((DoubleField)rowMap3.get("MOCK_DOUBLE")).setValue(333.33);
-//			((BooleanField)rowMap3.get("MOCK_BOOLEAN")).setValue(true);
-//			date = (DateField)rowMap3.get("MOCK_DATE");
-//			((JDatePickerImpl) date.getField()).getModel().setDate(2019, 01,03);
-//			SearchDBTest.rowMap3 = rowMap3;
-////			System.out.println("Jedina");
-////			iHandler.create(table, rowMap);
-			fields = new HashMap<String, Object>();
-			DecoratedField df;
+		// ubacivanje torki u tabelu
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement(
+				"insert into MOCK_TABLE(MOCK_CHAR,MOCK_INT,MOCK_VARCHAR,MOCK_DOUBLE,MOCK_DATE,MOCK_BOOLEAN) values ('111','1','mock_varchar','125.25',NULL,'true');");
+		pstmt.execute();
+		pstmt = conn.prepareStatement(
+				"insert into MOCK_TABLE(MOCK_CHAR,MOCK_INT,MOCK_VARCHAR,MOCK_DOUBLE,MOCK_DATE,MOCK_BOOLEAN) values ('222','200','druga_torka','222.22','2-2-2019','false');");
+		pstmt.execute();
+		pstmt = conn.prepareStatement(
+				"insert into MOCK_TABLE(MOCK_CHAR,MOCK_INT,MOCK_VARCHAR,MOCK_DOUBLE,MOCK_DATE,MOCK_BOOLEAN) values ('333','300','tri','333.33','2-3-2019','true');");
+		pstmt.execute();
+		pstmt.close();
 
-			IField[] charFild = new CharFieldFactory().createDoubleField();
-			charFild[0].setValue(null);
-			df = new DecoratedField(charFild[0]);
-			fields.put("MOCK_CHAR", new DecoratedField[] { df, null });
-
-			IField[] intFild = new IntegerFieldFactory().createDoubleField();
-			intFild[0].setValue(null);
-			df = new DecoratedField(intFild[0]);
-			fields.put("MOCK_INT", new DecoratedField[] { df, null });
-
-			IField[] varCharFild = new VarcharFieldFactory().createDoubleField();
-			varCharFild[0].setValue(null);
-			df = new DecoratedField(varCharFild[0]);
-			fields.put("MOCK_VARCHAR", new DecoratedField[] { df, null });
-
-			IField[] doubleFild = new DoubleFieldFactory().createDoubleField();
-			doubleFild[0].setValue(null);
-			df = new DecoratedField(doubleFild[0]);
-			fields.put("MOCK_DOUBLE", new DecoratedField[] { df, null });
-
-			IField[] dateFild = new DateFieldFactory().createDoubleField();
-			dateFild[0].setValue(null);
-			df = new DecoratedField(dateFild[0]);
-			fields.put("MOCK_DATE", new DecoratedField[] { df, null });
-
-			IField[] boolFild = new BooleanFieldFactory().createDoubleField();
-			boolFild[0].setValue(null);
-			df = new DecoratedField(boolFild[0]);
-			fields.put("MOCK_BOOLEAN", new DecoratedField[] { df, null });		
-			
-
-			PreparedStatement pstmt;
-			pstmt = conn.prepareStatement(
-					"insert into MOCK_TABLE(MOCK_CHAR,MOCK_INT,MOCK_VARCHAR,MOCK_DOUBLE,MOCK_DATE,MOCK_BOOLEAN) values ('111','1','mock_varchar','12525',NULL,'true');");
-			pstmt.execute();
-			pstmt = conn.prepareStatement(
-					"insert into MOCK_TABLE(MOCK_CHAR,MOCK_INT,MOCK_VARCHAR,MOCK_DOUBLE,MOCK_DATE,MOCK_BOOLEAN) values ('222','200','druga_torka','22222','2-2-2019','false');");
-			pstmt.execute();
-			pstmt = conn.prepareStatement(
-					"insert into MOCK_TABLE(MOCK_CHAR,MOCK_INT,MOCK_VARCHAR,MOCK_DOUBLE,MOCK_DATE,MOCK_BOOLEAN) values ('333','300','tri','33333','2-3-2019','true');");
-			pstmt.execute();
-			pstmt.close();
-
-		} catch (NullPointerException npe) {
-			// nista ne radi, ovo je zbog grafickog prikaza
-		}
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		try {
-			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1",
-					"psw-2018-tim7-1", "tim7-19940718");
-			DatabaseMockTable.dropDatabaseTable(conn);
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1", "psw-2018-tim7-1",
+				"tim7-19940718");
+		DatabaseMockTable.dropDatabaseTable(conn);
+		conn.close();
+	}
+
+	@After
+	public void tearDownAfter() throws Exception {
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where 1=1");
+		pstmt.execute();
+		pstmt = conn.prepareStatement(
+				"insert into MOCK_TABLE(MOCK_CHAR,MOCK_INT,MOCK_VARCHAR,MOCK_DOUBLE,MOCK_DATE,MOCK_BOOLEAN) values ('111','1','mock_varchar','125.25',NULL,'true');");
+		pstmt.execute();
+		pstmt = conn.prepareStatement(
+				"insert into MOCK_TABLE(MOCK_CHAR,MOCK_INT,MOCK_VARCHAR,MOCK_DOUBLE,MOCK_DATE,MOCK_BOOLEAN) values ('222','200','druga_torka','222.22','2-2-2019','false');");
+		pstmt.execute();
+		pstmt = conn.prepareStatement(
+				"insert into MOCK_TABLE(MOCK_CHAR,MOCK_INT,MOCK_VARCHAR,MOCK_DOUBLE,MOCK_DATE,MOCK_BOOLEAN) values ('333','300','tri','333.33','2-3-2019','true');");
+		pstmt.execute();
+		pstmt.close();
+	}
+
+	@Before
+	public void setUpBefore() throws Exception {
+		// pravljenje dekorisanih objekata
+		fields = new HashMap<String, Object>();
+		DecoratedField df, df1;
+
+		// Char
+		IField[] charFild = new CharFieldFactory().createDoubleField();
+		charFild[0].setValue(null);
+		df = new DecoratedField(charFild[0]);
+		fields.put("MOCK_CHAR", new DecoratedField[] { df, null });
+
+		// Integer
+		IField[] intFild = new IntegerFieldFactory().createDoubleField();
+		intFild[0].setValue(null);
+		df = new DecoratedField(intFild[0]);
+		intFild[1].setValue(null);
+		df1 = new DecoratedField(intFild[1]);
+		fields.put("MOCK_INT", new DecoratedField[] { df, df1 });
+
+		// VarChar
+		IField[] varCharFild = new VarcharFieldFactory().createDoubleField();
+		varCharFild[0].setValue(null);
+		df = new DecoratedField(varCharFild[0]);
+		fields.put("MOCK_VARCHAR", new DecoratedField[] { df, null });
+
+		// Double
+		IField[] doubleFild = new DoubleFieldFactory().createDoubleField();
+		doubleFild[0].setValue(null);
+		df = new DecoratedField(doubleFild[0]);
+		doubleFild[1].setValue(null);
+		df1 = new DecoratedField(doubleFild[1]);
+		fields.put("MOCK_DOUBLE", new DecoratedField[] { df, df1 });
+
+		// Date
+		IField[] dateFild = new DateFieldFactory().createDoubleField();
+		dateFild[0].setValue(null);
+		df = new DecoratedField(dateFild[0]);
+		dateFild[1].setValue(null);
+		df1 = new DecoratedField(dateFild[1]);
+		fields.put("MOCK_DATE", new DecoratedField[] { df, df1 });
+
+		// Boolean
+		IField[] boolFild = new BooleanFieldFactory().createDoubleField();
+		boolFild[0].setValue(null);
+		df = new DecoratedField(boolFild[0]);
+		fields.put("MOCK_BOOLEAN", new DecoratedField[] { df, null });
+
 	}
 
 	@Test
@@ -171,48 +158,385 @@ public class SearchDBTest {
 		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_CHAR");
 		DecoratedField firstFld = flds[0];
 		firstFld.getCheckbox().setSelected(true);
-		((CharField) firstFld.getField()).setValue("111");		
+		((CharField) firstFld.getField()).setValue("111");
 
 		Vector<Vector<Object>> valueSearch = null;
-		// valueSearch = iHandler.search(table, fields);
-
-		DBHandler spied = PowerMockito.spy(new DBHandler());
-		doNothing().when(spied).updateTableInfo(anyObject(), anyObject());
-		valueSearch = spied.search(table, fields);
+		valueSearch = iHandler.search(table, fields);
 
 		PreparedStatement pstmt;
-		try {
-			pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='333';");
-			pstmt.execute();
-			pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='222';");
-			pstmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-//		deleteRow(rowMap2);
-//		deleteRow(rowMap3);
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='333';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='222';");
+		pstmt.execute();
+
 		Vector<Vector<Object>> valueList = null;
 		valueList = iHandler.read(table);
 
 		assertEquals(true, compare(valueSearch, valueList));
 	}
 
-//	private void deleteRow(HashMap<String, Object> x) {
-//		Vector<Object> rowToDelete = new Vector<Object>();
-//		for (String stringKey : x.keySet()) {
-//			Object value = ((IField) x.get(stringKey)).getValue();
-//			rowToDelete.add(value);
-//		}
-//
-//		// izvrsi delete naredbu
-//		try {
-//			iHandler.delete(table, rowToDelete);
-//		} catch (NullPointerException npe) {
-//			// zbog grafickog prikaza
-//		}
-//	}
+	@Test
+	public void testSearchKeyNotFound() throws Exception {
 
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_CHAR");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((CharField) firstFld.getField()).setValue("515");
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='111';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='333';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='222';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+
+	@Test
+	public void testSearchIntPositive() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_INT");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((IntegerField) firstFld.getField()).setValue(150);
+		DecoratedField scndFld = flds[1];
+		scndFld.getCheckbox().setSelected(true);
+		((IntegerField) scndFld.getField()).setValue(500);
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='111';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+	
+	@Test
+	public void testSearchIntNotFound() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_INT");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((IntegerField) firstFld.getField()).setValue(450);
+		DecoratedField scndFld = flds[1];
+		scndFld.getCheckbox().setSelected(true);
+		((IntegerField) scndFld.getField()).setValue(500);
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='111';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='222';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='333';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+
+	@Test
+	public void testSearchVarCharPositive() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_VARCHAR");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((VarcharField) firstFld.getField()).setValue("torka");
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='333';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='111';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+	
+	@Test
+	public void testSearchVarCharMultiPositive() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_VARCHAR");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((VarcharField) firstFld.getField()).setValue("a");
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='333';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+
+	@Test
+	public void testSearchVarCharNotFound() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_VARCHAR");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((VarcharField) firstFld.getField()).setValue("uiafdaskfasld");
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='333';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='222';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='111';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+	
+	@Test
+	public void testSearchDoublePositive() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_DOUBLE");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((DoubleField) firstFld.getField()).setValue("125,27");
+		DecoratedField scndFld = flds[1];
+		scndFld.getCheckbox().setSelected(true);
+		((DoubleField) scndFld.getField()).setValue(500);
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='111';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+	
+	@Test
+	public void testSearchDoubleNotFound() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_DOUBLE");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((DoubleField) firstFld.getField()).setValue("450,23");
+		DecoratedField scndFld = flds[1];
+		scndFld.getCheckbox().setSelected(true);
+		((DoubleField) scndFld.getField()).setValue("500,345");
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='111';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='222';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='333';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+
+	@Test
+	public void testSearchDatePositive() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_DATE");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		DateField field = ((DateField) firstFld.getField());
+		((JDatePickerImpl) field.getField()).getModel().setDate(2009, 02, 03);
+		DecoratedField scndFld = flds[1];
+		scndFld.getCheckbox().setSelected(true);
+		field = ((DateField) scndFld.getField());
+		((JDatePickerImpl) field.getField()).getModel().setDate(2019, 05, 02);
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='111';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+	
+	@Test
+	public void testSearchDateNotFound() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_DATE");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		DateField field = ((DateField) firstFld.getField());
+		((JDatePickerImpl) field.getField()).getModel().setDate(2019, 05, 03);
+		DecoratedField scndFld = flds[1];
+		scndFld.getCheckbox().setSelected(true);
+		field = ((DateField) firstFld.getField());
+		((JDatePickerImpl) field.getField()).getModel().setDate(2019, 05, 02);
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='111';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='222';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='333';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+	
+	@Test
+	public void testSearchBoolPositive() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_BOOLEAN");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((BooleanField) firstFld.getField()).setValue(true);
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='222';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+
+	@Test
+	public void testSearchBoolNegative() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_BOOLEAN");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((BooleanField) firstFld.getField()).setValue(false);
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='111';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='333';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+
+	@Test
+	public void testSearchDoubleAndBoolPositive() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_DOUBLE");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((DoubleField) firstFld.getField()).setValue("200,10");
+		DecoratedField scndFld = flds[1];
+		scndFld.getCheckbox().setSelected(true);
+		((DoubleField) scndFld.getField()).setValue(500);
+		
+		flds = (DecoratedField[]) fields.get("MOCK_BOOLEAN");
+		firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((BooleanField) firstFld.getField()).setValue(true);
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='111';");
+		pstmt.execute();
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='222';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+	
+	@Test
+	public void testSearchVarCharAndIntPositive() throws Exception {
+
+		DecoratedField[] flds = (DecoratedField[]) fields.get("MOCK_VARCHAR");
+		DecoratedField firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((VarcharField) firstFld.getField()).setValue("a");
+		
+		flds = (DecoratedField[]) fields.get("MOCK_INT");
+		firstFld = flds[0];
+		firstFld.getCheckbox().setSelected(true);
+		((IntegerField) firstFld.getField()).setValue(0);
+		DecoratedField scndFld = flds[1];
+		scndFld.getCheckbox().setSelected(true);
+		((IntegerField) scndFld.getField()).setValue(500);
+
+		Vector<Vector<Object>> valueSearch = null;
+		valueSearch = iHandler.search(table, fields);
+
+		PreparedStatement pstmt;
+		pstmt = conn.prepareStatement("DELETE FROM MOCK_TABLE where MOCK_CHAR='333';");
+		pstmt.execute();
+
+		Vector<Vector<Object>> valueList = null;
+		valueList = iHandler.read(table);
+
+		assertEquals(true, compare(valueSearch, valueList));
+	}
+	
 	private boolean compare(Vector<Vector<Object>> x, Vector<Vector<Object>> y) {
+
+		System.out.println(x);
+		System.out.println(y);
 
 		if (x == null || y == null)
 			return false;
