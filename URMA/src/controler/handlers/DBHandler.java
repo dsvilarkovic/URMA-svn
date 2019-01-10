@@ -328,18 +328,22 @@ public class DBHandler implements IHandler {
 		Vector<Vector<Object>> valuesFromDB = null;
 		try {
 			valuesFromDB = executeStatement(sql, table);
-			TableModel menjajOvu = App.INSTANCE.getMainAppFrame().getMainAppPanel().getParentTablePanel().getParentTableModel();
-			if(menjajOvu.getTable().getTitle().equals(table.getTitle())) {
-				menjajOvu.searchUpdate(valuesFromDB);
-			}else {
-				menjajOvu = App.INSTANCE.getMainAppFrame().getMainAppPanel().getChildTablePanel().getSelectedChildTableModel();
-				menjajOvu.searchUpdate(valuesFromDB);
-			}
+			updateTableInfo(valuesFromDB, table);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}		
 				
 		return valuesFromDB;
+	}
+	
+	public void updateTableInfo(Vector<Vector<Object>> valuesFromDB, Table table) throws SQLException {
+		TableModel menjajOvu = App.INSTANCE.getMainAppFrame().getMainAppPanel().getParentTablePanel().getParentTableModel();
+		if(menjajOvu.getTable().getTitle().equals(table.getTitle())) {
+			menjajOvu.searchUpdate(valuesFromDB);
+		}else {
+			menjajOvu = App.INSTANCE.getMainAppFrame().getMainAppPanel().getChildTablePanel().getSelectedChildTableModel();
+			menjajOvu.searchUpdate(valuesFromDB);
+		}		
 	}
 
 	private Vector<Vector<Object>> executeStatement(String sql, Table table) throws SQLException {
