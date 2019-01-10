@@ -297,7 +297,7 @@ public class DBHandler implements IHandler {
 				if(second != null) {
 					field2 = (IField) second.getField();
 					if(field2.getValue() == null)
-						field2 = field;
+						type = type + "Solo";
 				}
 						
 				switch (type) {
@@ -309,6 +309,9 @@ public class DBHandler implements IHandler {
 				case "int":
 				case "double": where = where + code + " between " + field.getValue().toString() + and + field2.getValue().toString() + and; break;
 				case "date": where = where + code + " between '" + field.getValue().toString() + "'" + and + "'" + field2.getValue().toString() + "'" + and; break;
+				case "intSolo":
+				case "doubleSolo": where = where + code + " >= " + field.getValue().toString() + and; break;
+				case "dateSolo": where = where + code + " >= '" + field.getValue().toString() + "'" + and; break;
 				default:
 					break;
 				}					
