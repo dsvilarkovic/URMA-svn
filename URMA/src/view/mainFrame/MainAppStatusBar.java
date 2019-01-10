@@ -33,7 +33,7 @@ public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 	private JComboBox<String> languageComboBox = new JComboBox<>(languageString);
 	
 	private JLabel handlerLabel = new JLabel("Handler: ");
-	private JLabel handlerLabelType = new JLabel("DB");
+	private JLabel handlerLabelType = new JLabel("DB ");
 	private JLabel parserLabel = new JLabel("Parser: ");
 	private JLabel parserLabelType = new JLabel("JSON");
 	
@@ -101,7 +101,7 @@ public class MainAppStatusBar extends JPanel implements LocalizationObserver{
 	 * @param handlerLabelType the handlerLabelType to set
 	 */
 	public void setHandlerLabelType(String handlerLabelType) {
-		this.handlerLabelType.setText(handlerLabelType);
+		this.handlerLabelType.setText(handlerLabelType + " ");
 	}
 	/**
 	 * @return the parserLabelType

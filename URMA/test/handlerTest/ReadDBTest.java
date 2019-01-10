@@ -30,7 +30,7 @@ public class ReadDBTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1", "psw-2018-tim7-1","tim7-19940718");
+		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1", "psw-2018-tim7-1","tim7-19940718");
 		DatabaseMockTable.createDatabaseTable(conn);
 		table = DatabaseMockTable.createMockTable();
 
@@ -54,7 +54,7 @@ public class ReadDBTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1", "psw-2018-tim7-1","tim7-19940718");
+		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1", "psw-2018-tim7-1","tim7-19940718");
 		DatabaseMockTable.dropDatabaseTable(conn);
 		conn.close();
 	}

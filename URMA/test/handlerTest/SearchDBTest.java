@@ -55,7 +55,7 @@ public class SearchDBTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		//TODO : @Filip testiranje: Locale.setDefault(new Locale("en", "UK")) / Locale.setDefault(new Locale("sr", "RS"));
-		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1", "psw-2018-tim7-1",
+		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1", "psw-2018-tim7-1",
 				"tim7-19940718");
 		DatabaseMockTable.createDatabaseTable(conn);
 		table = DatabaseMockTable.createMockTable();
@@ -84,7 +84,7 @@ public class SearchDBTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://192.168.77.230/psw-2018-tim7-1", "psw-2018-tim7-1",
+		conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1", "psw-2018-tim7-1",
 				"tim7-19940718");
 		DatabaseMockTable.dropDatabaseTable(conn);
 		conn.close();
