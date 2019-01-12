@@ -36,6 +36,7 @@ public class JSONValidator implements IValidator {
 		try {
 			input = new JSONObject(new JSONTokener(App.INSTANCE.getEditorWindow().getMainPanel().getTextArea().getText()));
 		} catch (Exception e1) {
+			//TODO: @Filip @lokalizacija not done
 			JOptionPane.showMessageDialog(null, "Your scheme is no good", "Validator message",
 					JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();

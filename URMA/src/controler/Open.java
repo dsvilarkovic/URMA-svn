@@ -6,10 +6,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.nio.file.Files;
+import java.util.ResourceBundle;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import app.App;
 
 /**
  * Klasa za univerzalno otvaranje i ucitavanje objekata
@@ -61,7 +64,9 @@ public class Open {
 			return saved;
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "Please select a valid file.");
+			ResourceBundle resourceBundle = App.INSTANCE.getResourceBundle();
+			String validFileErrorText = resourceBundle.getString("valid.file.error");
+			JOptionPane.showMessageDialog(null, validFileErrorText);
 			return null;
 		}
 	}

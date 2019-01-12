@@ -66,6 +66,7 @@ public class CreateCrudWindowAction extends AbstractAction {
 		try {
 			this.tableCalling  = App.INSTANCE.getTableMediator().getCalledTable(panelCalling);
 		} catch (Exception e1) {
+			//TODO: @Dusan @lokalizacija not done
 			JOptionPane.showMessageDialog(null, "Error, no table active error", "Error with tables",
 										  JOptionPane.ERROR_MESSAGE);
 			return;
@@ -113,6 +114,7 @@ public class CreateCrudWindowAction extends AbstractAction {
 			}
 		}
 		catch (ArrayIndexOutOfBoundsException indexException) {
+			//TODO: @Dusan @lokalizacija not done
 			JOptionPane.showMessageDialog(null, "Error, there is no table defined for action", "Error",
 											JOptionPane.ERROR_MESSAGE);
 		}

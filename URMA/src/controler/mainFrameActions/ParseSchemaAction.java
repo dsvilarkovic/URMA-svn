@@ -53,6 +53,7 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 		try {
 
 			Object[] possibilities = { "json", "xml", "db" };
+			//TODO:@Filip @lokalizacija not done
 			String s = (String) JOptionPane.showInputDialog(null, "Choose parser", "Parser chooser Dialog",
 					JOptionPane.PLAIN_MESSAGE, null, possibilities, "json");
 			App.INSTANCE.setFactory(s);

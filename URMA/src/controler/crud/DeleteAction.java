@@ -48,7 +48,10 @@ public class DeleteAction extends AbstractAction{
 		try {
 			this.tableCalling  = App.INSTANCE.getTableMediator().getCalledTable(parentCaller);
 		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(null, "Error, no table active error", "Error with tables",
+			ResourceBundle resourceBundle = App.INSTANCE.getResourceBundle();
+			String errorActive = resourceBundle.getString("delete.action.error.activetable");
+			String errorActiveAdditional = resourceBundle.getString("delete.action.error.tables");
+			JOptionPane.showMessageDialog(null, errorActive, errorActiveAdditional,
 										  JOptionPane.ERROR_MESSAGE);
 			return;
 		}

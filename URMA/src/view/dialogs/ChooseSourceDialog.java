@@ -64,6 +64,8 @@ public class ChooseSourceDialog extends JDialog {
         
         
         //setLayout(layout);
+        
+      //TODO: @Dusan @lokalizacija not done
 		setTitle("Choose your source");
 		setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/8, (Toolkit.getDefaultToolkit().getScreenSize().height)/4);
 		
@@ -131,6 +133,7 @@ public class ChooseSourceDialog extends JDialog {
 		
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		//TODO: @Dusan @lokalizacija not done
 		confirmButton = new JButton("Confirm");
 		buttonPanel.add(confirmButton);
 		

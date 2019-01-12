@@ -123,6 +123,7 @@ public class TableMediator {
 		
 		//3.ako nema odustani od operacije i obavesti dialog porukom korisnika
 		if(parentTableMap == null || parentTableMap.isEmpty()) {
+			//TODO: @Dusan @lokalizacija not done
 			JOptionPane.showMessageDialog(null, "Error! There is no parent for this"
 											   +" parent in order to be demoted",
 					"Error", JOptionPane.ERROR_MESSAGE);
@@ -258,7 +259,7 @@ public class TableMediator {
 	public void callTableSorters() {
 		List<TableRowSorter<TableModel>> tableSorters =  childTablePanel.getTableSorters();
 		
-		System.out.println("NOCNO NEBO");
+		//System.out.println("NOCNO NEBO");
 		
 		for (TableRowSorter<TableModel> tableRowSorter : tableSorters) {
 			

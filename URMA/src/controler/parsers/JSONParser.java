@@ -126,6 +126,7 @@ public class JSONParser implements IParser {
 				Table sourceTable = allTables.get(currRelationJSON.getString("source"));
 				Table destinationTable = allTables.get(currRelationJSON.getString("destination"));
 				if (sourceTable == null || destinationTable == null) {
+					//TODO: @Boris @lokalizacija not done
 					JOptionPane.showMessageDialog(null,
 							"Error while parsing relation " + newRelation.getCode() + ", table reference not found.",
 							"Parse error",
@@ -140,6 +141,7 @@ public class JSONParser implements IParser {
 					String  keyCode = sourceKeyObjectJSON.toString();
 					Attribute sourceKey = sourceTable.getAttribute(keyCode);
 					if (sourceKey == null) {
+						//TODO: @Boris @lokalizacija not done
 						JOptionPane.showMessageDialog(null,
 								"Error while parsing relation " + newRelation.getCode() + ", source attribute reference " + keyCode + " not found.",
 								"Parse error",
@@ -147,6 +149,7 @@ public class JSONParser implements IParser {
 						return null;
 					}
 					if (!sourceKey.getIsPrimaryKey()) {
+						//TODO: @Boris @lokalizacija not done
 						JOptionPane.showMessageDialog(null,
 								"Error while parsing relation " + newRelation.getCode() + ", source attribute " + keyCode + " is not a primary key.",
 								"Parse error",
