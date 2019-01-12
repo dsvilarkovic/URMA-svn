@@ -69,23 +69,6 @@ public class CreateCrudWindowAction extends AbstractAction {
 		Table table = ((TableModel) tableCalling.getModel()).getTable();
 		
 		try {		
-			//uzmi buttonName u switch		
-//			switch(buttonName) {
-//			//vidi kog je tipa dugme
-//			case "Add":
-//				addRow(table);
-//				break;
-//			case "Remove":
-//				removeRow(table);
-//				break;
-//			case "Update":
-//				updateRow(table);
-//				break;
-//			case "Search":
-//				searchRows(table);
-//				break;
-//			}
-			ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
 			String add = resourceBundle.getString("table.button.add");
 			String remove = resourceBundle.getString("table.button.remove");
 			String update = resourceBundle.getString("table.button.update");
