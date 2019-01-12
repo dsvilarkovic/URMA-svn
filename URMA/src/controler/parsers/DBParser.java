@@ -20,8 +20,8 @@ import view.dialogs.DBParserConnectionDialog;
 import app.App;
 
 /**
- * Parser za bazu podataka. Pona�a se po predefinisanim pravilima i nazivima tabelama
- * u okviru tra�ene baze.
+ * Parser za bazu podataka. Ponaša se po predefinisanim pravilima i nazivima tabelama
+ * u okviru tražene baze.
  * @author Boris
  */
 public class DBParser implements IParser {
@@ -36,6 +36,7 @@ public class DBParser implements IParser {
 	private final static String FOREIGNKEYSTN = "KOLONE_U_STRANOM_KLJUCU";
 	
 
+	
 	/* (non-Javadoc)
 	 * @see controler.parsers.IParser#parse()
 	 */
@@ -53,6 +54,13 @@ public class DBParser implements IParser {
 		return parseThis(ip, user, pass);
 	}
 	
+	/**
+	 * Metoda koja zaobilazi formu za parametre pristupa bazi.
+	 * @param ip = IP adresa baze.
+	 * @param user = Korisničko ime.
+	 * @param pass = Lozinka korisnika.
+	 * @return Isparsiranji informacioni resurs. Isparsirani informacioni resurs. Ukoliko se desi greška, vraća null.
+	 */
 	public InformationResource parseThis(String ip, String user, String pass) {
 		ResourceBundle rb = App.INSTANCE.getResourceBundle();
 		Connection con;
