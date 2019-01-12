@@ -11,7 +11,7 @@ import java.util.Map;
 
 /** @pdOid 66940cd2-31c6-40c8-ab87-73f875f9b8d3 */
 /**
- * Model informacionog resursa. U sebi sadrži veze ka svim unutrašnjim podelama.
+ * Model informacionog resursa. U sebi sadrzi veze ka svim unutrasnjim podelama.
  * 
  * @author Boris
  *

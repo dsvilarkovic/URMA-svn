@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * Model paketa u informacionom resursu.
- * Sadrži njemu dodeljene tabele.
+ * Sadrzi njemu dodeljene tabele.
  * @author Boris
  *
  */
