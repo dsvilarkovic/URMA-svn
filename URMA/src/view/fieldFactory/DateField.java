@@ -91,12 +91,12 @@ public class DateField extends JPanel implements IField{
 //			String[] dates = date.split("-");
 //			field.getModel().setDate(Integer.parseInt(dates[0]), Integer.parseInt(dates[1])-1, Integer.parseInt(dates[2]));
 			
-			//TODO: @Dusan dirao - begin
+			//@Dusan dirao - begin
 			Date dateObject  = LocalizationManager.formatDate(date);
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(dateObject);
 			field.getModel().setDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
-			//TODO: @Dusan dirao - end
+			//@Dusan dirao - end
 			
 			field.getModel().setSelected(true);
 		}else {

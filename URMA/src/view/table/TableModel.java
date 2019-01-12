@@ -124,7 +124,6 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 			row = formatNullValues(row);
 			this.addRow(row);
 		}
-		// TODO Dusan od Filipa
 		updateLanguage();
 	}
 	

@@ -73,7 +73,7 @@ public class LoadLanguagePackAction extends AbstractAction implements Localizati
 			recursivePackages(pack, tlp);
 		}
 		
-		//TODO: Hardcode, jbg. (Boris)
+		//TODO: Hardcode,  (Boris)
 		HashMap<String, String> val = new HashMap<>();
 		val.put("default", "InfResource");
 		tlp.addPackageTitles("INFRES", val);

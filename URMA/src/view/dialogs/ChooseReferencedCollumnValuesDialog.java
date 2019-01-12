@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -54,12 +55,13 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 	 */
 	public ChooseReferencedCollumnValuesDialog(Table table, ForeignKeyAction parentCaller) {
 		this.parentCaller = parentCaller;
+		ResourceBundle resourceBundle = App.INSTANCE.getResourceBundle();
 		
 		JPanel contentPanel = new JPanel();
 		contentPanel.setLayout(new BorderLayout());
 		
 		JPanel chooseButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		chooseButton = new JButton("Confirm selected row");		
+		chooseButton = new JButton(resourceBundle.getString("button.confirm"));		
 		chooseButton.setEnabled(false);
 		
 		
@@ -72,7 +74,7 @@ public class ChooseReferencedCollumnValuesDialog extends JDialog {
 		});
 		chooseButtonPanel.add(chooseButton);
 		
-		setTitle("Choose referenced collumn values");
+		setTitle(resourceBundle.getString("value.choose"));
 		
 		//TODO @Jelena, @Dusan stavi zakomentarisano
 		tableModel = new TableModel(table);//findTableModel(table);

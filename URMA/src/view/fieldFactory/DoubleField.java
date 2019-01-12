@@ -49,16 +49,10 @@ public class DoubleField extends JPanel implements IField{
 	
 	private boolean validateJFormatedTextField(JFormattedTextField field) {
 		try {
-			//TODO: @Dusan uradio, @Jelena da proveri
 			Number formattedNumber = LocalizationManager.formatNumber(field.getText());
 			if(formattedNumber == null) {
 				throw new Exception("Bad format exception");
 			}
-//			if((formattedNumber instanceof Double) == false) {
-//				throw new Exception("Not double type exception");
-//			}
-			//Jelena prethodno radila
-			//Double.parseDouble(field.getText());
 			return true;
 		}catch (Exception e) {
 			return false;
@@ -137,7 +131,6 @@ public class DoubleField extends JPanel implements IField{
 		if(field.getText().equals("") || field.getText().equals(TableModel.reservedNullValue)) {
 			return null;
 		}
-		//TODO: @Dusan radio, @Jelena da proveri
 		Number formattedNumber = LocalizationManager.formatNumber(field.getText());
 		return formattedNumber;
 		//Jelena radila

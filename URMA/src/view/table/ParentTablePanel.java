@@ -160,7 +160,6 @@ public class ParentTablePanel extends TablePanel implements LocalizationObserver
 
 
 	public TableModel getParentTableModel() {
-		// TODO Auto-generated method stub
 		return tableModel;
 	}
 	

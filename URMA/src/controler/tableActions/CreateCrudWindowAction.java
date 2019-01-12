@@ -133,7 +133,7 @@ public class CreateCrudWindowAction extends AbstractAction {
 	 * @param table
 	 */
 	private void removeRow(Table table) {
-		//TODO: akcija za uklanjanje torke
+		//nepotrebna na kraju
 	}
 
 	/**
@@ -150,7 +150,6 @@ public class CreateCrudWindowAction extends AbstractAction {
 	 * @param table
 	 */
 	private void addRow(Table table) {
-		//TODO: ubaciti kod
 		(new CrudWindow(table, false)).setVisible(true);;
 	}
 

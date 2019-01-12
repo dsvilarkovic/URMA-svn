@@ -19,7 +19,6 @@ public class XMLHandler implements IHandler {
 	 */
 	@Override
 	public Boolean create(Table table, HashMap<String, Object> data) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -28,7 +27,6 @@ public class XMLHandler implements IHandler {
 	 */
 	@Override
 	public Vector<Vector<Object>> read(Table table) {
-		// TODO Auto-generated method stub
 		return null;
 
 	}
@@ -39,7 +37,6 @@ public class XMLHandler implements IHandler {
 	@Override
 	public Boolean update(Table table, HashMap<String, Object> data) {
 		return null;
-		// TODO Auto-generated method stub
 
 	}
 
@@ -48,12 +45,10 @@ public class XMLHandler implements IHandler {
 	 */
 	@Override
 	public void delete(Table table, Vector<Object> values) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public Vector<Vector<Object>> search(Table table, HashMap<String, Object> data) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

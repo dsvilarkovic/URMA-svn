@@ -224,13 +224,11 @@ public class DBHandler implements IHandler {
 	**/
 	@Override
 	public void delete(Table table, Vector<Object> values) {
-		// TODO Auto-generated method stub
 		System.out.println("DELETE");
 		String sql = "delete from " + table.getCode() + " where ";
 		Map<String, Attribute> attributes = table.getAttributes();
 		int i = 0;
 		for (String key : attributes.keySet()) {
-			//TODO: @Dusan radio, Jelena da proveri
 			Attribute attribute = table.getAttribute(key);
 			String type = attribute.getType();
 			if(values.get(i) != null && !values.get(i).equals(TableModel.reservedNullValue)) {

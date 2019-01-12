@@ -13,7 +13,6 @@ public class XMLParser implements IParser {
 	 */
 	@Override
 	public InformationResource parse() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

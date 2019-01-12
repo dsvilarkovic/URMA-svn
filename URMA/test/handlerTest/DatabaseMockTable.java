@@ -52,7 +52,6 @@ public class DatabaseMockTable {
 	private static String dropMockTableStatement = "DROP TABLE "+mockTableName+";";
 	
 	public DatabaseMockTable() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	/**
@@ -142,7 +141,6 @@ public class DatabaseMockTable {
 			tables.close();
 			
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -166,7 +164,6 @@ public class DatabaseMockTable {
 			}		
 			resultSet.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

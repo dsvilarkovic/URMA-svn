@@ -45,17 +45,7 @@ public class IntegerField extends JPanel implements IField{
 	}
 	
 	private boolean validateJFormatedTextField(JFormattedTextField field) {
-//		try {
-//			ParsePosition pp = new ParsePosition(0);
-//            NumberFormat nf = new DecimalFormat("####.00");
-//            nf.setMaximumIntegerDigits(10);
-//            nf.parse(field.getText(), pp);
-//            return pp.getIndex() == field.getText().length() ? true : false;
-//        } catch (Exception e) {
-//            return false;
-//        }
 		try {
-			//TODO: @Dusan uradio, @Jelena da proveri
 			Number formattedNumber = LocalizationManager.formatNumber(field.getText());
 			if(formattedNumber == null) {
 				throw new Exception("Bad format exception");
@@ -65,8 +55,6 @@ public class IntegerField extends JPanel implements IField{
 				throw new Exception("Not integer type exception");
 			}
 			
-			//Jelena prethodno radila
-			//Integer.parseInt(field.getText());
 			return true;
 		}catch (Exception e) {
 			return false;
@@ -128,7 +116,6 @@ public class IntegerField extends JPanel implements IField{
 		if(field.getText().equals("") || field.getText().equals(TableModel.reservedNullValue)) {
 			return null;
 		}
-		//TODO: @Dusan radio, @Jelena da proveri
 		Number formattedNumber = LocalizationManager.formatNumber(field.getText());
 		return formattedNumber;
 		//Jelena radila
