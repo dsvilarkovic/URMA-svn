@@ -2,9 +2,11 @@ package validatorTest;
 
 import static org.junit.Assert.*;
 
+import org.json.JSONException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import app.App;
 import controler.Open;
@@ -49,15 +51,16 @@ public class JSONValidatorTest {
 	
 	@Test
 	/**
-	 * Provera za negativnu semu
+	 * Provera za negativnu semu, izbaceni obavezni atributi relationa
 	 */
 	public void negativeValidationTest() {
 		//podesi aplikacijski filepath za meta semu
-		App.INSTANCE.getEditorWindow().getToolbar().getPath().setText("resources/dusanSchema.json");
+		App.INSTANCE.getEditorWindow().getToolbar().getPath().setText("resources/ourMetaSchema.json");
 		//podesi aplikacijski text za semu
 		String str = null;
 		try {
-			str = (String) new Open().openThis("resources/ourSchema.json");
+			//obrisani kljucevi u relaciji
+			str = (String) new Open().openThis("resources/badSchema.json");
 		}
 		catch(NullPointerException npe) {
 			return; //vraca se funkcija ne treba je izvrsavati
@@ -66,6 +69,23 @@ public class JSONValidatorTest {
 		
 		boolean assertation = jsonValidator.validate();
 		assertEquals(false, assertation);
+	}
+	
+	@Test
+	/**
+	 * Provera kad je non-JSON tekst upucen na editor
+	 */
+	public void totallyNegativeValidationTest() {
+		//podesi aplikacijski filepath za meta semu
+		App.INSTANCE.getEditorWindow().getToolbar().getPath().setText("resources/ourMetaSchema.json");
+		//podesi aplikacijski text za semu
+		//totalno pogresan
+		String str = "[dcackcaiicd";
+		App.INSTANCE.getEditorWindow().getMainPanel().getTextArea().setText(str);
+		
+		boolean assertation = jsonValidator.validate();
+		assertEquals(false, assertation);
+
 	}
 
 }

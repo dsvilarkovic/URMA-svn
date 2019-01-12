@@ -43,7 +43,7 @@ public class JSONValidator implements IValidator {
 			JOptionPane.showMessageDialog(null, resourceBundle.getString("schema.error"), 
 					resourceBundle.getString("error"),
 					JOptionPane.ERROR_MESSAGE);
-			e1.printStackTrace();
+			//e1.printStackTrace();
 			return false;
 		}
 
