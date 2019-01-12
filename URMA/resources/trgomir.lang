@@ -1,0 +1,274 @@
+{
+    "packages": [
+        {
+            "code": "01_MISIJA_I_OKRUZENJE",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "01_Mission and environment"
+                },
+                {
+                    "lang": "sr",
+                    "value": "01_Misija i okruzenje"
+                }
+            ]
+        },
+        {
+            "code": "02_OGRANIZACIONA_STRUKTURA",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "02_Organisational structure"
+                },
+                {
+                    "lang": "sr",
+                    "value": "02_Ogranizaciona struktura"
+                }
+            ]
+        },
+        {
+            "code": "03_DELATNOST_POSLOVNOG_SISTEMA",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "03_What do it"
+                },
+                {
+                    "lang": "sr",
+                    "value": "03_Delatnost Poslovnog sistema"
+                }
+            ]
+        },
+        {
+            "code": "04_DOKUMENTI",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "04_Documents"
+                },
+                {
+                    "lang": "sr",
+                    "value": "04_Dokumenti"
+                }
+            ]
+        },
+        {
+            "code": "05_PODRSKA_UPRAVLJNJU",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "05_Management support"
+                },
+                {
+                    "lang": "sr",
+                    "value": "05_Podrška upravljnju"
+                }
+            ]
+        },
+        {
+            "code": "06_SARADNJA_SA_OKRUZENJEM",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "06_Connection with the Environment"
+                },
+                {
+                    "lang": "sr",
+                    "value": "06_Saradnja sa okruženjem"
+                }
+            ]
+        },
+        {
+            "code": "SKLADISTA__TIM_7_1_",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Warehouses (best team)"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Skladišta (tim 7.1)"
+                }
+            ]
+        },
+        {
+            "code": "INFRES",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "InfResource"
+                },
+                {
+                    "lang": "sr",
+                    "value": "InfResurs"
+                }
+            ]
+        }
+    ],
+    "tables": [
+        {
+            "code": "SKLADISTE",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Warehouse"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Skladište"
+                }
+            ]
+        },
+        {
+            "code": "ROBA",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Goods"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Roba"
+                }
+            ]
+        },
+        {
+            "code": "SEKTOR",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Sector"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Sektor"
+                }
+            ]
+        },
+        {
+            "code": "SKLADISTENA_ROBA",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Placed Goods"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Skladištena roba"
+                }
+            ]
+        },
+        {
+            "code": "TIP_ROBE",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Type of Goods"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Tip robe"
+                }
+            ]
+        },
+        {
+            "code": "TIP_SEKTORA",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Sector type"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Tip sektora"
+                }
+            ]
+        }
+    ],
+    "attributes": [
+        {
+            "table_code": "SKLADISTE",
+            "code": "SKLADISTE_ID",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Warehouse ID"
+                },
+                {
+                    "lang": "sr",
+                    "value": "ID Skladišta"
+                }
+            ]
+        },
+        {
+            "table_code": "SKLADISTE",
+            "code": "SKLADISTE_ADR",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Address"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Adresa"
+                }
+            ]
+        },
+        {
+            "table_code": "SKLADISTE",
+            "code": "SKLADISTE_NAZ",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Name"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Naziv"
+                }
+            ]
+        },
+        {
+            "table_code": "SKLADISTE",
+            "code": "SKLADISTE_POV",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Surface Area"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Površina"
+                }
+            ]
+        },
+        {
+            "table_code": "SEKTOR",
+            "code": "SEKTOR_ID",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Sector ID"
+                },
+                {
+                    "lang": "sr",
+                    "value": "ID Sektora"
+                }
+            ]
+        },
+        {
+            "table_code": "SEKTOR",
+            "code": "SEKTOR_KAP",
+            "values": [
+                {
+                    "lang": "en",
+                    "value": "Capacity"
+                },
+                {
+                    "lang": "sr",
+                    "value": "Kapacitet"
+                }
+            ]
+        }
+    ]
+}

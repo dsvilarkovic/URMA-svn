@@ -47,6 +47,7 @@ public class DBParserConnectionDialog extends JDialog {
 		setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
 		setResizable(true);
 		setModal(true);
+		setLocationRelativeTo(null);
 		ResourceBundle rb = App.INSTANCE.getResourceBundle();
 		setTitle(rb.getString("database.connection"));
 		setLayout(new GridBagLayout());
