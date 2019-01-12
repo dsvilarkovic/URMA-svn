@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Vector;
 
 import org.junit.After;
@@ -26,6 +27,8 @@ public class DeleteRowDBTest {
 	
 	@Before
 	public void setUpBefore(){
+		Locale.setDefault(new Locale("en", "UK"));
+		
 		//konektuj se na bazu i kreiraj mock tabelu
 		try {
 			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
@@ -55,6 +58,7 @@ public class DeleteRowDBTest {
 
 	@After
 	public void tearDownAfter(){
+		Locale.setDefault(new Locale("sr", "RS"));
 		try {
 			conn = DriverManager.getConnection("jdbc:jtds:sqlserver://147.91.175.155/psw-2018-tim7-1","psw-2018-tim7-1","tim7-19940718");
 			DatabaseMockTable.dropDatabaseTable(conn);

@@ -1,9 +1,14 @@
 package fieldTest;
 import static org.junit.Assert.*;
 import static org.powermock.api.mockito.PowerMockito.spy;
+
+import java.util.Locale;
+
 import static org.powermock.api.mockito.PowerMockito.doReturn;
 
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,6 +24,15 @@ public class DoubleFieldTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	@Before
+	public void setUpBefore() {
+		Locale.setDefault(new Locale("rs", "RS"));
+	}
+	
+	@After 
+	public void tearDownAfter() {
+		Locale.setDefault(new Locale("en", "UK"));
+	}
 	@Test
 	public void testValidateFieldPrecisionTrue() {
 		DoubleField field = new DoubleField();
