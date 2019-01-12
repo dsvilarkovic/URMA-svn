@@ -99,7 +99,7 @@ public class DatabaseMockTable {
 			preparedStatement.execute();
 			preparedStatement.close();		
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	/**
@@ -115,7 +115,7 @@ public class DatabaseMockTable {
 			preparedStatement.close();
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 
@@ -141,7 +141,7 @@ public class DatabaseMockTable {
 			tables.close();
 			
 		} catch (SQLException e1) {
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 		
 		return tableExists;
@@ -164,7 +164,7 @@ public class DatabaseMockTable {
 			}		
 			resultSet.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		return columnCodes;
@@ -187,7 +187,7 @@ public class DatabaseMockTable {
 		DoubleField doubleField = (DoubleField) new DoubleFieldFactory().createField();
 		DoubleField copyDoubleField = spy(doubleField);
 		doReturn(",").when(copyDoubleField).splitChar();
-		copyDoubleField.setValue("125.25");
+		copyDoubleField.setValue((new Double(125.25)).toString());
 		BooleanField booleanField = (BooleanField) new BooleanFieldFactory().createField();
 		booleanField.setValue((Boolean)true); 
 		DateField dateField = (DateField) new DateFieldFactory().createField();
