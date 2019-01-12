@@ -126,7 +126,6 @@ public class TableMediator {
 		//3.ako nema odustani od operacije i obavesti dialog porukom korisnika
 		ResourceBundle resourceBundle = App.INSTANCE.getResourceBundle();
 		if(parentTableMap == null || parentTableMap.isEmpty()) {
-			//TODO: @Dusan @lokalizacija not done
 			JOptionPane.showMessageDialog(null, resourceBundle.getString("table.parent.demote.error"),
 					"Error", JOptionPane.ERROR_MESSAGE);
 			
