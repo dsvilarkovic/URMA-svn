@@ -84,7 +84,8 @@ public class MainAppTreePanel extends JPanel implements LocalizationObserver {
 	 */
 	public DefaultMutableTreeNode updateTreeModel(TreeParts node) {
 		DefaultMutableTreeNode parentNode = new DefaultMutableTreeNode(node);
-
+		
+		System.out.println(node.getName());
 		if (node.getContent(infRes) != null)
 			for (TreeParts k : node.getContent(infRes)) {
 				parentNode.add(updateTreeModel(k));

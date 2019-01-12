@@ -51,8 +51,10 @@ public class AdapterTable implements TreeParts {
 		
 		List<TreeParts> list = new ArrayList<TreeParts>();
 		
+
 		for (Table value : tabela.getChildTables().values()) {
-			list.add(new AdapterTable(value));
+			if(!value.getTitle().equals(tabela.getTitle()))
+				list.add(new AdapterTable(value));
 		}
 		
 		return list.size()==0?null:list;		
