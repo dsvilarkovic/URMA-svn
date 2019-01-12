@@ -16,9 +16,12 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
+import org.jdatepicker.impl.JDatePickerImpl;
+
 import app.App;
 import model.Attribute;
 import model.Table;
+import view.fieldFactory.DateField;
 import view.fieldFactory.DecoratedField;
 import view.fieldFactory.IField;
 import view.localizationManager.LocalizationManager;
@@ -336,9 +339,6 @@ public class DBHandler implements IHandler {
 					if(field2.getValue() == null)
 						type = type + "Solo";
 				}
-				
-				System.out.println(field.getValue());
-				//System.out.println(field2.getValue());
 						
 				switch (type) {
 				case "varchar":
@@ -348,10 +348,13 @@ public class DBHandler implements IHandler {
 					break;
 				case "int":
 				case "double": where = where + code + " between " + field.getValue().toString() + and + field2.getValue().toString() + and; break;
-				case "date": where = where + code + " between '" + field.getValue().toString() + "'" + and + "'" + field2.getValue().toString() + "'" + and; break;
+				case "date": String vrednost = field.getValue()==null?"1-1-2000":field.getValue().toString();
+							 String vrednost1 = field2.getValue()==null?"1-1-2000":field2.getValue().toString();
+					where = where + code + " between '" + vrednost + "'" + and + "'" + vrednost1 + "'" + and; break;
 				case "intSolo":
 				case "doubleSolo": where = where + code + " >= " + field.getValue().toString() + and; break;
-				case "dateSolo": where = where + code + " >= '" + field.getValue().toString() + "'" + and; break;
+				case "dateSolo": String vrednost3 = field.getValue()==null?"1-1-2000":field.getValue().toString(); 
+					where = where + code + " >= '" + vrednost3 + "'" + and; break;
 
 				default:
 					break;
