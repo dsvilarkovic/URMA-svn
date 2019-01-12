@@ -109,7 +109,6 @@ public class DateField extends JPanel implements IField{
 		int day = field.getModel().getDay();
 		int month = field.getModel().getMonth() + 1;
 		int year = field.getModel().getYear();
-		System.out.println("YEAR" + year);
 		if(day == 1 && month == 1 && year == 2000) {
 			return null;
 		}
