@@ -186,6 +186,11 @@ public class Attribute {
 		return true;
 	}
 	
+	/**
+	 * Metoda koja vrši proveru da li je atribut isti po vrednostima kao i parametar.
+	 * @param a = Atribut s kojim se poredi.
+	 * @return Da li su atributi isti ili ne.
+	 */
 	public boolean equals(Attribute a) {
 		if (a == null) {
 			return false;

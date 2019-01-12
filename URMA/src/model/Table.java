@@ -11,7 +11,7 @@ import java.util.*;
 /** @pdOid 964e13bd-7bb2-48fd-8a10-ad5bb18e49aa */
 /**
  * Model tabele informacionog resursa.
- * Sadr�i sve informacije o jednom entitetu u okviru resursa.
+ * Sadrï¿½i sve informacije o jednom entitetu u okviru resursa.
  * @author Boris
  *
  */
@@ -158,7 +158,26 @@ public class Table {
 	public void addRelationWhereDestination(Relation r) {
 		this.getRelationsWhereDestination().add(r);
 	}
+	
+	
+	/**
+	 * Metoda koja iz modela tabele vraća sve tabele s kojima je u vezi, tako
+	 * da je ona referencirajuća tabela. 
+	 * @return Sve tabele u vezi sa ovom, tako da je ova tabela referencirajuća.
+	 */
+	public Map<String, Table> getForeignKeyTables() {
+		HashMap<String, Table> fkts = new HashMap<>();
+		for (Relation r : this.getRelationsWhereDestination()) {
+			fkts.put(r.getSourceTable().getCode(), r.getSourceTable());
+		}
+		return fkts;		
+	}
 
+	/**
+	 * Metoda koja vrši proveru da li je tabela isti po vrednostima kao i parametar.
+	 * @param t = Tabela s kojom se poredi.
+	 * @return Da li su tabele isti ili ne.
+	 */
 	public boolean equals(Table t) {
 		if (t == null) {
 			return false;

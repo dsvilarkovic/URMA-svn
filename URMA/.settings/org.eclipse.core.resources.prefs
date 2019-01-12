@@ -5,6 +5,7 @@ encoding//src/controler/parsers/IParser.java=UTF-8
 encoding//src/controler/parsers/JSONParser.java=UTF-8
 encoding//src/model/Attribute.java=UTF-8
 encoding//src/model/Relation.java=UTF-8
+encoding//src/model/Table.java=UTF-8
 encoding//src/model/TitleLanguagePack.java=UTF-8
 encoding//src/view/dialogs/ChooseReferencedCollumnValuesDialog.java=UTF-8
 encoding//src/view/dialogs/DBParserConnectionDialog.java=UTF-8

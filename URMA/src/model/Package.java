@@ -98,6 +98,11 @@ public class Package {
 		this.code = code;
 	}
 	
+	/**
+	 * Metoda koja vrši proveru da li je paket isti po vrednostima kao i parametar.
+	 * @param p = Paket s kojim se poredi.
+	 * @return Da li su paketi isti ili ne.
+	 */
 	public boolean equals(Package p) {
 		if (p == null) {
 			return false;

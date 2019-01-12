@@ -122,6 +122,11 @@ public class Relation {
 		this.destinationTable = destinationTable;
 	}
 	
+	/**
+	 * Metoda koja vrši proveru da li je relacija ista po vrednostima kao i parametar.
+	 * @param r = Relacija s kojim se poredi.
+	 * @return Da li su relacije iste ili ne.
+	 */
 	public boolean equals(Relation r) {
 		if (r == null) {
 			return false;
