@@ -100,8 +100,8 @@ public class CrudWindow extends JDialog{
 		add(jp);
 		add(new JPanel());
 
-		for (String key : t.getParentTables().keySet()) {
-			Table table = t.getParentTables().get(key);
+		for (String key : t.getForeignKeyTables().keySet()) {
+			Table table = t.getForeignKeyTables().get(key);
 			JButton b = new JButton();
 			JPanel j = new JPanel();
 			b.addActionListener(new ForeignKeyAction(this, table, key));
@@ -216,8 +216,8 @@ public class CrudWindow extends JDialog{
 		add(jp);
 		add(new JPanel());
 		
-		for (String key : t.getParentTables().keySet()) {
-			Table table = t.getParentTables().get(key);
+		for (String key : t.getForeignKeyTables().keySet()) {
+			Table table = t.getForeignKeyTables().get(key);
 			JButton b = new JButton();
 			JPanel j = new JPanel();
 			b.addActionListener(new ForeignKeyAction(this, table, key));
