@@ -51,6 +51,7 @@ public class SearchDBTest {
 	private static Table table = null;
 	private static IHandler iHandler = null;
 	private static HashMap<String, Object> fields;
+	private static Locale old = Locale.getDefault();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -88,6 +89,7 @@ public class SearchDBTest {
 				"tim7-19940718");
 		DatabaseMockTable.dropDatabaseTable(conn);
 		conn.close();
+		Locale.setDefault(old);
 	}
 
 	@After
