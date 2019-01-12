@@ -124,7 +124,7 @@ public class InformationResource {
 	}
 
 	/**
-	 * Metoda koja vrši proveru da li je informacioni resurs isti po vrednostima i vezama kao i parametar.
+	 * Metoda koja vrsi proveru da li je informacioni resurs isti po vrednostima i vezama kao i parametar.
 	 * @param ir = Informacioni resurs s kojim se poredi resurs.
 	 * @return Da li su resursi isti ili ne.
 	 */
