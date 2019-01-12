@@ -39,8 +39,8 @@ public class CrudWindow extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	private Table table;
-	Vector<Object> values;
-	Map<String, Object> fields;
+	private Vector<Object> values;
+	private Map<String, Object> fields;
 
 	/**
 		Metoda kreira i prikazuje crud window za akciju update	
@@ -98,6 +98,7 @@ public class CrudWindow extends JDialog{
 		jp = new JPanel();
 		jp.add(button);
 		add(jp);
+		add(new JPanel());
 
 		for (String key : t.getParentTables().keySet()) {
 			Table table = t.getParentTables().get(key);
@@ -213,6 +214,7 @@ public class CrudWindow extends JDialog{
 		jp = new JPanel();
 		jp.add(button);
 		add(jp);
+		add(new JPanel());
 		
 		for (String key : t.getParentTables().keySet()) {
 			Table table = t.getParentTables().get(key);

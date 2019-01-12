@@ -22,7 +22,7 @@ import view.CrudWindow;
 
 public class CreateAction extends AbstractAction{
 	private static final long serialVersionUID = 1L;
-	public CrudWindow parentCaller;
+	private CrudWindow parentCaller;
 	
 	/**
 		Konstruktor akcije koja se poziva nakon popunjavanja polja za create akciju u CrudWindow-u da bi izvršila akciju nad bazom		

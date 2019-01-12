@@ -19,7 +19,7 @@ import view.CrudWindow;
 
 public class SearchAction extends AbstractAction{
 	private static final long serialVersionUID = 1L;
-	public CrudWindow parentCaller;
+	private CrudWindow parentCaller;
 	
 	public SearchAction(CrudWindow parentCaller) {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("localisationresources.localisationresources",Locale.getDefault());
