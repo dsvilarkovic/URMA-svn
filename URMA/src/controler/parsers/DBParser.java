@@ -250,18 +250,29 @@ public class DBParser implements IParser {
 				}
 				r.addSourceKeys(source);
 				r.addDestinationKeys(dest);
-				
-				//identifikaciona zavisnost
-				if (dest.getIsPrimaryKey()) {
-					tpar.addChildTables(tchi);
-					tchi.addParentTables(tpar);
-				}
 			}
 			rset.close();
 			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
+		}
+		
+		for (Relation r : model.getRelations().values()) {
+			Table tpar = r.getSourceTable();
+			Table tchi = r.getDestinationTable();
+			boolean check = true;
+			for (Attribute a : r.getDestinationKeys()) {
+				if (!a.getIsPrimaryKey()) {
+					check = false;
+					break;
+				}
+			}
+			if (check) {
+				//identifikaciona zavisnost
+				tpar.addChildTables(tchi);
+				tchi.addParentTables(tpar);
+			}
 		}
 		
 		return model;

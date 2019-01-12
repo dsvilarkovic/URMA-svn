@@ -162,7 +162,7 @@ public class JSONParser implements IParser {
 					newRelation.addSourceKeys(sourceKey);
 				}
 				
-				
+				boolean isIdDependency = true;
 				JSONArray destinationKeysJSON = currRelationJSON.getJSONArray("keysDestination");
 				for (Object destinationKeyObjectJSON : destinationKeysJSON) {
 					String keyCode = destinationKeyObjectJSON.toString();
@@ -176,12 +176,14 @@ public class JSONParser implements IParser {
 					}
 					
 					// Da li je referencijalni integritet?
-					if (destinationKey.getIsPrimaryKey()) {
-						sourceTable.addChildTables(destinationTable);
-						destinationTable.addParentTables(sourceTable);
-					}
+					isIdDependency = isIdDependency && destinationKey.getIsPrimaryKey();
 					
 					newRelation.addDestinationKeys(destinationKey);
+				}
+				
+				if (isIdDependency) {
+					sourceTable.addChildTables(destinationTable);
+					destinationTable.addParentTables(sourceTable);
 				}
 				
 				informationResource.addRelations(newRelation);
