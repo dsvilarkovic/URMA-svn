@@ -58,7 +58,7 @@ public class CharField extends JPanel implements IField{
 			return false;
 		}
 		System.out.println(maxLen);
-		if(field.getText().length() != maxLen) {
+		if(field.getText().length() != maxLen && field.getText().length() != 0 ) {
 			System.out.println("CharField");
 			System.out.println("wrong len");
 			return false;
