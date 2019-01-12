@@ -1,6 +1,7 @@
 package controler.parsers;
 
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
@@ -14,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import app.App;
 import controler.Open;
 
 /**
@@ -125,11 +127,12 @@ public class JSONParser implements IParser {
 				
 				Table sourceTable = allTables.get(currRelationJSON.getString("source"));
 				Table destinationTable = allTables.get(currRelationJSON.getString("destination"));
+				ResourceBundle resourceBundle = App.INSTANCE.getResourceBundle();
 				if (sourceTable == null || destinationTable == null) {
 					//TODO: @Boris @lokalizacija not done
 					JOptionPane.showMessageDialog(null,
-							"Error while parsing relation " + newRelation.getCode() + ", table reference not found.",
-							"Parse error",
+							resourceBundle.getString("parser.relation.error.first") + newRelation.getCode() + resourceBundle.getString("parser.relation.error.second"),
+							resourceBundle.getString("parser.error.message"),
 							JOptionPane.WARNING_MESSAGE);
 					return null;
 				}
@@ -143,16 +146,19 @@ public class JSONParser implements IParser {
 					if (sourceKey == null) {
 						//TODO: @Boris @lokalizacija not done
 						JOptionPane.showMessageDialog(null,
-								"Error while parsing relation " + newRelation.getCode() + ", source attribute reference " + keyCode + " not found.",
-								"Parse error",
+								resourceBundle.getString("parser.relation.error.first")  
+								+ newRelation.getCode() + resourceBundle.getString("parser.error.source.attribute")
+								+ keyCode + resourceBundle.getString("parser.error.notfound"),
+								resourceBundle.getString("parser.error.message"),
 								JOptionPane.WARNING_MESSAGE);
 						return null;
 					}
 					if (!sourceKey.getIsPrimaryKey()) {
 						//TODO: @Boris @lokalizacija not done
 						JOptionPane.showMessageDialog(null,
-								"Error while parsing relation " + newRelation.getCode() + ", source attribute " + keyCode + " is not a primary key.",
-								"Parse error",
+								resourceBundle.getString("parser.relation.error.first") + newRelation.getCode() + 
+								resourceBundle.getString("parser.error.source") + keyCode + resourceBundle.getString("parser.error.notprimarykey"),
+								resourceBundle.getString("parser.error.message"),
 								JOptionPane.WARNING_MESSAGE);
 						return null;
 					}
@@ -166,8 +172,8 @@ public class JSONParser implements IParser {
 					Attribute destinationKey = destinationTable.getAttribute(keyCode);
 					if (destinationKey == null) {
 						JOptionPane.showMessageDialog(null,
-								"Error while parsing relation " + newRelation.getCode() + ", destination attribute reference " + keyCode + " not found.",
-								"Parse error",
+								resourceBundle.getString("parser.relation.error.first") + newRelation.getCode() + resourceBundle.getString("parser.error.destination.attribute") + keyCode + resourceBundle.getString("parser.error.notfound"),
+								resourceBundle.getString("parser.error.message"),
 								JOptionPane.WARNING_MESSAGE);
 						return null;
 					}
