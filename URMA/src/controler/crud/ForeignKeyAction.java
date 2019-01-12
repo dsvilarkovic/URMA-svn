@@ -64,7 +64,7 @@ public class ForeignKeyAction extends AbstractAction{
 	/**
 		Metoda koja popunjava polja na osnovu stranog kljuca		
 		@author - Jelena
-		@param selectedRow - mapa<Polje,Vrednost>
+		@param selectedRow - mapa&lt;Polje,Vrednost&gt;
 	**/
 	public void fillFields(Map<String, Object> selectedRow) {
 		parentCaller.fillFields(selectedRow);

@@ -15,7 +15,7 @@ public interface LocalizationObserver {
 	
 	/**
 	 * Nametnuta metoda po kojoj se menja jezik na jezicki zavisnim delovima graficke komponente.
-	 * @param language - jezik koji se bira iz combobox-a u <code>MainAppStatusBar</code>
+	 * language - jezik koji se bira iz combobox-a u <code>MainAppStatusBar</code>
 	 */
 	public void updateLanguage();
 }

@@ -23,7 +23,6 @@ public class JSONValidator implements IValidator {
 	/**
 	 * Metoda koja validira trenutno otvorenu JSON semu prema izbaranoj meta semi
 	 * @author filip
-	 * @param none
 	 * @return void
 	 */
 	@Override

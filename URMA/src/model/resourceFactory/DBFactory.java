@@ -57,7 +57,7 @@ public class DBFactory implements IResourceFactory{
 	 * @param user - username za tu bazu
 	 * @param pass - password za tu bazu
 	 * @author Dusan 
-	 * @return true ako vraca dobru vrednost, false ako ne.
+	 * 
 	 */
 	public void setUpDBHandlerParameters(String ip, String user, String pass) {
 		this.dbHandlerIp = ip;

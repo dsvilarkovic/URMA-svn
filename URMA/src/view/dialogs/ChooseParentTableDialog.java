@@ -19,7 +19,7 @@ import javax.swing.ListSelectionModel;
 
 import model.Table;
 /**
- * Dialog iz koje se bira roditelj pri spustanju roditeljske tabele iz {@link inparentTablePanel}
+ * Dialog iz koje se bira roditelj pri spustanju roditeljske tabele iz {link inparentTablePanel}
  * @author Dusan
  *
  */
@@ -35,7 +35,7 @@ public class ChooseParentTableDialog extends JDialog{
 	private JButton cancelButton;
 
 	/**
-	 * Dialog iz koje se bira roditelj pri spustanju roditeljske tabele iz {@link inparentTablePanel}
+	 * Dialog iz koje se bira roditelj pri spustanju roditeljske tabele iz {link inparentTablePanel}
 	 * @author Dusan
 	 * @param parentTableMap - mapa ponudjenih tabela kandidata za roditelja
 	 */

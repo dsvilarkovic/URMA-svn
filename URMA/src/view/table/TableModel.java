@@ -114,7 +114,7 @@ public class TableModel extends DefaultTableModel implements LocalizationObserve
 	 * Funkcija namenjenja da zameni podatke u tabeli sa onim sto vrati search
 	 * @author filip
 	 * @param valueList - vektor redova podataka posle search operacije
-	 * @return {@link Void}
+	 * 
 	 */	
 	public void searchUpdate(Vector<Vector<Object>> valueList) {
 		LocalizationManager.nulifyFormats();

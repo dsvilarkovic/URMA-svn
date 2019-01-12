@@ -52,7 +52,6 @@ public class DBHandler implements IHandler {
 	 * @param user - username za tu bazu
 	 * @param pass - password za tu bazu
 	 * @author Dusan 
-	 * @return true ako vraca dobru vrednost, false ako ne.
 	 */
 	public void setUpDBHandlerParameters(String ip, String user, String pass) {
 		this.ip = ip;
@@ -139,7 +138,7 @@ public class DBHandler implements IHandler {
 	 * 
 	 * @author filip
 	 * @param table - tabela za koju treba da se izvuku podaci
-	 * @return {@link Vector}&lt;{@link Vector}&lt;{@link Object}>> - vektor redova
+	 * @return {@link Vector}&lt;{@link Vector}&lt;{@link Object}&gt;&gt; - vektor redova
 	 *         u tabeli
 	 */
 	@Override

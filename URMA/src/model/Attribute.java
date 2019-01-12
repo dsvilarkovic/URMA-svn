@@ -51,13 +51,13 @@ public class Attribute {
 	 * @author Dusan
 	 * 
 	 * 
-	 * @param title
-	 * @param code
-	 * @param isPrimaryKey
-	 * @param isRequired
-	 * @param type
-	 * @param maxLength
-	 * @param table
+	 * @param title - naslov atributa
+	 * @param code - kod atributa
+	 * @param isPrimaryKey - da li je primarni kljic
+	 * @param isRequired - da li je obavezan
+	 * @param type - tip
+	 * @param maxLength - maksimalna duzina
+	 * @param table - tabela
 	 */
 	public Attribute(String title, String code, Boolean isPrimaryKey, Boolean isRequired, String type,
 			Integer maxLength, Table table) {
@@ -71,13 +71,13 @@ public class Attribute {
 		this.table = table;
 	}
 
-	/** @pdGenerated default parent getter */
+	/** */
 	public Table getTable() {
 		return table;
 	}
 
 	/**
-	 * @pdGenerated default parent setter
+	 * 
 	 * @param newTable
 	 */
 	public void setTable(Table newTable) {

@@ -50,8 +50,6 @@ public enum App {
 	/**
 	 * Metoda koja inicijalizuje prozore u aplikaciji
 	 * @author filip
-	 * @param none
-	 * @return {@link Void}
 	 */
 	public void start() {
 		//postavljanje lokalizacije
@@ -107,7 +105,6 @@ public enum App {
 		Izbor fabrike za kreiranje parsera, handlera i validatora		
 		@author filip
 		@param extension - ekstenzija fajla metaseme na osnovu kojeg se formira fabrika(json, xml, db, sch)  
-		@return - fabrika izabranog tipa
 	**/
 	public void setFactory(String extension) {
 		switch (extension) {
@@ -130,7 +127,6 @@ public enum App {
 		Izbor fabrike za kreiranje polja razliÄ�itih tipova		
 		@author - Jelena
 		@param type - tip polja koje je potrebno kreirati(char, varchar, int, double, date, boolean)  
-		@return - fabrika izabranog tipa
 	**/
 	public void createFieldFactory(String type) {
 		switch (type) {

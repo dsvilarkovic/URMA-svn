@@ -23,7 +23,6 @@ public class Save implements Serializable {
 	 * @author filip
 	 * @param object - objekat koji treba da se snimi
 	 * @param extension - ekstenzije pod kojom zeli da se snimi objekat
-	 * @return {@link Void}
 	 */
 	public void saveAs(Object object, String extension) {
 

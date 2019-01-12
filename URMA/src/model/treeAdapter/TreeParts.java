@@ -14,7 +14,6 @@ public interface TreeParts {
 	/**
 	 * Metoda koja vraca putanju do slike koja ce se prikazivati kao cvor na stablu
 	 * @author filip
-	 * @param none
 	 * @return {@link String} - putanja do slike cvora na
 	 */
 	public String getImgPath();
@@ -22,7 +21,6 @@ public interface TreeParts {
 	/**
 	 * Metoda koja vraca ime cvora koje treba da se prikaze na stablu
 	 * @author filip
-	 * @param none
 	 * @return {@link String} - ime cvora
 	 */
 	public String getName();
@@ -30,8 +28,6 @@ public interface TreeParts {
 	/**
 	 * Metoda koja definise akciju klika na cvor stabla
 	 * @author filip
-	 * @param none
-	 * @return {@link Void} 
 	 */
 	public void action();
 	
@@ -39,7 +35,7 @@ public interface TreeParts {
 	 * Metoda koja vraca decu cvora u stablu
 	 * @author filip
 	 * @param infRes - informacioni resurs
-	 * @return {@link List}&lt;{@link TreeParts}> - listu dece koji su takodje cvorovi stabla
+	 * @return {@link List}&lt;{@link TreeParts}&gt; - listu dece koji su takodje cvorovi stabla
 	 */
 	public List<TreeParts> getContent(InformationResource infRes);
 }

@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"model"}]
+packageSearchIndex = [{"l":"app"},{"l":"controler"},{"l":"controler.crud"},{"l":"controler.editorActions"},{"l":"controler.handlers"},{"l":"controler.mainFrameActions"},{"l":"controler.parsers"},{"l":"controler.tableActions"},{"l":"controler.validators"},{"l":"model"},{"l":"model.resourceFactory"},{"l":"model.treeAdapter"},{"l":"view"},{"l":"view.dialogs"},{"l":"view.editorFrame"},{"l":"view.fieldFactory"},{"l":"view.localizationManager"},{"l":"view.mainFrame"},{"l":"view.table"}]

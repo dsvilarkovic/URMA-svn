@@ -32,7 +32,7 @@ public class MainAppTreePanel extends JPanel implements LocalizationObserver {
 	 * Konstruktor za kreiranje panela za stablo. <br>
 	 * Inicijalno se kreira samo prazan panel.
 	 * @author filip
-	 * @param none
+	 * 
 	 */
 	public MainAppTreePanel() {
 		App.INSTANCE.getLocalizationManager().addLocalizationObserver(this);
@@ -45,7 +45,7 @@ public class MainAppTreePanel extends JPanel implements LocalizationObserver {
 	 * @author filip
 	 * @param elderNodek - nastariji vrhovni cvor u stablu iz koga svi krecu. <br>
 	 * On kao i svi ostali cvorovi stabla moraju biti tipa {@link TreeParts}.
-	 * @return {@link Void}
+	 * 
 	 */
 	public void init(TreeParts elderNodek) { 
 		infRes = App.INSTANCE.getModel();

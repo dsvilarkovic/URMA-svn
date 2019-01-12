@@ -34,7 +34,7 @@ public class CreateCrudWindowAction extends AbstractAction {
 	private TablePanel panelCalling = null;
 	/**
 	 * Konstruktor akcija koja služi za kreiranje CRUD prozora koja će se koristiti za CRUD operacije
-	 * @param tableCalling - tabela za koju ce se pozvati CRUD prozor
+	 * @param panelCalling - tabela za koju ce se pozvati CRUD prozor
 	 * @param buttonName - ime dugmeta za koje se poziva CRUD
 	 */
 	public CreateCrudWindowAction(TablePanel panelCalling, String buttonName) {

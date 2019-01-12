@@ -64,7 +64,7 @@ public class RowPrimaryKeyFilter<M> extends RowFilter<TableModel, Integer> {
 	}
 	
 	/**
-	 * Pomocna funkcija za {@link findRelation()} metodu
+	 * Pomocna funkcija za {link findRelation()} metodu
 	 * @author Dusan
 	 * @param childTableModel - tabela koja se nalazi u donjem TablePanelu
 	 * @param parentTableModel - tabela koja se nalazi u gornjem TablePanel-u
