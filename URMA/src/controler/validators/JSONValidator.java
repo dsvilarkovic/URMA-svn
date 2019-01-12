@@ -25,7 +25,7 @@ public class JSONValidator implements IValidator {
 	 * @return void
 	 */
 	@Override
-	public void validate() {
+	public boolean validate() {
 		String path = App.INSTANCE.getEditorWindow().getToolbar().getPath().getText();
 		JTextArea console = App.INSTANCE.getEditorWindow().getConsolePanel().getTextArea();
 
@@ -40,6 +40,7 @@ public class JSONValidator implements IValidator {
 			JOptionPane.showMessageDialog(null, "Your scheme is no good", "Validator message",
 					JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
+			return false;
 		}
 
 		String message = new String();
@@ -51,9 +52,11 @@ public class JSONValidator implements IValidator {
 			for (int i = 0; i < exeption.getAllMessages().size(); i++) {
 				message += "\n" + exeption.getAllMessages().get(i);
 			}
+			return false;
 		}
 		console.setText(message);
 		System.out.println(this.getClass() + ": Validate scheme action execution finnished");
 
+		return true;
 	}
 }

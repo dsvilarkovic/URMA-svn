@@ -7,7 +7,7 @@ package controler.validators;
 public class XMLValidator implements IValidator {
 
 	@Override
-	public void validate() {
-
+	public boolean validate() {
+		return false;
 	}
 }

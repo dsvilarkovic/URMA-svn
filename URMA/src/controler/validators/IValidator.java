@@ -6,5 +6,10 @@ package controler.validators;
  * @author filip
  */
 public interface IValidator {
-	public void validate();
+	/**
+	 * Sluzi da validira odgovarajucu semu.
+	 * @author Dusan
+	 * @return true ako je validacija uspesna, i false ako nije uspesna
+	 */
+	public boolean validate();
 }

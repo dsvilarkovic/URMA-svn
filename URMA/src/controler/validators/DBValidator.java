@@ -7,7 +7,7 @@ package controler.validators;
 public class DBValidator implements IValidator {
 
 	@Override
-	public void validate() {
-
+	public boolean validate() {
+		return false;
 	}
 }
