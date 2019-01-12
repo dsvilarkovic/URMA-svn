@@ -187,6 +187,8 @@ public class JSONParser implements IParser {
 				}
 				
 				informationResource.addRelations(newRelation);
+				
+				destinationTable.addRelationWhereDestination(newRelation);
 			}
 			
 			return informationResource;

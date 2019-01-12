@@ -222,6 +222,8 @@ public class DBParser implements IParser {
 				r.setSourceTable(tpar);
 				r.setDestinationTable(tchi);
 				allRelations.put(rcode, r);
+				
+				tchi.addRelationWhereDestination(r);
 			}
 			rset.close();
 			ps.close();

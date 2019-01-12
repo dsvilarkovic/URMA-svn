@@ -25,6 +25,7 @@ public class Table {
 	private Map<String, Attribute> attributes;
 	private Map<String, Table> parentTables;
 	private Map<String, Table> childTables;
+	private Set<Relation> relationsWhereDestination;
 	
 	public Table() {}
 	
@@ -143,6 +144,21 @@ public class Table {
 		this.code = code;
 	}
 	
+	public Set<Relation> getRelationsWhereDestination() {
+		if (this.relationsWhereDestination == null) {
+			this.relationsWhereDestination = new HashSet<>();
+		}
+		return this.relationsWhereDestination;
+	}
+
+	public void setRelationsWhereDestination(Set<Relation> relationsWhereChild) {
+		this.relationsWhereDestination = relationsWhereChild;
+	}
+	
+	public void addRelationWhereDestination(Relation r) {
+		this.getRelationsWhereDestination().add(r);
+	}
+
 	public boolean equals(Table t) {
 		if (t == null) {
 			return false;
