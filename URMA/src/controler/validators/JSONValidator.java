@@ -1,5 +1,7 @@
 package controler.validators;
 
+import java.util.ResourceBundle;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
@@ -32,12 +34,14 @@ public class JSONValidator implements IValidator {
 		JSONObject rawSchema = new JSONObject(new JSONTokener((String) new Open().openThis(path)));
 		Schema schema = SchemaLoader.load(rawSchema);
 		JSONObject input = null;
+		
+		ResourceBundle resourceBundle = App.INSTANCE.getResourceBundle();
 
 		try {
 			input = new JSONObject(new JSONTokener(App.INSTANCE.getEditorWindow().getMainPanel().getTextArea().getText()));
 		} catch (Exception e1) {
-			//TODO: @Filip @lokalizacija not done
-			JOptionPane.showMessageDialog(null, "Your scheme is no good", "Validator message",
+			JOptionPane.showMessageDialog(null, resourceBundle.getString("schema.error"), 
+					resourceBundle.getString("error"),
 					JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
 			return false;
@@ -52,6 +56,7 @@ public class JSONValidator implements IValidator {
 			for (int i = 0; i < exeption.getAllMessages().size(); i++) {
 				message += "\n" + exeption.getAllMessages().get(i);
 			}
+			console.setText(message);
 			return false;
 		}
 		console.setText(message);

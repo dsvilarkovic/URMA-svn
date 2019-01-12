@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -63,10 +64,8 @@ public class ChooseSourceDialog extends JDialog {
         gridBagPanel.setLayout(layout);
         
         
-        //setLayout(layout);
-        
-      //TODO: @Dusan @lokalizacija not done
-		setTitle("Choose your source");
+        ResourceBundle resourceBundle = App.INSTANCE.getResourceBundle();
+		setTitle(resourceBundle.getString("choose.source"));
 		setLocation((Toolkit.getDefaultToolkit().getScreenSize().width)/8, (Toolkit.getDefaultToolkit().getScreenSize().height)/4);
 		
 		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -133,8 +132,7 @@ public class ChooseSourceDialog extends JDialog {
 		
 		
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		//TODO: @Dusan @lokalizacija not done
-		confirmButton = new JButton("Confirm");
+		confirmButton = new JButton(resourceBundle.getString("button.confirm"));
 		buttonPanel.add(confirmButton);
 		
 		add(gridBagPanel, BorderLayout.CENTER);

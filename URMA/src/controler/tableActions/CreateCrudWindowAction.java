@@ -54,20 +54,13 @@ public class CreateCrudWindowAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		//uzmi pogled na tabelu nad kojom se vrse operacije
 
-		/**
-		 *Nova funkcija za implementaciju koda
-		 */
-		
-		System.out.println("Pelepa");
-		
-		
-		
+		ResourceBundle resourceBundle = App.INSTANCE.getResourceBundle();
 		
 		try {
 			this.tableCalling  = App.INSTANCE.getTableMediator().getCalledTable(panelCalling);
 		} catch (Exception e1) {
-			//TODO: @Dusan @lokalizacija not done
-			JOptionPane.showMessageDialog(null, "Error, no table active error", "Error with tables",
+			JOptionPane.showMessageDialog(null, resourceBundle.getString("delete.action.error.activetable"),
+												resourceBundle.getString("delete.action.error.tables"),
 										  JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -114,8 +107,8 @@ public class CreateCrudWindowAction extends AbstractAction {
 			}
 		}
 		catch (ArrayIndexOutOfBoundsException indexException) {
-			//TODO: @Dusan @lokalizacija not done
-			JOptionPane.showMessageDialog(null, "Error, there is no table defined for action", "Error",
+			JOptionPane.showMessageDialog(null, resourceBundle.getString("table.error.not.defined.action"),
+												resourceBundle.getString("error"),
 											JOptionPane.ERROR_MESSAGE);
 		}
 	}

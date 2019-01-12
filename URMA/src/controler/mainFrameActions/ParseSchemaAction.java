@@ -52,9 +52,10 @@ public class ParseSchemaAction extends AbstractAction implements LocalizationObs
 		InformationResource model;
 		try {
 
+			
 			Object[] possibilities = { "json", "xml", "db" };
 			//TODO:@Filip @lokalizacija not done
-			String s = (String) JOptionPane.showInputDialog(null, "Choose parser", "Parser chooser Dialog",
+			String s = (String) JOptionPane.showInputDialog(null, rb.getString("parser.choose"), rb.getString("parser.choose.dialog"),
 					JOptionPane.PLAIN_MESSAGE, null, possibilities, "json");
 			App.INSTANCE.setFactory(s);
 			App.INSTANCE.setParserType(s);

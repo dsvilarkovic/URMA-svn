@@ -129,7 +129,6 @@ public class JSONParser implements IParser {
 				Table destinationTable = allTables.get(currRelationJSON.getString("destination"));
 				ResourceBundle resourceBundle = App.INSTANCE.getResourceBundle();
 				if (sourceTable == null || destinationTable == null) {
-					//TODO: @Boris @lokalizacija not done
 					JOptionPane.showMessageDialog(null,
 							resourceBundle.getString("parser.relation.error.first") + newRelation.getCode() + resourceBundle.getString("parser.relation.error.second"),
 							resourceBundle.getString("parser.error.message"),
@@ -144,7 +143,6 @@ public class JSONParser implements IParser {
 					String  keyCode = sourceKeyObjectJSON.toString();
 					Attribute sourceKey = sourceTable.getAttribute(keyCode);
 					if (sourceKey == null) {
-						//TODO: @Boris @lokalizacija not done
 						JOptionPane.showMessageDialog(null,
 								resourceBundle.getString("parser.relation.error.first")  
 								+ newRelation.getCode() + resourceBundle.getString("parser.error.source.attribute")
@@ -154,7 +152,6 @@ public class JSONParser implements IParser {
 						return null;
 					}
 					if (!sourceKey.getIsPrimaryKey()) {
-						//TODO: @Boris @lokalizacija not done
 						JOptionPane.showMessageDialog(null,
 								resourceBundle.getString("parser.relation.error.first") + newRelation.getCode() + 
 								resourceBundle.getString("parser.error.source") + keyCode + resourceBundle.getString("parser.error.notprimarykey"),

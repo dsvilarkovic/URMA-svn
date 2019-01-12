@@ -17,7 +17,6 @@ import model.treeAdapter.TreeParts;
  * @author filip
  */
 
-//TODO: @Dusan @lokalizacija not done ->> proveri da li i zasoto ovo koristimo i proveri boolean checkbox
 public class MainAppTreeRenderer extends DefaultTreeCellRenderer{
 
 	private static final long serialVersionUID = 1257570282495001153L;
